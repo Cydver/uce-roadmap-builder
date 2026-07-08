@@ -1,57 +1,28 @@
-# Gundam UCE Pull Roadmap Builder
+# Gundam UCE Roadmap Builder — v5 Patch
 
-This is a GitHub Pages-ready visual builder for a Gundam UCE pull roadmap and PVP meta-longevity chart.
+Upload these files to the root of your GitHub repo:
 
-## What v4 changes
+- `index.html`
+- `styles.css`
+- `app.js`
+- `README.md`
 
-- Blank template by default.
-- Tags are sorted consistently as: PVP, PVE, Core, Tech, Def.
-- Meta bars no longer show text labels on the bar.
-- Tooltips no longer show lane numbers.
-- Lane tracks are hidden until units exist in that tier.
-- Lanes grow dynamically as you add or drag units/bars into new lanes.
-- Month labels are editable by clicking the month header.
-- Timeline months can be added/removed with + Month and − Month.
-- Meta status labels/colors are editable by clicking the legend pills.
-- Default PVP meta statuses are: Human Rights, Era-Defining, Strong, Rotational, Situational.
-- A unit can now have multiple meta segments, so one MS can change status over time.
+Do **not** replace or delete:
 
-## Updating an existing repo
+- `data/catalog.json`
+- `icons/altema/`
 
-Upload only these files to the repo root:
+## v5 changes
 
-```text
-index.html
-styles.css
-app.js
-README.md
-```
+- Default roadmap stays blank.
+- Meta-status colors now use the same red / blue / green / yellow / purple ordering as the left row headers.
+- Existing old default colors migrate to the new scheme, while custom edited colors are preserved.
+- Left column row headers are now editable by clicking them.
+- Meta-status legend labels/colors are still editable by clicking the legend pills.
+- Meta bars now display the unit name only.
+- Right-click a unit icon or meta bar to add a segment directly at that week.
+- Form edits auto-apply; the manual Apply button was removed.
+- Tags remain normalized/sorted as PVP / PVE / Core / Tech / Def.
+- Buttons were restyled to look sharper and more modern while keeping rounded panels.
 
-Do not overwrite or delete:
-
-```text
-data/catalog.json
-icons/altema/
-```
-
-Those are your fetched catalog/icons.
-
-## Publishing a clan-ready roadmap
-
-Use **Export JSON**, then upload the exported file as:
-
-```text
-data/roadmap.json
-```
-
-Clanmates can then open:
-
-```text
-https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPO/?view=published
-```
-
-They do not need to import JSON manually.
-
-## Sharing with a URL
-
-Use **Copy Share Link** for small or medium roadmaps. It embeds the roadmap data into the URL hash. For large roadmaps, `data/roadmap.json` is cleaner.
+After uploading, wait for GitHub Pages to redeploy, then hard refresh the page with Cmd+Shift+R.

@@ -1,18 +1,20 @@
 const DEFAULT_MONTHS = ["This Month", "Next Month", "2 Months Later", "3 Months Later", "4 Months Later"];
-const TIERS = [
+const DEFAULT_TIERS = [
   { id: "human", label: "Human Rights", color: "#ff4b59" },
-  { id: "must", label: "Must Pull", color: "#ffa12a" },
-  { id: "ideal", label: "Ideally Pull", color: "#47a9ff" },
-  { id: "luxury", label: "Luxury Pull", color: "#a66bff" },
-  { id: "skip", label: "Skip", color: "#9aa0ab" }
+  { id: "must", label: "Must Pull", color: "#47a9ff" },
+  { id: "ideal", label: "Ideally Pull", color: "#67ef87" },
+  { id: "luxury", label: "Luxury Pull", color: "#ffcc4d" },
+  { id: "skip", label: "Skip", color: "#c18cff" }
 ];
 const DEFAULT_META_STATUSES = [
   { id: "s1", label: "Human Rights", color: "#ff4b59" },
-  { id: "s2", label: "Era-Defining", color: "#37e6ff" },
+  { id: "s2", label: "Era-Defining", color: "#47a9ff" },
   { id: "s3", label: "Strong", color: "#67ef87" },
   { id: "s4", label: "Rotational", color: "#ffcc4d" },
   { id: "s5", label: "Situational", color: "#c18cff" }
 ];
+const LEGACY_TIER_COLORS = { must: "#ffa12a", ideal: "#47a9ff", luxury: "#a66bff", skip: "#9aa0ab" };
+const LEGACY_STATUS_COLORS = { s2: "#37e6ff" };
 const OLD_STATUS_MAP = { top: "s1", strong: "s3", niche: "s5", fading: "s4", custom: "s5" };
 const TAG_OPTIONS = ["PVP", "PVE", "Core", "Tech", "Def"];
 const TAG_ORDER = new Map(TAG_OPTIONS.map((tag, i) => [tag.toLowerCase(), i]));
@@ -34,6 +36,7 @@ const ZOOM_STORAGE_KEY = "gundam-u-c-e-roadmap-builder-zoom-v2";
 const DEFAULT_ROADMAP = {
   updated: new Date().toISOString(),
   months: [...DEFAULT_MONTHS],
+  tiers: structuredClone(DEFAULT_TIERS),
   metaStatuses: structuredClone(DEFAULT_META_STATUSES),
   units: []
 };
@@ -47,6 +50,7 @@ let searchTerm = "";
 let tooltipEl = null;
 let drag = null;
 let suppressRoadmapClick = false;
+let autoApplyTimer = null;
 let zoomScale = Number(localStorage.getItem(ZOOM_STORAGE_KEY) || "1") || 1;
 
 const els = {
@@ -66,12 +70,18 @@ const els = {
   tagPreview: document.getElementById("tagPreview"),
   legend: document.getElementById("legend"),
   statusDialog: document.getElementById("statusDialog"),
-  statusForm: document.getElementById("statusForm")
+  statusForm: document.getElementById("statusForm"),
+  tierDialog: document.getElementById("tierDialog"),
+  tierForm: document.getElementById("tierForm"),
+  contextMenu: document.getElementById("contextMenu")
 };
 
 function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
 function weekCount() { return Math.max(1, (state.months || DEFAULT_MONTHS).length * 4); }
-function tierIndex(id) { return Math.max(0, TIERS.findIndex(t => t.id === id)); }
+function getTiers() { return state.tiers?.length ? state.tiers : DEFAULT_TIERS; }
+function tierIndex(id) { return Math.max(0, getTiers().findIndex(t => t.id === id)); }
+function tierById(id) { return getTiers().find(t => t.id === id) || getTiers()[0] || DEFAULT_TIERS[0]; }
+function tierIds() { return getTiers().map(t => t.id); }
 function getStatuses() { return state.metaStatuses?.length ? state.metaStatuses : DEFAULT_META_STATUSES; }
 function metaStatus(id) { return getStatuses().find(s => s.id === id) || getStatuses()[2] || DEFAULT_META_STATUSES[2]; }
 function weekX(week) { return LEFT_W + (week - 1) * CELL_W; }
@@ -89,7 +99,7 @@ function tierHeight(tierId) {
 }
 function tierY(tierId) {
   let y = HEADER_H;
-  for (const tier of TIERS) {
+  for (const tier of getTiers()) {
     if (tier.id === tierId) return y;
     y += tierHeight(tier.id);
   }
@@ -108,12 +118,13 @@ function normalizeLane(n) { return clamp(Math.round(Number(n) || 1), 1, 99); }
 function idOfWeekFromX(x) { return normalizeWeek(Math.round((x - LEFT_W - CELL_W / 2) / CELL_W) + 1); }
 function idOfTierFromY(y) {
   let top = HEADER_H;
-  for (const tier of TIERS) {
+  for (const tier of getTiers()) {
     const bottom = top + tierHeight(tier.id);
     if (y < bottom) return tier.id;
     top = bottom;
   }
-  return TIERS[TIERS.length - 1].id;
+  const tiers = getTiers();
+  return tiers[tiers.length - 1].id;
 }
 function laneFromY(y, tier) {
   const firstCenter = laneCenterY(tier, 1);
@@ -124,7 +135,7 @@ function chartPoint(event) {
   return { x: (event.clientX - rect.left) / zoomScale, y: (event.clientY - rect.top) / zoomScale };
 }
 function baseChartWidth() { return LEFT_W + weekCount() * CELL_W; }
-function baseChartHeight() { return HEADER_H + TIERS.reduce((sum, t) => sum + tierHeight(t.id), 0); }
+function baseChartHeight() { return HEADER_H + getTiers().reduce((sum, t) => sum + tierHeight(t.id), 0); }
 function setStatus(message) { els.saveStatus.textContent = message; }
 function sanitizeText(text) { return String(text || "").replace(/\s+/g, " ").trim(); }
 function cleanTags(tags) {
@@ -165,12 +176,34 @@ function normalizeState() {
   state.months = state.months.map(m => sanitizeText(m) || "Month").slice(0, 12);
   if (!state.months.length) state.months = [...DEFAULT_MONTHS];
 
+  const oldTierLabels = new Map((state.tiers || []).map(t => [t.id, t.label]));
+  const oldTierColors = new Map((state.tiers || []).map(t => [t.id, t.color]));
+  state.tiers = DEFAULT_TIERS.map((fallback) => {
+    const oldColor = oldTierColors.get(fallback.id);
+    const color = oldColor && oldColor.toLowerCase() !== (LEGACY_TIER_COLORS[fallback.id] || "").toLowerCase() && /^#[0-9a-f]{6}$/i.test(oldColor)
+      ? oldColor
+      : fallback.color;
+    return {
+      id: fallback.id,
+      label: sanitizeText(oldTierLabels.get(fallback.id)) || fallback.label,
+      color
+    };
+  });
+
   if (!Array.isArray(state.metaStatuses) || !state.metaStatuses.length) state.metaStatuses = structuredClone(DEFAULT_META_STATUSES);
-  state.metaStatuses = state.metaStatuses.slice(0, 8).map((s, i) => ({
-    id: sanitizeText(s.id) || `s${i + 1}`,
-    label: sanitizeText(s.label) || DEFAULT_META_STATUSES[i]?.label || `Status ${i + 1}`,
-    color: /^#[0-9a-f]{6}$/i.test(s.color || "") ? s.color : DEFAULT_META_STATUSES[i]?.color || "#8aa0ff"
-  }));
+  state.metaStatuses = state.metaStatuses.slice(0, 8).map((s, i) => {
+    const id = sanitizeText(s.id) || `s${i + 1}`;
+    const fallback = DEFAULT_META_STATUSES[i] || { label: `Status ${i + 1}`, color: "#8aa0ff" };
+    const oldColor = s.color || "";
+    const color = oldColor && oldColor.toLowerCase() !== (LEGACY_STATUS_COLORS[id] || "").toLowerCase() && /^#[0-9a-f]{6}$/i.test(oldColor)
+      ? oldColor
+      : fallback.color;
+    return {
+      id,
+      label: sanitizeText(s.label) || fallback.label,
+      color
+    };
+  });
   const statusIds = new Set(state.metaStatuses.map(s => s.id));
   const fallbackStatus = defaultMetaStatusId();
 
@@ -193,7 +226,7 @@ function normalizeState() {
         statusId: statusIds.has(mapped) ? mapped : fallbackStatus
       };
     }).sort((a, b) => a.start - b.start || a.end - b.end);
-    const tier = TIERS.some(t => t.id === u.tier) ? u.tier : "must";
+    const tier = tierIds().includes(u.tier) ? u.tier : "must";
     const rawTags = Array.isArray(u.tags) ? u.tags : (Array.isArray(u.badges) ? u.badges : []);
     return {
       id: u.id || crypto.randomUUID(),
@@ -223,6 +256,7 @@ function renderAll() {
   normalizeState();
   buildStaticGrid();
   renderLegend();
+  buildTierSelect();
   buildMetaStatusSelect();
   renderUnits();
   renderForm();
@@ -264,12 +298,19 @@ function buildStaticGrid() {
     els.roadmap.appendChild(week);
   }
 
-  TIERS.forEach((tier) => {
-    const label = document.createElement("div");
+  getTiers().forEach((tier) => {
+    const label = document.createElement("button");
+    label.type = "button";
     label.className = `tier-label ${tier.id}`;
     label.style.top = `${tierY(tier.id)}px`;
     label.style.height = `${tierHeight(tier.id)}px`;
+    label.style.color = tier.color;
     label.textContent = tier.label;
+    label.title = "Click to rename this row";
+    label.addEventListener("click", (event) => {
+      event.stopPropagation();
+      openTierEditor(tier.id);
+    });
     els.roadmap.appendChild(label);
   });
 
@@ -281,7 +322,7 @@ function buildStaticGrid() {
     els.roadmap.appendChild(line);
   }
 
-  TIERS.forEach((tier) => {
+  getTiers().forEach((tier) => {
     const line = document.createElement("div");
     line.className = "grid-line h";
     line.style.top = `${tierY(tier.id)}px`;
@@ -292,7 +333,7 @@ function buildStaticGrid() {
   bottom.style.top = `${baseChartHeight()}px`;
   els.roadmap.appendChild(bottom);
 
-  TIERS.forEach((tier) => {
+  getTiers().forEach((tier) => {
     const count = visibleLaneCount(tier.id);
     for (let lane = 1; lane <= count; lane++) {
       const track = document.createElement("div");
@@ -305,7 +346,7 @@ function buildStaticGrid() {
 
 function buildTierSelect() {
   const select = els.editForm.elements.tier;
-  select.innerHTML = TIERS.map(t => `<option value="${t.id}">${escapeHtml(t.label)}</option>`).join("");
+  select.innerHTML = getTiers().map(t => `<option value="${t.id}">${escapeHtml(t.label)}</option>`).join("");
 }
 
 function buildMetaStatusSelect() {
@@ -335,7 +376,14 @@ function bindUI() {
   document.getElementById("btnAddTag").addEventListener("click", addTagFromDropdown);
   document.getElementById("btnClearTags").addEventListener("click", clearTagsForSelected);
   document.getElementById("btnCancelStatusEdit").addEventListener("click", () => els.statusDialog.close());
+  document.getElementById("btnCancelTierEdit").addEventListener("click", () => els.tierDialog.close());
   els.statusForm.addEventListener("submit", saveStatusEdit);
+  els.tierForm.addEventListener("submit", saveTierEdit);
+  bindAutoApplyForm();
+  document.addEventListener("click", hideContextMenu);
+  document.addEventListener("contextmenu", (event) => {
+    if (!event.target.closest("#roadmap")) hideContextMenu();
+  });
   els.editForm.elements.tags.addEventListener("input", renderTagPreview);
   els.editForm.elements.segment.addEventListener("change", () => {
     selectedSegmentId = els.editForm.elements.segment.value;
@@ -348,7 +396,7 @@ function bindUI() {
       suppressRoadmapClick = false;
       return;
     }
-    if (!event.target.closest(".unit-card,.meta-bar,.month-head")) select(null);
+    if (!event.target.closest(".unit-card,.meta-bar,.month-head,.tier-label,.context-menu")) select(null);
   });
 
   els.catalogSearch.addEventListener("input", (e) => {
@@ -435,6 +483,28 @@ function saveStatusEdit(event) {
   autoSave();
 }
 
+function openTierEditor(tierId) {
+  const tier = tierById(tierId);
+  const f = els.tierForm.elements;
+  f.tierId.value = tier.id;
+  f.label.value = tier.label;
+  f.color.value = tier.color;
+  els.tierDialog.showModal();
+}
+
+function saveTierEdit(event) {
+  event.preventDefault();
+  const f = els.tierForm.elements;
+  const tier = state.tiers.find(t => t.id === f.tierId.value);
+  if (!tier) return;
+  tier.label = sanitizeText(f.label.value) || tier.label;
+  tier.color = /^#[0-9a-f]{6}$/i.test(f.color.value) ? f.color.value : tier.color;
+  state.updated = new Date().toISOString();
+  els.tierDialog.close();
+  renderAll();
+  autoSave();
+}
+
 function renameMonth(index) {
   const current = state.months[index] || `Month ${index + 1}`;
   const value = prompt("Rename month label:", current);
@@ -502,6 +572,7 @@ function renderUnits() {
 
     card.addEventListener("pointerdown", (event) => beginDragUnit(event, unit.id));
     card.addEventListener("click", (event) => { event.stopPropagation(); select(unit.id, null); });
+    card.addEventListener("contextmenu", (event) => openUnitContextMenu(event, unit.id, null));
     card.addEventListener("mouseenter", (event) => showTooltip(event, unit));
     card.addEventListener("mouseleave", hideTooltip);
     card.addEventListener("pointermove", moveTooltip);
@@ -517,15 +588,19 @@ function renderUnits() {
       bar.style.top = `${laneY(unit)}px`;
       bar.style.width = `${(segment.end - segment.start + 1) * CELL_W - 24}px`;
       bar.style.setProperty("--bar", segmentColor(segment));
+      const label = document.createElement("span");
+      label.className = "bar-label";
+      label.textContent = unit.name;
       const left = document.createElement("span");
       left.className = "handle left";
       left.dataset.handle = "left";
       const right = document.createElement("span");
       right.className = "handle right";
       right.dataset.handle = "right";
-      bar.append(left, right);
+      bar.append(label, left, right);
       bar.addEventListener("pointerdown", (event) => beginDragBar(event, unit.id, segment.id));
       bar.addEventListener("click", (event) => { event.stopPropagation(); select(unit.id, segment.id); });
+      bar.addEventListener("contextmenu", (event) => openUnitContextMenu(event, unit.id, segment.id));
       bar.addEventListener("mouseenter", (event) => showTooltip(event, unit, segment));
       bar.addEventListener("mouseleave", hideTooltip);
       bar.addEventListener("pointermove", moveTooltip);
@@ -605,7 +680,7 @@ function renderForm() {
   renderTagPreview();
 }
 
-function applyForm() {
+function applyForm(options = {}) {
   const unit = getSelected();
   if (!unit) return;
   const f = els.editForm.elements;
@@ -630,14 +705,43 @@ function applyForm() {
   autoSave();
 }
 
-function addSegmentToSelected() {
+function bindAutoApplyForm() {
+  const immediateNames = new Set(["kind", "tier", "week", "lane", "segment", "metaStart", "metaEnd", "metaStatus", "tags"]);
+  els.editForm.querySelectorAll("input, select, textarea").forEach(input => {
+    if (input.name === "segment") return;
+    const handler = () => scheduleAutoApply(immediateNames.has(input.name) ? 40 : 420);
+    input.addEventListener("input", handler);
+    input.addEventListener("change", handler);
+  });
+}
+function scheduleAutoApply(delay = 250) {
+  if (!getSelected() || els.editForm.classList.contains("hidden")) return;
+  clearTimeout(autoApplyTimer);
+  autoApplyTimer = setTimeout(() => {
+    const active = document.activeElement;
+    const name = active?.form === els.editForm ? active.name : null;
+    const start = typeof active?.selectionStart === "number" ? active.selectionStart : null;
+    const end = typeof active?.selectionEnd === "number" ? active.selectionEnd : null;
+    applyForm({ auto: true });
+    if (name) {
+      const next = els.editForm.elements[name];
+      if (next && typeof next.focus === "function") {
+        next.focus({ preventScroll: true });
+        if (start !== null && typeof next.setSelectionRange === "function") next.setSelectionRange(start, end ?? start);
+      }
+    }
+  }, delay);
+}
+
+function addSegmentToSelected(startOverride = null, statusOverride = null) {
   const unit = getSelected();
   if (!unit) return;
   const maxEnd = Math.max(...unit.segments.map(s => s.end));
-  const start = maxEnd < weekCount() ? maxEnd + 1 : normalizeWeek(unit.week);
+  const start = startOverride ? normalizeWeek(startOverride) : (maxEnd < weekCount() ? maxEnd + 1 : normalizeWeek(unit.week));
   const end = Math.min(weekCount(), start + 3);
-  const segment = { id: crypto.randomUUID(), start, end, statusId: defaultMetaStatusId() };
+  const segment = { id: crypto.randomUUID(), start, end, statusId: statusOverride || defaultMetaStatusId() };
   unit.segments.push(segment);
+  unit.segments.sort((a, b) => a.start - b.start || a.end - b.end);
   selectedSegmentId = segment.id;
   state.updated = new Date().toISOString();
   renderAll();
@@ -807,6 +911,51 @@ function onPointerUp() {
   renderAll();
   autoSave();
   setTimeout(() => { if (suppressRoadmapClick) suppressRoadmapClick = false; }, 0);
+}
+
+function openUnitContextMenu(event, unitId, segmentId = null) {
+  event.preventDefault();
+  event.stopPropagation();
+  select(unitId, segmentId);
+  const point = chartPoint(event);
+  const week = idOfWeekFromX(point.x);
+  showContextMenu(event.clientX, event.clientY, [
+    { label: `Add segment at W${week}`, action: () => addSegmentAtWeek(unitId, week) },
+    ...(segmentId ? [{ label: "Delete this segment", action: () => { selectedId = unitId; selectedSegmentId = segmentId; deleteSelectedSegment(); } }] : []),
+    { label: "Delete unit", danger: true, action: () => { selectedId = unitId; deleteSelected(); } }
+  ]);
+}
+function showContextMenu(clientX, clientY, items) {
+  const menu = els.contextMenu;
+  menu.innerHTML = "";
+  items.forEach(item => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = item.label;
+    if (item.danger) btn.className = "danger";
+    btn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      hideContextMenu();
+      item.action();
+    });
+    menu.appendChild(btn);
+  });
+  menu.style.left = `${clientX}px`;
+  menu.style.top = `${clientY}px`;
+  menu.classList.remove("hidden");
+  const rect = menu.getBoundingClientRect();
+  if (rect.right > window.innerWidth - 8) menu.style.left = `${Math.max(8, window.innerWidth - rect.width - 8)}px`;
+  if (rect.bottom > window.innerHeight - 8) menu.style.top = `${Math.max(8, window.innerHeight - rect.height - 8)}px`;
+}
+function hideContextMenu() {
+  els.contextMenu?.classList.add("hidden");
+}
+function addSegmentAtWeek(unitId, week) {
+  const unit = state.units.find(u => u.id === unitId);
+  if (!unit) return;
+  selectedId = unit.id;
+  addSegmentToSelected(week);
+  setStatus(`Added segment to ${unit.name} at W${week}.`);
 }
 
 function saveLocal() {
@@ -1011,7 +1160,7 @@ function drawTemplateToCanvas(ctx, width, height) {
 
   ctx.textAlign = "left";
   ctx.font = "900 16px Arial, sans-serif";
-  TIERS.forEach((tier) => {
+  getTiers().forEach((tier) => {
     ctx.fillStyle = tier.color;
     ctx.fillText(tier.label.toUpperCase(), 22, tierY(tier.id) + tierHeight(tier.id) / 2);
   });
@@ -1026,7 +1175,7 @@ function drawTemplateToCanvas(ctx, width, height) {
     ctx.stroke();
   }
   ctx.lineWidth = 1;
-  TIERS.forEach((tier) => {
+  getTiers().forEach((tier) => {
     const y = tierY(tier.id);
     ctx.beginPath();
     ctx.moveTo(0, y + 0.5);
@@ -1035,7 +1184,7 @@ function drawTemplateToCanvas(ctx, width, height) {
     ctx.stroke();
   });
 
-  TIERS.forEach(tier => {
+  getTiers().forEach(tier => {
     for (let lane = 1; lane <= visibleLaneCount(tier.id); lane++) {
       const y = laneY(tier.id, lane);
       roundedRect(ctx, LEFT_W + 10, y, weekCount() * CELL_W - 20, BAR_H, 9);
@@ -1103,6 +1252,15 @@ function drawBarToCanvas(ctx, unit, segment) {
   ctx.strokeStyle = "rgba(255,255,255,.28)";
   ctx.lineWidth = 1;
   ctx.stroke();
+  ctx.save();
+  ctx.clip();
+  ctx.fillStyle = "#ffffff";
+  ctx.globalAlpha = 0.94;
+  ctx.font = "900 10px Arial, sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(unit.name, x + w / 2, y + BAR_H / 2 + 0.5, Math.max(20, w - 18));
+  ctx.restore();
 }
 function isCanvasSafeUrl(src) {
   if (!src) return false;
@@ -1228,7 +1386,7 @@ function showTooltip(event, unit, segment = null) {
   const seg = segment || selectedSegment(unit) || firstSegment(unit);
   tooltipEl = document.createElement("div");
   tooltipEl.className = "tooltip";
-  tooltipEl.innerHTML = `<strong>${escapeHtml(unit.name)}</strong><div>${escapeHtml(TIERS[tierIndex(unit.tier)].label)} · Release W${unit.week}</div>${seg ? `<div>Meta: W${seg.start}–W${seg.end} · ${escapeHtml(metaStatus(seg.statusId).label)}</div>` : ""}${unit.tags.length ? `<div>Tags: ${unit.tags.map(escapeHtml).join(", ")}</div>` : ""}${unit.note ? `<p>${escapeHtml(unit.note)}</p>` : ""}`;
+  tooltipEl.innerHTML = `<strong>${escapeHtml(unit.name)}</strong><div>${escapeHtml(tierById(unit.tier).label)} · Release W${unit.week}</div>${seg ? `<div>Meta: W${seg.start}–W${seg.end} · ${escapeHtml(metaStatus(seg.statusId).label)}</div>` : ""}${unit.tags.length ? `<div>Tags: ${unit.tags.map(escapeHtml).join(", ")}</div>` : ""}${unit.note ? `<p>${escapeHtml(unit.note)}</p>` : ""}`;
   document.body.appendChild(tooltipEl);
   moveTooltip(event);
 }

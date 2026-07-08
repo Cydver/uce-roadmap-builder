@@ -83,8 +83,8 @@
           </div>
           <div id="tagPreview" class="tag-preview"></div>
           <div class="field"><label>Note</label><textarea name="note" rows="4"></textarea></div>
-          <div class="row gap">
-            <button type="submit">Apply</button>
+          <div class="row gap editor-footer">
+            <span class="auto-apply-note">Edits auto-apply</span>
             <button id="btnDelete" type="button" class="danger">Delete unit</button>
           </div>
         </form>
@@ -96,8 +96,9 @@
           <li>Click catalog item <strong>Add</strong>, then drag the icon card.</li>
           <li>Click month headers to rename them; use +/− Month to change the timeline.</li>
           <li>Drag colored bars to move meta duration. Drag handles to resize.</li>
-          <li>Use <strong>+ Add segment</strong> when one unit changes meta status over time.</li>
+          <li>Use <strong>+ Add segment</strong>, or right-click a unit/bar to add a segment at that week.</li>
           <li>Click a legend status to edit its label/color.</li>
+          <li>Click left row headers to rename or recolor them.</li>
           <li>Tags are always sorted as PVP, PVE, Core, Tech, Def.</li>
         </ul>
       </section>
@@ -143,6 +144,22 @@
       </div>
     </form>
   </dialog>
+
+  <dialog id="tierDialog" class="status-dialog">
+    <form method="dialog" id="tierForm">
+      <h2>Edit row header</h2>
+      <input type="hidden" name="tierId" />
+      <div class="field"><label>Label</label><input name="label" /></div>
+      <div class="field"><label>Color</label><input name="color" type="color" /></div>
+      <p class="hint">This changes the left column row header. It does not change any unit data.</p>
+      <div class="row gap dialog-actions">
+        <button value="cancel" type="button" id="btnCancelTierEdit">Cancel</button>
+        <button value="default" type="submit">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="contextMenu" class="context-menu hidden" role="menu"></div>
 
   <template id="catalogItemTemplate">
     <article class="catalog-item">
