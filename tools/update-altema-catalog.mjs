@@ -10,51 +10,50 @@ const outDir = path.join(root, 'icons', 'altema');
 const dataDir = path.join(root, 'data');
 
 const SOURCES = [
-  { kind: 'ms', url: 'https://altema.jp/gundamuce/msrea/4' },
-  { kind: 'pilot', url: 'https://altema.jp/gundamuce/chararea/4' }
+  { kind: 'ms', label: 'MS', url: 'https://altema.jp/gundamuce/msrea/4' },
+  { kind: 'pilot', label: 'Pilots', url: 'https://altema.jp/gundamuce/chararea/4' }
 ];
 
 const ATTRIBUTES = ['赤', '青', '緑', '黄', '紫'];
 const ROLES = ['強襲', '重装', '汎用', '砲撃', '狙撃', '白兵', '支援'];
-const USER_AGENT = 'Mozilla/5.0 (compatible; GundamUCERoadmapBuilder/1.0; +https://github.com/)';
-const WAIT_MS = Number(process.env.ALTTEMA_WAIT_MS || 120);
-const MAX_DETAIL_FETCHES = Number(process.env.ALTTEMA_MAX_DETAIL_FETCHES || 500);
+
+const BROWSER_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
+const WAIT_MS = Number(process.env.ALTEMA_WAIT_MS || 120);
+const MAX_ITEMS = Number(process.env.ALTEMA_MAX_ITEMS || 1000);
 
 async function main() {
   await mkdir(outDir, { recursive: true });
   await mkdir(dataDir, { recursive: true });
 
   const items = [];
-  let detailFetchCount = 0;
 
   for (const source of SOURCES) {
     console.log(`Fetching ${source.kind}: ${source.url}`);
-    const html = await fetchText(source.url);
-    const parsed = parseListPage(html, source.kind, source.url);
+    const { text, via } = await fetchSourceText(source.url);
+    console.log(`Fetched ${source.kind} via ${via}; ${text.length.toLocaleString()} chars`);
+
+    const parsed = parseListPage(text, source.kind, source.url).slice(0, MAX_ITEMS);
     console.log(`Parsed ${parsed.length} ${source.kind} rows`);
 
     for (const item of parsed) {
-      let iconUrl = item.remoteIcon;
-      if (!iconUrl && detailFetchCount < MAX_DETAIL_FETCHES && item.sourceUrl) {
-        detailFetchCount += 1;
-        iconUrl = await findIconOnDetailPage(item.sourceUrl, item.name);
-        await sleep(WAIT_MS);
-      }
-
+      const iconUrl = item.remoteIcon || deriveAltemaBannerUrl(item.sourceUrl, item.kind);
       let localIcon = '';
+
       if (iconUrl) {
         try {
-          localIcon = await downloadIcon(iconUrl, item.kind, item.name);
+          localIcon = await downloadIcon(iconUrl, item.kind, item.name, item.sourceUrl);
         } catch (error) {
           console.warn(`Could not download icon for ${item.name}: ${error.message}`);
         }
+        await sleep(WAIT_MS);
       }
 
       items.push({
         id: `altema-${item.kind}-${hash(`${item.kind}:${item.name}:${item.sourceUrl}`).slice(0, 10)}`,
         kind: item.kind,
         name: item.name,
-        icon: localIcon,
+        icon: localIcon || iconUrl || '',
+        remoteIcon: iconUrl || '',
         sourceUrl: item.sourceUrl,
         attribute: item.attribute || '',
         role: item.role || '',
@@ -66,6 +65,7 @@ async function main() {
   const result = {
     generatedAt: new Date().toISOString(),
     sources: SOURCES.map(s => s.url),
+    note: 'Generated from Altema list pages. If icons are remote URLs instead of icons/altema files, the image download step was blocked but the app can still display them.',
     items: uniqueItems(items)
   };
 
@@ -73,7 +73,16 @@ async function main() {
   console.log(`Wrote data/catalog.json with ${result.items.length} items.`);
 }
 
-function parseListPage(html, kind, baseUrl) {
+function parseListPage(text, kind, baseUrl) {
+  // Direct Altema fetch returns HTML. Jina Reader fallback returns Markdown/plain text.
+  if (/<\s*(html|table|tr|td|a)\b/i.test(text)) {
+    const htmlItems = parseHtmlListPage(text, kind, baseUrl);
+    if (htmlItems.length) return htmlItems;
+  }
+  return parseMarkdownListPage(text, kind, baseUrl);
+}
+
+function parseHtmlListPage(html, kind, baseUrl) {
   const $ = cheerio.load(html);
   const rows = $('tr').toArray();
   const items = [];
@@ -83,15 +92,16 @@ function parseListPage(html, kind, baseUrl) {
     const rowText = clean($row.text());
     if (!/\d+(?:\.\d+)?\s*点/.test(rowText)) continue;
 
-    const $link = $row.find('a[href*="/gundamuce/"]').first();
+    const pathPart = kind === 'ms' ? '/gundamuce/ms/' : '/gundamuce/chara/';
+    const $link = $row.find(`a[href*="${pathPart}"]`).first();
     if (!$link.length) continue;
 
-    const name = clean($link.text() || $link.attr('title') || '');
-    if (!name || name.includes('一覧') || name.includes('検索')) continue;
+    const name = clean($link.text() || $link.attr('title') || $link.find('img').attr('alt') || '');
+    if (!isRealItemName(name)) continue;
 
     const sourceUrl = absolutize($link.attr('href'), baseUrl);
     const $img = $row.find('img').first();
-    const remoteIcon = imageSrc($img, baseUrl);
+    const remoteIcon = imageSrc($img, baseUrl) || deriveAltemaBannerUrl(sourceUrl, kind);
     const cells = $row.find('td,th').toArray().map(cell => clean($(cell).text()));
     const rating = (rowText.match(/(\d+(?:\.\d+)?)\s*点/) || [])[1] || '';
 
@@ -109,62 +119,120 @@ function parseListPage(html, kind, baseUrl) {
   return uniqueItems(items);
 }
 
-async function findIconOnDetailPage(url, name) {
-  try {
-    const html = await fetchText(url);
-    const $ = cheerio.load(html);
-    const candidates = [];
+function parseMarkdownListPage(markdown, kind, baseUrl) {
+  const sectionTitle = kind === 'ms' ? 'MS一覧' : 'キャラ一覧';
+  const section = extractSection(markdown, sectionTitle);
+  const hrefPart = kind === 'ms' ? '/gundamuce/ms/' : '/gundamuce/chara/';
+  const linkRe = /\[([^\]\n]+?)\]\((https?:\/\/[^)\s]+)\)/g;
+  const items = [];
+  let match;
 
-    $('img').each((_, img) => {
-      const $img = $(img);
-      const src = imageSrc($img, url);
-      if (!src) return;
-      const alt = clean($img.attr('alt') || '');
-      const cls = clean($img.attr('class') || '');
-      const width = Number($img.attr('width') || 0);
-      const height = Number($img.attr('height') || 0);
-      const score = scoreImageCandidate(src, alt, cls, width, height, name);
-      if (score > 0) candidates.push({ src, score });
+  while ((match = linkRe.exec(section))) {
+    const name = clean(decodeMarkdown(match[1]));
+    const href = absolutize(match[2], baseUrl);
+    if (!href.includes(hrefPart)) continue;
+    if (!isRealItemName(name)) continue;
+
+    const lineStart = section.lastIndexOf('\n', match.index) + 1;
+    const lineEnd = section.indexOf('\n', match.index);
+    const line = clean(section.slice(lineStart, lineEnd === -1 ? match.index + 260 : lineEnd));
+    const tail = clean(section.slice(match.index, Math.min(section.length, match.index + 360)));
+    const context = `${line} ${tail}`;
+    const rating = (context.match(/(\d+(?:\.\d+)?)\s*点/) || [])[1] || '';
+    if (!rating) continue;
+
+    items.push({
+      kind,
+      name,
+      sourceUrl: href,
+      remoteIcon: deriveAltemaBannerUrl(href, kind),
+      attribute: kind === 'ms' ? findFirst([context], ATTRIBUTES) : '',
+      role: kind === 'ms' ? findFirst([context], ROLES) : '',
+      rating
     });
-
-    const og = $('meta[property="og:image"]').attr('content');
-    if (og) candidates.push({ src: absolutize(og, url), score: 2 });
-
-    candidates.sort((a, b) => b.score - a.score);
-    return candidates[0]?.src || '';
-  } catch (error) {
-    console.warn(`Detail page fetch failed for ${url}: ${error.message}`);
-    return '';
   }
+
+  return uniqueItems(items);
 }
 
-function scoreImageCandidate(src, alt, cls, width, height, name) {
-  let score = 0;
-  const n = clean(name);
-  if (alt && (alt.includes(n) || n.includes(alt))) score += 10;
-  if (/gundamuce|gundam/i.test(src)) score += 2;
-  if (/chara|char|ms|unit|card|icon|thumbnail|thumb/i.test(src + ' ' + cls)) score += 3;
-  if (width >= 80 && height >= 80) score += 2;
-  if (/logo|banner|btn|common|sprite|ad|pr/i.test(src + ' ' + cls)) score -= 6;
-  return score;
+function extractSection(text, title) {
+  const titleIndex = text.indexOf(title);
+  if (titleIndex < 0) return text;
+  const nextMajorHeading = text.slice(titleIndex + title.length).search(/\n#{1,2}\s+/);
+  return nextMajorHeading < 0 ? text.slice(titleIndex) : text.slice(titleIndex, titleIndex + title.length + nextMajorHeading);
+}
+
+function deriveAltemaBannerUrl(url, kind) {
+  const m = String(url || '').match(/\/gundamuce\/(ms|chara)\/(\d+)/);
+  if (!m) return '';
+  const id = m[2];
+  if (kind === 'pilot' || m[1] === 'chara') return `https://img.altema.jp/gundamuce/chara/banner/${id}.jpg`;
+  return `https://img.altema.jp/gundamuce/mobile_suit/banner/${id}.jpg`;
 }
 
 function imageSrc($img, baseUrl) {
   if (!$img || !$img.length) return '';
-  const src = $img.attr('data-src') || $img.attr('data-original') || $img.attr('data-lazy-src') || $img.attr('src') || '';
+  const src =
+    $img.attr('data-src') ||
+    $img.attr('data-original') ||
+    $img.attr('data-lazy-src') ||
+    $img.attr('src') ||
+    '';
   return src ? absolutize(src, baseUrl) : '';
 }
 
-async function downloadIcon(url, kind, name) {
-  const response = await fetch(url, { headers: { 'user-agent': USER_AGENT, 'referer': 'https://altema.jp/gundamuce/' } });
+async function fetchSourceText(url) {
+  try {
+    return { text: await fetchTextDirect(url), via: 'direct Altema HTML' };
+  } catch (error) {
+    console.warn(`Direct fetch failed for ${url}: ${error.message}`);
+  }
+
+  const jinaUrl = `https://r.jina.ai/${url}`;
+  try {
+    return { text: await fetchTextDirect(jinaUrl), via: 'Jina Reader Markdown fallback' };
+  } catch (error) {
+    throw new Error(`Both direct Altema fetch and Jina Reader fallback failed for ${url}. Last error: ${error.message}`);
+  }
+}
+
+async function fetchTextDirect(url) {
+  const response = await fetch(url, {
+    redirect: 'follow',
+    headers: {
+      'user-agent': BROWSER_UA,
+      'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,text/markdown,*/*;q=0.8',
+      'accept-language': 'ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7',
+      'cache-control': 'no-cache',
+      'pragma': 'no-cache',
+      'referer': 'https://altema.jp/gundamuce/'
+    }
+  });
+  if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
+  return await response.text();
+}
+
+async function downloadIcon(url, kind, name, sourceUrl = 'https://altema.jp/gundamuce/') {
+  const response = await fetch(url, {
+    redirect: 'follow',
+    headers: {
+      'user-agent': BROWSER_UA,
+      'accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+      'accept-language': 'ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7',
+      'referer': sourceUrl || 'https://altema.jp/gundamuce/'
+    }
+  });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+  const contentType = response.headers.get('content-type') || '';
+  if (!/^image\//i.test(contentType)) throw new Error(`not an image: ${contentType || 'unknown content-type'}`);
+
   const buffer = Buffer.from(await response.arrayBuffer());
-  if (buffer.byteLength < 200) throw new Error('icon response too small');
+  if (buffer.byteLength < 500) throw new Error('image response too small');
 
   const urlPath = new URL(url).pathname;
-  let ext = path.extname(urlPath).split('?')[0].toLowerCase();
+  let ext = path.extname(urlPath).toLowerCase();
   if (!ext || ext.length > 6) {
-    const contentType = response.headers.get('content-type') || '';
     ext = contentType.includes('png') ? '.png' : contentType.includes('webp') ? '.webp' : contentType.includes('gif') ? '.gif' : '.jpg';
   }
   const filename = `${kind}-${slug(name)}-${hash(url).slice(0, 8)}${ext}`;
@@ -173,14 +241,21 @@ async function downloadIcon(url, kind, name) {
   return `icons/altema/${filename}`;
 }
 
-async function fetchText(url) {
-  const response = await fetch(url, { headers: { 'user-agent': USER_AGENT } });
-  if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
-  return await response.text();
+function isRealItemName(name) {
+  if (!name) return false;
+  if (name.length < 2) return false;
+  if (/一覧|検索|ランキング|シミュ|トップ|もっと見る|Image:/i.test(name)) return false;
+  return true;
+}
+
+function decodeMarkdown(text) {
+  return String(text || '')
+    .replace(/\\([\\`*_{}\[\]()#+\-.!|>])/g, '$1')
+    .replace(/^Image:\s*/i, '');
 }
 
 function clean(text) { return String(text || '').replace(/\s+/g, ' ').trim(); }
-function findFirst(cells, values) { return values.find(v => cells.some(c => c.includes(v))) || ''; }
+function findFirst(cells, values) { return values.find(v => cells.some(c => String(c).includes(v))) || ''; }
 function absolutize(url, base) { try { return new URL(url, base).href; } catch { return url || ''; } }
 function hash(text) { return createHash('sha1').update(String(text)).digest('hex'); }
 function slug(text) {
