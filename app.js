@@ -18,7 +18,10 @@ const ICON_W = 176;
 const ICON_TOP = 28;
 const BAR_TOP = 222;
 const BAR_GAP = 23;
+const BAR_H = 18;
 const STORAGE_KEY = "gundam-u-c-e-roadmap-builder-v1";
+const ZOOM_STORAGE_KEY = "gundam-u-c-e-roadmap-builder-zoom-v2";
+const BADGE_OPTIONS = ["PVP", "PVE", "Core", "Tech", "Def"];
 
 const DEFAULT_ROADMAP = {
   updated: new Date().toISOString(),
@@ -31,7 +34,7 @@ const DEFAULT_ROADMAP = {
       week: 5,
       lane: 1,
       icon: "",
-      badges: ["PvP", "DPS"],
+      badges: ["PVP", "Core"],
       note: "Drag this card and resize its meta bar. Replace with an Altema catalog unit later.",
       metaStart: 5,
       metaEnd: 13,
@@ -45,7 +48,7 @@ const DEFAULT_ROADMAP = {
       week: 9,
       lane: 2,
       icon: "",
-      badges: ["Pilot", "EX"],
+      badges: ["PVE", "Tech"],
       note: "Catalog items can be added directly once data/catalog.json is generated.",
       metaStart: 9,
       metaEnd: 17,
@@ -62,16 +65,23 @@ let filterKind = "all";
 let searchTerm = "";
 let tooltipEl = null;
 let drag = null;
+let zoomScale = Number(localStorage.getItem(ZOOM_STORAGE_KEY) || "1") || 1;
 
 const els = {
   roadmap: document.getElementById("roadmap"),
+  roadmapStage: document.getElementById("roadmapStage"),
+  chartScroll: document.getElementById("chartScroll"),
   catalogList: document.getElementById("catalogList"),
   catalogStatus: document.getElementById("catalogStatus"),
   saveStatus: document.getElementById("saveStatus"),
   editForm: document.getElementById("editForm"),
   noSelection: document.getElementById("noSelection"),
   catalogSearch: document.getElementById("catalogSearch"),
-  importJson: document.getElementById("importJson")
+  importJson: document.getElementById("importJson"),
+  zoomRange: document.getElementById("zoomRange"),
+  zoomLabel: document.getElementById("zoomLabel"),
+  badgeDropdown: document.getElementById("badgeDropdown"),
+  badgePreview: document.getElementById("badgePreview")
 };
 
 function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
@@ -79,16 +89,23 @@ function tierIndex(id) { return Math.max(0, TIERS.findIndex(t => t.id === id)); 
 function weekX(week) { return LEFT_W + (week - 1) * CELL_W; }
 function tierY(tier) { return HEADER_H + tierIndex(tier) * TIER_H; }
 function laneY(unit) { return tierY(unit.tier) + BAR_TOP + (unit.lane - 1) * BAR_GAP; }
+function laneCenterY(tier, lane) { return tierY(tier) + BAR_TOP + (lane - 1) * BAR_GAP + BAR_H / 2; }
 function iconY(unit) { return tierY(unit.tier) + ICON_TOP; }
 function iconX(unit) { return weekX(unit.week) + Math.round((CELL_W - ICON_W) / 2); }
 function normalizeWeek(n) { return clamp(Math.round(Number(n) || 1), 1, WEEK_COUNT); }
 function normalizeLane(n) { return clamp(Math.round(Number(n) || 1), 1, LANE_COUNT); }
-function idOfWeekFromX(x) { return normalizeWeek(Math.round((x - LEFT_W - CELL_W / 2) / CELL_W) + 2); }
+function idOfWeekFromX(x) { return normalizeWeek(Math.round((x - LEFT_W - CELL_W / 2) / CELL_W) + 1); }
 function idOfTierFromY(y) { return TIERS[clamp(Math.floor((y - HEADER_H) / TIER_H), 0, TIERS.length - 1)].id; }
 function laneFromY(y, tier) {
-  const top = tierY(tier) + BAR_TOP;
-  return normalizeLane(Math.round((y - top) / BAR_GAP) + 1);
+  const firstCenter = tierY(tier) + BAR_TOP + BAR_H / 2;
+  return normalizeLane(Math.round((y - firstCenter) / BAR_GAP) + 1);
 }
+function chartPoint(event) {
+  const rect = els.roadmap.getBoundingClientRect();
+  return { x: (event.clientX - rect.left) / zoomScale, y: (event.clientY - rect.top) / zoomScale };
+}
+function baseChartWidth() { return LEFT_W + WEEK_COUNT * CELL_W; }
+function baseChartHeight() { return HEADER_H + TIERS.length * TIER_H; }
 function setStatus(message) { els.saveStatus.textContent = message; }
 function sanitizeText(text) { return String(text || "").replace(/\s+/g, " ").trim(); }
 function fileSafeName(name) { return sanitizeText(name).toLowerCase().replace(/[^a-z0-9\u3040-\u30ff\u3400-\u9fff]+/gi, "-").replace(/^-+|-+$/g, "") || "roadmap"; }
@@ -97,8 +114,9 @@ function init() {
   loadLocal();
   buildStaticGrid();
   buildTierSelect();
-  renderAll();
   bindUI();
+  renderAll();
+  setZoom(zoomScale, false);
 }
 
 function buildStaticGrid() {
@@ -154,7 +172,7 @@ function buildStaticGrid() {
     for (let lane = 1; lane <= LANE_COUNT; lane++) {
       const line = document.createElement("div");
       line.className = "lane-line";
-      line.style.top = `${tierY(tier.id) + BAR_TOP + (lane - 1) * BAR_GAP + 9}px`;
+      line.style.top = `${laneCenterY(tier.id, lane)}px`;
       els.roadmap.appendChild(line);
     }
   });
@@ -172,8 +190,17 @@ function bindUI() {
   document.getElementById("btnClearLocal").addEventListener("click", clearLocal);
   document.getElementById("btnExportPng").addEventListener("click", exportPng);
   document.getElementById("btnLoadCatalog").addEventListener("click", loadCatalog);
-  document.getElementById("btnLiveFetch").addEventListener("click", liveFetchCatalog);
   document.getElementById("btnDelete").addEventListener("click", deleteSelected);
+  document.getElementById("btnZoomOut").addEventListener("click", () => setZoom(zoomScale - 0.1));
+  document.getElementById("btnZoomIn").addEventListener("click", () => setZoom(zoomScale + 0.1));
+  document.getElementById("btnZoomReset").addEventListener("click", () => setZoom(1));
+  els.zoomRange.addEventListener("input", () => setZoom(Number(els.zoomRange.value) / 100));
+  document.getElementById("btnAddBadge").addEventListener("click", addBadgeFromDropdown);
+  document.getElementById("btnClearBadges").addEventListener("click", clearBadgesForSelected);
+  els.editForm.elements.badges.addEventListener("input", renderBadgePreview);
+  els.roadmap.addEventListener("click", (event) => {
+    if (!event.target.closest(".unit-card,.meta-bar")) select(null);
+  });
 
   els.catalogSearch.addEventListener("input", (e) => {
     searchTerm = e.target.value.toLowerCase().trim();
@@ -243,6 +270,7 @@ function renderAll() {
   buildStaticGrid();
   renderUnits();
   renderForm();
+  applyZoom();
 }
 
 function renderUnits() {
@@ -320,9 +348,6 @@ function renderUnits() {
     els.roadmap.appendChild(bar);
   });
 
-  els.roadmap.addEventListener("click", (event) => {
-    if (event.target === els.roadmap) select(null);
-  }, { once: true });
 }
 
 function placeholder(name) {
@@ -347,7 +372,17 @@ function defaultColorForKind(kind) {
 function select(id, part = "unit") {
   selectedId = id;
   selectedPart = part;
-  renderAll();
+  refreshSelectionUi();
+  renderForm();
+}
+
+function refreshSelectionUi() {
+  document.querySelectorAll(".unit-card").forEach(card => {
+    card.classList.toggle("selected", card.dataset.id === selectedId && selectedPart === "unit");
+  });
+  document.querySelectorAll(".meta-bar").forEach(bar => {
+    bar.classList.toggle("selected", bar.dataset.id === selectedId && selectedPart === "bar");
+  });
 }
 
 function getSelected() { return state.units.find(u => u.id === selectedId); }
@@ -373,6 +408,7 @@ function renderForm() {
   f.badges.value = unit.badges.join(", ");
   f.color.value = unit.color || defaultColorForKind(unit.kind);
   f.note.value = unit.note;
+  renderBadgePreview();
 }
 
 function applyForm() {
@@ -413,7 +449,9 @@ function addUnit(partial = {}) {
   };
   state.units.push(newUnit);
   state.updated = new Date().toISOString();
-  select(newUnit.id, "unit");
+  selectedId = newUnit.id;
+  selectedPart = "unit";
+  renderAll();
   autoSave();
 }
 
@@ -431,15 +469,19 @@ function beginDragUnit(event, id) {
   const unit = state.units.find(u => u.id === id);
   if (!unit) return;
   select(id, "unit");
-  const rect = els.roadmap.getBoundingClientRect();
+  const point = chartPoint(event);
+  const originLeft = iconX(unit);
+  const originTop = iconY(unit);
   drag = {
     type: "unit",
     id,
-    startX: event.clientX,
-    startY: event.clientY,
-    originLeft: iconX(unit),
-    originTop: iconY(unit),
-    rect
+    startX: point.x,
+    startY: point.y,
+    originLeft,
+    originTop,
+    offsetX: point.x - originLeft,
+    offsetY: point.y - originTop,
+    didMove: false
   };
   event.currentTarget.setPointerCapture?.(event.pointerId);
   event.preventDefault();
@@ -451,16 +493,18 @@ function beginDragBar(event, id) {
   if (!unit) return;
   select(id, "bar");
   const handle = event.target.dataset.handle || "move";
+  const point = chartPoint(event);
   drag = {
     type: "bar",
     handle,
     id,
-    startX: event.clientX,
-    startY: event.clientY,
+    startX: point.x,
+    startY: point.y,
     originStart: unit.metaStart,
     originEnd: unit.metaEnd,
     originLane: unit.lane,
-    originTier: unit.tier
+    originTier: unit.tier,
+    didMove: false
   };
   event.currentTarget.setPointerCapture?.(event.pointerId);
   event.preventDefault();
@@ -470,12 +514,12 @@ function onPointerMove(event) {
   if (!drag) return;
   const unit = state.units.find(u => u.id === drag.id);
   if (!unit) return;
+  const point = chartPoint(event);
+  if (Math.abs(point.x - drag.startX) > 3 || Math.abs(point.y - drag.startY) > 3) drag.didMove = true;
 
   if (drag.type === "unit") {
-    const dx = event.clientX - drag.startX;
-    const dy = event.clientY - drag.startY;
-    const rawX = drag.originLeft + dx;
-    const rawY = drag.originTop + dy;
+    const rawX = point.x - drag.offsetX;
+    const rawY = point.y - drag.offsetY;
     unit.week = idOfWeekFromX(rawX + ICON_W / 2);
     unit.tier = idOfTierFromY(rawY + ICON_W / 2);
     unit.metaStart = clamp(unit.metaStart, 1, WEEK_COUNT);
@@ -484,8 +528,8 @@ function onPointerMove(event) {
   }
 
   if (drag.type === "bar") {
-    const dxWeeks = Math.round((event.clientX - drag.startX) / CELL_W);
-    const dy = event.clientY - drag.startY;
+    const dxWeeks = Math.round((point.x - drag.startX) / CELL_W);
+    const dy = point.y - drag.startY;
     if (drag.handle === "left") {
       unit.metaStart = clamp(drag.originStart + dxWeeks, 1, unit.metaEnd);
     } else if (drag.handle === "right") {
@@ -495,9 +539,10 @@ function onPointerMove(event) {
       const newStart = clamp(drag.originStart + dxWeeks, 1, WEEK_COUNT - span);
       unit.metaStart = newStart;
       unit.metaEnd = newStart + span;
-      const tier = idOfTierFromY(tierY(drag.originTier) + BAR_TOP + (drag.originLane - 1) * BAR_GAP + dy);
+      const centerY = laneCenterY(drag.originTier, drag.originLane) + dy;
+      const tier = idOfTierFromY(centerY);
       unit.tier = tier;
-      unit.lane = laneFromY(tierY(drag.originTier) + BAR_TOP + (drag.originLane - 1) * BAR_GAP + dy, tier);
+      unit.lane = laneFromY(centerY, tier);
     }
     renderAll();
   }
@@ -547,6 +592,57 @@ function downloadBlob(blob, filename) {
   a.click();
   a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function applyZoom() {
+  if (!els.roadmap || !els.roadmapStage) return;
+  els.roadmap.style.transform = `scale(${zoomScale})`;
+  els.roadmapStage.style.width = `${baseChartWidth() * zoomScale}px`;
+  els.roadmapStage.style.height = `${baseChartHeight() * zoomScale}px`;
+  if (els.zoomRange) els.zoomRange.value = String(Math.round(zoomScale * 100));
+  if (els.zoomLabel) els.zoomLabel.textContent = `${Math.round(zoomScale * 100)}%`;
+}
+function setZoom(value, persist = true) {
+  zoomScale = clamp(Math.round(Number(value || 1) * 100) / 100, 0.5, 1.6);
+  applyZoom();
+  if (persist) localStorage.setItem(ZOOM_STORAGE_KEY, String(zoomScale));
+}
+function badgeListFromInput() {
+  return els.editForm.elements.badges.value.split(",").map(sanitizeText).filter(Boolean).slice(0, 8);
+}
+function setBadgeList(badges, apply = false) {
+  const unique = [];
+  badges.forEach(badge => {
+    const clean = sanitizeText(badge);
+    if (clean && !unique.some(x => x.toLowerCase() === clean.toLowerCase())) unique.push(clean);
+  });
+  els.editForm.elements.badges.value = unique.slice(0, 8).join(", ");
+  renderBadgePreview();
+  if (apply && getSelected()) applyForm();
+}
+function addBadgeFromDropdown() {
+  if (!getSelected()) return;
+  const badge = els.badgeDropdown.value;
+  setBadgeList([...badgeListFromInput(), badge], true);
+}
+function clearBadgesForSelected() {
+  if (!getSelected()) return;
+  setBadgeList([], true);
+}
+function renderBadgePreview() {
+  if (!els.badgePreview) return;
+  els.badgePreview.innerHTML = "";
+  if (els.editForm.classList.contains("hidden")) return;
+  badgeListFromInput().forEach((badge) => {
+    const chip = document.createElement("span");
+    chip.className = "badge";
+    chip.textContent = badge;
+    chip.title = `Remove ${badge}`;
+    chip.addEventListener("click", () => {
+      setBadgeList(badgeListFromInput().filter(b => b.toLowerCase() !== badge.toLowerCase()), true);
+    });
+    els.badgePreview.appendChild(chip);
+  });
 }
 
 async function exportPng() {
@@ -651,12 +747,8 @@ function renderCatalog() {
 }
 
 function defaultBadges(item) {
-  const badges = [];
-  if ((item.kind || item.type) === "pilot") badges.push("Pilot");
-  if ((item.kind || item.type) === "ms") badges.push("MS");
-  if (item.role) badges.push(item.role);
-  if (item.attribute) badges.push(item.attribute);
-  return badges.slice(0, 4);
+  // Keep catalog additions clean; add PVP/PVE/Core/Tech/Def from the dropdown after adding a unit.
+  return [];
 }
 
 function placeholderDataUrl(name) {

@@ -58,3 +58,24 @@ npm run update-catalog
 - Live browser fetching from Altema may fail because static sites cannot always read third-party pages due to CORS. The GitHub Action scraper is the reliable route.
 - PNG export may fail if remote images block canvas export. Using the GitHub Action to host icons locally in your repo fixes that.
 - Respect the source site's terms and the rights of game assets when publishing icons publicly.
+
+## v2 editor notes
+
+This version removes the browser live Altema fetch button. Use the GitHub Action scraper to generate `data/catalog.json` and `icons/altema/`, then use **Load local catalog** in the app.
+
+New editor features:
+
+- Chart zoom controls in the top bar.
+- Badge dropdown for `PVP`, `PVE`, `Core`, `Tech`, and `Def`.
+- Unit selection now persists after a normal click.
+- Icon drag snapping now uses corrected week math and zoom-aware pointer coordinates.
+- Meta lane guides are aligned to the center of each bar lane.
+
+When patching an existing repo that already has a full catalog, replace only these files unless you intentionally want to regenerate the catalog:
+
+- `index.html`
+- `styles.css`
+- `app.js`
+- `README.md` optional
+
+Do not upload a fresh starter `data/catalog.json` over your existing catalog unless you are okay regenerating it with the GitHub Action.
