@@ -110,6 +110,12 @@ const els = {
 };
 
 function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
+function legibleTextScale(scale = zoomScale) {
+  const normalized = clamp(Number(scale) || 1, 0.5, 1.6);
+  return clamp(Math.pow(1 / normalized, 0.45), 1, 1.42);
+}
+function fontPx(px, scale = zoomScale) { return Math.round(px * legibleTextScale(scale) * 10) / 10; }
+function canvasFont(weight, px, family = "Arial, sans-serif") { return `${weight} ${fontPx(px)}px ${family}`; }
 function normalizeMonthWeekCount(value) { return Number(value) === 5 ? 5 : 4; }
 function getMonthWeeks() {
   const months = Array.isArray(state.months) && state.months.length ? state.months : DEFAULT_MONTHS;
@@ -260,8 +266,7 @@ function tierY(tierId) {
 function laneY(unitOrTier, laneMaybe) {
   const tier = typeof unitOrTier === "string" ? unitOrTier : unitOrTier.tier;
   const lane = typeof unitOrTier === "string" ? laneMaybe : unitOrTier.lane;
-  const offset = typeof unitOrTier === "string" ? 0 : rowOffsetForBar(unitOrTier);
-  return tierY(tier) + dynamicBarTop(tier) + (lane - 1) * BAR_GAP + offset;
+  return tierY(tier) + dynamicBarTop(tier) + (lane - 1) * BAR_GAP;
 }
 function laneCenterY(tier, lane) { return laneY(tier, lane) + BAR_H / 2; }
 function iconY(unit) {
@@ -1209,7 +1214,9 @@ function onPointerMove(event) {
     const oldTier = unit.tier;
     const oldOffset = normalizeRowOffset(unit.rowOffset);
     const placement = rowPlacementFromY(rawY + ICON_W / 2);
-    unit.week = idOfWeekFromX(rawX + ICON_W / 2);
+    const nextWeek = idOfWeekFromX(rawX + ICON_W / 2);
+    unit.week = nextWeek;
+    alignUnitSegmentsToReleaseWeek(unit);
     unit.tier = placement.tier;
     unit.rowOffset = placement.rowOffset;
     if (oldTier !== unit.tier || oldOffset !== unit.rowOffset) unit.lane = autoLaneFor(unit.tier, unit.segments, unit.id);
@@ -1258,6 +1265,7 @@ function finalizeUnitDrop(endedDrag) {
     : null;
   if (displaced) {
     displaced.week = normalizeWeek(endedDrag.originWeek);
+    alignUnitSegmentsToReleaseWeek(displaced);
     displaced.tier = endedDrag.originTier;
     displaced.rowOffset = normalizeRowOffset(endedDrag.originRowOffset ?? 0);
     // Preserve the dragged unit's lane, so its meta bar stays visually attached to the unit being moved.
@@ -1273,8 +1281,27 @@ function finalizeUnitDrop(endedDrag) {
 function reflowLanes(tierId) {
   const units = state.units
     .filter(u => u.tier === tierId && hasMetaBars(u))
-    .sort((a, b) => b.week - a.week || a.name.localeCompare(b.name));
+    .sort((a, b) => normalizeWeek(a.week) - normalizeWeek(b.week)
+      || normalizeRowOffset(a.rowOffset) - normalizeRowOffset(b.rowOffset)
+      || a.name.localeCompare(b.name));
   units.forEach((unit, index) => { unit.lane = index + 1; });
+}
+function alignUnitSegmentsToReleaseWeek(unit) {
+  if (!unit || !hasMetaBars(unit) || !Array.isArray(unit.segments) || !unit.segments.length) return;
+  const earliestStart = Math.min(...unit.segments.map(segment => normalizeWeek(segment.start)));
+  const deltaWeeks = normalizeWeek(unit.week) - earliestStart;
+  if (!deltaWeeks) return;
+  const totalWeeks = weekCount();
+  for (const segment of unit.segments) {
+    const start = normalizeWeek(segment.start);
+    const end = normalizeWeek(segment.end);
+    const span = Math.max(0, end - start);
+    const maxStart = Math.max(1, totalWeeks - span);
+    const nextStart = clamp(start + deltaWeeks, 1, maxStart);
+    segment.start = nextStart;
+    segment.end = nextStart + span;
+  }
+  unit.segments.sort((a, b) => a.start - b.start || a.end - b.end);
 }
 function compactLanes(tierId) { reflowLanes(tierId); syncPilotLanes(); }
 function syncPilotLanes() {
@@ -1359,6 +1386,7 @@ function moveSelectedUnitTo(tier, week, rowOffset = 0) {
   unit.tier = tier;
   unit.rowOffset = normalizeRowOffset(rowOffset);
   unit.week = normalizeWeek(week);
+  alignUnitSegmentsToReleaseWeek(unit);
   unit.lane = autoLaneFor(unit.tier, unit.segments, unit.id);
   reflowLanes(oldTier);
   reflowLanes(unit.tier);
@@ -1615,6 +1643,7 @@ function downloadBlob(blob, filename) {
 function applyZoom() {
   if (!els.roadmap || !els.roadmapStage) return;
   els.roadmap.style.transform = `scale(${zoomScale})`;
+  els.roadmap.style.setProperty("--textBoost", legibleTextScale().toFixed(3));
   els.roadmapStage.style.width = `${baseChartWidth() * zoomScale}px`;
   els.roadmapStage.style.height = `${baseChartHeight() * zoomScale}px`;
   if (els.zoomRange) els.zoomRange.value = String(Math.round(zoomScale * 100));
@@ -1727,8 +1756,8 @@ async function exportPng() {
     const ctx = canvas.getContext("2d");
     ctx.scale(exportScale, exportScale);
     drawTemplateToCanvas(ctx, width, height);
-    for (const unit of state.units) await drawUnitToCanvas(ctx, unit);
     for (const unit of state.units) if (hasMetaBars(unit)) for (const segment of unit.segments) drawBarToCanvas(ctx, unit, segment);
+    for (const unit of state.units) await drawUnitToCanvas(ctx, unit);
     canvas.toBlob((blob) => {
       if (!blob) {
         setStatus("PNG export failed: could not create blob.");
@@ -1751,14 +1780,14 @@ function drawTemplateToCanvas(ctx, width, height) {
 
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.font = "900 18px Arial, sans-serif";
+  ctx.font = canvasFont(900, 18);
   ctx.fillStyle = "#eef3fb";
   const monthWeeks = getMonthWeeks();
   state.months.forEach((month, i) => {
     const x = weekX(monthStartWeek(i));
     ctx.fillText(month.toUpperCase(), x + monthWeeks[i] * CELL_W / 2, MONTH_H / 2);
   });
-  ctx.font = "900 14px Arial, sans-serif";
+  ctx.font = canvasFont(900, 14);
   ctx.fillStyle = "#dce4f0";
   for (let w = 1; w <= weekCount(); w++) {
     const { weekInMonth } = weekToMonthWeek(w);
@@ -1766,7 +1795,7 @@ function drawTemplateToCanvas(ctx, width, height) {
   }
 
   ctx.textAlign = "left";
-  ctx.font = "900 16px Arial, sans-serif";
+  ctx.font = canvasFont(900, 16);
   getTiers().forEach((tier) => {
     ctx.fillStyle = tier.color;
     ctx.fillText(tier.label.toUpperCase(), 22, tierY(tier.id) + tierHeight(tier.id) / 2);
@@ -1824,10 +1853,10 @@ async function drawUnitToCanvas(ctx, unit) {
   ctx.fillStyle = grad;
   ctx.fillRect(x, y + ICON_W - 58, ICON_W, 58);
   ctx.fillStyle = "#ffffff";
-  ctx.font = "800 12px Arial, sans-serif";
+  ctx.font = canvasFont(800, 12);
   ctx.textBaseline = "bottom";
   ctx.textAlign = "left";
-  wrapText(ctx, unit.name, x + 8, y + ICON_W - 7, ICON_W - 16, 14, 2);
+  wrapText(ctx, unit.name, x + 8, y + ICON_W - 7, ICON_W - 16, fontPx(14), 2);
   ctx.restore();
   ctx.strokeStyle = "rgba(255,255,255,.25)";
   ctx.lineWidth = 1;
@@ -1843,12 +1872,13 @@ async function drawUnitToCanvas(ctx, unit) {
 }
 function drawTagsToCanvas(ctx, tags, x, y) {
   const clean = cleanTags(tags).slice(0, 8);
+  const boost = legibleTextScale();
   const right = x + ICON_W - 7;
   const top = y + 7;
-  const h = 17;
-  const gap = 4;
-  ctx.font = "900 10px Arial, sans-serif";
-  const widths = clean.map(tag => Math.ceil(ctx.measureText(String(tag)).width) + 12);
+  const h = 17 * boost;
+  const gap = 4 * boost;
+  ctx.font = canvasFont(900, 10);
+  const widths = clean.map(tag => Math.ceil(ctx.measureText(String(tag)).width) + 12 * boost);
   const firstCount = clean.length > 5 ? 5 : clean.length;
   const firstColW = Math.max(0, ...widths.slice(0, firstCount));
   const secondColW = clean.length > 5 ? Math.max(0, ...widths.slice(firstCount)) : 0;
@@ -1859,7 +1889,7 @@ function drawTagsToCanvas(ctx, tags, x, y) {
     const colRight = inSecond ? right - firstColW - gap : right;
     const bx = colRight - w;
     const by = top + row * (h + gap);
-    roundedRect(ctx, bx, by, w, h, 8);
+    roundedRect(ctx, bx, by, w, h, 8 * boost);
     ctx.fillStyle = tagBg(tag);
     ctx.fill();
     ctx.strokeStyle = "rgba(255,255,255,.52)";
@@ -1884,7 +1914,7 @@ function drawBarToCanvas(ctx, unit, segment) {
   ctx.clip();
   ctx.fillStyle = "#ffffff";
   ctx.globalAlpha = 0.94;
-  ctx.font = "900 10px Arial, sans-serif";
+  ctx.font = canvasFont(900, 10);
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillText(`${unit.name} - ${metaStatus(segment.statusId).label}`, x + w / 2, y + BAR_H / 2 + 0.5, Math.max(20, w - 18));
@@ -1922,7 +1952,7 @@ function drawPlaceholder(ctx, name, x, y, w, h) {
   ctx.fillStyle = grad;
   ctx.fillRect(x, y, w, h);
   ctx.fillStyle = "#d9e4f5";
-  ctx.font = "900 36px Arial, sans-serif";
+  ctx.font = canvasFont(900, 36);
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillText(initials(name), x + w / 2, y + h / 2);
