@@ -56,6 +56,7 @@ const HEADER_H = MONTH_H + WEEK_H;
 const BLANK_TIER_H = 250;
 const ICON_W = 176;
 const ICON_TOP = 28;
+const ICON_STACK_GAP = 14;
 const BAR_TOP = 222;
 const BAR_GAP = 23;
 const BAR_H = 18;
@@ -166,7 +167,7 @@ function rowOffsetForIcon(unit) {
 function rowOffsetForBar(unit) {
   const offset = normalizeRowOffset(unit?.rowOffset);
   if (!offset) return 0;
-  const baseCenter = BAR_TOP + BAR_H / 2;
+  const baseCenter = dynamicBarTop(unit.tier) + BAR_H / 2;
   return offset < 0 ? -Math.round(baseCenter) : Math.max(0, Math.round(tierHeight(unit.tier) - baseCenter));
 }
 function isPilot(unit) { return String(unit?.kind || "").toLowerCase() === "pilot"; }
@@ -178,40 +179,52 @@ function sameVisualSlot(a, b) {
     && normalizeWeek(a.week) === normalizeWeek(b.week)
     && normalizeRowOffset(a.rowOffset) === normalizeRowOffset(b.rowOffset);
 }
-function defaultStackWeight(unit) {
-  if (isMs(unit)) return 30;
-  if (isPilot(unit)) return 10;
-  return 20;
-}
-function stackWeight(unit) {
-  const explicit = Number(unit?.stackOrder);
-  return Number.isFinite(explicit) && explicit > 0 ? 1000 + explicit : defaultStackWeight(unit);
+function visualStackRank(unit) {
+  if (isMs(unit)) return 0;
+  if (String(unit?.kind || "").toLowerCase() === "custom") return 1;
+  if (isPilot(unit)) return 2;
+  return 1;
 }
 function sameSlotGroup(unit) {
   if (!unit) return [];
   return (state.units || [])
     .filter(other => sameVisualSlot(unit, other))
-    .sort((a, b) => stackWeight(a) - stackWeight(b) || a.name.localeCompare(b.name) || a.id.localeCompare(b.id));
+    .sort((a, b) => {
+      const rankDiff = visualStackRank(a) - visualStackRank(b);
+      if (rankDiff) return rankDiff;
+      const orderDiff = (Number(a.stackOrder) || 0) - (Number(b.stackOrder) || 0);
+      return orderDiff || a.name.localeCompare(b.name) || a.id.localeCompare(b.id);
+    });
 }
 function sameSlotOffset(unit) {
   const group = sameSlotGroup(unit);
-  if (group.length <= 1) return { x: 0, y: 0, z: 0 };
+  if (group.length <= 1) return { x: 0, y: 0, z: 0, index: 0, count: 1, groupHeight: ICON_W };
   const index = Math.max(0, group.findIndex(other => other.id === unit.id));
-  const topIndex = group.length - 1;
-  if (index === topIndex) return { x: 0, y: 0, z: topIndex };
-  const depth = topIndex - index;
-  return { x: Math.min(54, 24 * depth), y: Math.min(42, 18 * depth), z: index };
+  return {
+    x: 0,
+    y: index * (ICON_W + ICON_STACK_GAP),
+    z: group.length - index,
+    index,
+    count: group.length,
+    groupHeight: group.length * ICON_W + (group.length - 1) * ICON_STACK_GAP
+  };
 }
-function bringUnitToTopOfSlot(unitId) {
-  const unit = state.units.find(u => u.id === unitId);
-  if (!unit) return false;
-  const group = sameSlotGroup(unit);
-  if (group.length <= 1 || group[group.length - 1]?.id === unit.id) return false;
-  const maxOrder = Math.max(0, ...group.map(u => Number(u.stackOrder) || 0));
-  unit.stackOrder = maxOrder + 1;
-  state.updated = new Date().toISOString();
-  setStatus(`${unit.name} brought to the front of its release-week stack.`);
-  return true;
+function maxIconStackDepth(tierId) {
+  const groups = new Map();
+  for (const unit of state.units || []) {
+    if (unit.tier !== tierId) continue;
+    const key = `${unit.tier}|${normalizeWeek(unit.week)}|${normalizeRowOffset(unit.rowOffset)}`;
+    groups.set(key, (groups.get(key) || 0) + 1);
+  }
+  return Math.max(1, ...groups.values());
+}
+function iconStackHeight(depth) {
+  const count = Math.max(1, Number(depth) || 1);
+  return count * ICON_W + (count - 1) * ICON_STACK_GAP;
+}
+function dynamicBarTop(tierId) {
+  const depth = maxIconStackDepth(tierId);
+  return Math.max(BAR_TOP, ICON_TOP + iconStackHeight(depth) + 18);
 }
 function kindSort(kind) {
   if (kind === "pilot") return 0;
@@ -230,8 +243,11 @@ function visibleLaneCount(tierId) {
 }
 function tierHeight(tierId) {
   const lanes = visibleLaneCount(tierId);
-  if (!lanes) return BLANK_TIER_H;
-  return Math.max(BLANK_TIER_H, BAR_TOP + lanes * BAR_GAP + BAR_BOTTOM_PAD);
+  const stackDepth = maxIconStackDepth(tierId);
+  const iconContentHeight = ICON_TOP + iconStackHeight(stackDepth) + 28;
+  const minHeight = Math.max(BLANK_TIER_H, iconContentHeight);
+  if (!lanes) return minHeight;
+  return Math.max(minHeight, dynamicBarTop(tierId) + lanes * BAR_GAP + BAR_BOTTOM_PAD);
 }
 function tierY(tierId) {
   let y = HEADER_H;
@@ -245,12 +261,16 @@ function laneY(unitOrTier, laneMaybe) {
   const tier = typeof unitOrTier === "string" ? unitOrTier : unitOrTier.tier;
   const lane = typeof unitOrTier === "string" ? laneMaybe : unitOrTier.lane;
   const offset = typeof unitOrTier === "string" ? 0 : rowOffsetForBar(unitOrTier);
-  return tierY(tier) + BAR_TOP + (lane - 1) * BAR_GAP + offset;
+  return tierY(tier) + dynamicBarTop(tier) + (lane - 1) * BAR_GAP + offset;
 }
 function laneCenterY(tier, lane) { return laneY(tier, lane) + BAR_H / 2; }
 function iconY(unit) {
-  const offset = sameSlotOffset(unit);
-  return clamp(tierY(unit.tier) + ICON_TOP + rowOffsetForIcon(unit) + offset.y, HEADER_H - ICON_W / 2, baseChartHeight() - ICON_W);
+  const slot = sameSlotOffset(unit);
+  const rowOffset = normalizeRowOffset(unit.rowOffset);
+  let top = tierY(unit.tier) + ICON_TOP + slot.y;
+  if (rowOffset > 0) top = tierY(unit.tier) + tierHeight(unit.tier) - slot.groupHeight / 2 + slot.y;
+  if (rowOffset < 0) top = tierY(unit.tier) - slot.groupHeight / 2 + slot.y;
+  return clamp(top, HEADER_H - ICON_W / 2, baseChartHeight() - ICON_W);
 }
 function iconX(unit) {
   const offset = sameSlotOffset(unit);
@@ -326,6 +346,7 @@ function init() {
   bindUI();
   renderAll();
   setZoom(zoomScale, false);
+  loadCatalog();
   maybeLoadPublishedRoadmap();
 }
 
@@ -553,7 +574,7 @@ function bindUI() {
   document.getElementById("btnSaveLocal").addEventListener("click", saveLocal);
   document.getElementById("btnClearLocal").addEventListener("click", clearLocal);
   document.getElementById("btnExportPng").addEventListener("click", exportPng);
-  document.getElementById("btnLoadCatalog").addEventListener("click", loadCatalog);
+  document.getElementById("btnLoadCatalog")?.addEventListener("click", loadCatalog);
   document.getElementById("btnDelete").addEventListener("click", deleteSelected);
   document.getElementById("btnAddMonth").addEventListener("click", addMonth);
   document.getElementById("btnRemoveMonth").addEventListener("click", removeMonth);
@@ -809,12 +830,7 @@ function renderUnits() {
         ignoreNextUnitClick = false;
         return;
       }
-      const restacked = bringUnitToTopOfSlot(unit.id);
       select(unit.id, null);
-      if (restacked) {
-        renderAll();
-        autoSave();
-      }
     });
     card.addEventListener("contextmenu", (event) => openUnitContextMenu(event, unit.id, null));
     card.addEventListener("dblclick", (event) => { event.stopPropagation(); renameUnit(unit.id); });
@@ -1281,7 +1297,7 @@ function pairedMsForPilot(pilot) {
       if (aTier !== bTier) return bTier - aTier;
       const aDistance = Math.abs(tierIndex(a.tier) + normalizeRowOffset(a.rowOffset) - (tierIndex(pilot.tier) + normalizeRowOffset(pilot.rowOffset)));
       const bDistance = Math.abs(tierIndex(b.tier) + normalizeRowOffset(b.rowOffset) - (tierIndex(pilot.tier) + normalizeRowOffset(pilot.rowOffset)));
-      return aDistance - bDistance || stackWeight(b) - stackWeight(a) || a.name.localeCompare(b.name);
+      return aDistance - bDistance || visualStackRank(a) - visualStackRank(b) || a.name.localeCompare(b.name);
     })[0] || null;
 }
 function metaOwnerForUnit(unit) {
@@ -1471,7 +1487,7 @@ function addSegmentAtWeek(unitId, week) {
   const requested = state.units.find(u => u.id === unitId);
   const unit = metaOwnerForUnit(requested);
   if (!unit || !hasMetaBars(unit)) {
-    setStatus("Pilots use their same-week MS meta bar. Add an MS in the same week first.");
+    setStatus("Pilots are tied to an MS. Add or select an MS in the same week first.");
     return;
   }
   selectedId = unit.id;
@@ -1998,16 +2014,17 @@ function placeholderDataUrl(name) {
 
 function showTooltip(event, unit, segment = null) {
   hideTooltip();
-  const displayUnit = metaOwnerForUnit(unit) || unit;
+  const pairedMs = isPilot(unit) ? pairedMsForPilot(unit) : null;
+  const metaUnit = hasMetaBars(unit) ? unit : pairedMs;
+  const title = pairedMs ? `${unit.name} (${pairedMs.name})` : unit.name;
   tooltipEl = document.createElement("div");
   tooltipEl.className = "tooltip";
-  const activeId = segment?.id || selectedSegment(displayUnit)?.id || null;
-  const segmentsHtml = segmentListHtml(displayUnit, activeId);
-  const mustP5Html = hasMustP5(displayUnit) ? `<div class="tooltip-must-p5">Must P5</div>` : "";
-  const rowPositionHtml = normalizeRowOffset(displayUnit.rowOffset) ? `<div class="tooltip-row-position">${escapeHtml(rowOffsetLabel(displayUnit.rowOffset))}</div>` : "";
-  const tagHtml = displayUnit.tags.length ? `<div class="tooltip-tags">Tags: ${displayUnit.tags.map(tag => `<span class="tooltip-tag ${tagClass(tag)}">${escapeHtml(tag)}</span>`).join(" ")}</div>` : "";
-  const pilotLinkHtml = displayUnit.id !== unit.id ? `<div class="tooltip-link-note">Pilot shown with same-week MS tooltip: ${escapeHtml(unit.name)}</div>` : "";
-  tooltipEl.innerHTML = `<strong>${escapeHtml(displayUnit.name)}</strong><div>${escapeHtml(tierById(displayUnit.tier).label)} · ${escapeHtml(formatWeek(displayUnit.week))}</div>${pilotLinkHtml}${rowPositionHtml}${mustP5Html}${segmentsHtml}${tagHtml}${displayUnit.note ? `<p>${escapeHtml(displayUnit.note)}</p>` : ""}`;
+  const activeId = metaUnit ? (segment?.id || selectedSegment(metaUnit)?.id || null) : null;
+  const segmentsHtml = metaUnit ? segmentListHtml(metaUnit, activeId) : "";
+  const mustP5Html = hasMustP5(unit) ? `<div class="tooltip-must-p5">Must P5</div>` : "";
+  const rowPositionHtml = normalizeRowOffset(unit.rowOffset) ? `<div class="tooltip-row-position">${escapeHtml(rowOffsetLabel(unit.rowOffset))}</div>` : "";
+  const tagHtml = unit.tags.length ? `<div class="tooltip-tags">Tags: ${unit.tags.map(tag => `<span class="tooltip-tag ${tagClass(tag)}">${escapeHtml(tag)}</span>`).join(" ")}</div>` : "";
+  tooltipEl.innerHTML = `<strong>${escapeHtml(title)}</strong><div>${escapeHtml(tierById(unit.tier).label)} · ${escapeHtml(formatWeek(unit.week))}</div>${rowPositionHtml}${mustP5Html}${segmentsHtml}${tagHtml}${unit.note ? `<p>${escapeHtml(unit.note)}</p>` : ""}`;
   document.body.appendChild(tooltipEl);
   moveTooltip(event);
 }
