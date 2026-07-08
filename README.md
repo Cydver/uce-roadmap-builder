@@ -1,18 +1,22 @@
 # Gundam UCE Pull Roadmap Builder
 
-A static GitHub Pages app for building a visual Gundam UCE pull-priority roadmap with draggable unit icons, badges, notes, and Gantt-style meta-longevity bars.
+A static GitHub Pages app for building a visual Gundam UCE pull-priority roadmap with draggable unit icons, tags, notes, and Gantt-style meta-longevity bars.
 
 ## What it does
 
 - Displays a dark-mode roadmap with 5 months × 4 weeks.
 - Rows: Human Rights, Must Pull, Ideally Pull, Luxury Pull, Skip.
-- Lets you add MS/pilot cards from a searchable catalog.
+- Starts as a clean blank template by default.
+- Lets you add MS/pilot cards from a searchable local catalog.
 - Lets you drag cards between weeks/tiers.
 - Lets you drag/resize meta-longevity bars.
 - Supports 4 meta lanes per tier row.
+- Adds tag chips from a dropdown: PVP, PVE, Core, Tech, Def.
+- Ties bar colors to editable meta statuses: Top meta, Strong, Niche, Fading, Custom.
 - Saves edits to browser localStorage.
 - Exports/imports roadmap JSON.
-- Exports PNG, best when icons are hosted locally in the repo.
+- Copies a self-contained share link using URL hash data.
+- Exports PNG using a direct canvas renderer. Remote icons that cannot be drawn are replaced with placeholders instead of failing the whole export.
 - Includes a GitHub Action scraper for:
   - MS: https://altema.jp/gundamuce/msrea/4
   - Pilots: https://altema.jp/gundamuce/chararea/4
@@ -29,7 +33,7 @@ GitHub Pages serves static HTML/CSS/JS directly from a repository, which is exac
 
 ## Getting the real Altema catalog/icons
 
-The app ships with a tiny starter catalog so the UI works immediately. To generate the real catalog:
+To generate the real catalog:
 
 1. Push the repo to GitHub.
 2. Go to **Actions → Update Altema catalog → Run workflow**.
@@ -50,26 +54,47 @@ npm run update-catalog
 3. Click **Add**.
 4. Drag the icon card to its release week/tier.
 5. Drag the colored meta bar or resize its handles.
-6. Edit badges, color, note, tier, week, lane, and meta dates in the side panel.
+6. Edit tags, meta status, note, tier, week, lane, and meta dates in the side panel.
 7. Click **Export JSON** and commit that JSON as your saved roadmap.
+
+## Sharing options
+
+### Quick share link
+
+Click **Copy Share Link**. This puts the roadmap JSON into the URL hash. It is easy, but it can get very long once the chart has lots of units.
+
+### Cleaner clan link
+
+Export JSON, rename the file to:
+
+```text
+data/roadmap.json
+```
+
+Commit it to the repo. Then share this URL:
+
+```text
+https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPO/?view=published
+```
+
+That URL loads `data/roadmap.json` automatically, so clanmates do not need to upload JSON.
 
 ## Important notes
 
-- Live browser fetching from Altema may fail because static sites cannot always read third-party pages due to CORS. The GitHub Action scraper is the reliable route.
-- PNG export may fail if remote images block canvas export. Using the GitHub Action to host icons locally in your repo fixes that.
+- This version removes the browser live Altema fetch button. Use the GitHub Action scraper to generate `data/catalog.json` and `icons/altema/`, then use **Load local catalog** in the app.
+- PNG export works best with icons hosted locally in your repo. If an icon is remote and blocks canvas drawing, the exporter now draws a placeholder instead of failing the whole image.
 - Respect the source site's terms and the rights of game assets when publishing icons publicly.
 
-## v2 editor notes
+## v3 editor notes
 
-This version removes the browser live Altema fetch button. Use the GitHub Action scraper to generate `data/catalog.json` and `icons/altema/`, then use **Load local catalog** in the app.
-
-New editor features:
-
-- Chart zoom controls in the top bar.
-- Badge dropdown for `PVP`, `PVE`, `Core`, `Tech`, and `Def`.
-- Unit selection now persists after a normal click.
-- Icon drag snapping now uses corrected week math and zoom-aware pointer coordinates.
-- Meta lane guides are aligned to the center of each bar lane.
+- Blank template by default; no example MS or pilot cards.
+- Removed the info bubble from unit cards because the entire card already has a hover tooltip.
+- Renamed Badges to Tags.
+- Tags now stack vertically from the top-right corner of each icon.
+- Added fixed meta status options so bar meaning and color stay linked.
+- Replaced thin lane guide lines with full lane tracks aligned exactly behind the bars.
+- Improved unit dragging so the card follows the pointer while snapping still resolves to week/tier.
+- Added published-roadmap loading via `?view=published`.
 
 When patching an existing repo that already has a full catalog, replace only these files unless you intentionally want to regenerate the catalog:
 

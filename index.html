@@ -11,12 +11,12 @@
     <div class="brand">
       <div>
         <h1>Gundam UCE Pull Roadmap Builder</h1>
-        <p>Visual pull-priority matrix + meta-longevity timeline</p>
       </div>
     </div>
     <div class="toolbar">
       <button id="btnAddBlank">+ Blank Unit</button>
       <button id="btnExportJson">Export JSON</button>
+      <button id="btnCopyShareLink">Copy Share Link</button>
       <label class="fileBtn">Import JSON<input id="importJson" type="file" accept="application/json" /></label>
       <button id="btnSaveLocal">Save Local</button>
       <button id="btnClearLocal" class="danger">Clear Local</button>
@@ -61,20 +61,21 @@
             <div class="field"><label>Meta start</label><input name="metaStart" type="number" min="1" max="20" /></div>
             <div class="field"><label>Meta end</label><input name="metaEnd" type="number" min="1" max="20" /></div>
           </div>
-          <div class="field"><label>Badges</label><input name="badges" placeholder="PVP, PVE, Core, Tech, Def" /></div>
-          <div class="badge-controls">
-            <select id="badgeDropdown" aria-label="Add badge">
+          <div class="field"><label>Tags</label><input name="tags" placeholder="PVP, PVE, Core, Tech, Def" /></div>
+          <div class="tag-controls">
+            <select id="tagDropdown" aria-label="Add tag">
               <option value="PVP">PVP</option>
               <option value="PVE">PVE</option>
               <option value="Core">Core</option>
               <option value="Tech">Tech</option>
               <option value="Def">Def</option>
             </select>
-            <button id="btnAddBadge" type="button">Add badge</button>
-            <button id="btnClearBadges" type="button">Clear</button>
+            <button id="btnAddTag" type="button">Add tag</button>
+            <button id="btnClearTags" type="button">Clear</button>
           </div>
-          <div id="badgePreview" class="badge-preview"></div>
-          <div class="field"><label>Bar color</label><input name="color" type="color" /></div>
+          <div id="tagPreview" class="tag-preview"></div>
+          <div class="field"><label>Meta status</label><select name="metaStatus" id="metaStatusSelect"></select></div>
+          <div class="field custom-color-field"><label>Custom bar color</label><input name="color" type="color" /></div>
           <div class="field"><label>Note</label><textarea name="note" rows="4"></textarea></div>
           <div class="row gap">
             <button type="submit">Apply</button>
@@ -90,6 +91,8 @@
           <li>Drag the colored bar to move meta duration.</li>
           <li>Drag either bar handle to resize.</li>
           <li>Everything snaps to weeks, tiers, and 4 lanes.</li>
+          <li>Use tags for PVP/PVE/Core/Tech/Def.</li>
+          <li>Use meta status for bar meaning/color.</li>
           <li>Export JSON after changes; that file is your source of truth.</li>
         </ul>
       </section>
