@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gundam UCE Pull Roadmap Builder</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">UCE</div>
+      <div>
+        <h1>Gundam UCE Pull Roadmap Builder</h1>
+        <p>Visual pull-priority matrix + meta-longevity timeline</p>
+      </div>
+    </div>
+    <div class="toolbar">
+      <button id="btnAddBlank">+ Blank Unit</button>
+      <button id="btnExportJson">Export JSON</button>
+      <label class="fileBtn">Import JSON<input id="importJson" type="file" accept="application/json" /></label>
+      <button id="btnSaveLocal">Save Local</button>
+      <button id="btnClearLocal" class="danger">Clear Local</button>
+      <button id="btnExportPng">Export PNG</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="sidebar">
+      <section class="panel">
+        <h2>Catalog</h2>
+        <div class="row gap">
+          <button id="btnLoadCatalog">Load local catalog</button>
+          <button id="btnLiveFetch">Try live Altema fetch</button>
+        </div>
+        <p class="hint">For reliable icons on GitHub Pages, run the included GitHub Action scraper. Live fetch depends on browser/CORS/proxy availability.</p>
+        <div class="field">
+          <label for="catalogSearch">Search</label>
+          <input id="catalogSearch" type="search" placeholder="e.g. ZZ, Amuro, Unicorn…" />
+        </div>
+        <div class="segmented" role="group" aria-label="Catalog filter">
+          <button class="seg active" data-kind="all">All</button>
+          <button class="seg" data-kind="ms">MS</button>
+          <button class="seg" data-kind="pilot">Pilots</button>
+        </div>
+        <div id="catalogStatus" class="status">No catalog loaded.</div>
+        <div id="catalogList" class="catalog-list"></div>
+      </section>
+
+      <section class="panel editor">
+        <h2>Selected unit</h2>
+        <div id="noSelection" class="empty">Select a card or meta bar.</div>
+        <form id="editForm" class="hidden">
+          <div class="field"><label>Name</label><input name="name" /></div>
+          <div class="field"><label>Icon URL/path</label><input name="icon" /></div>
+          <div class="field two"><label>Type</label><select name="kind"><option value="ms">MS</option><option value="pilot">Pilot</option><option value="custom">Custom</option></select></div>
+          <div class="field two"><label>Tier</label><select name="tier"></select></div>
+          <div class="grid2">
+            <div class="field"><label>Release week</label><input name="week" type="number" min="1" max="20" /></div>
+            <div class="field"><label>Lane</label><input name="lane" type="number" min="1" max="4" /></div>
+          </div>
+          <div class="grid2">
+            <div class="field"><label>Meta start</label><input name="metaStart" type="number" min="1" max="20" /></div>
+            <div class="field"><label>Meta end</label><input name="metaEnd" type="number" min="1" max="20" /></div>
+          </div>
+          <div class="field"><label>Badges, comma-separated</label><input name="badges" placeholder="PvP, Support, EX" /></div>
+          <div class="field"><label>Bar color</label><input name="color" type="color" /></div>
+          <div class="field"><label>Note</label><textarea name="note" rows="4"></textarea></div>
+          <div class="row gap">
+            <button type="submit">Apply</button>
+            <button id="btnDelete" type="button" class="danger">Delete</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>How to edit</h2>
+        <ul class="instructions">
+          <li>Click catalog item <strong>Add</strong>, then drag the icon card.</li>
+          <li>Drag the colored bar to move meta duration.</li>
+          <li>Drag either bar handle to resize.</li>
+          <li>Everything snaps to weeks, tiers, and 4 lanes.</li>
+          <li>Export JSON after changes; that file is your source of truth.</li>
+        </ul>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <div class="workspace-bar">
+        <div class="legend">
+          <span><i class="dot top"></i>Top meta</span>
+          <span><i class="dot strong"></i>Strong</span>
+          <span><i class="dot niche"></i>Niche</span>
+          <span><i class="dot fading"></i>Fading</span>
+        </div>
+        <div id="saveStatus" class="status">Ready.</div>
+      </div>
+      <div id="chartScroll" class="chart-scroll">
+        <div id="roadmap" class="roadmap" aria-label="Gundam UCE roadmap chart"></div>
+      </div>
+    </section>
+  </main>
+
+  <template id="catalogItemTemplate">
+    <article class="catalog-item">
+      <img alt="" />
+      <div class="catalog-main">
+        <strong></strong>
+        <small></small>
+      </div>
+      <button>Add</button>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

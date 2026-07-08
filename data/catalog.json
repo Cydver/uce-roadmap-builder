@@ -1,0 +1,46 @@
+{
+  "generatedAt": null,
+  "note": "Starter catalog only. Run the included GitHub Action or node tools/update-altema-catalog.mjs to generate the full Altema MS/pilot catalog with local icon files.",
+  "sources": [
+    "https://altema.jp/gundamuce/msrea/4",
+    "https://altema.jp/gundamuce/chararea/4"
+  ],
+  "items": [
+    {
+      "id": "starter-ms-zz-awakening",
+      "kind": "ms",
+      "name": "ZZガンダム(覚醒)",
+      "icon": "",
+      "sourceUrl": "https://altema.jp/gundamuce/msrea/4",
+      "attribute": "緑",
+      "role": "砲撃",
+      "rating": "9.5"
+    },
+    {
+      "id": "starter-ms-qubeley-awakening",
+      "kind": "ms",
+      "name": "キュベレイ(覚醒)",
+      "icon": "",
+      "sourceUrl": "https://altema.jp/gundamuce/msrea/4",
+      "attribute": "青",
+      "role": "汎用",
+      "rating": "9.5"
+    },
+    {
+      "id": "starter-pilot-judau-c0459",
+      "kind": "pilot",
+      "name": "ジュドー・アーシタ(C0459)",
+      "icon": "",
+      "sourceUrl": "https://altema.jp/gundamuce/chararea/4",
+      "rating": "9.5"
+    },
+    {
+      "id": "starter-pilot-haman-c0456",
+      "kind": "pilot",
+      "name": "ハマーン・カーン(C0456)",
+      "icon": "",
+      "sourceUrl": "https://altema.jp/gundamuce/chararea/4",
+      "rating": "9.5"
+    }
+  ]
+}
