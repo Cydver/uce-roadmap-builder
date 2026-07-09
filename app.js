@@ -72,6 +72,8 @@ const COMPACT_STACK_GAP = 8;
 const BAR_TOP = 222;
 const BAR_GAP = 23;
 const BAR_H = 18;
+const META_LINK_H = 8;
+const META_LINK_OVERLAP = 3;
 const BAR_BOTTOM_PAD = 34;
 const STORAGE_KEY = "gundam-u-c-e-roadmap-builder-v1";
 const ZOOM_STORAGE_KEY = "gundam-u-c-e-roadmap-builder-zoom-v2";
@@ -957,15 +959,17 @@ function renderUnits() {
 
     if (!hasMetaBars(unit)) return;
 
-    unit.segments.forEach(segment => {
+    renderMetaSegmentLinks(unit);
+    sortedVisibleSegments(unit).forEach(segment => {
+      const rect = segmentBarRect(unit, segment);
       const bar = document.createElement("div");
       const selected = selectedId === unit.id && selectedSegmentId === segment.id;
       bar.className = `meta-bar${selected ? " selected" : ""}`;
       bar.dataset.id = unit.id;
       bar.dataset.segmentId = segment.id;
-      bar.style.left = `${weekX(segment.start) + 12}px`;
-      bar.style.top = `${laneY(unit)}px`;
-      bar.style.width = `${(segment.end - segment.start + 1) * CELL_W - 24}px`;
+      bar.style.left = `${rect.x}px`;
+      bar.style.top = `${rect.y}px`;
+      bar.style.width = `${rect.w}px`;
       bar.style.setProperty("--bar", segmentColor(segment));
       const label = document.createElement("span");
       label.className = "bar-label";
@@ -1001,6 +1005,54 @@ function tagClass(tag) {
   if (t === "cb") return "cb";
   if (t === "must p5" || t === "must-p5") return "must-p5";
   return "custom";
+}
+function sortedVisibleSegments(unit) {
+  return (unit?.segments || [])
+    .filter(segment => segment)
+    .slice()
+    .sort((a, b) => normalizeWeek(a.start) - normalizeWeek(b.start) || normalizeWeek(a.end) - normalizeWeek(b.end));
+}
+function segmentBarRect(unit, segment) {
+  const start = Math.min(normalizeWeek(segment.start), normalizeWeek(segment.end));
+  const end = Math.max(normalizeWeek(segment.start), normalizeWeek(segment.end));
+  return {
+    x: weekX(start) + 12,
+    y: laneY(unit),
+    w: Math.max(4, (end - start + 1) * CELL_W - 24),
+    h: BAR_H
+  };
+}
+function metaSegmentLinks(unit) {
+  const segments = sortedVisibleSegments(unit);
+  const links = [];
+  for (let i = 1; i < segments.length; i++) {
+    const previous = segmentBarRect(unit, segments[i - 1]);
+    const next = segmentBarRect(unit, segments[i]);
+    const x = previous.x + previous.w - META_LINK_OVERLAP;
+    const w = next.x - x + META_LINK_OVERLAP;
+    if (w <= META_LINK_OVERLAP * 2) continue;
+    links.push({
+      x,
+      y: previous.y + (BAR_H - META_LINK_H) / 2,
+      w,
+      fromColor: segmentColor(segments[i - 1]),
+      toColor: segmentColor(segments[i])
+    });
+  }
+  return links;
+}
+function renderMetaSegmentLinks(unit) {
+  metaSegmentLinks(unit).forEach(link => {
+    const connector = document.createElement("div");
+    connector.className = "meta-link";
+    connector.dataset.id = unit.id;
+    connector.style.left = `${link.x}px`;
+    connector.style.top = `${link.y}px`;
+    connector.style.width = `${link.w}px`;
+    connector.style.setProperty("--link-from", link.fromColor);
+    connector.style.setProperty("--link-to", link.toColor);
+    els.roadmap.appendChild(connector);
+  });
 }
 function placeholder(name) {
   const div = document.createElement("div");
@@ -1939,7 +1991,8 @@ async function exportPng() {
     const ctx = canvas.getContext("2d");
     ctx.scale(exportScale, exportScale);
     drawTemplateToCanvas(ctx, width, height);
-    for (const unit of state.units) if (hasVisibleMetaSegments(unit)) for (const segment of unit.segments) drawBarToCanvas(ctx, unit, segment);
+    for (const unit of state.units) if (hasVisibleMetaSegments(unit)) drawMetaLinksToCanvas(ctx, unit);
+    for (const unit of state.units) if (hasVisibleMetaSegments(unit)) for (const segment of sortedVisibleSegments(unit)) drawBarToCanvas(ctx, unit, segment);
     for (const unit of state.units) await drawUnitToCanvas(ctx, unit);
     canvas.toBlob((blob) => {
       if (!blob) {
@@ -2103,10 +2156,23 @@ function drawTagsToCanvas(ctx, tags, x, y, size = ICON_W) {
     ctx.fillText(String(tag), bx + w / 2, by + h / 2 + 0.5);
   });
 }
+function drawMetaLinksToCanvas(ctx, unit) {
+  for (const link of metaSegmentLinks(unit)) {
+    const gradient = ctx.createLinearGradient(link.x, 0, link.x + link.w, 0);
+    gradient.addColorStop(0, link.fromColor);
+    gradient.addColorStop(1, link.toColor);
+    roundedRect(ctx, link.x, link.y, link.w, META_LINK_H, META_LINK_H / 2);
+    ctx.fillStyle = gradient;
+    ctx.globalAlpha = 0.78;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = "rgba(255,255,255,.22)";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+}
 function drawBarToCanvas(ctx, unit, segment) {
-  const x = weekX(segment.start) + 12;
-  const y = laneY(unit);
-  const w = (segment.end - segment.start + 1) * CELL_W - 24;
+  const { x, y, w } = segmentBarRect(unit, segment);
   roundedRect(ctx, x, y, w, BAR_H, BAR_H / 2);
   ctx.fillStyle = segmentColor(segment);
   ctx.fill();
