@@ -912,7 +912,7 @@ function renderUnits() {
       container.appendChild(span);
     };
     if (displayTags.length > TAGS_PER_COLUMN) {
-      [displayTags.slice(0, TAGS_PER_COLUMN), displayTags.slice(TAGS_PER_COLUMN)].forEach(colTags => {
+      [displayTags.slice(TAGS_PER_COLUMN), displayTags.slice(0, TAGS_PER_COLUMN)].forEach(colTags => {
         const column = document.createElement("div");
         column.className = "tag-column";
         colTags.forEach(t => appendTag(column, t));
@@ -2011,19 +2011,20 @@ function drawTagsToCanvas(ctx, tags, x, y, size = ICON_W) {
   const right = x + size - 7 * tagScale;
   const top = y + 7 * tagScale;
   const h = 17 * boost * tagScale;
-  const gap = 4 * boost * tagScale;
+  const rowGap = 4 * boost * tagScale;
+  const colGap = 2 * boost * tagScale;
   ctx.font = canvasFont(900, compact ? 8.5 : 10);
   const widths = clean.map(tag => Math.ceil(ctx.measureText(String(tag)).width) + 12 * boost * tagScale);
   const isTwoCol = clean.length > TAGS_PER_COLUMN;
-  const firstCount = isTwoCol ? TAGS_PER_COLUMN : clean.length;
-  const secondColW = isTwoCol ? Math.max(0, ...widths.slice(firstCount)) : 0;
+  const rightCount = isTwoCol ? TAGS_PER_COLUMN : clean.length;
+  const rightColW = isTwoCol ? Math.max(0, ...widths.slice(0, rightCount)) : 0;
   clean.forEach((tag, i) => {
-    const inSecond = isTwoCol && i >= firstCount;
-    const row = inSecond ? i - firstCount : i;
+    const inRightCol = !isTwoCol || i < rightCount;
+    const row = inRightCol ? i : i - rightCount;
     const w = widths[i];
-    const colRight = !isTwoCol || inSecond ? right : right - secondColW - gap;
+    const colRight = inRightCol ? right : right - rightColW - colGap;
     const bx = colRight - w;
-    const by = top + row * (h + gap);
+    const by = top + row * (h + rowGap);
     roundedRect(ctx, bx, by, w, h, 8 * boost * tagScale);
     ctx.fillStyle = tagBg(tag);
     ctx.fill();
