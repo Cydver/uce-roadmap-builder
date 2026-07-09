@@ -51,6 +51,7 @@ const LEGACY_STATUS_COLORS = { s2: "#37e6ff" };
 const OLD_STATUS_MAP = { top: "s1", strong: "s3", niche: "s5", fading: "s4", custom: "s5" };
 const TAG_OPTIONS = ["PVP", "PVE", "Must P5", "Buff", "Core", "Tech", "Def", "Sub", "CB"];
 const MAX_TAGS = 10;
+const TAGS_PER_COLUMN = 4;
 const MUST_P5_TAG = "Must P5";
 const BUFF_TAG = "Buff";
 const TAG_ORDER = new Map(TAG_OPTIONS.map((tag, i) => [tag.toLowerCase(), i]));
@@ -903,15 +904,15 @@ function renderUnits() {
 
     const tags = document.createElement("div");
     const displayTags = unit.tags.slice(0, MAX_TAGS);
-    tags.className = `tags${displayTags.length > 5 ? " two-col" : ""}`;
+    tags.className = `tags${displayTags.length > TAGS_PER_COLUMN ? " two-col" : ""}`;
     const appendTag = (container, t) => {
       const span = document.createElement("span");
       span.className = `tag ${tagClass(t)}`;
       span.textContent = t;
       container.appendChild(span);
     };
-    if (displayTags.length > 5) {
-      [displayTags.slice(0, 5), displayTags.slice(5)].forEach(colTags => {
+    if (displayTags.length > TAGS_PER_COLUMN) {
+      [displayTags.slice(0, TAGS_PER_COLUMN), displayTags.slice(TAGS_PER_COLUMN)].forEach(colTags => {
         const column = document.createElement("div");
         column.className = "tag-column";
         colTags.forEach(t => appendTag(column, t));
@@ -2013,14 +2014,14 @@ function drawTagsToCanvas(ctx, tags, x, y, size = ICON_W) {
   const gap = 4 * boost * tagScale;
   ctx.font = canvasFont(900, compact ? 8.5 : 10);
   const widths = clean.map(tag => Math.ceil(ctx.measureText(String(tag)).width) + 12 * boost * tagScale);
-  const firstCount = clean.length > 5 ? 5 : clean.length;
-  const firstColW = Math.max(0, ...widths.slice(0, firstCount));
-  const secondColW = clean.length > 5 ? Math.max(0, ...widths.slice(firstCount)) : 0;
+  const isTwoCol = clean.length > TAGS_PER_COLUMN;
+  const firstCount = isTwoCol ? TAGS_PER_COLUMN : clean.length;
+  const secondColW = isTwoCol ? Math.max(0, ...widths.slice(firstCount)) : 0;
   clean.forEach((tag, i) => {
-    const inSecond = clean.length > 5 && i >= firstCount;
+    const inSecond = isTwoCol && i >= firstCount;
     const row = inSecond ? i - firstCount : i;
     const w = widths[i];
-    const colRight = inSecond ? right - firstColW - gap : right;
+    const colRight = !isTwoCol || inSecond ? right : right - secondColW - gap;
     const bx = colRight - w;
     const by = top + row * (h + gap);
     roundedRect(ctx, bx, by, w, h, 8 * boost * tagScale);
