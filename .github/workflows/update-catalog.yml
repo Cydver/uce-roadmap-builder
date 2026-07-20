@@ -17,7 +17,12 @@ jobs:
         with:
           node-version: 24
       - run: npm install
-      - run: npm run update-catalog
+      - name: Scrape Altema catalog and icons
+        run: npm run scrape-altema
+      - name: Resolve canonical English names from Gundam Wiki
+        env:
+          GUNDAM_WIKI_STRICT: "1"
+        run: npm run enrich-catalog-names
       - name: Commit catalog updates
         run: |
           git config user.name "github-actions[bot]"
