@@ -1,5 +1,5 @@
 import * as cheerio from 'cheerio';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -20,12 +20,34 @@ const ROLES = ['強襲', '重装', '汎用', '砲撃', '狙撃', '白兵', '支�
 const BROWSER_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
 const WAIT_MS = Number(process.env.ALTEMA_WAIT_MS || 120);
 const MAX_ITEMS = Number(process.env.ALTEMA_MAX_ITEMS || 1000);
+const REFRESH_ICONS = /^(1|true|yes)$/i.test(process.env.ALTEMA_REFRESH_ICONS || '');
+const MIN_EXISTING_PARSE_RATIO = Number(process.env.ALTEMA_MIN_EXISTING_PARSE_RATIO || 0.8);
 
 async function main() {
   await mkdir(outDir, { recursive: true });
   await mkdir(dataDir, { recursive: true });
 
+  const previousCatalog = await readExistingCatalog();
+  const previousItems = Array.isArray(previousCatalog?.items) ? previousCatalog.items : [];
+  const previousBySourceUrl = new Map(
+    previousItems
+      .filter(item => item?.sourceUrl)
+      .map(item => [normalizeSourceUrl(item.sourceUrl), item])
+  );
+  const previousCounts = countByKind(previousItems);
+
+  if (previousItems.length) {
+    console.log(`Loaded existing catalog with ${previousItems.length} items; unchanged cards will reuse their current local icons.`);
+  } else {
+    console.log('No existing catalog found; performing initial full icon download.');
+  }
+  if (REFRESH_ICONS) console.log('ALTEMA_REFRESH_ICONS is enabled; all icons will be downloaded again.');
+
   const items = [];
+  let reusedIcons = 0;
+  let downloadedIcons = 0;
+  let newCards = 0;
+  let missingIcons = 0;
 
   for (const source of SOURCES) {
     console.log(`Fetching ${source.kind}: ${source.url}`);
@@ -34,14 +56,24 @@ async function main() {
 
     const parsed = parseListPage(text, source.kind, source.url).slice(0, MAX_ITEMS);
     console.log(`Parsed ${parsed.length} ${source.kind} rows`);
+    assertParseLooksComplete(source.kind, parsed.length, previousCounts[source.kind] || 0);
 
     for (const item of parsed) {
-      const iconUrl = item.remoteIcon || deriveAltemaBannerUrl(item.sourceUrl, item.kind);
+      const sourceKey = normalizeSourceUrl(item.sourceUrl);
+      const previous = previousBySourceUrl.get(sourceKey);
+      const iconUrl = item.remoteIcon || previous?.remoteIcon || deriveAltemaBannerUrl(item.sourceUrl, item.kind);
       let localIcon = '';
 
-      if (iconUrl) {
+      if (!previous) newCards += 1;
+
+      if (!REFRESH_ICONS && previous?.icon && await localIconExists(previous.icon)) {
+        localIcon = previous.icon;
+        reusedIcons += 1;
+      } else if (iconUrl) {
+        if (previous) missingIcons += 1;
         try {
           localIcon = await downloadIcon(iconUrl, item.kind, item.name, item.sourceUrl);
+          downloadedIcons += 1;
         } catch (error) {
           console.warn(`Could not download icon for ${item.name}: ${error.message}`);
         }
@@ -49,11 +81,11 @@ async function main() {
       }
 
       items.push({
-        id: `altema-${item.kind}-${hash(`${item.kind}:${item.name}:${item.sourceUrl}`).slice(0, 10)}`,
+        id: previous?.id || `altema-${item.kind}-${hash(`${item.kind}:${item.name}:${item.sourceUrl}`).slice(0, 10)}`,
         kind: item.kind,
         name: item.name,
-        icon: localIcon || iconUrl || '',
-        remoteIcon: iconUrl || '',
+        icon: localIcon || previous?.icon || iconUrl || '',
+        remoteIcon: iconUrl || previous?.remoteIcon || '',
         sourceUrl: item.sourceUrl,
         attribute: item.attribute || '',
         role: item.role || '',
@@ -65,12 +97,67 @@ async function main() {
   const result = {
     generatedAt: new Date().toISOString(),
     sources: SOURCES.map(s => s.url),
-    note: 'Generated from Altema list pages. If icons are remote URLs instead of icons/altema files, the image download step was blocked but the app can still display them.',
+    note: 'Generated incrementally from Altema list pages. Existing local icons are reused; only new cards or missing icons are downloaded unless ALTEMA_REFRESH_ICONS=1.',
     items: uniqueItems(items)
   };
 
   await writeFile(path.join(dataDir, 'catalog.json'), JSON.stringify(result, null, 2), 'utf8');
+  console.log(`Incremental scrape summary: ${newCards} new cards, ${reusedIcons} existing local icons reused, ${downloadedIcons} icons downloaded${missingIcons ? ` (${missingIcons} were missing for existing cards)` : ''}.`);
   console.log(`Wrote data/catalog.json with ${result.items.length} items.`);
+}
+
+async function readExistingCatalog() {
+  const catalogPath = path.join(dataDir, 'catalog.json');
+  try {
+    return JSON.parse(await readFile(catalogPath, 'utf8'));
+  } catch (error) {
+    if (error?.code === 'ENOENT') return null;
+    console.warn(`Could not read existing data/catalog.json; falling back to a full scrape: ${error.message}`);
+    return null;
+  }
+}
+
+function countByKind(items) {
+  return items.reduce((counts, item) => {
+    if (item?.kind === 'ms' || item?.kind === 'pilot') counts[item.kind] += 1;
+    return counts;
+  }, { ms: 0, pilot: 0 });
+}
+
+function assertParseLooksComplete(kind, parsedCount, previousCount) {
+  if (!previousCount || !Number.isFinite(MIN_EXISTING_PARSE_RATIO) || MIN_EXISTING_PARSE_RATIO <= 0) return;
+  const minimum = Math.floor(previousCount * MIN_EXISTING_PARSE_RATIO);
+  if (parsedCount < minimum) {
+    throw new Error(
+      `Parsed only ${parsedCount} ${kind} rows, but the existing catalog contains ${previousCount}. ` +
+      `Refusing to overwrite the catalog because this is below the ${(MIN_EXISTING_PARSE_RATIO * 100).toFixed(0)}% safety threshold. ` +
+      'The Altema page structure may have changed.'
+    );
+  }
+}
+
+function normalizeSourceUrl(url) {
+  try {
+    const parsed = new URL(String(url || ''));
+    parsed.hash = '';
+    parsed.search = '';
+    return parsed.href.replace(/\/$/, '');
+  } catch {
+    return String(url || '').replace(/[?#].*$/, '').replace(/\/$/, '');
+  }
+}
+
+async function localIconExists(icon) {
+  const value = String(icon || '');
+  if (!value.startsWith('icons/altema/')) return false;
+  const candidate = path.resolve(root, value);
+  if (!candidate.startsWith(`${outDir}${path.sep}`)) return false;
+  try {
+    await access(candidate);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 function parseListPage(text, kind, baseUrl) {
