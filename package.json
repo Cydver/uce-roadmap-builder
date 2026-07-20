@@ -4,7 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "update-catalog": "node tools/update-altema-catalog.mjs"
+    "scrape-altema": "node tools/update-altema-catalog.mjs",
+    "enrich-catalog-names": "node tools/enrich-gundam-wiki-names.mjs",
+    "test-name-resolver": "node tools/enrich-gundam-wiki-names.mjs --self-test",
+    "update-catalog": "npm run scrape-altema && npm run enrich-catalog-names"
   },
   "dependencies": {
     "cheerio": "^1.0.0"
