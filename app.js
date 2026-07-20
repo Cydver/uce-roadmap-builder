@@ -610,10 +610,16 @@ function normalizeState() {
     }).sort((a, b) => a.start - b.start || a.end - b.end);
     const tier = tierIds().includes(u.tier) ? u.tier : "must";
     const rawTags = Array.isArray(u.tags) ? u.tags : (Array.isArray(u.badges) ? u.badges : []);
+    const kind = u.kind || "custom";
+    const rawNotesPvp = String(u.notesPvp ?? u.pvpNotes ?? u.note ?? "").trim();
+    const rawNotesPve = String(u.notesPve ?? u.pveNotes ?? "").trim();
+    const pilotNotes = String(kind).toLowerCase() === "pilot"
+      ? [rawNotesPvp, rawNotesPve].filter(Boolean).join("\n\n")
+      : rawNotesPvp;
     return {
       id: u.id || crypto.randomUUID(),
       name: sanitizeText(u.name || "Unnamed Unit"),
-      kind: u.kind || "custom",
+      kind,
       tier,
       week: normalizeWeek(u.week || 1),
       lane: normalizeLane(u.lane || 1),
@@ -621,8 +627,8 @@ function normalizeState() {
       stackOrder: Number(u.stackOrder) || 0,
       icon: u.icon || "",
       tags: cleanTags(rawTags),
-      notesPvp: String(u.notesPvp ?? u.pvpNotes ?? u.note ?? "").trim(),
-      notesPve: String(u.notesPve ?? u.pveNotes ?? "").trim(),
+      notesPvp: pilotNotes,
+      notesPve: String(kind).toLowerCase() === "pilot" ? "" : rawNotesPve,
       segments
     };
   });
@@ -1323,6 +1329,12 @@ function renderForm() {
   f.tags.value = unit.tags.join(", ");
   f.notesPvp.value = unit.notesPvp || "";
   f.notesPve.value = unit.notesPve || "";
+  const pilotNotesOnly = isPilot(unit);
+  const notesPvpField = f.notesPvp.closest(".field");
+  const notesPveField = f.notesPve.closest(".field");
+  const notesPvpLabel = notesPvpField?.querySelector("label");
+  if (notesPvpLabel) notesPvpLabel.textContent = pilotNotesOnly ? "Notes" : "PVP Notes";
+  notesPveField?.classList.toggle("hidden", pilotNotesOnly);
   document.getElementById("btnDeleteSegment").disabled = !segment;
   renderTagPreview();
 }
@@ -1339,8 +1351,15 @@ function applyForm(options = {}) {
   unit.week = normalizeWeek(f.week.value);
   unit.lane = normalizeLane(f.lane.value);
   unit.tags = cleanTags(f.tags.value.split(","));
-  unit.notesPvp = f.notesPvp.value.trim();
-  unit.notesPve = f.notesPve.value.trim();
+  const formNotesPvp = f.notesPvp.value.trim();
+  const formNotesPve = f.notesPve.value.trim();
+  if (isPilot(unit)) {
+    unit.notesPvp = [formNotesPvp, formNotesPve].filter(Boolean).join("\n\n");
+    unit.notesPve = "";
+  } else {
+    unit.notesPvp = formNotesPvp;
+    unit.notesPve = formNotesPve;
+  }
   const segment = selectedSegment(unit);
   if (segment && hasMetaBars(unit)) {
     segment.start = normalizeWeek(f.metaStart.value);
@@ -1488,10 +1507,13 @@ function addUnit(partial = {}) {
     statusId: metaStatus(seg.statusId || seg.metaStatus || partial.metaStatus || defaultMetaStatusId()).id
   }));
   segments.forEach(seg => { if (seg.end < seg.start) [seg.start, seg.end] = [seg.end, seg.start]; });
+  const newUnitKind = partial.kind || "custom";
+  const rawNotesPvp = String(partial.notesPvp ?? partial.pvpNotes ?? partial.note ?? "").trim();
+  const rawNotesPve = String(partial.notesPve ?? partial.pveNotes ?? "").trim();
   const newUnit = {
     id: crypto.randomUUID(),
     name: partial.name || "New Unit",
-    kind: partial.kind || "custom",
+    kind: newUnitKind,
     tier,
     week: releaseWeek,
     lane: partial.lane || autoLaneFor(tier, segments),
@@ -1499,8 +1521,8 @@ function addUnit(partial = {}) {
     stackOrder: Number(partial.stackOrder) || 0,
     icon: partial.icon || "",
     tags: cleanTags(partial.tags || partial.badges || []),
-    notesPvp: String(partial.notesPvp ?? partial.pvpNotes ?? partial.note ?? "").trim(),
-    notesPve: String(partial.notesPve ?? partial.pveNotes ?? "").trim(),
+    notesPvp: String(newUnitKind).toLowerCase() === "pilot" ? [rawNotesPvp, rawNotesPve].filter(Boolean).join("\n\n") : rawNotesPvp,
+    notesPve: String(newUnitKind).toLowerCase() === "pilot" ? "" : rawNotesPve,
     segments
   };
   state.units.push(newUnit);
@@ -1881,10 +1903,15 @@ function openUnitContextMenu(event, unitId, segmentId = null) {
     const label = metaOwner.id === unitId ? `Add/split segment at ${formatWeek(week)}` : `Add/split same-week MS segment at ${formatWeek(week)}`;
     items.push({ label, action: () => addSegmentAtWeek(metaOwner.id, week) });
   }
+  const noteItems = isPilot(unit)
+    ? [{ label: "Edit notes…", action: () => editUnitNotes(unitId, "notesPvp") }]
+    : [
+        { label: "Edit PVP notes…", action: () => editUnitNotes(unitId, "notesPvp") },
+        { label: "Edit PVE notes…", action: () => editUnitNotes(unitId, "notesPve") }
+      ];
   items.push(
     { label: "Rename unit…", action: () => renameUnit(unitId) },
-    { label: "Edit PVP notes…", action: () => editUnitNotes(unitId, "notesPvp") },
-    { label: "Edit PVE notes…", action: () => editUnitNotes(unitId, "notesPve") },
+    ...noteItems,
     { label: "Edit tags…", action: () => editUnitTags(unitId) },
     { label: "Row position", children: [
       { label: `${normalizeRowOffset(unit?.rowOffset) === -0.5 ? "✓ " : ""}${rowOffsetLabel(-0.5, unit?.tier)}`, action: () => setUnitRowOffset(unitId, -0.5) },
@@ -2627,8 +2654,6 @@ function renderCatalog() {
     const fullName = item.name || "Unnamed";
     const nameEl = node.querySelector("strong");
     nameEl.textContent = fullName;
-    nameEl.title = fullName;
-    node.querySelector(".catalog-main").title = fullName;
 
     const meta = [
       catalogDisplayKind(item),
@@ -2636,7 +2661,13 @@ function renderCatalog() {
       catalogDisplayRole(item),
       catalogDisplayRating(item)
     ].filter(Boolean).join(" · ");
-    node.querySelector("small").textContent = meta;
+    const metaEl = node.querySelector("small");
+    metaEl.textContent = meta;
+    const hoverText = meta ? `${fullName}\n${meta}` : fullName;
+    node.title = hoverText;
+    node.querySelector(".catalog-main").title = hoverText;
+    nameEl.title = hoverText;
+    metaEl.title = hoverText;
     node.querySelector("button").addEventListener("click", () => {
       addUnit({
         name: item.name,
@@ -2680,6 +2711,10 @@ function multilineHtml(text) {
   return escapeHtml(String(text || "").trim()).replace(/\r?\n/g, "<br>");
 }
 function tooltipNotesHtml(unit) {
+  if (isPilot(unit)) {
+    const notes = [unit.notesPvp, unit.notesPve].filter(Boolean).join("\n\n");
+    return notes ? `<div class="tooltip-notes"><div class="tooltip-note-section"><div class="tooltip-note-title">Notes</div><div class="tooltip-note-body">${multilineHtml(notes)}</div></div></div>` : "";
+  }
   const sections = [];
   if (unit.notesPvp) sections.push(`<div class="tooltip-note-section"><div class="tooltip-note-title">PVP</div><div class="tooltip-note-body">${multilineHtml(unit.notesPvp)}</div></div>`);
   if (unit.notesPve) sections.push(`<div class="tooltip-note-section"><div class="tooltip-note-title">PVE</div><div class="tooltip-note-body">${multilineHtml(unit.notesPve)}</div></div>`);
