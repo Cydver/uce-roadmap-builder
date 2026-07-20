@@ -5,12 +5,11 @@
   "type": "module",
   "scripts": {
     "scrape-altema": "node tools/update-altema-catalog.mjs",
-    "enrich-catalog-names": "node tools/enrich-gundam-wiki-names.mjs",
-    "test-name-resolver": "node tools/enrich-gundam-wiki-names.mjs --self-test",
-    "update-catalog": "npm run scrape-altema && npm run enrich-catalog-names"
+    "apply-canonical-names": "node tools/apply-canonical-names.mjs",
+    "test-canonical-names": "node tools/apply-canonical-names.mjs --self-test",
+    "update-catalog": "npm run scrape-altema && npm run apply-canonical-names"
   },
   "dependencies": {
-    "cheerio": "^1.0.0",
-    "sharp": "^0.34.3"
+    "cheerio": "^1.0.0"
   }
 }
