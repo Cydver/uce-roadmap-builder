@@ -1,6 +1,2162 @@
 {
   "version": 1,
-  "description": "Manually verified canonical English names for Altema U.C. ENGAGE catalog entries. Card mappings override reusable name mappings.",
+  "description": "Manually reviewed canonical English names for Altema Gundam U.C. ENGAGE catalog entries. Reusable mappings are keyed by kind and normalized Japanese source name.",
+  "updatedAt": "2026-07-20T18:05:17.637890Z",
   "cards": {},
-  "names": {}
+  "names": {
+    "ms|∀ガンダム": {
+      "name": "Turn A Gundam",
+      "verified": true,
+      "nameJa": "∀ガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|∀ガンダム(黄)": {
+      "name": "Turn A Gundam (Yellow)",
+      "verified": true,
+      "nameJa": "∀ガンダム(黄)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|Ex-Sガンダム": {
+      "name": "Ex-S Gundam",
+      "verified": true,
+      "nameJa": "Ex-Sガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|FAZZ": {
+      "name": "FAZZ",
+      "verified": true,
+      "nameJa": "FAZZ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|FAエンゲージガンダム(Aプラン)": {
+      "name": "Full Armor Engage Gundam A Plan",
+      "verified": true,
+      "nameJa": "FAエンゲージガンダム(Aプラン)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|FAエンゲージガンダム(Bプラン)": {
+      "name": "Full Armor Engage Gundam B Plan",
+      "verified": true,
+      "nameJa": "FAエンゲージガンダム(Bプラン)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|FAエンゲージガンダム(Cプラン)": {
+      "name": "Full Armor Engage Gundam C Plan",
+      "verified": true,
+      "nameJa": "FAエンゲージガンダム(Cプラン)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|G-3ガンダム": {
+      "name": "G-3 Gundam",
+      "verified": true,
+      "nameJa": "G-3ガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|G-アルケイン": {
+      "name": "Gundam G-Arcane",
+      "verified": true,
+      "nameJa": "G-アルケイン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|G-アルケイン(フルドレス)": {
+      "name": "Gundam G-Arcane (Full Dress)",
+      "verified": true,
+      "nameJa": "G-アルケイン(フルドレス)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|G-セルフ 宇宙用バックパック": {
+      "name": "G-Self Space Pack",
+      "verified": true,
+      "nameJa": "G-セルフ 宇宙用バックパック",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|G-セルフ 大気圏用バックパック": {
+      "name": "Atmospheric Backpack (G-Self)",
+      "verified": true,
+      "nameJa": "G-セルフ 大気圏用バックパック",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|G-ルシファー": {
+      "name": "Gundam G-Lucifer",
+      "verified": true,
+      "nameJa": "G-ルシファー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|GFreD": {
+      "name": "GFreD",
+      "verified": true,
+      "nameJa": "GFreD",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|GQuuuuuuX(UR)": {
+      "name": "GQuuuuuuX",
+      "verified": true,
+      "nameJa": "GQuuuuuuX(UR)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|GQuuuuuuX(オメガ・サイコミュ起動時)": {
+      "name": "GQuuuuuuX (Omega Psycommu Activated)",
+      "verified": true,
+      "nameJa": "GQuuuuuuX(オメガ・サイコミュ起動時)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|Hi-νガンダム": {
+      "name": "Hi-Nu",
+      "verified": true,
+      "nameJa": "Hi-νガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|RX-78F00 HMT ガンダム高機動型": {
+      "name": "RX-78F00 HMT Gundam High Mobility Type",
+      "verified": true,
+      "nameJa": "RX-78F00 HMT ガンダム高機動型",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|Sガンダム": {
+      "name": "S Gundam",
+      "verified": true,
+      "nameJa": "Sガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|URガンキャノン": {
+      "name": "Guncannon (UR)",
+      "verified": true,
+      "nameJa": "URガンキャノン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|V2ABCガンダム": {
+      "name": "Victory 2 Assault Buster Cannon Gundam",
+      "verified": true,
+      "nameJa": "V2ABCガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|V2アサルトガンダム": {
+      "name": "Victory 2 Assault Gundam",
+      "verified": true,
+      "nameJa": "V2アサルトガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|V2アサルトバスターガンダム": {
+      "name": "Victory 2 Assault-Buster Gundam",
+      "verified": true,
+      "nameJa": "V2アサルトバスターガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|V2ガンダム": {
+      "name": "V2 Gundam",
+      "verified": true,
+      "nameJa": "V2ガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|V2バスターガンダム": {
+      "name": "Victory 2 Buster Gundam",
+      "verified": true,
+      "nameJa": "V2バスターガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|Vガンダム": {
+      "name": "Victory Gundam",
+      "verified": true,
+      "nameJa": "Vガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ZZ-GR": {
+      "name": "ZZ-GR",
+      "verified": true,
+      "nameJa": "ZZ-GR",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ZZガンダム": {
+      "name": "ZZ Gundam",
+      "verified": true,
+      "nameJa": "ZZガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ZZガンダム(HGC装備)": {
+      "name": "ZZ Gundam (Hyper Giga Cannon)",
+      "verified": true,
+      "nameJa": "ZZガンダム(HGC装備)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ZZガンダム(覚醒)": {
+      "name": "ZZ Gundam (Awaken)",
+      "verified": true,
+      "nameJa": "ZZガンダム(覚醒)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|Zガンダム": {
+      "name": "Zeta Gundam",
+      "verified": true,
+      "nameJa": "Zガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|Zガンダム(HML)": {
+      "name": "Zeta Gundam (Hyper Mega Launcher)",
+      "verified": true,
+      "nameJa": "Zガンダム(HML)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|Zガンダム(IFクロー&IFブラスター装備)": {
+      "name": "Zeta Gundam (IF Claw and IF Blaster)",
+      "verified": true,
+      "nameJa": "Zガンダム(IFクロー＆IFブラスター装備)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|Zガンダム(Zの鼓動)": {
+      "name": "Zeta Gundam (Z's Heartbeat)",
+      "verified": true,
+      "nameJa": "Zガンダム(Zの鼓動)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|Zガンダム3号機": {
+      "name": "Zeta Gundam III",
+      "verified": true,
+      "nameJa": "Zガンダム3号機",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|アッガイ(ダリル機)": {
+      "name": "Daryl's Acguy",
+      "verified": true,
+      "nameJa": "アッガイ(ダリル機)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|アッシマー": {
+      "name": "Asshimar",
+      "verified": true,
+      "nameJa": "アッシマー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|アトラスガンダム": {
+      "name": "Atlas Gundam",
+      "verified": true,
+      "nameJa": "アトラスガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|アリュゼウス(フライト・フォーム)": {
+      "name": "Alyzeus (Flight Form)",
+      "verified": true,
+      "nameJa": "アリュゼウス(フライト・フォーム)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|アレックス": {
+      "name": "Alex",
+      "verified": true,
+      "nameJa": "アレックス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|アレックス(チョバムアーマー)": {
+      "name": "Alex (Chobham Armor)",
+      "verified": true,
+      "nameJa": "アレックス(チョバムアーマー)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|イフリート改": {
+      "name": "Efreet Custom",
+      "verified": true,
+      "nameJa": "イフリート改",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ウーンドウォート": {
+      "name": "Gundam TR-6 [Woundwort]",
+      "verified": true,
+      "nameJa": "ウーンドウォート",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|エルメス": {
+      "name": "Elmeth",
+      "verified": true,
+      "nameJa": "エルメス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|エンゲージガンダム": {
+      "name": "Engage Gundam",
+      "verified": true,
+      "nameJa": "エンゲージガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|エンゲージガンダム ブースター装備": {
+      "name": "Engage Gundam Booster Equipment",
+      "verified": true,
+      "nameJa": "エンゲージガンダム ブースター装備",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|エンゲージガンダム(ガンダムパンチ装備)": {
+      "name": "Engage Gundam (Gundam Punch Equipped)",
+      "verified": true,
+      "nameJa": "エンゲージガンダム(ガンダムパンチ装備)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|エンゲージガンダム(ファンネル装備型)": {
+      "name": "Engage Gundam Funnels",
+      "verified": true,
+      "nameJa": "エンゲージガンダム(ファンネル装備型)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|エンゲージガンダム(ブースター装備)": {
+      "name": "Engage Gundam Booster",
+      "verified": true,
+      "nameJa": "エンゲージガンダム(ブースター装備)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|エンゲージゼロ・ヴァイスクレーエ": {
+      "name": "Engage Zero Weisskrähe",
+      "verified": true,
+      "nameJa": "エンゲージゼロ・ヴァイスクレーエ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|エンゲージゼロ・ヨンファヴィン": {
+      "name": "Engage Zero Yonfavin",
+      "verified": true,
+      "nameJa": "エンゲージゼロ・ヨンファヴィン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|エンゲージゼロ・ヨンファヴィン(覚醒)": {
+      "name": "Engage Zero Yonfavin (Awaken)",
+      "verified": true,
+      "nameJa": "エンゲージゼロ・ヨンファヴィン(覚醒)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|エンゲージゼロ・追加ブースター装備型": {
+      "name": "Engage Zero with Booster",
+      "verified": true,
+      "nameJa": "エンゲージゼロ・追加ブースター装備型",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|エンゲージゼロ(インコム搭載型)": {
+      "name": "Engage Zero Incom Type",
+      "verified": true,
+      "nameJa": "エンゲージゼロ(インコム搭載型)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|エンゲージゼロ(サイコミュ試験型)": {
+      "name": "Engage Zero Psycommu Test Type",
+      "verified": true,
+      "nameJa": "エンゲージゼロ(サイコミュ試験型)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|オーヴェロン": {
+      "name": "Over.on",
+      "verified": true,
+      "nameJa": "オーヴェロン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガーベラ・テトラ": {
+      "name": "Gerbera Tetra",
+      "verified": true,
+      "nameJa": "ガーベラ・テトラ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガトー専用リック・ドム": {
+      "name": "Gato's Rick Dom",
+      "verified": true,
+      "nameJa": "ガトー専用リック・ドム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|カプル": {
+      "name": "Kapool",
+      "verified": true,
+      "nameJa": "カプル",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンキャノン(緑)": {
+      "name": "Guncannon (Green)",
+      "verified": true,
+      "nameJa": "ガンキャノン(緑)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム・エアリアル(改修型)": {
+      "name": "Gundam Aerial Rebuild",
+      "verified": true,
+      "nameJa": "ガンダム・エアリアル(改修型)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム(THE ORIGIN)": {
+      "name": "Gundam (THE ORIGIN)",
+      "verified": true,
+      "nameJa": "ガンダム(THE ORIGIN)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム(黄)": {
+      "name": "Gundam (Yellow)",
+      "verified": true,
+      "nameJa": "ガンダム(黄)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム(青)": {
+      "name": "Gundam (Blue)",
+      "verified": true,
+      "nameJa": "ガンダム(青)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム(緑)": {
+      "name": "Gundam (Green)",
+      "verified": true,
+      "nameJa": "ガンダム(緑)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム+Gファイター": {
+      "name": "Gundam + G-Fighter",
+      "verified": true,
+      "nameJa": "ガンダム+Gファイター",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム4号機": {
+      "name": "Gundam Unit 4",
+      "verified": true,
+      "nameJa": "ガンダム4号機",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム4号機[Bst]": {
+      "name": "Gundam 4th (Bst)",
+      "verified": true,
+      "nameJa": "ガンダム4号機［Bst］",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム5号機": {
+      "name": "Gundam 5th",
+      "verified": true,
+      "nameJa": "ガンダム5号機",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム5号機[Bst]": {
+      "name": "Gundam Unit 5 (Bst)",
+      "verified": true,
+      "nameJa": "ガンダム5号機[Bst]",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダムEX": {
+      "name": "Gundam EX",
+      "verified": true,
+      "nameJa": "ガンダムEX",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダムEz8": {
+      "name": "Gundam Ez8",
+      "verified": true,
+      "nameJa": "ガンダムEz8",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダムEz8(紫)": {
+      "name": "Gundam Ez8 (Purple)",
+      "verified": true,
+      "nameJa": "ガンダムEz8(紫)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダムF91": {
+      "name": "Gundam F91",
+      "verified": true,
+      "nameJa": "ガンダムF91",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダムF91(ツイン・ヴェスバー装着型)": {
+      "name": "Gundam F91 (Twin VSBR-equipped)",
+      "verified": true,
+      "nameJa": "ガンダムF91(ツイン・ヴェスバー装着型)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダムF91(最大稼働)": {
+      "name": "Gundam F91 (Full Power)",
+      "verified": true,
+      "nameJa": "ガンダムF91(最大稼働)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダムMk-II(エゥーゴ)+FA": {
+      "name": "Gundam Mk-II (AEUG) + Flying Armor",
+      "verified": true,
+      "nameJa": "ガンダムMk-Ⅱ(エゥーゴ)+FA",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダムMk-II(ティターンズ仕様)": {
+      "name": "Gundam Mk-II (Titans)",
+      "verified": true,
+      "nameJa": "ガンダムMk-Ⅱ(ティターンズ仕様)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダムピクシー(初期配備型)": {
+      "name": "Gundam Pixy (Early Development Type)",
+      "verified": true,
+      "nameJa": "ガンダムピクシー(初期配備型)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム試作1号機": {
+      "name": "Gundam GP01",
+      "verified": true,
+      "nameJa": "ガンダム試作1号機",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム試作1号機フルバーニアン": {
+      "name": "Gundam GP01Fb",
+      "verified": true,
+      "nameJa": "ガンダム試作1号機フルバーニアン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム試作1号機フルバーニアン(赤)": {
+      "name": "Gundam GP01Fb (Red)",
+      "verified": true,
+      "nameJa": "ガンダム試作1号機フルバーニアン(赤)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム試作2号機": {
+      "name": "Gundam GP02A",
+      "verified": true,
+      "nameJa": "ガンダム試作2号機",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム試作2号機(MLRS)": {
+      "name": "Gundam GP02 (MLRS)",
+      "verified": true,
+      "nameJa": "ガンダム試作2号機(MLRS)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム試作2号機(緑)": {
+      "name": "Gundam GP02A (Green)",
+      "verified": true,
+      "nameJa": "ガンダム試作2号機(緑)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム試作3号機ステイメン": {
+      "name": "Gundam GP03 Stamen",
+      "verified": true,
+      "nameJa": "ガンダム試作3号機ステイメン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ガンダム試作4号機": {
+      "name": "Gundam GP04",
+      "verified": true,
+      "nameJa": "ガンダム試作4号機",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ギーセン・ドーガ(ハイデマリー機)": {
+      "name": "Heidemarie's Giessen Doga",
+      "verified": true,
+      "nameJa": "ギーセン・ドーガ(ハイデマリー機)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ギャプラン・トレーナー": {
+      "name": "Gaplant Trainer",
+      "verified": true,
+      "nameJa": "ギャプラン・トレーナー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ギャプラン(UR)": {
+      "name": "Gaplant (UR)",
+      "verified": true,
+      "nameJa": "ギャプラン(UR)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ギャン": {
+      "name": "Gyan",
+      "verified": true,
+      "nameJa": "ギャン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ギャン(黄)": {
+      "name": "Gyan (Yellow)",
+      "verified": true,
+      "nameJa": "ギャン(黄)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|キュベレイ(覚醒)": {
+      "name": "Qubeley (Awaken)",
+      "verified": true,
+      "nameJa": "キュベレイ(覚醒)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|キュベレイ(紫)": {
+      "name": "Qubeley (Purple)",
+      "verified": true,
+      "nameJa": "キュベレイ(紫)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|キュベレイ(赤)": {
+      "name": "Qubeley (Red)",
+      "verified": true,
+      "nameJa": "キュベレイ(赤)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|キュベレイMk-II(プルツー機)": {
+      "name": "Ple-Two's Qubeley Mk-II (UR)",
+      "verified": true,
+      "nameJa": "キュベレイMk-Ⅱ(プルツー機)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|キュベレイMk-II(プル機/強襲)": {
+      "name": "Ple's Qubeley Mk-II",
+      "verified": true,
+      "nameJa": "キュベレイMk-Ⅱ(プル機/強襲)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|キュベレイMk-II(プル機/支援)": {
+      "name": "Ple's Qubeley Mk-II (Red)",
+      "verified": true,
+      "nameJa": "キュベレイMk-Ⅱ(プル機/支援)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|クィン・マンサ": {
+      "name": "Quin Mantha",
+      "verified": true,
+      "nameJa": "クィン・マンサ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|クェス専用ヤクト・ドーガ": {
+      "name": "Quess's Jagd Doga",
+      "verified": true,
+      "nameJa": "クェス専用ヤクト・ドーガ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|クシャトリヤ": {
+      "name": "Kshatriya",
+      "verified": true,
+      "nameJa": "クシャトリヤ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|クシャトリヤ・リペアード": {
+      "name": "Kshatriya Repaired",
+      "verified": true,
+      "nameJa": "クシャトリヤ・リペアード",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|グフ・カスタム(UR)": {
+      "name": "Gouf Custom (UR)",
+      "verified": true,
+      "nameJa": "グフ・カスタム(UR)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|グレイ・ゼータ": {
+      "name": "Gray Zeta",
+      "verified": true,
+      "nameJa": "グレイ・ゼータ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|グレート・ジオング": {
+      "name": "Great Zeong",
+      "verified": true,
+      "nameJa": "グレート・ジオング",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|クロスボーン・ガンダムX1": {
+      "name": "Crossbone Gundam X1",
+      "verified": true,
+      "nameJa": "クロスボーン・ガンダムX1",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|クロスボーン・ガンダムX1 ハーフクロス(キンケドゥ搭乗仕様)": {
+      "name": "Crossbone Gundam X1 Half Cross (Kincade Custom)",
+      "verified": true,
+      "nameJa": "クロスボーン・ガンダムX1 ハーフクロス（キンケドゥ搭乗仕様）",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|クロスボーン・ガンダムX1フルクロス": {
+      "name": "Crossbone Gundam X1 Full Cloth",
+      "verified": true,
+      "nameJa": "クロスボーン・ガンダムX1フルクロス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|クロスボーン・ガンダムX2": {
+      "name": "Crossbone Gundam X2",
+      "verified": true,
+      "nameJa": "クロスボーン・ガンダムX2",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|クロスボーン・ガンダムX3": {
+      "name": "Crossbone Gundam X3",
+      "verified": true,
+      "nameJa": "クロスボーン・ガンダムX3",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ゲーマルク": {
+      "name": "Geymalk",
+      "verified": true,
+      "nameJa": "ゲーマルク",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ゲドラフ": {
+      "name": "Gedlav",
+      "verified": true,
+      "nameJa": "ゲドラフ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ゲルググ・ウェルテクス": {
+      "name": "Gelgoog Vertex",
+      "verified": true,
+      "nameJa": "ゲルググ・ウェルテクス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ゲンガオゾ": {
+      "name": "Gengaozo",
+      "verified": true,
+      "nameJa": "ゲンガオゾ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ケンプファー": {
+      "name": "Kampfer",
+      "verified": true,
+      "nameJa": "ケンプファー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ゴールドスモー": {
+      "name": "SUMO Gold Type",
+      "verified": true,
+      "nameJa": "ゴールドスモー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ゴトラタン(汎用)": {
+      "name": "Gottrlatan",
+      "verified": true,
+      "nameJa": "ゴトラタン(汎用)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ゴトラタン(砲撃)": {
+      "name": "Gottrlatan (Bombardment)",
+      "verified": true,
+      "nameJa": "ゴトラタン(砲撃)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|コレンカプル": {
+      "name": "Corin's Kapool",
+      "verified": true,
+      "nameJa": "コレンカプル",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|サイコ・ザク": {
+      "name": "Psycho Zaku",
+      "verified": true,
+      "nameJa": "サイコ・ザク",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|サイコミュシステム高機動試験機": {
+      "name": "Psycommu System Zaku",
+      "verified": true,
+      "nameJa": "サイコミュシステム高機動試験機",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ザクI(シャア機)": {
+      "name": "Zaku I (Char)",
+      "verified": true,
+      "nameJa": "ザクⅠ(シャア機)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ザクI+ビッグガン(サンダーボルト版)": {
+      "name": "Zaku I with Big Gun",
+      "verified": true,
+      "nameJa": "ザクⅠ＋ビッグガン（サンダーボルト版）",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ザクIII改": {
+      "name": "Zaku III Custom",
+      "verified": true,
+      "nameJa": "ザクⅢ改",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ザクIII改(TWA)": {
+      "name": "Zaku III Custom (TWA)",
+      "verified": true,
+      "nameJa": "ザクⅢ改(TWA)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ザクIV(イリア・パゾム機)": {
+      "name": "Zaku IV (Illia Pazom)",
+      "verified": true,
+      "nameJa": "ザクⅣ(イリア・パゾム機)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|サザビー": {
+      "name": "Sazabi",
+      "verified": true,
+      "nameJa": "サザビー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|サザビー(紫)": {
+      "name": "Sazabi (Purple)",
+      "verified": true,
+      "nameJa": "サザビー(紫)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|サザビー(立像記念)": {
+      "name": "Sazabi [THE LIFE-SIZED ν Gundam STATUE]",
+      "verified": true,
+      "nameJa": "サザビー(立像記念)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|サザビー初期試験型(重力下仕様)": {
+      "name": "Sazabi Prototype (Terrain Mode)",
+      "verified": true,
+      "nameJa": "サザビー初期試験型(重力下仕様)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ザンネック": {
+      "name": "Zanneck",
+      "verified": true,
+      "nameJa": "ザンネック",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ジ・O": {
+      "name": "The-O",
+      "verified": true,
+      "nameJa": "ジ・O",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ジ・O(木星帰りの男)": {
+      "name": "The-O (The Man from Jupiter)",
+      "verified": true,
+      "nameJa": "ジ・O(木星帰りの男)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|シータプラス(狙撃)": {
+      "name": "Theta Plus (Sniper)",
+      "verified": true,
+      "nameJa": "シータプラス(狙撃)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|シータプラス(汎用)": {
+      "name": "Theta Plus",
+      "verified": true,
+      "nameJa": "シータプラス(汎用)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|シーマ専用ゲルググM": {
+      "name": "Cima's Gelgoog Marine",
+      "verified": true,
+      "nameJa": "シーマ専用ゲルググM",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ジオング(狙撃)": {
+      "name": "Zeong (Sniper)",
+      "verified": true,
+      "nameJa": "ジオング(狙撃)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ジオング(砲撃)": {
+      "name": "Zeong (Bombardment)",
+      "verified": true,
+      "nameJa": "ジオング(砲撃)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|シスクード(ティターンズ)": {
+      "name": "Sisquiede Titans Color",
+      "verified": true,
+      "nameJa": "シスクード(ティターンズ)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|シナンジュ": {
+      "name": "Sinanju",
+      "verified": true,
+      "nameJa": "シナンジュ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|シナンジュ・スタイン(NTver.青)": {
+      "name": "Sinanju Stein",
+      "verified": true,
+      "nameJa": "シナンジュ・スタイン(NTver.青)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|シナンジュ・スタイン(NTver.赤)": {
+      "name": "Sinanju Stein (NT Version)",
+      "verified": true,
+      "nameJa": "シナンジュ・スタイン(NTver.赤)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ジムIIIパワードFA": {
+      "name": "GM III Powered FA",
+      "verified": true,
+      "nameJa": "ジムⅢパワードFA",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|シャア専用ゲルググ": {
+      "name": "Char's Gelgoog",
+      "verified": true,
+      "nameJa": "シャア専用ゲルググ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|シャア専用ザクII": {
+      "name": "Char's Zaku II",
+      "verified": true,
+      "nameJa": "シャア専用ザクⅡ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|シャア専用ザクII(THE ORIGIN)": {
+      "name": "Char's Zaku II (THE ORIGIN)",
+      "verified": true,
+      "nameJa": "シャア専用ザクⅡ(THE ORIGIN)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|シャア専用ズゴック": {
+      "name": "Char's Z'Gok",
+      "verified": true,
+      "nameJa": "シャア専用ズゴック",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|シャア専用リック・ドム": {
+      "name": "Char's Rick Dom",
+      "verified": true,
+      "nameJa": "シャア専用リック・ドム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ジョニー・ライデン専用ゲルググ・キャノン": {
+      "name": "Johnny Ridden's Gelgoog Cannon",
+      "verified": true,
+      "nameJa": "ジョニー・ライデン専用ゲルググ・キャノン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|スーパーエンゲージガンダム(UR)": {
+      "name": "Super Engage Gundam (UR)",
+      "verified": true,
+      "nameJa": "スーパーエンゲージガンダム(UR)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ズサ(青)": {
+      "name": "Zssa (Blue)",
+      "verified": true,
+      "nameJa": "ズサ(青)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ターンX": {
+      "name": "Turn X",
+      "verified": true,
+      "nameJa": "ターンX",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ターンX(黄)": {
+      "name": "Turn X (Yellow)",
+      "verified": true,
+      "nameJa": "ターンX(黄)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ダグ・ドール": {
+      "name": "Dag Doll",
+      "verified": true,
+      "nameJa": "ダグ・ドール",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ダハック": {
+      "name": "Dahack",
+      "verified": true,
+      "nameJa": "ダハック",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ディジェ(ルオ商会仕様)": {
+      "name": "Dijeh (Luio and Co.)",
+      "verified": true,
+      "nameJa": "ディジェ(ルオ商会仕様)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ディジェ+ド・ダイ改": {
+      "name": "Dijeh + Modified Do-dai",
+      "verified": true,
+      "nameJa": "ディジェ+ド・ダイ改",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ティターニア": {
+      "name": "Titania",
+      "verified": true,
+      "nameJa": "ティターニア",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|デルタプラス": {
+      "name": "Delta Plus",
+      "verified": true,
+      "nameJa": "デルタプラス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ドーベン・ウルフ(指揮官機)": {
+      "name": "Doven Wolf (Commander Type)",
+      "verified": true,
+      "nameJa": "ドーベン・ウルフ(指揮官機)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|トーリスリッター": {
+      "name": "Todesritter",
+      "verified": true,
+      "nameJa": "トーリスリッター",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ドム・ノーミーデス": {
+      "name": "Dom Gnomides",
+      "verified": true,
+      "nameJa": "ドム・ノーミーデス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ドライセン": {
+      "name": "Dreissen",
+      "verified": true,
+      "nameJa": "ドライセン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ナイチンゲール": {
+      "name": "Nightingale",
+      "verified": true,
+      "nameJa": "ナイチンゲール",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ナラティブガンダム": {
+      "name": "Narrative Gundam",
+      "verified": true,
+      "nameJa": "ナラティブガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ナラティブガンダム(B装備)": {
+      "name": "Narrative Gundam B-Packs",
+      "verified": true,
+      "nameJa": "ナラティブガンダム(B装備)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ナラティブガンダム(C装備)": {
+      "name": "Narrative Gundam C-Packs",
+      "verified": true,
+      "nameJa": "ナラティブガンダム(C装備)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ナラティブガンダム(緑)": {
+      "name": "Narrative Gundam (Green)",
+      "verified": true,
+      "nameJa": "ナラティブガンダム(緑)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ナラティブガンダムB2装備": {
+      "name": "Narrative Gundam B2-Packs",
+      "verified": true,
+      "nameJa": "ナラティブガンダムB2装備",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|バイアラン": {
+      "name": "Byarlant",
+      "verified": true,
+      "nameJa": "バイアラン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|バイアラン・カスタム": {
+      "name": "Byarlant Custom",
+      "verified": true,
+      "nameJa": "バイアラン・カスタム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ハイゴッグ": {
+      "name": "Hy-Gogg",
+      "verified": true,
+      "nameJa": "ハイゴッグ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|バウンド・ドック": {
+      "name": "Baund Doc",
+      "verified": true,
+      "nameJa": "バウンド・ドック",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|パラス・アテネ": {
+      "name": "Palace Athene",
+      "verified": true,
+      "nameJa": "パラス・アテネ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|バルギル": {
+      "name": "Varguil",
+      "verified": true,
+      "nameJa": "バルギル",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|バルギル(ガンダムヘッド)": {
+      "name": "Varguil (Gundam Head)",
+      "verified": true,
+      "nameJa": "バルギル（ガンダムヘッド）",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|バルギル(紫)": {
+      "name": "Varguil (Purple)",
+      "verified": true,
+      "nameJa": "バルギル(紫)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|バンシィ": {
+      "name": "Banshee",
+      "verified": true,
+      "nameJa": "バンシィ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|バンシィ・ノルン": {
+      "name": "Banshee Norn",
+      "verified": true,
+      "nameJa": "バンシィ・ノルン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|バンシィ・ノルン(NT-D)": {
+      "name": "Banshee Norn (NT-D)",
+      "verified": true,
+      "nameJa": "バンシィ・ノルン(NT-D)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|バンシィ・ノルン(黒き獅子)": {
+      "name": "Banshee Norn (Black Lion)",
+      "verified": true,
+      "nameJa": "バンシィ・ノルン(黒き獅子)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|バンシィ(NT-D)": {
+      "name": "Banshee (NT-D)",
+      "verified": true,
+      "nameJa": "バンシィ(NT-D)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ハンブラビ": {
+      "name": "Hambrabi",
+      "verified": true,
+      "nameJa": "ハンブラビ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ハンマ・ハンマ": {
+      "name": "Hamma-Hamma",
+      "verified": true,
+      "nameJa": "ハンマ・ハンマ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ビギナ・ギナ": {
+      "name": "Vigna-Ghina",
+      "verified": true,
+      "nameJa": "ビギナ・ギナ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ファーヴニル": {
+      "name": "Fafnir",
+      "verified": true,
+      "nameJa": "ファーヴニル",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|フェネクス(NT-D/NTver.)": {
+      "name": "Phenex (NT-D/NT Version)",
+      "verified": true,
+      "nameJa": "フェネクス(NT-D/NTver.)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|フェネクス(NTver.)": {
+      "name": "Phenex (NT Version)",
+      "verified": true,
+      "nameJa": "フェネクス(NTver.)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ブラックライダー": {
+      "name": "Black Rider",
+      "verified": true,
+      "nameJa": "ブラックライダー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|フルアーマー・ガンダム(TB版・砲撃)": {
+      "name": "Gundam Full Armor (Bombardment)",
+      "verified": true,
+      "nameJa": "フルアーマー・ガンダム(TB版・砲撃)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|フルアーマー・ガンダム(サンダーボルト版)": {
+      "name": "Gundam Full Armor",
+      "verified": true,
+      "nameJa": "フルアーマー・ガンダム(サンダーボルト版)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|フルアーマー・ユニコーン": {
+      "name": "Full Armor Unicorn Gundam",
+      "verified": true,
+      "nameJa": "フルアーマー・ユニコーン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|フルアーマー・ユニコーンガンダム(NT-D)": {
+      "name": "Full Armor Unicorn Gundam (NT-D)",
+      "verified": true,
+      "nameJa": "フルアーマー・ユニコーンガンダム(NT-D)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|フルアーマーZZガンダム": {
+      "name": "Full Armor ZZ Gundam",
+      "verified": true,
+      "nameJa": "フルアーマーZZガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ブルーディスティニー1号機": {
+      "name": "Blue Destiny Unit-1",
+      "verified": true,
+      "nameJa": "ブルーディスティニー1号機",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ブルーディスティニー2号機": {
+      "name": "Blue Destiny Unit-2",
+      "verified": true,
+      "nameJa": "ブルーディスティニー2号機",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ブルーディスティニー3号機": {
+      "name": "Blue Destiny Unit-3",
+      "verified": true,
+      "nameJa": "ブルーディスティニー3号機",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ヘイズル・アウスラ": {
+      "name": "Hazel Owsla",
+      "verified": true,
+      "nameJa": "ヘイズル・アウスラ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ヘイズル2号機": {
+      "name": "Hazel Unit 2",
+      "verified": true,
+      "nameJa": "ヘイズル2号機",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ヘイズル改": {
+      "name": "Hazel Custom",
+      "verified": true,
+      "nameJa": "ヘイズル改",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ヘイズル改(高機動仕様)": {
+      "name": "Hazel Custom (High Mobility Type)",
+      "verified": true,
+      "nameJa": "ヘイズル改(高機動仕様)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ペイルライダー(空間戦仕様)": {
+      "name": "Pale Rider (Space type)",
+      "verified": true,
+      "nameJa": "ペイルライダー(空間戦仕様)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ペーネロペー(重装)": {
+      "name": "Penelope (Heavy Armor)",
+      "verified": true,
+      "nameJa": "ペーネロペー(重装)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ペーネロペー(汎用)": {
+      "name": "Penelope",
+      "verified": true,
+      "nameJa": "ペーネロペー(汎用)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ベルガ・ダラス": {
+      "name": "Berga-Dalas",
+      "verified": true,
+      "nameJa": "ベルガ・ダラス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ホワイトライダー": {
+      "name": "White Rider",
+      "verified": true,
+      "nameJa": "ホワイトライダー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|マグナ・マーテル": {
+      "name": "Magna Martell",
+      "verified": true,
+      "nameJa": "マグナ・マーテル",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|マグナ・マーテル(覚醒)": {
+      "name": "Magna Martell (Awaken)",
+      "verified": true,
+      "nameJa": "マグナ・マーテル（覚醒）",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|マツナガ専用高機動型ザクII": {
+      "name": "Matsunaga's High Mobility Zaku II",
+      "verified": true,
+      "nameJa": "マツナガ専用高機動型ザクⅡ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ムーンガンダム": {
+      "name": "Moon Gundam",
+      "verified": true,
+      "nameJa": "ムーンガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ムーンガンダム(汎用)": {
+      "name": "Moon Gundam (Blue)",
+      "verified": true,
+      "nameJa": "ムーンガンダム(汎用)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|メタス(UR)": {
+      "name": "Methuss (UR)",
+      "verified": true,
+      "nameJa": "メタス(UR)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|メッサーF01型": {
+      "name": "Messer Type F01",
+      "verified": true,
+      "nameJa": "メッサーF01型",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|メッサーラ": {
+      "name": "Messala",
+      "verified": true,
+      "nameJa": "メッサーラ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|モンテーロ": {
+      "name": "Montero",
+      "verified": true,
+      "nameJa": "モンテーロ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ユニコーンガンダム": {
+      "name": "Unicorn Gundam",
+      "verified": true,
+      "nameJa": "ユニコーンガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ユニコーンガンダム ペルフェクティビリティ・ディバイン": {
+      "name": "Unicorn Gundam Perfectibility Divine",
+      "verified": true,
+      "nameJa": "ユニコーンガンダム ペルフェクティビリティ・ディバイン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ユニコーンガンダム(HML装備)": {
+      "name": "Unicorn Gundam (Hyper Mega Launcher)",
+      "verified": true,
+      "nameJa": "ユニコーンガンダム(HML装備)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ユニコーンガンダム(NT-D)": {
+      "name": "Unicorn Gundam (NT-D)",
+      "verified": true,
+      "nameJa": "ユニコーンガンダム(NT-D)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ユニコーンガンダム(NT-D/覚醒)": {
+      "name": "Unicorn Gundam (NT-D/Awaken)",
+      "verified": true,
+      "nameJa": "ユニコーンガンダム(NT-D/覚醒)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ユニコーンガンダム(PF)": {
+      "name": "Unicorn Gundam Perfectibility",
+      "verified": true,
+      "nameJa": "ユニコーンガンダム(PF)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ユニコーンガンダム(白き一角獣)": {
+      "name": "Unicorn Gundam NT-D (White Unicorn)",
+      "verified": true,
+      "nameJa": "ユニコーンガンダム(白き一角獣)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ユニコーンガンダムPF(NT-D)": {
+      "name": "Unicorn Gundam Perfectibility (NT-D)",
+      "verified": true,
+      "nameJa": "ユニコーンガンダムPF(NT-D)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|リ・ガズィ": {
+      "name": "Re-GZ",
+      "verified": true,
+      "nameJa": "リ・ガズィ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|リガズィード": {
+      "name": "Re-GZID",
+      "verified": true,
+      "nameJa": "リガズィード",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|リグ・コンティオ": {
+      "name": "Rig Contio",
+      "verified": true,
+      "nameJa": "リグ・コンティオ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|リゲルグ": {
+      "name": "Regelgu",
+      "verified": true,
+      "nameJa": "リゲルグ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|リック・ディジェ": {
+      "name": "Rick Dijeh (Lieutenant Amuro Ray)",
+      "verified": true,
+      "nameJa": "リック・ディジェ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|リック・ディジェ改": {
+      "name": "Modified Rick Dijeh",
+      "verified": true,
+      "nameJa": "リック・ディジェ改",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|リック・ドム(サンダーボルト版)": {
+      "name": "Rick Dom (Thunderbolt)",
+      "verified": true,
+      "nameJa": "リック・ドム(サンダーボルト版)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|リバウ": {
+      "name": "Rebawoo",
+      "verified": true,
+      "nameJa": "リバウ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|レッド・ゼータ": {
+      "name": "Red Zeta",
+      "verified": true,
+      "nameJa": "レッド・ゼータ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|ローゼン・ズール": {
+      "name": "Rozen Zulu",
+      "verified": true,
+      "nameJa": "ローゼン・ズール",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|高機動型ケンプファー": {
+      "name": "Kampfer High Mobility Type",
+      "verified": true,
+      "nameJa": "高機動型ケンプファー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|赤いガンダム(0079)": {
+      "name": "Red Gundam (0079)",
+      "verified": true,
+      "nameJa": "赤いガンダム(0079)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|赤いガンダム(0085)": {
+      "name": "Red Gundam (0085)",
+      "verified": true,
+      "nameJa": "赤いガンダム(0085)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|百式": {
+      "name": "Hyaku Shiki",
+      "verified": true,
+      "nameJa": "百式",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|量産型キュベレイ(ノン機)": {
+      "name": "Qubeley Mass Production Type (Non)",
+      "verified": true,
+      "nameJa": "量産型キュベレイ(ノン機)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|量産型キュベレイ(リン機)": {
+      "name": "Qubeley Mass Production Type (Lyn)",
+      "verified": true,
+      "nameJa": "量産型キュベレイ(リン機)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|量産型キュベレイ(レイ機)": {
+      "name": "Qubeley Mass Production Type (Rey)",
+      "verified": true,
+      "nameJa": "量産型キュベレイ（レイ機）",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|νガンダム": {
+      "name": "Nu Gundam",
+      "verified": true,
+      "nameJa": "νガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|νガンダム(DFF装備型)": {
+      "name": "Nu Gundam (Double Fin Funnels)",
+      "verified": true,
+      "nameJa": "νガンダム(DFF装備型)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|νガンダム(LFF&HMBL装備)": {
+      "name": "Nu Gundam (LFF & Hyper Mega Bazooka Launcher)",
+      "verified": true,
+      "nameJa": "νガンダム(LFF&HMBL装備)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|νガンダム(立像記念)": {
+      "name": "RX-93ff Nu Gundam",
+      "verified": true,
+      "nameJa": "νガンダム(立像記念)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|νガンダム(緑)": {
+      "name": "Nu Gundam (Green)",
+      "verified": true,
+      "nameJa": "νガンダム(緑)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|νガンダムHWS": {
+      "name": "Nu Gundam HWS",
+      "verified": true,
+      "nameJa": "νガンダムHWS",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|Ξガンダム": {
+      "name": "Xi Gundam",
+      "verified": true,
+      "nameJa": "Ξガンダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|Ξガンダム(紫)": {
+      "name": "Xi Gundam (Purple)",
+      "verified": true,
+      "nameJa": "Ξガンダム(紫)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "ms|Ξガンダム(砲撃)": {
+      "name": "Xi Gundam (Bombardment)",
+      "verified": true,
+      "nameJa": "Ξガンダム(砲撃)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|アイーダ・スルガン": {
+      "name": "Aida Surugan",
+      "verified": true,
+      "nameJa": "アイーダ・スルガン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|アイナ・サハリン": {
+      "name": "Aina Sakhalin",
+      "verified": true,
+      "nameJa": "アイナ・サハリン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|アゴス・ラガート": {
+      "name": "Agos Lagarto",
+      "verified": true,
+      "nameJa": "アゴス・ラガート",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|アナベル・ガトー": {
+      "name": "Anavel Gato",
+      "verified": true,
+      "nameJa": "アナベル・ガトー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|アマテ・ユズリハ": {
+      "name": "Amate Yuzuriha",
+      "verified": true,
+      "nameJa": "アマテ・ユズリハ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|アムロ・レイ": {
+      "name": "Amuro Ray",
+      "verified": true,
+      "nameJa": "アムロ・レイ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|アルマ・シュティルナー": {
+      "name": "Alma Stirner",
+      "verified": true,
+      "nameJa": "アルマ・シュティルナー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|アンジェロ・ザウパー": {
+      "name": "Angelo Sauper",
+      "verified": true,
+      "nameJa": "アンジェロ・ザウパー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|イオ・フレミング": {
+      "name": "Io Fleming",
+      "verified": true,
+      "nameJa": "イオ・フレミング",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|イリア・パゾム": {
+      "name": "Illia Pazom",
+      "verified": true,
+      "nameJa": "イリア・パゾム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|イリヤ・ソラリ": {
+      "name": "Iria Solari",
+      "verified": true,
+      "nameJa": "イリヤ・ソラリ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ウッソ・エヴィン": {
+      "name": "Uso Ewin",
+      "verified": true,
+      "nameJa": "ウッソ・エヴィン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ウバルド・モリーナ": {
+      "name": "Ubaldo Morina",
+      "verified": true,
+      "nameJa": "ウバルド・モリーナ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|エマ・シーン": {
+      "name": "Emma Sheen",
+      "verified": true,
+      "nameJa": "エマ・シーン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|エル・ビアンノ": {
+      "name": "Elle Vianno",
+      "verified": true,
+      "nameJa": "エル・ビアンノ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|エルピー・プル": {
+      "name": "Elpeo Ple",
+      "verified": true,
+      "nameJa": "エルピー・プル",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|カイ・シデン": {
+      "name": "Kai Shiden",
+      "verified": true,
+      "nameJa": "カイ・シデン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ガウマン・ノビル": {
+      "name": "Gawman Nobile",
+      "verified": true,
+      "nameJa": "ガウマン・ノビル",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|カクリコン・カクーラー": {
+      "name": "Kacricon Cacooler",
+      "verified": true,
+      "nameJa": "カクリコン・カクーラー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|カテジナ・ルース": {
+      "name": "Katejina Loos",
+      "verified": true,
+      "nameJa": "カテジナ・ルース",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ガブリエル・ラミレス・ガルシア": {
+      "name": "Gabriel Ramirez Garcia",
+      "verified": true,
+      "nameJa": "ガブリエル・ラミレス・ガルシア",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|カミーユ・ビダン": {
+      "name": "Kamille Bidan",
+      "verified": true,
+      "nameJa": "カミーユ・ビダン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ギム・ギンガナム": {
+      "name": "Gym Ghingham",
+      "verified": true,
+      "nameJa": "ギム・ギンガナム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|キャラ・スーン": {
+      "name": "Chara Soon",
+      "verified": true,
+      "nameJa": "キャラ・スーン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|キンケドゥ・ナウ": {
+      "name": "Kincade Nau",
+      "verified": true,
+      "nameJa": "キンケドゥ・ナウ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|クェス・パラヤ": {
+      "name": "Quess Paraya",
+      "verified": true,
+      "nameJa": "クェス・パラヤ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|クリスチーナ・マッケンジー": {
+      "name": "Christina Mackenzie",
+      "verified": true,
+      "nameJa": "クリスチーナ・マッケンジー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|クリム・ニック": {
+      "name": "Klim Nick",
+      "verified": true,
+      "nameJa": "クリム・ニック",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|グレイ・ウルフ": {
+      "name": "Gray Wolf",
+      "verified": true,
+      "nameJa": "グレイ・ウルフ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|クロエ・クローチェ": {
+      "name": "Chloe Croce",
+      "verified": true,
+      "nameJa": "クロエ・クローチェ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|クロノクル・アシャー": {
+      "name": "Cronicle Asher",
+      "verified": true,
+      "nameJa": "クロノクル・アシャー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|クワトロ・バジーナ": {
+      "name": "Quattro Bajeena",
+      "verified": true,
+      "nameJa": "クワトロ・バジーナ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ケリィ・レズナー": {
+      "name": "Kelley Layzner",
+      "verified": true,
+      "nameJa": "ケリィ・レズナー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|コウ・ウラキ": {
+      "name": "Kou Uraki",
+      "verified": true,
+      "nameJa": "コウ・ウラキ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|コレン・ナンダー": {
+      "name": "Corin Nander",
+      "verified": true,
+      "nameJa": "コレン・ナンダー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|サフィラ・ガードナー": {
+      "name": "Saphira Gardner",
+      "verified": true,
+      "nameJa": "サフィラ・ガードナー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|サラ・ザビアロフ": {
+      "name": "Sarah Zabiarov",
+      "verified": true,
+      "nameJa": "サラ・ザビアロフ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|シーブック・アノー": {
+      "name": "Seabook Arno",
+      "verified": true,
+      "nameJa": "シーブック・アノー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|シーマ・ガラハウ": {
+      "name": "Cima Garahau",
+      "verified": true,
+      "nameJa": "シーマ・ガラハウ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ジェリド・メサ": {
+      "name": "Jerid Messa",
+      "verified": true,
+      "nameJa": "ジェリド・メサ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|シャア・アズナブル": {
+      "name": "Char Aznable",
+      "verified": true,
+      "nameJa": "シャア・アズナブル",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|シャア・アズナブル(GQ)": {
+      "name": "Char Aznable (GQ)",
+      "verified": true,
+      "nameJa": "シャア・アズナブル(GQ)",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|シュウジ・イトウ": {
+      "name": "Shuji Ito",
+      "verified": true,
+      "nameJa": "シュウジ・イトウ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ジュドー・アーシタ": {
+      "name": "Judau Ashta",
+      "verified": true,
+      "nameJa": "ジュドー・アーシタ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ジョニー・ライデン": {
+      "name": "Johnny Ridden",
+      "verified": true,
+      "nameJa": "ジョニー・ライデン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|シロー・アマダ": {
+      "name": "Shiro Amada",
+      "verified": true,
+      "nameJa": "シロー・アマダ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|シン・マツナガ": {
+      "name": "Shin Matsunaga",
+      "verified": true,
+      "nameJa": "シン・マツナガ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|スレッガー・ロウ": {
+      "name": "Sleggar Law",
+      "verified": true,
+      "nameJa": "スレッガー・ロウ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|スレッタ・マーキュリー": {
+      "name": "Suletta Mercury",
+      "verified": true,
+      "nameJa": "スレッタ・マーキュリー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|セイラ・マス": {
+      "name": "Sayla Mass",
+      "verified": true,
+      "nameJa": "セイラ・マス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|セシリー・フェアチャイルド": {
+      "name": "Cecily Fairchild",
+      "verified": true,
+      "nameJa": "セシリー・フェアチャイルド",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|セリーヌ・ロム": {
+      "name": "Celine Rom",
+      "verified": true,
+      "nameJa": "セリーヌ・ロム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ソシエ・ハイム": {
+      "name": "Sochie Heim",
+      "verified": true,
+      "nameJa": "ソシエ・ハイム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ソフィ・フラン": {
+      "name": "Sophie Franc",
+      "verified": true,
+      "nameJa": "ソフィ・フラン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ゾルタン・アッカネン": {
+      "name": "Zoltan Akkanen",
+      "verified": true,
+      "nameJa": "ゾルタン・アッカネン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ダグザ・マックール": {
+      "name": "Daguza Mackie",
+      "verified": true,
+      "nameJa": "ダグザ・マックール",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ダリル・ローレンツ": {
+      "name": "Daryl Lorenz",
+      "verified": true,
+      "nameJa": "ダリル・ローレンツ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ダントン・ハイレッグ": {
+      "name": "Danton Hyleg",
+      "verified": true,
+      "nameJa": "ダントン・ハイレッグ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|トビア・アロナクス": {
+      "name": "Tobia Arronax",
+      "verified": true,
+      "nameJa": "トビア・アロナクス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ドレル・ロナ": {
+      "name": "Dorel Ronah",
+      "verified": true,
+      "nameJa": "ドレル・ロナ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ニムバス・シュターゼン": {
+      "name": "Nimbus Schterzen",
+      "verified": true,
+      "nameJa": "ニムバス・シュターゼン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ニャアン": {
+      "name": "Nyaan",
+      "verified": true,
+      "nameJa": "ニャアン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ノリス・パッカード": {
+      "name": "Norris Packard",
+      "verified": true,
+      "nameJa": "ノリス・パッカード",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ノン": {
+      "name": "Non",
+      "verified": true,
+      "nameJa": "ノン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ハイデマリー・ハウグ": {
+      "name": "Heidemarie Haug",
+      "verified": true,
+      "nameJa": "ハイデマリー・ハウグ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ハサウェイ・ノア": {
+      "name": "Hathaway Noa",
+      "verified": true,
+      "nameJa": "ハサウェイ・ノア",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|バナージ・リンクス": {
+      "name": "Banagher Links",
+      "verified": true,
+      "nameJa": "バナージ・リンクス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|パプテマス・シロッコ": {
+      "name": "Paptimus Scirocco",
+      "verified": true,
+      "nameJa": "パプテマス・シロッコ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ハマーン・カーン": {
+      "name": "Haman Karn",
+      "verified": true,
+      "nameJa": "ハマーン・カーン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ハリー・オード": {
+      "name": "Harry Ord",
+      "verified": true,
+      "nameJa": "ハリー・オード",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ファ・ユイリィ": {
+      "name": "Fa Yuiry",
+      "verified": true,
+      "nameJa": "ファ・ユイリィ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ファラ・グリフォン": {
+      "name": "Fuala Griffon",
+      "verified": true,
+      "nameJa": "ファラ・グリフォン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|フォウ・ムラサメ": {
+      "name": "Four Murasame",
+      "verified": true,
+      "nameJa": "フォウ・ムラサメ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|フォルド・ロムフェロー": {
+      "name": "Fold Romfellow",
+      "verified": true,
+      "nameJa": "フォルド・ロムフェロー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ブラン・ブルターク": {
+      "name": "Buran Blutarch",
+      "verified": true,
+      "nameJa": "ブラン・ブルターク",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|フル・フロンタル": {
+      "name": "Full Frontal",
+      "verified": true,
+      "nameJa": "フル・フロンタル",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|プルツー": {
+      "name": "Ple Two",
+      "verified": true,
+      "nameJa": "プルツー",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|プルトゥエルブ": {
+      "name": "Ple-Twelve",
+      "verified": true,
+      "nameJa": "プルトゥエルブ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ペッシェ・モンターニュ": {
+      "name": "Peche Montagne",
+      "verified": true,
+      "nameJa": "ペッシェ・モンターニュ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ベルナンド・モンシア": {
+      "name": "Bernard Monsha",
+      "verified": true,
+      "nameJa": "ベルナンド・モンシア",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ベルリ・ゼナム": {
+      "name": "Bellri Zenam",
+      "verified": true,
+      "nameJa": "ベルリ・ゼナム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|マ・クベ": {
+      "name": "M'Quve",
+      "verified": true,
+      "nameJa": "マ・クベ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|マシュマー・セロ": {
+      "name": "Mashymre Cello",
+      "verified": true,
+      "nameJa": "マシュマー・セロ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|マシロ・オークス": {
+      "name": "Mashiro Okusu",
+      "verified": true,
+      "nameJa": "マシロ・オークス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|マリーダ・クルス": {
+      "name": "Marida Cruz",
+      "verified": true,
+      "nameJa": "マリーダ・クルス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|マリオン・ウェルチ": {
+      "name": "Marion Whelch",
+      "verified": true,
+      "nameJa": "マリオン・ウェルチ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ミア・ブリンクマン": {
+      "name": "Mia Brinkman",
+      "verified": true,
+      "nameJa": "ミア・ブリンクマン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ミシェル・ルオ": {
+      "name": "Michele Luio",
+      "verified": true,
+      "nameJa": "ミシェル・ルオ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ミチェル・カノ": {
+      "name": "Michel Kano",
+      "verified": true,
+      "nameJa": "ミチェル・カノ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ヤザン・ゲーブル": {
+      "name": "Yazan Gable",
+      "verified": true,
+      "nameJa": "ヤザン・ゲーブル",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ユウ・カジマ": {
+      "name": "Yuu Kajima",
+      "verified": true,
+      "nameJa": "ユウ・カジマ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ユート・オールディス": {
+      "name": "Yuto Aldiss",
+      "verified": true,
+      "nameJa": "ユート・オールディス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ユッタ・カーシム": {
+      "name": "Jutta Qasim",
+      "verified": true,
+      "nameJa": "ユッタ・カーシム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ヨナ・バシュタ": {
+      "name": "Jona Basta",
+      "verified": true,
+      "nameJa": "ヨナ・バシュタ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ラカン・ダカラン": {
+      "name": "Rakan Dahkaran",
+      "verified": true,
+      "nameJa": "ラカン・ダカラン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ララァ・スン": {
+      "name": "Lalah Sune",
+      "verified": true,
+      "nameJa": "ララァ・スン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ラライヤ・アクパール": {
+      "name": "Raraiya Akuparl",
+      "verified": true,
+      "nameJa": "ラライヤ・アクパール",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|リディ・マーセナス": {
+      "name": "Riddhe Marcenas",
+      "verified": true,
+      "nameJa": "リディ・マーセナス",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|リュース・クランゲル": {
+      "name": "Lieuze Krangel",
+      "verified": true,
+      "nameJa": "リュース・クランゲル",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|リリス・エイデン": {
+      "name": "Lilith Aiden",
+      "verified": true,
+      "nameJa": "リリス・エイデン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|リン": {
+      "name": "Rin",
+      "verified": true,
+      "nameJa": "リン",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ルー・ルカ": {
+      "name": "Roux Louka",
+      "verified": true,
+      "nameJa": "ルー・ルカ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ルース・カッセル": {
+      "name": "Luth Kassel",
+      "verified": true,
+      "nameJa": "ルース・カッセル",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|レイ": {
+      "name": "Rey",
+      "verified": true,
+      "nameJa": "レイ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|レーン・エイム": {
+      "name": "Lane Aim",
+      "verified": true,
+      "nameJa": "レーン・エイム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|レコア・ロンド": {
+      "name": "Reccoa Londe",
+      "verified": true,
+      "nameJa": "レコア・ロンド",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|レッド・スネーク": {
+      "name": "Red Snake",
+      "verified": true,
+      "nameJa": "レッド・スネーク",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ロザミア・バダム": {
+      "name": "Rosamia Badam",
+      "verified": true,
+      "nameJa": "ロザミア・バダム",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ロザミィ": {
+      "name": "Rosammy",
+      "verified": true,
+      "nameJa": "ロザミィ",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    },
+    "pilot|ロラン・セアック": {
+      "name": "Loran Cehack",
+      "verified": true,
+      "nameJa": "ロラン・セアック",
+      "source": "Manual web-assisted review (English U.C. ENGAGE naming and verified Gundam references)"
+    }
+  }
 }
