@@ -102,6 +102,9 @@ let drag = null;
 let panDrag = null;
 let suppressRoadmapClick = false;
 let lastUnitClick = { id: null, at: 0 };
+let profileOpenTimer = null;
+let unitProfileOverlay = null;
+let profileReturnFocus = null;
 let autoApplyTimer = null;
 let zoomScale = Number(localStorage.getItem(ZOOM_STORAGE_KEY) || "1") || 1;
 
@@ -237,7 +240,7 @@ function rowOffsetLabel(value, tierId = null) {
   if (index >= 0) {
     const upper = offset < 0 ? tiers[index - 1] : tiers[index];
     const lower = offset < 0 ? tiers[index] : tiers[index + 1];
-    if (upper && lower) return `${upper.label} - ${lower.label}`;
+    if (upper && lower) return `${upper.label} / ${lower.label}`;
   }
   return offset < 0 ? "Between rows" : "Between rows";
 }
@@ -812,7 +815,9 @@ function bindUI() {
     }
   });
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && tooltipPinned) hideTooltip(true);
+    if (event.key !== "Escape") return;
+    if (unitProfileOverlay) { closeUnitProfile(); return; }
+    if (tooltipPinned) hideTooltip(true);
   });
   document.addEventListener("contextmenu", (event) => {
     if (!event.target.closest("#roadmap")) hideContextMenu();
@@ -1093,6 +1098,7 @@ function openSelectedUnitDialog(unitId) {
   if (!unit || !els.unitEditDialog || !els.unitEditDialogBody) return;
   select(unit.id, null);
   hideTooltip(true);
+  closeUnitProfile();
   hideContextMenu();
   if (!editFormHomeParent) {
     editFormHomeParent = els.editForm.parentNode;
@@ -1621,6 +1627,7 @@ function finishTimelinePan(event) {
 
 function beginDragUnit(event, id) {
   if (event.button !== 0) return;
+  if (profileOpenTimer) { clearTimeout(profileOpenTimer); profileOpenTimer = null; }
   const unit = state.units.find(u => u.id === id);
   if (!unit) return;
   event.stopPropagation();
@@ -1759,14 +1766,24 @@ function handleUnitClickGesture(event, unitId) {
   const isDoubleClick = lastUnitClick.id === unit.id && now - lastUnitClick.at <= 500;
 
   if (isDoubleClick) {
+    if (profileOpenTimer) clearTimeout(profileOpenTimer);
+    profileOpenTimer = null;
     lastUnitClick = { id: null, at: 0 };
+    closeUnitProfile();
     if (isMs(unit) || isPilot(unit)) openSelectedUnitDialog(unit.id);
     else renameUnit(unit.id);
     return;
   }
 
   lastUnitClick = { id: unit.id, at: now };
-  if (isMs(unit) || isPilot(unit)) showTooltip(event, unit, null, { pin: true });
+  if (profileOpenTimer) clearTimeout(profileOpenTimer);
+  if (isMs(unit) || isPilot(unit)) {
+    // Delay the focused profile just enough to preserve the builder's double-click-to-edit gesture.
+    profileOpenTimer = setTimeout(() => {
+      profileOpenTimer = null;
+      if (lastUnitClick.id === unit.id) openUnitProfile(unit.id);
+    }, 420);
+  }
 }
 function handleMetaBarClickGesture(event, unitId, segmentId) {
   const unit = state.units.find(u => u.id === unitId);
@@ -1774,7 +1791,7 @@ function handleMetaBarClickGesture(event, unitId, segmentId) {
   if (!unit || !segment) return;
 
   select(unit.id, segment.id);
-  showTooltip(event, unit, segment, { pin: true });
+  openUnitProfile(unit.id, segment.id);
 }
 function finalizeUnitDrop(endedDrag) {
   const unit = state.units.find(u => u.id === endedDrag.id);
@@ -1844,6 +1861,17 @@ function pairedMsForPilot(pilot) {
       const aDistance = Math.abs(tierIndex(a.tier) + normalizeRowOffset(a.rowOffset) - (tierIndex(pilot.tier) + normalizeRowOffset(pilot.rowOffset)));
       const bDistance = Math.abs(tierIndex(b.tier) + normalizeRowOffset(b.rowOffset) - (tierIndex(pilot.tier) + normalizeRowOffset(pilot.rowOffset)));
       return aDistance - bDistance || visualStackRank(a) - visualStackRank(b) || a.name.localeCompare(b.name);
+    })[0] || null;
+}
+function pairedPilotForMs(ms) {
+  if (!isMs(ms)) return null;
+  return state.units
+    .filter(isPilot)
+    .filter(pilot => pairedMsForPilot(pilot)?.id === ms.id)
+    .sort((a, b) => {
+      const aExact = sameVisualSlot(a, ms) ? 1 : 0;
+      const bExact = sameVisualSlot(b, ms) ? 1 : 0;
+      return bExact - aExact || (Number(a.stackOrder) || 0) - (Number(b.stackOrder) || 0) || a.name.localeCompare(b.name);
     })[0] || null;
 }
 function metaOwnerForUnit(unit) {
@@ -2782,6 +2810,133 @@ function positionFloatingTooltip(element, event, maxWidth = 320) {
   top = Math.min(Math.max(top, margin), maxTop);
   element.style.left = `${Math.round(left)}px`;
   element.style.top = `${Math.round(top)}px`;
+}
+
+
+function profileTagsHtml(unit) {
+  if (!unit?.tags?.length) return "";
+  return `<div class="unit-profile-tags">${unit.tags.map(tag => `<span class="unit-profile-tag ${tagClass(tag)}">${escapeHtml(tag)}</span>`).join("")}</div>`;
+}
+
+function profileArtHtml(unit, typeLabel) {
+  if (!unit) {
+    return `<div class="unit-profile-art empty"><div class="unit-profile-placeholder">?</div><span>${escapeHtml(typeLabel)}</span></div>`;
+  }
+  const image = unit.icon
+    ? `<img class="unit-profile-image" src="${escapeHtml(unit.icon)}" alt="${escapeHtml(unit.name)}"><div class="unit-profile-placeholder image-fallback">${escapeHtml(initials(unit.name))}</div>`
+    : `<div class="unit-profile-placeholder">${escapeHtml(initials(unit.name))}</div>`;
+  return `<div class="unit-profile-art">${image}</div>`;
+}
+
+function profileContextHtml(unit) {
+  if (!unit) return "";
+  const color = tierById(unit.tier).color || "#8d96a6";
+  return `<div class="unit-profile-context"><span class="unit-profile-tier" style="--profile-tier-color:${escapeHtml(color)}">${escapeHtml(normalizeRowOffset(unit.rowOffset) ? rowOffsetLabel(unit.rowOffset, unit.tier) : tierById(unit.tier).label)}</span><span>${escapeHtml(formatWeek(unit.week))}</span></div>`;
+}
+
+function profileInvestmentHtml(unit) {
+  if (!isMs(unit)) return "";
+  const minimum = normalizePotentialLevel(unit.minPotential);
+  const ideal = normalizePotentialLevel(unit.idealPotential);
+  if (minimum == null && ideal == null) return "";
+  const cells = [];
+  if (minimum != null) cells.push(`<div class="unit-profile-investment-stat"><span>Minimum</span><strong>P${minimum}</strong></div>`);
+  if (ideal != null) cells.push(`<div class="unit-profile-investment-stat"><span>Ideal</span><strong>P${ideal}</strong></div>`);
+  return `<section class="unit-profile-section"><div class="unit-profile-section-title">Investment</div><div class="unit-profile-investment">${cells.join("")}</div></section>`;
+}
+
+function profileMetaHtml(unit, activeSegmentId = null) {
+  if (!unit) return "";
+  const segments = (unit.segments || []).slice().sort((a, b) => a.start - b.start || a.end - b.end);
+  if (!segments.length) return "";
+  const rows = segments.map(seg => {
+    const status = metaStatus(seg.statusId);
+    const description = String(status.description || "").trim();
+    return `<div class="unit-profile-meta-row${activeSegmentId === seg.id ? " active" : ""}"><i style="background:${escapeHtml(status.color)}"></i><div class="unit-profile-meta-copy"><div class="unit-profile-meta-top"><strong>${escapeHtml(status.label)}</strong><span>${escapeHtml(formatWeekRange(seg.start, seg.end))}</span></div>${description ? `<p>${multilineHtml(description)}</p>` : ""}</div></div>`;
+  }).join("");
+  return `<section class="unit-profile-section"><div class="unit-profile-section-title">PVP Meta</div><div class="unit-profile-meta-list">${rows}</div></section>`;
+}
+
+function profileMsNotesHtml(unit) {
+  if (!unit) return "";
+  const blocks = [];
+  if (unit.notesPvp) blocks.push(`<div class="unit-profile-note"><span>PVP</span><div>${multilineHtml(unit.notesPvp)}</div></div>`);
+  if (unit.notesPve) blocks.push(`<div class="unit-profile-note"><span>PVE</span><div>${multilineHtml(unit.notesPve)}</div></div>`);
+  return blocks.length ? `<section class="unit-profile-section"><div class="unit-profile-section-title">Notes</div><div class="unit-profile-notes">${blocks.join("")}</div></section>` : "";
+}
+
+function profilePilotNotesHtml(unit) {
+  if (!unit) return "";
+  const notes = [unit.notesPvp, unit.notesPve].filter(Boolean).join("\n\n");
+  return notes ? `<section class="unit-profile-section"><div class="unit-profile-section-title">Notes</div><div class="unit-profile-pilot-note">${multilineHtml(notes)}</div></section>` : "";
+}
+
+function profilePanelHeaderHtml(unit, label, emptyMessage) {
+  if (!unit) {
+    return `<div class="unit-profile-empty">${profileArtHtml(null, label)}<div><span class="unit-profile-eyebrow">${escapeHtml(label)}</span><h2>${escapeHtml(emptyMessage)}</h2><p>This roadmap entry does not currently have a paired ${label.toLowerCase()} in the same release slot.</p></div></div>`;
+  }
+  return `<div class="unit-profile-hero">${profileArtHtml(unit, label)}<div class="unit-profile-identity"><span class="unit-profile-eyebrow">${escapeHtml(label)}</span><h2>${escapeHtml(unit.name)}</h2>${profileContextHtml(unit)}${profileTagsHtml(unit)}</div></div>`;
+}
+
+function openUnitProfile(unitId, activeSegmentId = null) {
+  const clicked = state.units.find(unit => unit.id === unitId);
+  if (!clicked || (!isMs(clicked) && !isPilot(clicked))) return;
+  hideTooltip(true);
+  hideAppTooltip();
+  hideContextMenu();
+  closeUnitProfile();
+
+  const ms = isMs(clicked) ? clicked : pairedMsForPilot(clicked);
+  const pilot = isPilot(clicked) ? clicked : pairedPilotForMs(clicked);
+  const activeId = ms ? (activeSegmentId || selectedSegment(ms)?.id || null) : null;
+  profileReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+  const overlay = document.createElement("div");
+  overlay.className = "unit-profile-overlay";
+  overlay.innerHTML = `
+    <article class="unit-profile-card" role="dialog" aria-modal="true" aria-label="${escapeHtml(ms?.name || pilot?.name || "Unit profile")}">
+      <button class="unit-profile-close" type="button" aria-label="Close profile">×</button>
+      <div class="unit-profile-grid">
+        <section class="unit-profile-panel unit-profile-ms-panel">
+          ${profilePanelHeaderHtml(ms, "MOBILE SUIT", "No paired MS")}
+          ${ms ? profileInvestmentHtml(ms) : ""}
+          ${ms ? profileMetaHtml(ms, activeId) : ""}
+          ${ms ? profileMsNotesHtml(ms) : ""}
+        </section>
+        <section class="unit-profile-panel unit-profile-pilot-panel">
+          ${profilePanelHeaderHtml(pilot, "PILOT", "No paired pilot")}
+          ${pilot ? profilePilotNotesHtml(pilot) : ""}
+        </section>
+      </div>
+    </article>`;
+
+  overlay.addEventListener("click", event => { if (event.target === overlay) closeUnitProfile(); });
+  overlay.querySelector(".unit-profile-close")?.addEventListener("click", closeUnitProfile);
+  overlay.querySelectorAll(".unit-profile-image").forEach(img => {
+    img.addEventListener("error", () => {
+      img.style.display = "none";
+      const fallback = img.nextElementSibling;
+      if (fallback) fallback.classList.remove("image-fallback");
+    }, { once: true });
+  });
+  document.body.appendChild(overlay);
+  document.body.classList.add("unit-profile-open");
+  unitProfileOverlay = overlay;
+  overlay.querySelector(".unit-profile-close")?.focus({ preventScroll: true });
+}
+
+function closeUnitProfile() {
+  if (profileOpenTimer) {
+    clearTimeout(profileOpenTimer);
+    profileOpenTimer = null;
+  }
+  if (!unitProfileOverlay) return;
+  const overlay = unitProfileOverlay;
+  unitProfileOverlay = null;
+  overlay.remove();
+  document.body.classList.remove("unit-profile-open");
+  if (profileReturnFocus?.isConnected) profileReturnFocus.focus({ preventScroll: true });
+  profileReturnFocus = null;
 }
 
 function showTooltip(event, unit, segment = null, options = {}) {
