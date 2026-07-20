@@ -94,6 +94,7 @@ let selectedSegmentId = null;
 let filterKind = "all";
 let searchTerm = "";
 let tooltipEl = null;
+let tooltipPinned = false;
 let drag = null;
 let panDrag = null;
 let suppressRoadmapClick = false;
@@ -250,22 +251,47 @@ function slotSizeForUnit(unit, group = sameSlotGroup(unit)) {
 }
 function slotLayoutForGroup(group) {
   const compact = isCompactBetweenSlot(group);
-  let y = 0;
   const layout = new Map();
+  if (compact) {
+    const leftColumn = group.filter(unit => !isPilot(unit));
+    const rightColumn = group.filter(isPilot);
+    const rightX = ICON_W + COMPACT_STACK_GAP;
+    const leftHeight = leftColumn.length ? leftColumn.length * ICON_W + (leftColumn.length - 1) * ICON_STACK_GAP : 0;
+    const rightHeight = rightColumn.length ? rightColumn.length * COMPACT_PILOT_W + (rightColumn.length - 1) * COMPACT_STACK_GAP : 0;
+    const groupHeight = Math.max(ICON_W, leftHeight, rightHeight);
+    let leftY = Math.max(0, Math.round((groupHeight - leftHeight) / 2));
+    let rightY = Math.max(0, Math.round((groupHeight - rightHeight) / 2));
+    leftColumn.forEach((unit, index) => {
+      layout.set(unit.id, { x: 0, y: leftY, size: ICON_W, z: group.length - index, index });
+      leftY += ICON_W + ICON_STACK_GAP;
+    });
+    rightColumn.forEach((unit, index) => {
+      const groupIndex = group.indexOf(unit);
+      layout.set(unit.id, { x: rightX, y: rightY, size: COMPACT_PILOT_W, z: group.length - groupIndex, index: groupIndex });
+      rightY += COMPACT_PILOT_W + COMPACT_STACK_GAP;
+    });
+    return {
+      layout,
+      groupHeight,
+      groupWidth: ICON_W + COMPACT_STACK_GAP + COMPACT_PILOT_W,
+      compact
+    };
+  }
+
+  let y = 0;
   group.forEach((unit, index) => {
     const size = slotSizeForUnit(unit, group);
-    const x = compact && size < ICON_W ? Math.round((ICON_W - size) / 2) : 0;
-    layout.set(unit.id, { x, y, size, z: group.length - index, index });
-    y += size + (compact ? COMPACT_STACK_GAP : ICON_STACK_GAP);
+    layout.set(unit.id, { x: 0, y, size, z: group.length - index, index });
+    y += size + ICON_STACK_GAP;
   });
-  return { layout, groupHeight: Math.max(ICON_W, y - (compact ? COMPACT_STACK_GAP : ICON_STACK_GAP)), compact };
+  return { layout, groupHeight: Math.max(ICON_W, y - ICON_STACK_GAP), groupWidth: ICON_W, compact };
 }
 function sameSlotOffset(unit) {
   const group = sameSlotGroup(unit);
-  if (group.length <= 1) return { x: 0, y: 0, z: 0, index: 0, count: 1, groupHeight: ICON_W, size: ICON_W, compact: false };
-  const { layout, groupHeight, compact } = slotLayoutForGroup(group);
+  if (group.length <= 1) return { x: 0, y: 0, z: 0, index: 0, count: 1, groupHeight: ICON_W, groupWidth: ICON_W, size: ICON_W, compact: false };
+  const { layout, groupHeight, groupWidth, compact } = slotLayoutForGroup(group);
   const slot = layout.get(unit.id) || { x: 0, y: 0, z: 0, index: 0, size: ICON_W };
-  return { ...slot, count: group.length, groupHeight, compact };
+  return { ...slot, count: group.length, groupHeight, groupWidth, compact };
 }
 function iconSize(unit) { return sameSlotOffset(unit).size || ICON_W; }
 function unitZIndex(unit, slot = sameSlotOffset(unit), isDragging = false) {
@@ -379,8 +405,10 @@ function iconY(unit) {
 }
 function iconX(unit) {
   const slot = sameSlotOffset(unit);
-  const size = slot.size || ICON_W;
-  return clamp(weekX(unit.week) + Math.round((CELL_W - ICON_W) / 2) + slot.x, LEFT_W, baseChartWidth() - size);
+  const groupWidth = slot.groupWidth || ICON_W;
+  const maxGroupLeft = Math.max(LEFT_W, baseChartWidth() - groupWidth);
+  const groupLeft = clamp(weekX(unit.week) + Math.round((CELL_W - groupWidth) / 2), LEFT_W, maxGroupLeft);
+  return groupLeft + slot.x;
 }
 function normalizeWeek(n) { return clamp(Math.round(Number(n) || 1), 1, weekCount()); }
 function normalizeLane(n) { return clamp(Math.round(Number(n) || 1), 1, 99); }
@@ -704,7 +732,11 @@ function bindUI() {
   els.tierForm.addEventListener("submit", saveTierEdit);
   bindAutoApplyForm();
   document.addEventListener("pointerdown", (event) => {
-    if (event.button === 0 && !event.target.closest(".context-menu")) hideContextMenu();
+    if (event.button !== 0) return;
+    if (!event.target.closest(".context-menu")) hideContextMenu();
+    if (tooltipPinned && !event.target.closest(".unit-card,.meta-bar,.month-head,.tier-label,.context-menu,button,input,select,textarea,a,label,.tag-preview,.tag-controls")) {
+      hideTooltip(true);
+    }
   });
   document.addEventListener("contextmenu", (event) => {
     if (!event.target.closest("#roadmap")) hideContextMenu();
@@ -949,6 +981,7 @@ function renderUnits() {
         return;
       }
       select(unit.id, null);
+      if (isMs(unit) || isPilot(unit)) showTooltip(event, unit, null, { pin: true });
     });
     card.addEventListener("contextmenu", (event) => openUnitContextMenu(event, unit.id, null));
     card.addEventListener("dblclick", (event) => { event.stopPropagation(); renameUnit(unit.id); });
@@ -2347,8 +2380,10 @@ function placeholderDataUrl(name) {
   return `data:image/svg+xml,${svg}`;
 }
 
-function showTooltip(event, unit, segment = null) {
-  hideTooltip();
+function showTooltip(event, unit, segment = null, options = {}) {
+  const shouldPin = !!options.pin;
+  if (tooltipPinned && !shouldPin) return;
+  hideTooltip(true);
   const pairedMs = isPilot(unit) ? pairedMsForPilot(unit) : null;
   const metaUnit = hasMetaBars(unit) ? unit : pairedMs;
   const title = pairedMs ? `${unit.name} (${pairedMs.name})` : unit.name;
@@ -2360,7 +2395,8 @@ function showTooltip(event, unit, segment = null) {
   const tagHtml = unit.tags.length ? `<div class="tooltip-tags">Tags: ${unit.tags.map(tag => `<span class="tooltip-tag ${tagClass(tag)}">${escapeHtml(tag)}</span>`).join(" ")}</div>` : "";
   tooltipEl.innerHTML = `<strong>${escapeHtml(title)}</strong><div>${escapeHtml(rowLabel)} · ${escapeHtml(formatWeek(unit.week))}</div>${segmentsHtml}${tagHtml}${unit.note ? `<p>${escapeHtml(unit.note)}</p>` : ""}`;
   document.body.appendChild(tooltipEl);
-  moveTooltip(event);
+  moveTooltip(event, true);
+  tooltipPinned = shouldPin;
 }
 function segmentListHtml(unit, activeSegmentId = null) {
   const segments = (unit.segments || []).slice().sort((a, b) => a.start - b.start || a.end - b.end);
@@ -2372,8 +2408,8 @@ function segmentListHtml(unit, activeSegmentId = null) {
   }).join("");
   return `<div class="tooltip-segments"><div class="tooltip-segments-title">Meta segments</div>${rows}</div>`;
 }
-function moveTooltip(event) {
-  if (!tooltipEl) return;
+function moveTooltip(event, force = false) {
+  if (!tooltipEl || (tooltipPinned && !force)) return;
   const margin = 12;
   const offset = 16;
   const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 0;
@@ -2391,7 +2427,13 @@ function moveTooltip(event) {
   tooltipEl.style.left = `${Math.round(left)}px`;
   tooltipEl.style.top = `${Math.round(top)}px`;
 }
-function hideTooltip() { tooltipEl?.remove(); tooltipEl = null; }
+function hideTooltip(force = false) {
+  const shouldForce = force === true;
+  if (tooltipPinned && !shouldForce) return;
+  tooltipEl?.remove();
+  tooltipEl = null;
+  tooltipPinned = false;
+}
 function escapeHtml(text) { return String(text || "").replace(/[&<>'"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[ch])); }
 
 init();
