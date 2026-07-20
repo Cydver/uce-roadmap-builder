@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-20T17:53:12.059Z",
+  "generatedAt": "2026-07-20T19:39:56.687Z",
   "sources": [
     "https://altema.jp/gundamuce/msrea/4",
     "https://altema.jp/gundamuce/chararea/4"
@@ -9,7 +9,7 @@
     {
       "id": "altema-ms-1380bf1660",
       "kind": "ms",
-      "name": "ZZガンダム(覚醒)",
+      "name": "ZZ Gundam (Awaken)",
       "icon": "icons/altema/ms-zzガンダム-覚醒-a432bd92.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/415.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/415",
@@ -21,7 +21,7 @@
     {
       "id": "altema-ms-1abc48640f",
       "kind": "ms",
-      "name": "キュベレイ(覚醒)",
+      "name": "Qubeley (Awaken)",
       "icon": "icons/altema/ms-キュベレイ-覚醒-999d8817.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/412.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/412",
@@ -33,7 +33,7 @@
     {
       "id": "altema-ms-b24601d773",
       "kind": "ms",
-      "name": "G-アルケイン(フルドレス)",
+      "name": "Gundam G-Arcane (Full Dress)",
       "icon": "icons/altema/ms-g-アルケイン-フルドレス-8116d997.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/395.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/395",
@@ -45,7 +45,7 @@
     {
       "id": "altema-ms-d2f343a057",
       "kind": "ms",
-      "name": "ユニコーンガンダム(NT-D/覚醒)",
+      "name": "Unicorn Gundam (NT-D/Awaken)",
       "icon": "icons/altema/ms-ユニコーンガンダム-nt-d-覚醒-a105d5b8.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/392.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/392",
@@ -57,7 +57,7 @@
     {
       "id": "altema-ms-a5ddc83f9e",
       "kind": "ms",
-      "name": "シナンジュ",
+      "name": "Sinanju",
       "icon": "icons/altema/ms-シナンジュ-02e7ce5d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/391.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/391",
@@ -69,7 +69,7 @@
     {
       "id": "altema-ms-aa5da92dea",
       "kind": "ms",
-      "name": "ターンX(黄)",
+      "name": "Turn X (Yellow)",
       "icon": "icons/altema/ms-ターンx-黄-7adabf84.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/408.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/408",
@@ -81,7 +81,7 @@
     {
       "id": "altema-ms-50698b2013",
       "kind": "ms",
-      "name": "ユニコーンガンダム ペルフェクティビリティ・ディバイン",
+      "name": "Unicorn Gundam Perfectibility Divine",
       "icon": "icons/altema/ms-ユニコーンガンダム-ペルフェクティビリティ・ディバイン-2fc35ee6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/403.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/403",
@@ -93,7 +93,7 @@
     {
       "id": "altema-ms-a2a10846b5",
       "kind": "ms",
-      "name": "エルメス",
+      "name": "Elmeth",
       "icon": "icons/altema/ms-エルメス-221be962.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/363.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/363",
@@ -105,7 +105,7 @@
     {
       "id": "altema-ms-d945240dd9",
       "kind": "ms",
-      "name": "キュベレイ(赤)",
+      "name": "Qubeley (Red)",
       "icon": "icons/altema/ms-キュベレイ-赤-239366a0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/341.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/341",
@@ -117,7 +117,7 @@
     {
       "id": "altema-ms-60f183bba0",
       "kind": "ms",
-      "name": "νガンダム(LFF&HMBL装備)",
+      "name": "Nu Gundam (LFF & Hyper Mega Bazooka Launcher)",
       "icon": "icons/altema/ms-ガンダム-lff-hmbl装備-56a15966.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/338.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/338",
@@ -129,7 +129,7 @@
     {
       "id": "altema-ms-9111abdde9",
       "kind": "ms",
-      "name": "ギャン",
+      "name": "Gyan",
       "icon": "icons/altema/ms-ギャン-dfca75b9.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/209.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/209",
@@ -141,7 +141,7 @@
     {
       "id": "altema-ms-d13c5f05f4",
       "kind": "ms",
-      "name": "バルギル(紫)",
+      "name": "Varguil (Purple)",
       "icon": "icons/altema/ms-バルギル-紫-8f6ae811.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/418.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/418",
@@ -153,7 +153,7 @@
     {
       "id": "altema-ms-20dbb65fe6",
       "kind": "ms",
-      "name": "G-ルシファー",
+      "name": "Gundam G-Lucifer",
       "icon": "icons/altema/ms-g-ルシファー-c6691845.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/405.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/405",
@@ -165,7 +165,7 @@
     {
       "id": "altema-ms-997a2dc2d2",
       "kind": "ms",
-      "name": "ギャン(黄)",
+      "name": "Gyan (Yellow)",
       "icon": "icons/altema/ms-ギャン-黄-59409bdd.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/387.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/387",
@@ -177,7 +177,7 @@
     {
       "id": "altema-ms-dabd48cbf1",
       "kind": "ms",
-      "name": "ターンX",
+      "name": "Turn X",
       "icon": "icons/altema/ms-ターンx-cf8452e1.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/379.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/379",
@@ -189,7 +189,7 @@
     {
       "id": "altema-ms-f9283c4908",
       "kind": "ms",
-      "name": "スーパーエンゲージガンダム(UR)",
+      "name": "Super Engage Gundam (UR)",
       "icon": "icons/altema/ms-スーパーエンゲージガンダム-ur-d21bfb41.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/377.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/377",
@@ -201,7 +201,7 @@
     {
       "id": "altema-ms-809b666b2a",
       "kind": "ms",
-      "name": "V2アサルトバスターガンダム",
+      "name": "Victory 2 Assault-Buster Gundam",
       "icon": "icons/altema/ms-v2アサルトバスターガンダム-5c571140.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/371.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/371",
@@ -213,7 +213,7 @@
     {
       "id": "altema-ms-8bfad0a138",
       "kind": "ms",
-      "name": "クロスボーン・ガンダムX1フルクロス",
+      "name": "Crossbone Gundam X1 Full Cloth",
       "icon": "icons/altema/ms-クロスボーン・ガンダムx1フルクロス-a48d50cd.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/367.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/367",
@@ -225,7 +225,7 @@
     {
       "id": "altema-ms-c7c4eaca2d",
       "kind": "ms",
-      "name": "G-セルフ 大気圏用バックパック",
+      "name": "Atmospheric Backpack (G-Self)",
       "icon": "icons/altema/ms-g-セルフ-大気圏用バックパック-81f22f5d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/358.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/358",
@@ -237,7 +237,7 @@
     {
       "id": "altema-ms-58481c3082",
       "kind": "ms",
-      "name": "∀ガンダム",
+      "name": "Turn A Gundam",
       "icon": "icons/altema/ms-ガンダム-fc939f1b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/351.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/351",
@@ -249,7 +249,7 @@
     {
       "id": "altema-ms-2b02c8927b",
       "kind": "ms",
-      "name": "ハンブラビ",
+      "name": "Hambrabi",
       "icon": "icons/altema/ms-ハンブラビ-dad875a7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/337.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/337",
@@ -261,7 +261,7 @@
     {
       "id": "altema-ms-c64ab8b5fe",
       "kind": "ms",
-      "name": "V2ABCガンダム",
+      "name": "Victory 2 Assault Buster Cannon Gundam",
       "icon": "icons/altema/ms-v2abcガンダム-29514ff2.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/336.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/336",
@@ -273,7 +273,7 @@
     {
       "id": "altema-ms-1404f75c61",
       "kind": "ms",
-      "name": "ガンダム(黄)",
+      "name": "Gundam (Yellow)",
       "icon": "icons/altema/ms-ガンダム-黄-ac65deea.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/329.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/329",
@@ -285,7 +285,7 @@
     {
       "id": "altema-ms-a346478475",
       "kind": "ms",
-      "name": "ZZガンダム(HGC装備)",
+      "name": "ZZ Gundam (Hyper Giga Cannon)",
       "icon": "icons/altema/ms-zzガンダム-hgc装備-ea1631f1.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/327.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/327",
@@ -297,7 +297,7 @@
     {
       "id": "altema-ms-91e5d561eb",
       "kind": "ms",
-      "name": "ユニコーンガンダム(HML装備)",
+      "name": "Unicorn Gundam (Hyper Mega Launcher)",
       "icon": "icons/altema/ms-ユニコーンガンダム-hml装備-8f43d70a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/320.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/320",
@@ -309,7 +309,7 @@
     {
       "id": "altema-ms-203ce71f56",
       "kind": "ms",
-      "name": "フェネクス(NT-D/NTver.)",
+      "name": "Phenex (NT-D/NT Version)",
       "icon": "icons/altema/ms-フェネクス-nt-d-ntver-a8deb8ca.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/304.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/304",
@@ -321,7 +321,7 @@
     {
       "id": "altema-ms-1aaca3168f",
       "kind": "ms",
-      "name": "νガンダムHWS",
+      "name": "Nu Gundam HWS",
       "icon": "icons/altema/ms-ガンダムhws-e5f83eef.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/282.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/282",
@@ -333,7 +333,7 @@
     {
       "id": "altema-ms-4766aa59d2",
       "kind": "ms",
-      "name": "ガンダムF91(最大稼働)",
+      "name": "Gundam F91 (Full Power)",
       "icon": "icons/altema/ms-ガンダムf91-最大稼働-ec7aa853.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/246.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/246",
@@ -345,7 +345,7 @@
     {
       "id": "altema-ms-1fadd067ad",
       "kind": "ms",
-      "name": "ダハック",
+      "name": "Dahack",
       "icon": "icons/altema/ms-ダハック-61564c8a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/417.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/417",
@@ -357,7 +357,7 @@
     {
       "id": "altema-ms-3eec827955",
       "kind": "ms",
-      "name": "ガンキャノン(緑)",
+      "name": "Guncannon (Green)",
       "icon": "icons/altema/ms-ガンキャノン-緑-11b4b5c0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/414.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/414",
@@ -369,7 +369,7 @@
     {
       "id": "altema-ms-d7906bb9ff",
       "kind": "ms",
-      "name": "G-セルフ 宇宙用バックパック",
+      "name": "G-Self Space Pack",
       "icon": "icons/altema/ms-g-セルフ-宇宙用バックパック-02f861e6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/410.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/410",
@@ -381,7 +381,7 @@
     {
       "id": "altema-ms-95a24b8805",
       "kind": "ms",
-      "name": "エンゲージガンダム(ガンダムパンチ装備)",
+      "name": "Engage Gundam (Gundam Punch Equipped)",
       "icon": "icons/altema/ms-エンゲージガンダム-ガンダムパンチ装備-28af01d2.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/402.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/402",
@@ -393,7 +393,7 @@
     {
       "id": "altema-ms-6630de5312",
       "kind": "ms",
-      "name": "ウーンドウォート",
+      "name": "Gundam TR-6 [Woundwort]",
       "icon": "icons/altema/ms-ウーンドウォート-aa2c08f5.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/399.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/399",
@@ -405,7 +405,7 @@
     {
       "id": "altema-ms-aa57ad7f84",
       "kind": "ms",
-      "name": "Ξガンダム(紫)",
+      "name": "Xi Gundam (Purple)",
       "icon": "icons/altema/ms-ガンダム-紫-759e1098.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/398.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/398",
@@ -417,7 +417,7 @@
     {
       "id": "altema-ms-098d4d0788",
       "kind": "ms",
-      "name": "ガンダムEz8(紫)",
+      "name": "Gundam Ez8 (Purple)",
       "icon": "icons/altema/ms-ガンダムez8-紫-b69cfc1c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/397.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/397",
@@ -429,7 +429,7 @@
     {
       "id": "altema-ms-c5347898c0",
       "kind": "ms",
-      "name": "∀ガンダム(黄)",
+      "name": "Turn A Gundam (Yellow)",
       "icon": "icons/altema/ms-ガンダム-黄-b65ab554.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/388.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/388",
@@ -441,7 +441,7 @@
     {
       "id": "altema-ms-b12ad5f83f",
       "kind": "ms",
-      "name": "エンゲージガンダム ブースター装備",
+      "name": "Engage Gundam Booster Equipment",
       "icon": "icons/altema/ms-エンゲージガンダム-ブースター装備-7de44788.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/386.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/386",
@@ -453,7 +453,7 @@
     {
       "id": "altema-ms-5fde54be58",
       "kind": "ms",
-      "name": "アッシマー",
+      "name": "Asshimar",
       "icon": "icons/altema/ms-アッシマー-8bd6f21a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/383.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/383",
@@ -465,7 +465,7 @@
     {
       "id": "altema-ms-c99cd2771b",
       "kind": "ms",
-      "name": "G-アルケイン",
+      "name": "Gundam G-Arcane",
       "icon": "icons/altema/ms-g-アルケイン-671ac944.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/381.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/381",
@@ -477,7 +477,7 @@
     {
       "id": "altema-ms-b80338beb6",
       "kind": "ms",
-      "name": "Ex-Sガンダム",
+      "name": "Ex-S Gundam",
       "icon": "icons/altema/ms-ex-sガンダム-bcc8e5b4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/375.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/375",
@@ -489,7 +489,7 @@
     {
       "id": "altema-ms-c09f8e4676",
       "kind": "ms",
-      "name": "ヘイズル2号機",
+      "name": "Hazel Unit 2",
       "icon": "icons/altema/ms-ヘイズル2号機-d17f1f89.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/368.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/368",
@@ -501,7 +501,7 @@
     {
       "id": "altema-ms-18fdf77c41",
       "kind": "ms",
-      "name": "エンゲージガンダム",
+      "name": "Engage Gundam",
       "icon": "icons/altema/ms-エンゲージガンダム-5ed80825.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/359.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/359",
@@ -513,7 +513,7 @@
     {
       "id": "altema-ms-da50d85eea",
       "kind": "ms",
-      "name": "GQuuuuuuX(オメガ・サイコミュ起動時)",
+      "name": "GQuuuuuuX (Omega Psycommu Activated)",
       "icon": "icons/altema/ms-gquuuuuux-オメガ・サイコミュ起動時-6f80ac9f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/355.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/355",
@@ -525,7 +525,7 @@
     {
       "id": "altema-ms-7bf09b0637",
       "kind": "ms",
-      "name": "リック・ディジェ",
+      "name": "Rick Dijeh (Lieutenant Amuro Ray)",
       "icon": "icons/altema/ms-リック・ディジェ-7ca80056.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/352.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/352",
@@ -537,7 +537,7 @@
     {
       "id": "altema-ms-d7c56f34c3",
       "kind": "ms",
-      "name": "ガンダム5号機[Bst]",
+      "name": "Gundam Unit 5 (Bst)",
       "icon": "icons/altema/ms-ガンダム5号機-bst-2736b00f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/347.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/347",
@@ -549,7 +549,7 @@
     {
       "id": "altema-ms-556cc2d1ac",
       "kind": "ms",
-      "name": "リガズィード",
+      "name": "Re-GZID",
       "icon": "icons/altema/ms-リガズィード-a7485c47.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/342.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/342",
@@ -561,7 +561,7 @@
     {
       "id": "altema-ms-2423c31013",
       "kind": "ms",
-      "name": "ゴトラタン(砲撃)",
+      "name": "Gottrlatan (Bombardment)",
       "icon": "icons/altema/ms-ゴトラタン-砲撃-b302460c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/332.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/332",
@@ -573,7 +573,7 @@
     {
       "id": "altema-ms-8b32458000",
       "kind": "ms",
-      "name": "ザクⅢ改",
+      "name": "Zaku III Custom",
       "icon": "icons/altema/ms-ザクiii改-f24ad0e5.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/328.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/328",
@@ -585,7 +585,7 @@
     {
       "id": "altema-ms-16b0c03898",
       "kind": "ms",
-      "name": "ナラティブガンダムB2装備",
+      "name": "Narrative Gundam B2-Packs",
       "icon": "icons/altema/ms-ナラティブガンダムb2装備-d1239fef.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/315.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/315",
@@ -597,7 +597,7 @@
     {
       "id": "altema-ms-35600068ef",
       "kind": "ms",
-      "name": "ジオング(狙撃)",
+      "name": "Zeong (Sniper)",
       "icon": "icons/altema/ms-ジオング-狙撃-fbb0a177.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/307.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/307",
@@ -609,7 +609,7 @@
     {
       "id": "altema-ms-107f17fa88",
       "kind": "ms",
-      "name": "アレックス(チョバムアーマー)",
+      "name": "Alex (Chobham Armor)",
       "icon": "icons/altema/ms-アレックス-チョバムアーマー-8aa63f1d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/295.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/295",
@@ -621,7 +621,7 @@
     {
       "id": "altema-ms-5d312be2ef",
       "kind": "ms",
-      "name": "キュベレイMk-Ⅱ(プル機/支援)",
+      "name": "Ple's Qubeley Mk-II (Red)",
       "icon": "icons/altema/ms-キュベレイmk-ii-プル機-支援-a3ff8179.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/284.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/284",
@@ -633,7 +633,7 @@
     {
       "id": "altema-ms-17d0b7020c",
       "kind": "ms",
-      "name": "クィン・マンサ",
+      "name": "Quin Mantha",
       "icon": "icons/altema/ms-クィン・マンサ-71f13cfc.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/268.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/268",
@@ -645,7 +645,7 @@
     {
       "id": "altema-ms-3f46750bdb",
       "kind": "ms",
-      "name": "メタス(UR)",
+      "name": "Methuss (UR)",
       "icon": "icons/altema/ms-メタス-ur-fd3e65ff.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/264.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/264",
@@ -657,7 +657,7 @@
     {
       "id": "altema-ms-e7eb8d6c44",
       "kind": "ms",
-      "name": "ジ・O(木星帰りの男)",
+      "name": "The-O (The Man from Jupiter)",
       "icon": "icons/altema/ms-ジ・o-木星帰りの男-f3f09c9b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/259.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/259",
@@ -669,7 +669,7 @@
     {
       "id": "altema-ms-ff7df87259",
       "kind": "ms",
-      "name": "ザンネック",
+      "name": "Zanneck",
       "icon": "icons/altema/ms-ザンネック-a618ab47.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/215.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/215",
@@ -681,7 +681,7 @@
     {
       "id": "altema-ms-0a6cc73f56",
       "kind": "ms",
-      "name": "RX-78F00 HMT ガンダム高機動型",
+      "name": "RX-78F00 HMT Gundam High Mobility Type",
       "icon": "icons/altema/ms-rx-78f00-hmt-ガンダム高機動型-2e093dda.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/197.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/197",
@@ -693,7 +693,7 @@
     {
       "id": "altema-ms-fa4e7f562c",
       "kind": "ms",
-      "name": "エンゲージゼロ・ヨンファヴィン",
+      "name": "Engage Zero Yonfavin",
       "icon": "icons/altema/ms-エンゲージゼロ・ヨンファヴィン-1671d9bb.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/180.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/180",
@@ -705,7 +705,7 @@
     {
       "id": "altema-ms-29b2f318d9",
       "kind": "ms",
-      "name": "ペーネロペー(重装)",
+      "name": "Penelope (Heavy Armor)",
       "icon": "icons/altema/ms-ペーネロペー-重装-19df6bba.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/167.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/167",
@@ -717,7 +717,7 @@
     {
       "id": "altema-ms-ec2a7ec729",
       "kind": "ms",
-      "name": "ユニコーンガンダム(PF)",
+      "name": "Unicorn Gundam Perfectibility",
       "icon": "icons/altema/ms-ユニコーンガンダム-pf-ebdcecab.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/156.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/156",
@@ -729,7 +729,7 @@
     {
       "id": "altema-ms-a6adc87a3e",
       "kind": "ms",
-      "name": "Sガンダム",
+      "name": "S Gundam",
       "icon": "icons/altema/ms-sガンダム-28fbfa91.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/154.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/154",
@@ -741,7 +741,7 @@
     {
       "id": "altema-ms-2b5861c04e",
       "kind": "ms",
-      "name": "サイコ・ザク",
+      "name": "Psycho Zaku",
       "icon": "icons/altema/ms-サイコ・ザク-9c14f4b1.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/141.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/141",
@@ -753,7 +753,7 @@
     {
       "id": "altema-ms-05b97bca96",
       "kind": "ms",
-      "name": "フェネクス(NTver.)",
+      "name": "Phenex (NT Version)",
       "icon": "icons/altema/ms-フェネクス-ntver-bd87bda5.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/139.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/139",
@@ -765,7 +765,7 @@
     {
       "id": "altema-ms-1c18efc0ba",
       "kind": "ms",
-      "name": "ZZガンダム",
+      "name": "ZZ Gundam",
       "icon": "icons/altema/ms-zzガンダム-89a1ecce.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/112.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/112",
@@ -777,7 +777,7 @@
     {
       "id": "altema-ms-203b44cbc2",
       "kind": "ms",
-      "name": "バルギル（ガンダムヘッド）",
+      "name": "Varguil (Gundam Head)",
       "icon": "icons/altema/ms-バルギル-ガンダムヘッド-5d9d93b6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/107.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/107",
@@ -789,7 +789,7 @@
     {
       "id": "altema-ms-0ff8d8d27b",
       "kind": "ms",
-      "name": "ガンダム試作2号機",
+      "name": "Gundam GP02A",
       "icon": "icons/altema/ms-ガンダム試作2号機-a6fe4910.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/102.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/102",
@@ -801,7 +801,7 @@
     {
       "id": "altema-ms-e1e832c420",
       "kind": "ms",
-      "name": "サザビー",
+      "name": "Sazabi",
       "icon": "icons/altema/ms-サザビー-51dba592.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/91.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/91",
@@ -813,7 +813,7 @@
     {
       "id": "altema-ms-cfd6a70e46",
       "kind": "ms",
-      "name": "フルアーマー・ガンダム(サンダーボルト版)",
+      "name": "Gundam Full Armor",
       "icon": "icons/altema/ms-フルアーマー・ガンダム-サンダーボルト版-e12f455a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/8.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/8",
@@ -825,7 +825,7 @@
     {
       "id": "altema-ms-a441543f9b",
       "kind": "ms",
-      "name": "バンシィ・ノルン(NT-D)",
+      "name": "Banshee Norn (NT-D)",
       "icon": "icons/altema/ms-バンシィ・ノルン-nt-d-647b3cc3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/416.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/416",
@@ -837,7 +837,7 @@
     {
       "id": "altema-ms-f513d6f418",
       "kind": "ms",
-      "name": "ガンダム試作2号機(緑)",
+      "name": "Gundam GP02A (Green)",
       "icon": "icons/altema/ms-ガンダム試作2号機-緑-fc32cb9e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/413.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/413",
@@ -849,7 +849,7 @@
     {
       "id": "altema-ms-17eb12a168",
       "kind": "ms",
-      "name": "ズサ(青)",
+      "name": "Zssa (Blue)",
       "icon": "icons/altema/ms-ズサ-青-a9e4cda5.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/411.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/411",
@@ -861,7 +861,7 @@
     {
       "id": "altema-ms-71d8167daf",
       "kind": "ms",
-      "name": "アリュゼウス(フライト・フォーム)",
+      "name": "Alyzeus (Flight Form)",
       "icon": "icons/altema/ms-アリュゼウス-フライト・フォーム-2ae2b943.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/407.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/407",
@@ -873,7 +873,7 @@
     {
       "id": "altema-ms-a39e48e44b",
       "kind": "ms",
-      "name": "リバウ",
+      "name": "Rebawoo",
       "icon": "icons/altema/ms-リバウ-78b15053.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/406.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/406",
@@ -885,7 +885,7 @@
     {
       "id": "altema-ms-58ee868e62",
       "kind": "ms",
-      "name": "エンゲージゼロ・ヴァイスクレーエ",
+      "name": "Engage Zero Weisskrähe",
       "icon": "icons/altema/ms-エンゲージゼロ・ヴァイスクレーエ-bd87887e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/401.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/401",
@@ -897,7 +897,7 @@
     {
       "id": "altema-ms-6591ca1a95",
       "kind": "ms",
-      "name": "コレンカプル",
+      "name": "Corin's Kapool",
       "icon": "icons/altema/ms-コレンカプル-37913d65.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/394.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/394",
@@ -909,7 +909,7 @@
     {
       "id": "altema-ms-d29663c63a",
       "kind": "ms",
-      "name": "ヘイズル・アウスラ",
+      "name": "Hazel Owsla",
       "icon": "icons/altema/ms-ヘイズル・アウスラ-4009d9a3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/393.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/393",
@@ -921,7 +921,7 @@
     {
       "id": "altema-ms-73e9dd6bb5",
       "kind": "ms",
-      "name": "ヘイズル改(高機動仕様)",
+      "name": "Hazel Custom (High Mobility Type)",
       "icon": "icons/altema/ms-ヘイズル改-高機動仕様-1713f05b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/390.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/390",
@@ -945,7 +945,7 @@
     {
       "id": "altema-ms-052ab6a750",
       "kind": "ms",
-      "name": "サザビー初期試験型(重力下仕様)",
+      "name": "Sazabi Prototype (Terrain Mode)",
       "icon": "icons/altema/ms-サザビー初期試験型-重力下仕様-c19ffa8c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/384.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/384",
@@ -957,7 +957,7 @@
     {
       "id": "altema-ms-00fb198fe2",
       "kind": "ms",
-      "name": "クロスボーン・ガンダムX1 ハーフクロス（キンケドゥ搭乗仕様）",
+      "name": "Crossbone Gundam X1 Half Cross (Kincade Custom)",
       "icon": "icons/altema/ms-クロスボーン・ガンダムx1-ハーフクロス-キンケドゥ搭乗仕様-31fe6f0e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/382.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/382",
@@ -969,7 +969,7 @@
     {
       "id": "altema-ms-4d619ded99",
       "kind": "ms",
-      "name": "ゲルググ・ウェルテクス",
+      "name": "Gelgoog Vertex",
       "icon": "icons/altema/ms-ゲルググ・ウェルテクス-56f2a4c8.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/378.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/378",
@@ -981,7 +981,7 @@
     {
       "id": "altema-ms-16c1e428c7",
       "kind": "ms",
-      "name": "バイアラン",
+      "name": "Byarlant",
       "icon": "icons/altema/ms-バイアラン-609c05d7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/374.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/374",
@@ -993,7 +993,7 @@
     {
       "id": "altema-ms-f6803dcd8a",
       "kind": "ms",
-      "name": "カプル",
+      "name": "Kapool",
       "icon": "icons/altema/ms-カプル-d4d148d4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/373.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/373",
@@ -1005,7 +1005,7 @@
     {
       "id": "altema-ms-1e3203e7ce",
       "kind": "ms",
-      "name": "ドライセン",
+      "name": "Dreissen",
       "icon": "icons/altema/ms-ドライセン-bf22d88e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/370.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/370",
@@ -1017,7 +1017,7 @@
     {
       "id": "altema-ms-267ad2e851",
       "kind": "ms",
-      "name": "モンテーロ",
+      "name": "Montero",
       "icon": "icons/altema/ms-モンテーロ-ed8292bb.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/369.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/369",
@@ -1029,7 +1029,7 @@
     {
       "id": "altema-ms-2987910009",
       "kind": "ms",
-      "name": "赤いガンダム(0079)",
+      "name": "Red Gundam (0079)",
       "icon": "icons/altema/ms-赤いガンダム-0079-782ebb04.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/366.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/366",
@@ -1053,7 +1053,7 @@
     {
       "id": "altema-ms-da465b8b34",
       "kind": "ms",
-      "name": "赤いガンダム(0085)",
+      "name": "Red Gundam (0085)",
       "icon": "icons/altema/ms-赤いガンダム-0085-34bb68e0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/361.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/361",
@@ -1065,7 +1065,7 @@
     {
       "id": "altema-ms-13451f6002",
       "kind": "ms",
-      "name": "ゴールドスモー",
+      "name": "SUMO Gold Type",
       "icon": "icons/altema/ms-ゴールドスモー-ad3bac44.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/356.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/356",
@@ -1077,7 +1077,7 @@
     {
       "id": "altema-ms-21e783b435",
       "kind": "ms",
-      "name": "ガーベラ・テトラ",
+      "name": "Gerbera Tetra",
       "icon": "icons/altema/ms-ガーベラ・テトラ-f9d952a6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/349.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/349",
@@ -1089,7 +1089,7 @@
     {
       "id": "altema-ms-659cbd3e96",
       "kind": "ms",
-      "name": "ムーンガンダム(汎用)",
+      "name": "Moon Gundam (Blue)",
       "icon": "icons/altema/ms-ムーンガンダム-汎用-7f2c19f0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/346.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/346",
@@ -1101,7 +1101,7 @@
     {
       "id": "altema-ms-c7481de655",
       "kind": "ms",
-      "name": "グレート・ジオング",
+      "name": "Great Zeong",
       "icon": "icons/altema/ms-グレート・ジオング-afe9b766.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/344.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/344",
@@ -1113,7 +1113,7 @@
     {
       "id": "altema-ms-c7903dc344",
       "kind": "ms",
-      "name": "GQuuuuuuX(UR)",
+      "name": "GQuuuuuuX",
       "icon": "icons/altema/ms-gquuuuuux-ur-31d535e3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/340.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/340",
@@ -1125,7 +1125,7 @@
     {
       "id": "altema-ms-bdb6eb2a03",
       "kind": "ms",
-      "name": "リゲルグ",
+      "name": "Regelgu",
       "icon": "icons/altema/ms-リゲルグ-68605597.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/334.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/334",
@@ -1137,7 +1137,7 @@
     {
       "id": "altema-ms-4c923eb0af",
       "kind": "ms",
-      "name": "Zガンダム(IFクロー＆IFブラスター装備)",
+      "name": "Zeta Gundam (IF Claw and IF Blaster)",
       "icon": "icons/altema/ms-zガンダム-ifクロー-ifブラスター装備-a0237e1a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/331.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/331",
@@ -1149,7 +1149,7 @@
     {
       "id": "altema-ms-c1006bbef5",
       "kind": "ms",
-      "name": "ガンダムEX",
+      "name": "Gundam EX",
       "icon": "icons/altema/ms-ガンダムex-f332deb3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/324.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/324",
@@ -1161,7 +1161,7 @@
     {
       "id": "altema-ms-8b48c7ba43",
       "kind": "ms",
-      "name": "ガンダム試作2号機(MLRS)",
+      "name": "Gundam GP02 (MLRS)",
       "icon": "icons/altema/ms-ガンダム試作2号機-mlrs-663461df.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/323.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/323",
@@ -1173,7 +1173,7 @@
     {
       "id": "altema-ms-66e4a95ab9",
       "kind": "ms",
-      "name": "リ・ガズィ",
+      "name": "Re-GZ",
       "icon": "icons/altema/ms-リ・ガズィ-67015dfa.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/321.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/321",
@@ -1185,7 +1185,7 @@
     {
       "id": "altema-ms-d118fc499f",
       "kind": "ms",
-      "name": "ガンダム試作1号機フルバーニアン(赤)",
+      "name": "Gundam GP01Fb (Red)",
       "icon": "icons/altema/ms-ガンダム試作1号機フルバーニアン-赤-6a16436e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/318.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/318",
@@ -1197,7 +1197,7 @@
     {
       "id": "altema-ms-33398f2dfe",
       "kind": "ms",
-      "name": "シナンジュ・スタイン(NTver.赤)",
+      "name": "Sinanju Stein (NT Version)",
       "icon": "icons/altema/ms-シナンジュ・スタイン-ntver-赤-25d736ad.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/316.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/316",
@@ -1209,7 +1209,7 @@
     {
       "id": "altema-ms-4490f83422",
       "kind": "ms",
-      "name": "グフ・カスタム(UR)",
+      "name": "Gouf Custom (UR)",
       "icon": "icons/altema/ms-グフ・カスタム-ur-68b06e95.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/314.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/314",
@@ -1221,7 +1221,7 @@
     {
       "id": "altema-ms-2ce94f3a64",
       "kind": "ms",
-      "name": "ビギナ・ギナ",
+      "name": "Vigna-Ghina",
       "icon": "icons/altema/ms-ビギナ・ギナ-0e496ad7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/311.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/311",
@@ -1233,7 +1233,7 @@
     {
       "id": "altema-ms-c06bbfc4fd",
       "kind": "ms",
-      "name": "ガンダムF91(ツイン・ヴェスバー装着型)",
+      "name": "Gundam F91 (Twin VSBR-equipped)",
       "icon": "icons/altema/ms-ガンダムf91-ツイン・ヴェスバー装着型-60a88b14.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/310.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/310",
@@ -1245,7 +1245,7 @@
     {
       "id": "altema-ms-daffb6a69a",
       "kind": "ms",
-      "name": "アッガイ(ダリル機)",
+      "name": "Daryl's Acguy",
       "icon": "icons/altema/ms-アッガイ-ダリル機-6e0a401c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/308.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/308",
@@ -1257,7 +1257,7 @@
     {
       "id": "altema-ms-7b54f85d34",
       "kind": "ms",
-      "name": "ローゼン・ズール",
+      "name": "Rozen Zulu",
       "icon": "icons/altema/ms-ローゼン・ズール-3b0f4155.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/305.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/305",
@@ -1269,7 +1269,7 @@
     {
       "id": "altema-ms-4864e2fe11",
       "kind": "ms",
-      "name": "ブルーディスティニー3号機",
+      "name": "Blue Destiny Unit-3",
       "icon": "icons/altema/ms-ブルーディスティニー3号機-984683cf.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/302.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/302",
@@ -1281,7 +1281,7 @@
     {
       "id": "altema-ms-7429a10a43",
       "kind": "ms",
-      "name": "シータプラス(狙撃)",
+      "name": "Theta Plus (Sniper)",
       "icon": "icons/altema/ms-シータプラス-狙撃-67ac084b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/299.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/299",
@@ -1293,7 +1293,7 @@
     {
       "id": "altema-ms-58380a0eec",
       "kind": "ms",
-      "name": "ユニコーンガンダムPF(NT-D)",
+      "name": "Unicorn Gundam Perfectibility (NT-D)",
       "icon": "icons/altema/ms-ユニコーンガンダムpf-nt-d-d8b7f7f0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/298.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/298",
@@ -1305,7 +1305,7 @@
     {
       "id": "altema-ms-82ba58035f",
       "kind": "ms",
-      "name": "ギーセン・ドーガ(ハイデマリー機)",
+      "name": "Heidemarie's Giessen Doga",
       "icon": "icons/altema/ms-ギーセン・ドーガ-ハイデマリー機-f303eac2.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/294.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/294",
@@ -1317,7 +1317,7 @@
     {
       "id": "altema-ms-e543472e28",
       "kind": "ms",
-      "name": "ガンダム4号機［Bst］",
+      "name": "Gundam 4th (Bst)",
       "icon": "icons/altema/ms-ガンダム4号機-bst-4125073d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/293.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/293",
@@ -1329,7 +1329,7 @@
     {
       "id": "altema-ms-8b73eccdeb",
       "kind": "ms",
-      "name": "ナラティブガンダム(C装備)",
+      "name": "Narrative Gundam C-Packs",
       "icon": "icons/altema/ms-ナラティブガンダム-c装備-c1761ec0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/290.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/290",
@@ -1341,7 +1341,7 @@
     {
       "id": "altema-ms-381c0bac34",
       "kind": "ms",
-      "name": "クロスボーン・ガンダムX3",
+      "name": "Crossbone Gundam X3",
       "icon": "icons/altema/ms-クロスボーン・ガンダムx3-81719c7d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/289.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/289",
@@ -1353,7 +1353,7 @@
     {
       "id": "altema-ms-b16935ee80",
       "kind": "ms",
-      "name": "クェス専用ヤクト・ドーガ",
+      "name": "Quess's Jagd Doga",
       "icon": "icons/altema/ms-クェス専用ヤクト・ドーガ-4c27cbb1.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/286.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/286",
@@ -1365,7 +1365,7 @@
     {
       "id": "altema-ms-5909d8cdf8",
       "kind": "ms",
-      "name": "ペーネロペー(汎用)",
+      "name": "Penelope",
       "icon": "icons/altema/ms-ペーネロペー-汎用-9346edac.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/283.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/283",
@@ -1377,7 +1377,7 @@
     {
       "id": "altema-ms-6aa3114d0e",
       "kind": "ms",
-      "name": "パラス・アテネ",
+      "name": "Palace Athene",
       "icon": "icons/altema/ms-パラス・アテネ-44c0761a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/279.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/279",
@@ -1389,7 +1389,7 @@
     {
       "id": "altema-ms-d73b96e61c",
       "kind": "ms",
-      "name": "ブラックライダー",
+      "name": "Black Rider",
       "icon": "icons/altema/ms-ブラックライダー-9bbf19b1.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/277.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/277",
@@ -1401,7 +1401,7 @@
     {
       "id": "altema-ms-70cecb18d9",
       "kind": "ms",
-      "name": "V2バスターガンダム",
+      "name": "Victory 2 Buster Gundam",
       "icon": "icons/altema/ms-v2バスターガンダム-4ed44330.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/276.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/276",
@@ -1413,7 +1413,7 @@
     {
       "id": "altema-ms-d9e57c0350",
       "kind": "ms",
-      "name": "シナンジュ",
+      "name": "Sinanju",
       "icon": "icons/altema/ms-シナンジュ-67baa830.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/275.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/275",
@@ -1425,7 +1425,7 @@
     {
       "id": "altema-ms-691ed1d5d4",
       "kind": "ms",
-      "name": "ゲンガオゾ",
+      "name": "Gengaozo",
       "icon": "icons/altema/ms-ゲンガオゾ-bb4a2bf6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/274.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/274",
@@ -1437,7 +1437,7 @@
     {
       "id": "altema-ms-460ee35e44",
       "kind": "ms",
-      "name": "ガンダム5号機",
+      "name": "Gundam 5th",
       "icon": "icons/altema/ms-ガンダム5号機-956bfaa4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/272.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/272",
@@ -1449,7 +1449,7 @@
     {
       "id": "altema-ms-aee8fb886d",
       "kind": "ms",
-      "name": "ゲーマルク",
+      "name": "Geymalk",
       "icon": "icons/altema/ms-ゲーマルク-be188455.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/270.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/270",
@@ -1461,7 +1461,7 @@
     {
       "id": "altema-ms-359b05dc55",
       "kind": "ms",
-      "name": "ブルーディスティニー2号機",
+      "name": "Blue Destiny Unit-2",
       "icon": "icons/altema/ms-ブルーディスティニー2号機-5cc747ea.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/265.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/265",
@@ -1473,7 +1473,7 @@
     {
       "id": "altema-ms-46508ef3fb",
       "kind": "ms",
-      "name": "クシャトリヤ・リペアード",
+      "name": "Kshatriya Repaired",
       "icon": "icons/altema/ms-クシャトリヤ・リペアード-7958ef8b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/262.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/262",
@@ -1485,7 +1485,7 @@
     {
       "id": "altema-ms-ff22466798",
       "kind": "ms",
-      "name": "クロスボーン・ガンダムX2",
+      "name": "Crossbone Gundam X2",
       "icon": "icons/altema/ms-クロスボーン・ガンダムx2-7922d7c0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/261.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/261",
@@ -1497,7 +1497,7 @@
     {
       "id": "altema-ms-498008b1fb",
       "kind": "ms",
-      "name": "Zガンダム(Zの鼓動)",
+      "name": "Zeta Gundam (Z's Heartbeat)",
       "icon": "icons/altema/ms-zガンダム-zの鼓動-d066e94f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/260.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/260",
@@ -1509,7 +1509,7 @@
     {
       "id": "altema-ms-950bae12ba",
       "kind": "ms",
-      "name": "ゴトラタン(汎用)",
+      "name": "Gottrlatan",
       "icon": "icons/altema/ms-ゴトラタン-汎用-2cf11d2d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/257.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/257",
@@ -1521,7 +1521,7 @@
     {
       "id": "altema-ms-48a9688ac5",
       "kind": "ms",
-      "name": "ディジェ+ド・ダイ改",
+      "name": "Dijeh + Modified Do-dai",
       "icon": "icons/altema/ms-ディジェ-ド・ダイ改-fffe7105.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/256.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/256",
@@ -1533,7 +1533,7 @@
     {
       "id": "altema-ms-5433d963ee",
       "kind": "ms",
-      "name": "V2アサルトガンダム",
+      "name": "Victory 2 Assault Gundam",
       "icon": "icons/altema/ms-v2アサルトガンダム-3e139b86.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/255.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/255",
@@ -1545,7 +1545,7 @@
     {
       "id": "altema-ms-87f71d8bc2",
       "kind": "ms",
-      "name": "マグナ・マーテル（覚醒）",
+      "name": "Magna Martell (Awaken)",
       "icon": "icons/altema/ms-マグナ・マーテル-覚醒-ac0d7f69.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/251.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/251",
@@ -1557,7 +1557,7 @@
     {
       "id": "altema-ms-6b0e731cb7",
       "kind": "ms",
-      "name": "ガンダム4号機",
+      "name": "Gundam Unit 4",
       "icon": "icons/altema/ms-ガンダム4号機-50bde3eb.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/250.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/250",
@@ -1569,7 +1569,7 @@
     {
       "id": "altema-ms-4832293ef4",
       "kind": "ms",
-      "name": "ファーヴニル",
+      "name": "Fafnir",
       "icon": "icons/altema/ms-ファーヴニル-11d8b358.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/249.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/249",
@@ -1581,7 +1581,7 @@
     {
       "id": "altema-ms-b44dec0acb",
       "kind": "ms",
-      "name": "ガンダムMk-Ⅱ(エゥーゴ)+FA",
+      "name": "Gundam Mk-II (AEUG) + Flying Armor",
       "icon": "icons/altema/ms-ガンダムmk-ii-エゥーゴ-fa-d85171ca.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/247.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/247",
@@ -1593,7 +1593,7 @@
     {
       "id": "altema-ms-6a21d539d6",
       "kind": "ms",
-      "name": "ハイゴッグ",
+      "name": "Hy-Gogg",
       "icon": "icons/altema/ms-ハイゴッグ-8d3e59dc.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/243.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/243",
@@ -1605,7 +1605,7 @@
     {
       "id": "altema-ms-67d021de98",
       "kind": "ms",
-      "name": "リグ・コンティオ",
+      "name": "Rig Contio",
       "icon": "icons/altema/ms-リグ・コンティオ-2373e55d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/242.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/242",
@@ -1617,7 +1617,7 @@
     {
       "id": "altema-ms-78584e812c",
       "kind": "ms",
-      "name": "アトラスガンダム",
+      "name": "Atlas Gundam",
       "icon": "icons/altema/ms-アトラスガンダム-57ac0f92.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/240.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/240",
@@ -1629,7 +1629,7 @@
     {
       "id": "altema-ms-2630409586",
       "kind": "ms",
-      "name": "νガンダム(DFF装備型)",
+      "name": "Nu Gundam (Double Fin Funnels)",
       "icon": "icons/altema/ms-ガンダム-dff装備型-1c25e5ac.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/239.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/239",
@@ -1641,7 +1641,7 @@
     {
       "id": "altema-ms-512a1654ad",
       "kind": "ms",
-      "name": "ホワイトライダー",
+      "name": "White Rider",
       "icon": "icons/altema/ms-ホワイトライダー-5f351e1b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/236.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/236",
@@ -1653,7 +1653,7 @@
     {
       "id": "altema-ms-d903ea3c58",
       "kind": "ms",
-      "name": "ナラティブガンダム(B装備)",
+      "name": "Narrative Gundam B-Packs",
       "icon": "icons/altema/ms-ナラティブガンダム-b装備-dbb0da9d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/234.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/234",
@@ -1665,7 +1665,7 @@
     {
       "id": "altema-ms-63a58cd87e",
       "kind": "ms",
-      "name": "バウンド・ドック",
+      "name": "Baund Doc",
       "icon": "icons/altema/ms-バウンド・ドック-77290faf.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/233.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/233",
@@ -1677,7 +1677,7 @@
     {
       "id": "altema-ms-753ffdb912",
       "kind": "ms",
-      "name": "トーリスリッター",
+      "name": "Todesritter",
       "icon": "icons/altema/ms-トーリスリッター-74235ff0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/232.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/232",
@@ -1689,7 +1689,7 @@
     {
       "id": "altema-ms-d2e52af4fe",
       "kind": "ms",
-      "name": "シーマ専用ゲルググM",
+      "name": "Cima's Gelgoog Marine",
       "icon": "icons/altema/ms-シーマ専用ゲルググm-d26b6134.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/231.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/231",
@@ -1701,7 +1701,7 @@
     {
       "id": "altema-ms-7cc935a466",
       "kind": "ms",
-      "name": "グレイ・ゼータ",
+      "name": "Gray Zeta",
       "icon": "icons/altema/ms-グレイ・ゼータ-995c5481.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/230.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/230",
@@ -1713,7 +1713,7 @@
     {
       "id": "altema-ms-d88432efc8",
       "kind": "ms",
-      "name": "ドム・ノーミーデス",
+      "name": "Dom Gnomides",
       "icon": "icons/altema/ms-ドム・ノーミーデス-789041b2.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/229.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/229",
@@ -1725,7 +1725,7 @@
     {
       "id": "altema-ms-c33d472bda",
       "kind": "ms",
-      "name": "ガンダム+Gファイター",
+      "name": "Gundam + G-Fighter",
       "icon": "icons/altema/ms-ガンダム-gファイター-04aa09dd.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/227.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/227",
@@ -1737,7 +1737,7 @@
     {
       "id": "altema-ms-b4bd5bfe31",
       "kind": "ms",
-      "name": "フルアーマーZZガンダム",
+      "name": "Full Armor ZZ Gundam",
       "icon": "icons/altema/ms-フルアーマーzzガンダム-13610332.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/226.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/226",
@@ -1749,7 +1749,7 @@
     {
       "id": "altema-ms-7182bd812e",
       "kind": "ms",
-      "name": "シャア専用リック・ドム",
+      "name": "Char's Rick Dom",
       "icon": "icons/altema/ms-シャア専用リック・ドム-95cd39fc.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/225.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/225",
@@ -1761,7 +1761,7 @@
     {
       "id": "altema-ms-60686d1694",
       "kind": "ms",
-      "name": "ザクⅣ(イリア・パゾム機)",
+      "name": "Zaku IV (Illia Pazom)",
       "icon": "icons/altema/ms-ザクiv-イリア・パゾム機-6116fdb4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/224.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/224",
@@ -1773,7 +1773,7 @@
     {
       "id": "altema-ms-e6e44eeff9",
       "kind": "ms",
-      "name": "イフリート改",
+      "name": "Efreet Custom",
       "icon": "icons/altema/ms-イフリート改-e5ecacdf.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/223.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/223",
@@ -1785,7 +1785,7 @@
     {
       "id": "altema-ms-ba5cfe546b",
       "kind": "ms",
-      "name": "フルアーマー・ユニコーンガンダム(NT-D)",
+      "name": "Full Armor Unicorn Gundam (NT-D)",
       "icon": "icons/altema/ms-フルアーマー・ユニコーンガンダム-nt-d-26a3d568.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/221.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/221",
@@ -1797,7 +1797,7 @@
     {
       "id": "altema-ms-9a77ddfa45",
       "kind": "ms",
-      "name": "ガンダム・エアリアル(改修型)",
+      "name": "Gundam Aerial Rebuild",
       "icon": "icons/altema/ms-ガンダム・エアリアル-改修型-4c3aee08.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/220.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/220",
@@ -1809,7 +1809,7 @@
     {
       "id": "altema-ms-9c7fee4f78",
       "kind": "ms",
-      "name": "レッド・ゼータ",
+      "name": "Red Zeta",
       "icon": "icons/altema/ms-レッド・ゼータ-ed7ce5db.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/219.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/219",
@@ -1821,7 +1821,7 @@
     {
       "id": "altema-ms-c2ae81c532",
       "kind": "ms",
-      "name": "メッサーラ",
+      "name": "Messala",
       "icon": "icons/altema/ms-メッサーラ-3159bba0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/218.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/218",
@@ -1833,7 +1833,7 @@
     {
       "id": "altema-ms-97f3ee97d1",
       "kind": "ms",
-      "name": "ガンダム試作3号機ステイメン",
+      "name": "Gundam GP03 Stamen",
       "icon": "icons/altema/ms-ガンダム試作3号機ステイメン-0304aedf.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/217.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/217",
@@ -1845,7 +1845,7 @@
     {
       "id": "altema-ms-db281dfd32",
       "kind": "ms",
-      "name": "ゲドラフ",
+      "name": "Gedlav",
       "icon": "icons/altema/ms-ゲドラフ-42c5c011.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/216.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/216",
@@ -1869,7 +1869,7 @@
     {
       "id": "altema-ms-c9ca93d8f9",
       "kind": "ms",
-      "name": "ダグ・ドール",
+      "name": "Dag Doll",
       "icon": "icons/altema/ms-ダグ・ドール-1d291a3b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/212.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/212",
@@ -1881,7 +1881,7 @@
     {
       "id": "altema-ms-4b2f1e635d",
       "kind": "ms",
-      "name": "サザビー(紫)",
+      "name": "Sazabi (Purple)",
       "icon": "icons/altema/ms-サザビー-紫-a2a8dcd3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/211.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/211",
@@ -1893,7 +1893,7 @@
     {
       "id": "altema-ms-a7fca8eda6",
       "kind": "ms",
-      "name": "ガンダムピクシー(初期配備型)",
+      "name": "Gundam Pixy (Early Development Type)",
       "icon": "icons/altema/ms-ガンダムピクシー-初期配備型-fe3466aa.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/207.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/207",
@@ -1905,7 +1905,7 @@
     {
       "id": "altema-ms-bbe97545f2",
       "kind": "ms",
-      "name": "Zガンダム3号機",
+      "name": "Zeta Gundam III",
       "icon": "icons/altema/ms-zガンダム3号機-710e7405.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/206.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/206",
@@ -1917,7 +1917,7 @@
     {
       "id": "altema-ms-641c8a7fc6",
       "kind": "ms",
-      "name": "νガンダム(緑)",
+      "name": "Nu Gundam (Green)",
       "icon": "icons/altema/ms-ガンダム-緑-763bf64c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/204.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/204",
@@ -1929,7 +1929,7 @@
     {
       "id": "altema-ms-29c1498920",
       "kind": "ms",
-      "name": "ディジェ(ルオ商会仕様)",
+      "name": "Dijeh (Luio and Co.)",
       "icon": "icons/altema/ms-ディジェ-ルオ商会仕様-0ec10053.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/203.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/203",
@@ -1941,7 +1941,7 @@
     {
       "id": "altema-ms-af5c2279fd",
       "kind": "ms",
-      "name": "ギャプラン(UR)",
+      "name": "Gaplant (UR)",
       "icon": "icons/altema/ms-ギャプラン-ur-9ef1b541.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/201.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/201",
@@ -1953,7 +1953,7 @@
     {
       "id": "altema-ms-51f8254741",
       "kind": "ms",
-      "name": "ドーベン・ウルフ(指揮官機)",
+      "name": "Doven Wolf (Commander Type)",
       "icon": "icons/altema/ms-ドーベン・ウルフ-指揮官機-27d7b93d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/200.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/200",
@@ -1965,7 +1965,7 @@
     {
       "id": "altema-ms-bcfab5b47e",
       "kind": "ms",
-      "name": "ナラティブガンダム(緑)",
+      "name": "Narrative Gundam (Green)",
       "icon": "icons/altema/ms-ナラティブガンダム-緑-3de1a5aa.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/199.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/199",
@@ -1977,7 +1977,7 @@
     {
       "id": "altema-ms-032da1f8be",
       "kind": "ms",
-      "name": "ヘイズル改",
+      "name": "Hazel Custom",
       "icon": "icons/altema/ms-ヘイズル改-29917a75.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/198.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/198",
@@ -1989,7 +1989,7 @@
     {
       "id": "altema-ms-fcca39ce6c",
       "kind": "ms",
-      "name": "リック・ドム(サンダーボルト版)",
+      "name": "Rick Dom (Thunderbolt)",
       "icon": "icons/altema/ms-リック・ドム-サンダーボルト版-17f63c13.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/196.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/196",
@@ -2001,7 +2001,7 @@
     {
       "id": "altema-ms-b1cd87d861",
       "kind": "ms",
-      "name": "フルアーマー・ガンダム(TB版・砲撃)",
+      "name": "Gundam Full Armor (Bombardment)",
       "icon": "icons/altema/ms-フルアーマー・ガンダム-tb版・砲撃-a25b55d7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/195.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/195",
@@ -2013,7 +2013,7 @@
     {
       "id": "altema-ms-3e2cd3bfa0",
       "kind": "ms",
-      "name": "エンゲージゼロ・ヨンファヴィン(覚醒)",
+      "name": "Engage Zero Yonfavin (Awaken)",
       "icon": "icons/altema/ms-エンゲージゼロ・ヨンファヴィン-覚醒-1f9bb4d0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/194.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/194",
@@ -2025,7 +2025,7 @@
     {
       "id": "altema-ms-a85f7f74e8",
       "kind": "ms",
-      "name": "量産型キュベレイ(リン機)",
+      "name": "Qubeley Mass Production Type (Lyn)",
       "icon": "icons/altema/ms-量産型キュベレイ-リン機-29340e8e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/192.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/192",
@@ -2037,7 +2037,7 @@
     {
       "id": "altema-ms-4464fcc410",
       "kind": "ms",
-      "name": "マグナ・マーテル",
+      "name": "Magna Martell",
       "icon": "icons/altema/ms-マグナ・マーテル-493c5228.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/191.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/191",
@@ -2049,7 +2049,7 @@
     {
       "id": "altema-ms-873126c934",
       "kind": "ms",
-      "name": "ジオング(砲撃)",
+      "name": "Zeong (Bombardment)",
       "icon": "icons/altema/ms-ジオング-砲撃-b2082b69.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/190.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/190",
@@ -2061,7 +2061,7 @@
     {
       "id": "altema-ms-93d963bcef",
       "kind": "ms",
-      "name": "メッサーF01型",
+      "name": "Messer Type F01",
       "icon": "icons/altema/ms-メッサーf01型-f20d2f29.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/189.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/189",
@@ -2073,7 +2073,7 @@
     {
       "id": "altema-ms-3263ece0e2",
       "kind": "ms",
-      "name": "Ξガンダム(砲撃)",
+      "name": "Xi Gundam (Bombardment)",
       "icon": "icons/altema/ms-ガンダム-砲撃-665a2c25.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/188.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/188",
@@ -2085,7 +2085,7 @@
     {
       "id": "altema-ms-f83c8ff150",
       "kind": "ms",
-      "name": "シナンジュ・スタイン(NTver.青)",
+      "name": "Sinanju Stein",
       "icon": "icons/altema/ms-シナンジュ・スタイン-ntver-青-1bdd1333.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/187.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/187",
@@ -2097,7 +2097,7 @@
     {
       "id": "altema-ms-1b8f170024",
       "kind": "ms",
-      "name": "ユニコーンガンダム(白き一角獣)",
+      "name": "Unicorn Gundam NT-D (White Unicorn)",
       "icon": "icons/altema/ms-ユニコーンガンダム-白き一角獣-0d2e9d5f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/185.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/185",
@@ -2109,7 +2109,7 @@
     {
       "id": "altema-ms-956bfd7a09",
       "kind": "ms",
-      "name": "バンシィ・ノルン(黒き獅子)",
+      "name": "Banshee Norn (Black Lion)",
       "icon": "icons/altema/ms-バンシィ・ノルン-黒き獅子-b7bab7a7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/182.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/182",
@@ -2121,7 +2121,7 @@
     {
       "id": "altema-ms-e8e89c0dc1",
       "kind": "ms",
-      "name": "量産型キュベレイ（レイ機）",
+      "name": "Qubeley Mass Production Type (Rey)",
       "icon": "icons/altema/ms-量産型キュベレイ-レイ機-6a4226a0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/181.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/181",
@@ -2133,7 +2133,7 @@
     {
       "id": "altema-ms-6d2b58eb17",
       "kind": "ms",
-      "name": "アレックス",
+      "name": "Alex",
       "icon": "icons/altema/ms-アレックス-0d0639b6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/178.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/178",
@@ -2145,7 +2145,7 @@
     {
       "id": "altema-ms-e7a3f2f8a7",
       "kind": "ms",
-      "name": "ザクⅢ改(TWA)",
+      "name": "Zaku III Custom (TWA)",
       "icon": "icons/altema/ms-ザクiii改-twa-a7ef2c57.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/177.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/177",
@@ -2157,7 +2157,7 @@
     {
       "id": "altema-ms-6d2351892d",
       "kind": "ms",
-      "name": "量産型キュベレイ(ノン機)",
+      "name": "Qubeley Mass Production Type (Non)",
       "icon": "icons/altema/ms-量産型キュベレイ-ノン機-cf27ebc9.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/176.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/176",
@@ -2169,7 +2169,7 @@
     {
       "id": "altema-ms-8375892128",
       "kind": "ms",
-      "name": "キュベレイMk-Ⅱ(プルツー機)",
+      "name": "Ple-Two's Qubeley Mk-II (UR)",
       "icon": "icons/altema/ms-キュベレイmk-ii-プルツー機-2ea59772.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/175.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/175",
@@ -2181,7 +2181,7 @@
     {
       "id": "altema-ms-009f81de69",
       "kind": "ms",
-      "name": "クロスボーン・ガンダムX1",
+      "name": "Crossbone Gundam X1",
       "icon": "icons/altema/ms-クロスボーン・ガンダムx1-0e547dc4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/174.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/174",
@@ -2193,7 +2193,7 @@
     {
       "id": "altema-ms-3ea05bdc23",
       "kind": "ms",
-      "name": "ブルーディスティニー1号機",
+      "name": "Blue Destiny Unit-1",
       "icon": "icons/altema/ms-ブルーディスティニー1号機-080df4a0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/173.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/173",
@@ -2205,7 +2205,7 @@
     {
       "id": "altema-ms-b5c7b0cfca",
       "kind": "ms",
-      "name": "シャア専用ゲルググ",
+      "name": "Char's Gelgoog",
       "icon": "icons/altema/ms-シャア専用ゲルググ-64076c8a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/172.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/172",
@@ -2217,7 +2217,7 @@
     {
       "id": "altema-ms-f62360863f",
       "kind": "ms",
-      "name": "FAエンゲージガンダム(Cプラン)",
+      "name": "Full Armor Engage Gundam C Plan",
       "icon": "icons/altema/ms-faエンゲージガンダム-cプラン-9d394e0f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/170.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/170",
@@ -2229,7 +2229,7 @@
     {
       "id": "altema-ms-2ef96dc7cc",
       "kind": "ms",
-      "name": "エンゲージゼロ(サイコミュ試験型)",
+      "name": "Engage Zero Psycommu Test Type",
       "icon": "icons/altema/ms-エンゲージゼロ-サイコミュ試験型-d6d4914a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/169.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/169",
@@ -2241,7 +2241,7 @@
     {
       "id": "altema-ms-459b3fed2e",
       "kind": "ms",
-      "name": "Zガンダム(HML)",
+      "name": "Zeta Gundam (Hyper Mega Launcher)",
       "icon": "icons/altema/ms-zガンダム-hml-eb96c4f4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/168.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/168",
@@ -2253,7 +2253,7 @@
     {
       "id": "altema-ms-387a2b0a0d",
       "kind": "ms",
-      "name": "バンシィ・ノルン",
+      "name": "Banshee Norn",
       "icon": "icons/altema/ms-バンシィ・ノルン-04c7623c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/166.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/166",
@@ -2265,7 +2265,7 @@
     {
       "id": "altema-ms-5339db1eda",
       "kind": "ms",
-      "name": "FAエンゲージガンダム(Bプラン)",
+      "name": "Full Armor Engage Gundam B Plan",
       "icon": "icons/altema/ms-faエンゲージガンダム-bプラン-c1f94f5b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/164.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/164",
@@ -2277,7 +2277,7 @@
     {
       "id": "altema-ms-53dbd82793",
       "kind": "ms",
-      "name": "ギャプラン・トレーナー",
+      "name": "Gaplant Trainer",
       "icon": "icons/altema/ms-ギャプラン・トレーナー-f51c541c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/163.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/163",
@@ -2289,7 +2289,7 @@
     {
       "id": "altema-ms-1e4c56c646",
       "kind": "ms",
-      "name": "エンゲージゼロ(インコム搭載型)",
+      "name": "Engage Zero Incom Type",
       "icon": "icons/altema/ms-エンゲージゼロ-インコム搭載型-7f97e043.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/162.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/162",
@@ -2301,7 +2301,7 @@
     {
       "id": "altema-ms-7a577e2eff",
       "kind": "ms",
-      "name": "サザビー(立像記念)",
+      "name": "Sazabi [THE LIFE-SIZED ν Gundam STATUE]",
       "icon": "icons/altema/ms-サザビー-立像記念-295fbf45.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/161.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/161",
@@ -2313,7 +2313,7 @@
     {
       "id": "altema-ms-2715e84768",
       "kind": "ms",
-      "name": "オーヴェロン",
+      "name": "Over.on",
       "icon": "icons/altema/ms-オーヴェロン-62564af7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/160.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/160",
@@ -2325,7 +2325,7 @@
     {
       "id": "altema-ms-cb73d79d09",
       "kind": "ms",
-      "name": "FAエンゲージガンダム(Aプラン)",
+      "name": "Full Armor Engage Gundam A Plan",
       "icon": "icons/altema/ms-faエンゲージガンダム-aプラン-edaa97c2.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/158.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/158",
@@ -2337,7 +2337,7 @@
     {
       "id": "altema-ms-0ee5010a99",
       "kind": "ms",
-      "name": "シャア専用ズゴック",
+      "name": "Char's Z'Gok",
       "icon": "icons/altema/ms-シャア専用ズゴック-ee979d2a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/157.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/157",
@@ -2349,7 +2349,7 @@
     {
       "id": "altema-ms-50ab9fa431",
       "kind": "ms",
-      "name": "リック・ディジェ改",
+      "name": "Modified Rick Dijeh",
       "icon": "icons/altema/ms-リック・ディジェ改-8ed16b24.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/155.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/155",
@@ -2361,7 +2361,7 @@
     {
       "id": "altema-ms-8816a3e082",
       "kind": "ms",
-      "name": "ガンダムEz8",
+      "name": "Gundam Ez8",
       "icon": "icons/altema/ms-ガンダムez8-977d54a9.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/151.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/151",
@@ -2373,7 +2373,7 @@
     {
       "id": "altema-ms-a8b7a86888",
       "kind": "ms",
-      "name": "V2ガンダム",
+      "name": "V2 Gundam",
       "icon": "icons/altema/ms-v2ガンダム-0a11eb91.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/150.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/150",
@@ -2385,7 +2385,7 @@
     {
       "id": "altema-ms-d22182956a",
       "kind": "ms",
-      "name": "ティターニア",
+      "name": "Titania",
       "icon": "icons/altema/ms-ティターニア-637be23e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/149.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/149",
@@ -2397,7 +2397,7 @@
     {
       "id": "altema-ms-8d12a88e8e",
       "kind": "ms",
-      "name": "ペイルライダー(空間戦仕様)",
+      "name": "Pale Rider (Space type)",
       "icon": "icons/altema/ms-ペイルライダー-空間戦仕様-8b62da58.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/148.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/148",
@@ -2409,7 +2409,7 @@
     {
       "id": "altema-ms-9c47106955",
       "kind": "ms",
-      "name": "Ξガンダム",
+      "name": "Xi Gundam",
       "icon": "icons/altema/ms-ガンダム-bdfbe915.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/144.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/144",
@@ -2421,7 +2421,7 @@
     {
       "id": "altema-ms-55ebe74cd7",
       "kind": "ms",
-      "name": "URガンキャノン",
+      "name": "Guncannon (UR)",
       "icon": "icons/altema/ms-urガンキャノン-8ed25be9.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/143.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/143",
@@ -2433,7 +2433,7 @@
     {
       "id": "altema-ms-81d5dbc12d",
       "kind": "ms",
-      "name": "ジョニー・ライデン専用ゲルググ・キャノン",
+      "name": "Johnny Ridden's Gelgoog Cannon",
       "icon": "icons/altema/ms-ジョニー・ライデン専用ゲルググ・キャノン-0a1612bb.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/142.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/142",
@@ -2445,7 +2445,7 @@
     {
       "id": "altema-ms-3adfb96ac1",
       "kind": "ms",
-      "name": "デルタプラス",
+      "name": "Delta Plus",
       "icon": "icons/altema/ms-デルタプラス-6966f345.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/140.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/140",
@@ -2457,7 +2457,7 @@
     {
       "id": "altema-ms-c383a6c9e8",
       "kind": "ms",
-      "name": "エンゲージガンダム(ファンネル装備型)",
+      "name": "Engage Gundam Funnels",
       "icon": "icons/altema/ms-エンゲージガンダム-ファンネル装備型-1cfe44cf.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/137.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/137",
@@ -2469,7 +2469,7 @@
     {
       "id": "altema-ms-a0e8db2799",
       "kind": "ms",
-      "name": "ジムⅢパワードFA",
+      "name": "GM III Powered FA",
       "icon": "icons/altema/ms-ジムiiiパワードfa-833ab832.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/133.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/133",
@@ -2481,7 +2481,7 @@
     {
       "id": "altema-ms-69d4811d07",
       "kind": "ms",
-      "name": "ムーンガンダム",
+      "name": "Moon Gundam",
       "icon": "icons/altema/ms-ムーンガンダム-dbaa4c15.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/132.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/132",
@@ -2493,7 +2493,7 @@
     {
       "id": "altema-ms-12a3cacfc6",
       "kind": "ms",
-      "name": "キュベレイ(紫)",
+      "name": "Qubeley (Purple)",
       "icon": "icons/altema/ms-キュベレイ-紫-108ffe8b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/131.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/131",
@@ -2505,7 +2505,7 @@
     {
       "id": "altema-ms-e68c7d100c",
       "kind": "ms",
-      "name": "バンシィ(NT-D)",
+      "name": "Banshee (NT-D)",
       "icon": "icons/altema/ms-バンシィ-nt-d-3db442a1.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/128.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/128",
@@ -2517,7 +2517,7 @@
     {
       "id": "altema-ms-719853693a",
       "kind": "ms",
-      "name": "高機動型ケンプファー",
+      "name": "Kampfer High Mobility Type",
       "icon": "icons/altema/ms-高機動型ケンプファー-c233510f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/127.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/127",
@@ -2529,7 +2529,7 @@
     {
       "id": "altema-ms-2b65ca3d55",
       "kind": "ms",
-      "name": "ガンダム試作4号機",
+      "name": "Gundam GP04",
       "icon": "icons/altema/ms-ガンダム試作4号機-5376c1a5.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/126.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/126",
@@ -2541,7 +2541,7 @@
     {
       "id": "altema-ms-987685b072",
       "kind": "ms",
-      "name": "νガンダム(立像記念)",
+      "name": "RX-93ff Nu Gundam",
       "icon": "icons/altema/ms-ガンダム-立像記念-0c7cdbc3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/125.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/125",
@@ -2553,7 +2553,7 @@
     {
       "id": "altema-ms-ad1124f441",
       "kind": "ms",
-      "name": "フルアーマー・ユニコーン",
+      "name": "Full Armor Unicorn Gundam",
       "icon": "icons/altema/ms-フルアーマー・ユニコーン-b01ddf16.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/124.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/124",
@@ -2565,7 +2565,7 @@
     {
       "id": "altema-ms-9fc043f518",
       "kind": "ms",
-      "name": "バイアラン・カスタム",
+      "name": "Byarlant Custom",
       "icon": "icons/altema/ms-バイアラン・カスタム-b44e666b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/122.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/122",
@@ -2577,7 +2577,7 @@
     {
       "id": "altema-ms-837f0ef2ea",
       "kind": "ms",
-      "name": "エンゲージガンダム(ブースター装備)",
+      "name": "Engage Gundam Booster",
       "icon": "icons/altema/ms-エンゲージガンダム-ブースター装備-0b4fc330.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/121.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/121",
@@ -2589,7 +2589,7 @@
     {
       "id": "altema-ms-9c61afa559",
       "kind": "ms",
-      "name": "ガンダムF91",
+      "name": "Gundam F91",
       "icon": "icons/altema/ms-ガンダムf91-d307f872.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/119.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/119",
@@ -2601,7 +2601,7 @@
     {
       "id": "altema-ms-43ac16944d",
       "kind": "ms",
-      "name": "ジ・O",
+      "name": "The-O",
       "icon": "icons/altema/ms-ジ・o-a7732c64.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/117.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/117",
@@ -2613,7 +2613,7 @@
     {
       "id": "altema-ms-7a93785aba",
       "kind": "ms",
-      "name": "エンゲージゼロ・追加ブースター装備型",
+      "name": "Engage Zero with Booster",
       "icon": "icons/altema/ms-エンゲージゼロ・追加ブースター装備型-9975875c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/115.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/115",
@@ -2625,7 +2625,7 @@
     {
       "id": "altema-ms-b50f8ccadc",
       "kind": "ms",
-      "name": "ガンダム試作1号機フルバーニアン",
+      "name": "Gundam GP01Fb",
       "icon": "icons/altema/ms-ガンダム試作1号機フルバーニアン-d0ebd255.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/114.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/114",
@@ -2637,7 +2637,7 @@
     {
       "id": "altema-ms-d1dd20099f",
       "kind": "ms",
-      "name": "ベルガ・ダラス",
+      "name": "Berga-Dalas",
       "icon": "icons/altema/ms-ベルガ・ダラス-4a1555d7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/110.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/110",
@@ -2649,7 +2649,7 @@
     {
       "id": "altema-ms-f45098d93c",
       "kind": "ms",
-      "name": "バルギル",
+      "name": "Varguil",
       "icon": "icons/altema/ms-バルギル-c8f407e5.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/109.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/109",
@@ -2661,7 +2661,7 @@
     {
       "id": "altema-ms-be5e44e9a6",
       "kind": "ms",
-      "name": "シータプラス(汎用)",
+      "name": "Theta Plus",
       "icon": "icons/altema/ms-シータプラス-汎用-086cb86a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/108.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/108",
@@ -2673,7 +2673,7 @@
     {
       "id": "altema-ms-8e7eab8214",
       "kind": "ms",
-      "name": "クシャトリヤ",
+      "name": "Kshatriya",
       "icon": "icons/altema/ms-クシャトリヤ-3118db5c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/106.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/106",
@@ -2685,7 +2685,7 @@
     {
       "id": "altema-ms-f5e9e8103b",
       "kind": "ms",
-      "name": "ハンマ・ハンマ",
+      "name": "Hamma-Hamma",
       "icon": "icons/altema/ms-ハンマ・ハンマ-a94b58d4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/104.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/104",
@@ -2697,7 +2697,7 @@
     {
       "id": "altema-ms-b6d55144a3",
       "kind": "ms",
-      "name": "G-3ガンダム",
+      "name": "G-3 Gundam",
       "icon": "icons/altema/ms-g-3ガンダム-2fb9ebfa.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/100.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/100",
@@ -2709,7 +2709,7 @@
     {
       "id": "altema-ms-928bcc5b69",
       "kind": "ms",
-      "name": "シスクード(ティターンズ)",
+      "name": "Sisquiede Titans Color",
       "icon": "icons/altema/ms-シスクード-ティターンズ-a18beeb9.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/99.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/99",
@@ -2721,7 +2721,7 @@
     {
       "id": "altema-ms-eb0d94e938",
       "kind": "ms",
-      "name": "Zガンダム",
+      "name": "Zeta Gundam",
       "icon": "icons/altema/ms-zガンダム-70829151.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/98.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/98",
@@ -2733,7 +2733,7 @@
     {
       "id": "altema-ms-a9067e6238",
       "kind": "ms",
-      "name": "百式",
+      "name": "Hyaku Shiki",
       "icon": "icons/altema/ms-百式-a3d7f241.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/96.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/96",
@@ -2745,7 +2745,7 @@
     {
       "id": "altema-ms-dc2c3c25ec",
       "kind": "ms",
-      "name": "ザクⅠ＋ビッグガン（サンダーボルト版）",
+      "name": "Zaku I with Big Gun",
       "icon": "icons/altema/ms-ザクi-ビッグガン-サンダーボルト版-53425375.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/94.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/94",
@@ -2757,7 +2757,7 @@
     {
       "id": "altema-ms-853f4eb810",
       "kind": "ms",
-      "name": "サイコミュシステム高機動試験機",
+      "name": "Psycommu System Zaku",
       "icon": "icons/altema/ms-サイコミュシステム高機動試験機-dc543135.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/92.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/92",
@@ -2769,7 +2769,7 @@
     {
       "id": "altema-ms-2419eeaae0",
       "kind": "ms",
-      "name": "νガンダム",
+      "name": "Nu Gundam",
       "icon": "icons/altema/ms-ガンダム-21395b73.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/90.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/90",
@@ -2781,7 +2781,7 @@
     {
       "id": "altema-ms-6918f63414",
       "kind": "ms",
-      "name": "シャア専用ザクⅡ(THE ORIGIN)",
+      "name": "Char's Zaku II (THE ORIGIN)",
       "icon": "icons/altema/ms-シャア専用ザクii-the-origin-408d145a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/89.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/89",
@@ -2793,7 +2793,7 @@
     {
       "id": "altema-ms-25509e2d2e",
       "kind": "ms",
-      "name": "ガンダム(THE ORIGIN)",
+      "name": "Gundam (THE ORIGIN)",
       "icon": "icons/altema/ms-ガンダム-the-origin-29da6dfe.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/88.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/88",
@@ -2805,7 +2805,7 @@
     {
       "id": "altema-ms-c70ce53fcf",
       "kind": "ms",
-      "name": "ユニコーンガンダム(NT-D)",
+      "name": "Unicorn Gundam (NT-D)",
       "icon": "icons/altema/ms-ユニコーンガンダム-nt-d-3ad3ad03.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/86.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/86",
@@ -2817,7 +2817,7 @@
     {
       "id": "altema-ms-8a181e1e9c",
       "kind": "ms",
-      "name": "ガトー専用リック・ドム",
+      "name": "Gato's Rick Dom",
       "icon": "icons/altema/ms-ガトー専用リック・ドム-6b8143a3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/85.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/85",
@@ -2829,7 +2829,7 @@
     {
       "id": "altema-ms-320b59ffa5",
       "kind": "ms",
-      "name": "マツナガ専用高機動型ザクⅡ",
+      "name": "Matsunaga's High Mobility Zaku II",
       "icon": "icons/altema/ms-マツナガ専用高機動型ザクii-4e3a0291.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/84.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/84",
@@ -2841,7 +2841,7 @@
     {
       "id": "altema-ms-0d5da39bc9",
       "kind": "ms",
-      "name": "ガンダム(青)",
+      "name": "Gundam (Blue)",
       "icon": "icons/altema/ms-ガンダム-青-8fc8ce93.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/82.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/82",
@@ -2853,7 +2853,7 @@
     {
       "id": "altema-ms-25b3386b9f",
       "kind": "ms",
-      "name": "ザクⅠ(シャア機)",
+      "name": "Zaku I (Char)",
       "icon": "icons/altema/ms-ザクi-シャア機-db90b446.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/70.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/70",
@@ -2865,7 +2865,7 @@
     {
       "id": "altema-ms-cc6f4d4b18",
       "kind": "ms",
-      "name": "Vガンダム",
+      "name": "Victory Gundam",
       "icon": "icons/altema/ms-vガンダム-e748da96.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/52.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/52",
@@ -2877,7 +2877,7 @@
     {
       "id": "altema-ms-0401deeb4e",
       "kind": "ms",
-      "name": "リ・ガズィ",
+      "name": "Re-GZ",
       "icon": "icons/altema/ms-リ・ガズィ-d5d43612.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/48.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/48",
@@ -2889,7 +2889,7 @@
     {
       "id": "altema-ms-73f191c7b7",
       "kind": "ms",
-      "name": "キュベレイMk-Ⅱ(プル機/強襲)",
+      "name": "Ple's Qubeley Mk-II",
       "icon": "icons/altema/ms-キュベレイmk-ii-プル機-強襲-e36be16c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/47.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/47",
@@ -2901,7 +2901,7 @@
     {
       "id": "altema-ms-7fa95edef7",
       "kind": "ms",
-      "name": "ナラティブガンダム",
+      "name": "Narrative Gundam",
       "icon": "icons/altema/ms-ナラティブガンダム-3039bc98.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/44.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/44",
@@ -2913,7 +2913,7 @@
     {
       "id": "altema-ms-6fd6ae2c40",
       "kind": "ms",
-      "name": "ナイチンゲール",
+      "name": "Nightingale",
       "icon": "icons/altema/ms-ナイチンゲール-5d070256.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/43.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/43",
@@ -2925,7 +2925,7 @@
     {
       "id": "altema-ms-e73997f31f",
       "kind": "ms",
-      "name": "ケンプファー",
+      "name": "Kampfer",
       "icon": "icons/altema/ms-ケンプファー-dda88747.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/36.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/36",
@@ -2937,7 +2937,7 @@
     {
       "id": "altema-ms-3c37b1e9ea",
       "kind": "ms",
-      "name": "ガンダム試作1号機",
+      "name": "Gundam GP01",
       "icon": "icons/altema/ms-ガンダム試作1号機-f43d978c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/34.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/34",
@@ -2949,7 +2949,7 @@
     {
       "id": "altema-ms-55893ce354",
       "kind": "ms",
-      "name": "Hi-νガンダム",
+      "name": "Hi-Nu",
       "icon": "icons/altema/ms-hi-ガンダム-c8e866c9.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/32.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/32",
@@ -2961,7 +2961,7 @@
     {
       "id": "altema-ms-3d3f5553e0",
       "kind": "ms",
-      "name": "ガンダム(緑)",
+      "name": "Gundam (Green)",
       "icon": "icons/altema/ms-ガンダム-緑-082fd6b6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/28.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/28",
@@ -2973,7 +2973,7 @@
     {
       "id": "altema-ms-1fd1daa941",
       "kind": "ms",
-      "name": "ガンダムMk-Ⅱ(ティターンズ仕様)",
+      "name": "Gundam Mk-II (Titans)",
       "icon": "icons/altema/ms-ガンダムmk-ii-ティターンズ仕様-ded61755.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/26.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/26",
@@ -2985,7 +2985,7 @@
     {
       "id": "altema-ms-e7a3782b3f",
       "kind": "ms",
-      "name": "シナンジュ",
+      "name": "Sinanju",
       "icon": "icons/altema/ms-シナンジュ-b5a63711.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/17.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/17",
@@ -2997,7 +2997,7 @@
     {
       "id": "altema-ms-7a741d91cc",
       "kind": "ms",
-      "name": "シャア専用ザクⅡ",
+      "name": "Char's Zaku II",
       "icon": "icons/altema/ms-シャア専用ザクii-38e77a5f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/14.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/14",
@@ -3009,7 +3009,7 @@
     {
       "id": "altema-ms-05136b86b7",
       "kind": "ms",
-      "name": "バンシィ",
+      "name": "Banshee",
       "icon": "icons/altema/ms-バンシィ-ee399111.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/9.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/9",
@@ -3021,7 +3021,7 @@
     {
       "id": "altema-ms-ee3a0c29c7",
       "kind": "ms",
-      "name": "ユニコーンガンダム",
+      "name": "Unicorn Gundam",
       "icon": "icons/altema/ms-ユニコーンガンダム-ae920ba4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/7.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/7",
@@ -3033,7 +3033,7 @@
     {
       "id": "altema-pilot-ed2e9b835f",
       "kind": "pilot",
-      "name": "ジュドー・アーシタ(C0459)",
+      "name": "Judau Ashta (C0459)",
       "icon": "icons/altema/pilot-ジュドー・アーシタ-c0459-a1f48607.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/369.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/369",
@@ -3045,7 +3045,7 @@
     {
       "id": "altema-pilot-ec22701c11",
       "kind": "pilot",
-      "name": "ハマーン・カーン(C0456)",
+      "name": "Haman Karn (C0456)",
       "icon": "icons/altema/pilot-ハマーン・カーン-c0456-2c9a0699.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/366.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/366",
@@ -3057,7 +3057,7 @@
     {
       "id": "altema-pilot-017c77fcbf",
       "kind": "pilot",
-      "name": "アイーダ・スルガン(C0438)",
+      "name": "Aida Surugan (C0438)",
       "icon": "icons/altema/pilot-アイーダ・スルガン-c0438-a41aedea.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/349.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/349",
@@ -3069,7 +3069,7 @@
     {
       "id": "altema-pilot-80d31b2c8a",
       "kind": "pilot",
-      "name": "バナージ・リンクス(C0036)",
+      "name": "Banagher Links (C0036)",
       "icon": "icons/altema/pilot-バナージ・リンクス-c0036-272ddaa7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/346.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/346",
@@ -3081,7 +3081,7 @@
     {
       "id": "altema-pilot-24935b807c",
       "kind": "pilot",
-      "name": "フル・フロンタル",
+      "name": "Full Frontal",
       "icon": "icons/altema/pilot-フル・フロンタル-f4045a20.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/345.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/345",
@@ -3093,7 +3093,7 @@
     {
       "id": "altema-pilot-375cf3b8ae",
       "kind": "pilot",
-      "name": "ギム・ギンガナム(C0452)",
+      "name": "Gym Ghingham (C0452)",
       "icon": "icons/altema/pilot-ギム・ギンガナム-c0452-4561026f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/362.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/362",
@@ -3105,7 +3105,7 @@
     {
       "id": "altema-pilot-db58cfa01b",
       "kind": "pilot",
-      "name": "バナージ・リンクス",
+      "name": "Banagher Links",
       "icon": "icons/altema/pilot-バナージ・リンクス-433b7b77.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/357.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/357",
@@ -3117,7 +3117,7 @@
     {
       "id": "altema-pilot-d0358fb6e8",
       "kind": "pilot",
-      "name": "ララァ・スン",
+      "name": "Lalah Sune",
       "icon": "icons/altema/pilot-ララァ・スン-9798f5d7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/317.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/317",
@@ -3129,7 +3129,7 @@
     {
       "id": "altema-pilot-26445a22b3",
       "kind": "pilot",
-      "name": "ハマーン・カーン(C0378)",
+      "name": "Haman Karn (C0378)",
       "icon": "icons/altema/pilot-ハマーン・カーン-c0378-f9dbb10f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/296.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/296",
@@ -3141,7 +3141,7 @@
     {
       "id": "altema-pilot-0ca67d36be",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0374)",
+      "name": "Amuro Ray (C0374)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0374-c5a25560.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/293.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/293",
@@ -3153,7 +3153,7 @@
     {
       "id": "altema-pilot-8332bc59a6",
       "kind": "pilot",
-      "name": "マ・クベ",
+      "name": "M'Quve",
       "icon": "icons/altema/pilot-マ・クベ-8cca753f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/167.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/167",
@@ -3165,7 +3165,7 @@
     {
       "id": "altema-pilot-41dbffb1b7",
       "kind": "pilot",
-      "name": "ラライヤ・アクパール",
+      "name": "Raraiya Akuparl",
       "icon": "icons/altema/pilot-ラライヤ・アクパール-2e4057e0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/359.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/359",
@@ -3177,7 +3177,7 @@
     {
       "id": "altema-pilot-b10b14dc08",
       "kind": "pilot",
-      "name": "マ・クベ(C0428)",
+      "name": "M'Quve (C0428)",
       "icon": "icons/altema/pilot-マ・クベ-c0428-da16691e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/341.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/341",
@@ -3189,7 +3189,7 @@
     {
       "id": "altema-pilot-426dfa9883",
       "kind": "pilot",
-      "name": "ギム・ギンガナム",
+      "name": "Gym Ghingham",
       "icon": "icons/altema/pilot-ギム・ギンガナム-0fd8db72.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/333.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/333",
@@ -3201,7 +3201,7 @@
     {
       "id": "altema-pilot-190ecf9c6c",
       "kind": "pilot",
-      "name": "ユート・オールディス(C0417)",
+      "name": "Yuto Aldiss (C0417)",
       "icon": "icons/altema/pilot-ユート・オールディス-c0417-d0153ec4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/331.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/331",
@@ -3213,7 +3213,7 @@
     {
       "id": "altema-pilot-63439ec4a0",
       "kind": "pilot",
-      "name": "ウッソ・エヴィン(C0412)",
+      "name": "Uso Ewin (C0412)",
       "icon": "icons/altema/pilot-ウッソ・エヴィン-c0412-ff4f246f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/325.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/325",
@@ -3225,7 +3225,7 @@
     {
       "id": "altema-pilot-d7ed21f7c0",
       "kind": "pilot",
-      "name": "トビア・アロナクス",
+      "name": "Tobia Arronax",
       "icon": "icons/altema/pilot-トビア・アロナクス-af53c4ca.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/321.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/321",
@@ -3237,7 +3237,7 @@
     {
       "id": "altema-pilot-aa245e5844",
       "kind": "pilot",
-      "name": "ベルリ・ゼナム",
+      "name": "Bellri Zenam",
       "icon": "icons/altema/pilot-ベルリ・ゼナム-e4edab77.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/312.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/312",
@@ -3249,7 +3249,7 @@
     {
       "id": "altema-pilot-b858c0e66b",
       "kind": "pilot",
-      "name": "ロラン・セアック",
+      "name": "Loran Cehack",
       "icon": "icons/altema/pilot-ロラン・セアック-9e44898a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/306.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/306",
@@ -3261,7 +3261,7 @@
     {
       "id": "altema-pilot-47b805db42",
       "kind": "pilot",
-      "name": "ヤザン・ゲーブル",
+      "name": "Yazan Gable",
       "icon": "icons/altema/pilot-ヤザン・ゲーブル-13123e97.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/292.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/292",
@@ -3273,7 +3273,7 @@
     {
       "id": "altema-pilot-f3ea09cb9a",
       "kind": "pilot",
-      "name": "ウッソ・エヴィン(C0373)",
+      "name": "Uso Ewin (C0373)",
       "icon": "icons/altema/pilot-ウッソ・エヴィン-c0373-a4c454cc.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/291.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/291",
@@ -3285,7 +3285,7 @@
     {
       "id": "altema-pilot-2e789b44cf",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0364)",
+      "name": "Amuro Ray (C0364)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0364-023ba8b6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/284.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/284",
@@ -3297,7 +3297,7 @@
     {
       "id": "altema-pilot-712c4fced3",
       "kind": "pilot",
-      "name": "ジュドー・アーシタ(C0361)",
+      "name": "Judau Ashta (C0361)",
       "icon": "icons/altema/pilot-ジュドー・アーシタ-c0361-36d9c057.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/282.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/282",
@@ -3309,7 +3309,7 @@
     {
       "id": "altema-pilot-712c503ca0",
       "kind": "pilot",
-      "name": "バナージ・リンクス(C0355)",
+      "name": "Banagher Links (C0355)",
       "icon": "icons/altema/pilot-バナージ・リンクス-c0355-694634e6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/277.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/277",
@@ -3321,7 +3321,7 @@
     {
       "id": "altema-pilot-e8af881f81",
       "kind": "pilot",
-      "name": "ヨナ・バシュタ(C0340)",
+      "name": "Jona Basta (C0340)",
       "icon": "icons/altema/pilot-ヨナ・バシュタ-c0340-7945e328.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/261.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/261",
@@ -3333,7 +3333,7 @@
     {
       "id": "altema-pilot-9f7a43d973",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0312)",
+      "name": "Amuro Ray (C0312)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0312-ae1a38e6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/239.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/239",
@@ -3345,7 +3345,7 @@
     {
       "id": "altema-pilot-380ae7d94b",
       "kind": "pilot",
-      "name": "シーブック・アノー(C0281)",
+      "name": "Seabook Arno (C0281)",
       "icon": "icons/altema/pilot-シーブック・アノー-c0281-35d7ba3d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/205.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/205",
@@ -3357,7 +3357,7 @@
     {
       "id": "altema-pilot-248947cf83",
       "kind": "pilot",
-      "name": "スレッガー・ロウ",
+      "name": "Sleggar Law",
       "icon": "icons/altema/pilot-スレッガー・ロウ-6e073183.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/127.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/127",
@@ -3369,7 +3369,7 @@
     {
       "id": "altema-pilot-af2b5ab3c1",
       "kind": "pilot",
-      "name": "フォウ・ムラサメ",
+      "name": "Four Murasame",
       "icon": "icons/altema/pilot-フォウ・ムラサメ-931a38e3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/119.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/119",
@@ -3381,7 +3381,7 @@
     {
       "id": "altema-pilot-0b699d0736",
       "kind": "pilot",
-      "name": "アゴス・ラガート(C0462)",
+      "name": "Agos Lagarto (C0462)",
       "icon": "icons/altema/pilot-アゴス・ラガート-c0462-f2906662.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/372.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/372",
@@ -3393,7 +3393,7 @@
     {
       "id": "altema-pilot-c2f3a099fa",
       "kind": "pilot",
-      "name": "クリム・ニック(C0461)",
+      "name": "Klim Nick (C0461)",
       "icon": "icons/altema/pilot-クリム・ニック-c0461-a9bf16ab.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/371.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/371",
@@ -3405,7 +3405,7 @@
     {
       "id": "altema-pilot-afda2d87c0",
       "kind": "pilot",
-      "name": "カイ・シデン(C0458)",
+      "name": "Kai Shiden (C0458)",
       "icon": "icons/altema/pilot-カイ・シデン-c0458-eb161bd3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/368.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/368",
@@ -3417,7 +3417,7 @@
     {
       "id": "altema-pilot-c2f3391db1",
       "kind": "pilot",
-      "name": "ベルリ・ゼナム(C0454)",
+      "name": "Bellri Zenam (C0454)",
       "icon": "icons/altema/pilot-ベルリ・ゼナム-c0454-2dcfa652.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/364.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/364",
@@ -3429,7 +3429,7 @@
     {
       "id": "altema-pilot-b06c96715e",
       "kind": "pilot",
-      "name": "ユート・オールディス(C0446)",
+      "name": "Yuto Aldiss (C0446)",
       "icon": "icons/altema/pilot-ユート・オールディス-c0446-f200c80a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/356.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/356",
@@ -3441,7 +3441,7 @@
     {
       "id": "altema-pilot-eb05b7b012",
       "kind": "pilot",
-      "name": "フォウ・ムラサメ(C0442)",
+      "name": "Four Murasame (C0442)",
       "icon": "icons/altema/pilot-フォウ・ムラサメ-c0442-56c3da07.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/353.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/353",
@@ -3453,7 +3453,7 @@
     {
       "id": "altema-pilot-e2892cbf0f",
       "kind": "pilot",
-      "name": "ハサウェイ・ノア(C0441)",
+      "name": "Hathaway Noa (C0441)",
       "icon": "icons/altema/pilot-ハサウェイ・ノア-c0441-84bbf6e2.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/352.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/352",
@@ -3465,7 +3465,7 @@
     {
       "id": "altema-pilot-dccd3a5e38",
       "kind": "pilot",
-      "name": "ロラン・セアック(C0429)",
+      "name": "Loran Cehack (C0429)",
       "icon": "icons/altema/pilot-ロラン・セアック-c0429-9148eb82.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/342.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/342",
@@ -3477,7 +3477,7 @@
     {
       "id": "altema-pilot-b50a6e2c43",
       "kind": "pilot",
-      "name": "ユート・オールディス(C0427)",
+      "name": "Yuto Aldiss (C0427)",
       "icon": "icons/altema/pilot-ユート・オールディス-c0427-8dd99c3c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/340.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/340",
@@ -3489,7 +3489,7 @@
     {
       "id": "altema-pilot-dcc1b2d471",
       "kind": "pilot",
-      "name": "ブラン・ブルターク",
+      "name": "Buran Blutarch",
       "icon": "icons/altema/pilot-ブラン・ブルターク-9dea42ed.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/337.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/337",
@@ -3501,7 +3501,7 @@
     {
       "id": "altema-pilot-8ed98e5053",
       "kind": "pilot",
-      "name": "アイーダ・スルガン",
+      "name": "Aida Surugan",
       "icon": "icons/altema/pilot-アイーダ・スルガン-d06e7b4a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/335.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/335",
@@ -3513,7 +3513,7 @@
     {
       "id": "altema-pilot-778a734904",
       "kind": "pilot",
-      "name": "エル・ビアンノ",
+      "name": "Elle Vianno",
       "icon": "icons/altema/pilot-エル・ビアンノ-c6c51fc2.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/329.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/329",
@@ -3525,7 +3525,7 @@
     {
       "id": "altema-pilot-28782dd8a9",
       "kind": "pilot",
-      "name": "エマ・シーン",
+      "name": "Emma Sheen",
       "icon": "icons/altema/pilot-エマ・シーン-36d2a988.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/322.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/322",
@@ -3537,7 +3537,7 @@
     {
       "id": "altema-pilot-95d9010edb",
       "kind": "pilot",
-      "name": "ユート・オールディス",
+      "name": "Yuto Aldiss",
       "icon": "icons/altema/pilot-ユート・オールディス-1c32f09d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/313.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/313",
@@ -3549,7 +3549,7 @@
     {
       "id": "altema-pilot-46fe5e2735",
       "kind": "pilot",
-      "name": "アマテ・ユズリハ(C0390)",
+      "name": "Amate Yuzuriha (C0390)",
       "icon": "icons/altema/pilot-アマテ・ユズリハ-c0390-feb8ceb2.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/309.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/309",
@@ -3561,7 +3561,7 @@
     {
       "id": "altema-pilot-1d6257be5b",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0383)",
+      "name": "Amuro Ray (C0383)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0383-c13741de.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/307.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/307",
@@ -3573,7 +3573,7 @@
     {
       "id": "altema-pilot-fbc790b740",
       "kind": "pilot",
-      "name": "フォルド・ロムフェロー",
+      "name": "Fold Romfellow",
       "icon": "icons/altema/pilot-フォルド・ロムフェロー-96e8a1b2.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/302.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/302",
@@ -3585,7 +3585,7 @@
     {
       "id": "altema-pilot-5b3e5dcf11",
       "kind": "pilot",
-      "name": "サフィラ・ガードナー(C0290)",
+      "name": "Saphira Gardner (C0290)",
       "icon": "icons/altema/pilot-サフィラ・ガードナー-c0290-31c1c026.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/297.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/297",
@@ -3597,7 +3597,7 @@
     {
       "id": "altema-pilot-0c646484e2",
       "kind": "pilot",
-      "name": "カテジナ・ルース",
+      "name": "Katejina Loos",
       "icon": "icons/altema/pilot-カテジナ・ルース-4bbb71d4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/287.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/287",
@@ -3609,7 +3609,7 @@
     {
       "id": "altema-pilot-aeb0880921",
       "kind": "pilot",
-      "name": "マシュマー・セロ(C0362)",
+      "name": "Mashymre Cello (C0362)",
       "icon": "icons/altema/pilot-マシュマー・セロ-c0362-b46e2d5d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/283.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/283",
@@ -3621,7 +3621,7 @@
     {
       "id": "altema-pilot-78d3e44fa4",
       "kind": "pilot",
-      "name": "ヨナ・バシュタ",
+      "name": "Jona Basta",
       "icon": "icons/altema/pilot-ヨナ・バシュタ-eec42e97.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/272.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/272",
@@ -3633,7 +3633,7 @@
     {
       "id": "altema-pilot-385af4de68",
       "kind": "pilot",
-      "name": "シャア・アズナブル(C0338)",
+      "name": "Char Aznable (C0338)",
       "icon": "icons/altema/pilot-シャア・アズナブル-c0338-ba6d60f3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/264.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/264",
@@ -3645,7 +3645,7 @@
     {
       "id": "altema-pilot-74c6c4407f",
       "kind": "pilot",
-      "name": "クリスチーナ・マッケンジー(C0326)",
+      "name": "Christina Mackenzie (C0326)",
       "icon": "icons/altema/pilot-クリスチーナ・マッケンジー-c0326-2f4b7247.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/252.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/252",
@@ -3657,7 +3657,7 @@
     {
       "id": "altema-pilot-62c5b745df",
       "kind": "pilot",
-      "name": "エルピー・プル(C0320)",
+      "name": "Elpeo Ple (C0320)",
       "icon": "icons/altema/pilot-エルピー・プル-c0320-32893503.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/242.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/242",
@@ -3669,7 +3669,7 @@
     {
       "id": "altema-pilot-30f86b843d",
       "kind": "pilot",
-      "name": "プルツー(C0232)",
+      "name": "Ple Two (C0232)",
       "icon": "icons/altema/pilot-プルツー-c0232-139ded15.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/226.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/226",
@@ -3681,7 +3681,7 @@
     {
       "id": "altema-pilot-8ca8dad7f6",
       "kind": "pilot",
-      "name": "ファ・ユイリィ(C0300)",
+      "name": "Fa Yuiry (C0300)",
       "icon": "icons/altema/pilot-ファ・ユイリィ-c0300-d93ae35c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/222.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/222",
@@ -3693,7 +3693,7 @@
     {
       "id": "altema-pilot-1063a3ff2f",
       "kind": "pilot",
-      "name": "パプテマス・シロッコ(C0293)",
+      "name": "Paptimus Scirocco (C0293)",
       "icon": "icons/altema/pilot-パプテマス・シロッコ-c0293-22b4802a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/217.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/217",
@@ -3705,7 +3705,7 @@
     {
       "id": "altema-pilot-a169346046",
       "kind": "pilot",
-      "name": "ファラ・グリフォン",
+      "name": "Fuala Griffon",
       "icon": "icons/altema/pilot-ファラ・グリフォン-c7ad8001.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/171.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/171",
@@ -3717,7 +3717,7 @@
     {
       "id": "altema-pilot-749b1c0d20",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0219)",
+      "name": "Amuro Ray (C0219)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0219-58da5990.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/158.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/158",
@@ -3729,7 +3729,7 @@
     {
       "id": "altema-pilot-d318f057c5",
       "kind": "pilot",
-      "name": "ペッシェ・モンターニュ(C0201)",
+      "name": "Peche Montagne (C0201)",
       "icon": "icons/altema/pilot-ペッシェ・モンターニュ-c0201-0ce49821.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/146.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/146",
@@ -3741,7 +3741,7 @@
     {
       "id": "altema-pilot-ab2b50ffba",
       "kind": "pilot",
-      "name": "レーン・エイム",
+      "name": "Lane Aim",
       "icon": "icons/altema/pilot-レーン・エイム-c4733f3c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/136.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/136",
@@ -3753,7 +3753,7 @@
     {
       "id": "altema-pilot-d8962712ac",
       "kind": "pilot",
-      "name": "バナージ・リンクス(C0180)",
+      "name": "Banagher Links (C0180)",
       "icon": "icons/altema/pilot-バナージ・リンクス-c0180-1b6178d1.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/128.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/128",
@@ -3765,7 +3765,7 @@
     {
       "id": "altema-pilot-57e0564ac4",
       "kind": "pilot",
-      "name": "ルー・ルカ",
+      "name": "Roux Louka",
       "icon": "icons/altema/pilot-ルー・ルカ-6a8cd51f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/125.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/125",
@@ -3777,7 +3777,7 @@
     {
       "id": "altema-pilot-aa6757fed8",
       "kind": "pilot",
-      "name": "ダリル・ローレンツ(C0173)",
+      "name": "Daryl Lorenz (C0173)",
       "icon": "icons/altema/pilot-ダリル・ローレンツ-c0173-dd1748ae.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/115.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/115",
@@ -3789,7 +3789,7 @@
     {
       "id": "altema-pilot-4a326c9eaa",
       "kind": "pilot",
-      "name": "ヨナ・バシュタ(C0064)",
+      "name": "Jona Basta (C0064)",
       "icon": "icons/altema/pilot-ヨナ・バシュタ-c0064-98440f95.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/113.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/113",
@@ -3801,7 +3801,7 @@
     {
       "id": "altema-pilot-22196578c2",
       "kind": "pilot",
-      "name": "ジュドー・アーシタ",
+      "name": "Judau Ashta",
       "icon": "icons/altema/pilot-ジュドー・アーシタ-d78df26b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/93.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/93",
@@ -3813,7 +3813,7 @@
     {
       "id": "altema-pilot-03dbe75644",
       "kind": "pilot",
-      "name": "ユッタ・カーシム(C0067)",
+      "name": "Jutta Qasim (C0067)",
       "icon": "icons/altema/pilot-ユッタ・カーシム-c0067-f5c16afd.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/90.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/90",
@@ -3825,7 +3825,7 @@
     {
       "id": "altema-pilot-4af862efbc",
       "kind": "pilot",
-      "name": "アナベル・ガトー(C0110)",
+      "name": "Anavel Gato (C0110)",
       "icon": "icons/altema/pilot-アナベル・ガトー-c0110-dc552e50.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/86.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/86",
@@ -3837,7 +3837,7 @@
     {
       "id": "altema-pilot-0c54b31f6a",
       "kind": "pilot",
-      "name": "シャア・アズナブル(C0083)",
+      "name": "Char Aznable (C0083)",
       "icon": "icons/altema/pilot-シャア・アズナブル-c0083-0de114f9.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/77.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/77",
@@ -3849,7 +3849,7 @@
     {
       "id": "altema-pilot-9dd9bea963",
       "kind": "pilot",
-      "name": "イオ・フレミング",
+      "name": "Io Fleming",
       "icon": "icons/altema/pilot-イオ・フレミング-d5b3b80e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/20.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/20",
@@ -3861,7 +3861,7 @@
     {
       "id": "altema-pilot-d3843e25b1",
       "kind": "pilot",
-      "name": "リディ・マーセナス(C0460)",
+      "name": "Riddhe Marcenas (C0460)",
       "icon": "icons/altema/pilot-リディ・マーセナス-c0460-b2319c94.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/370.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/370",
@@ -3873,7 +3873,7 @@
     {
       "id": "altema-pilot-9ab28f00bb",
       "kind": "pilot",
-      "name": "アナベル・ガトー(C0457)",
+      "name": "Anavel Gato (C0457)",
       "icon": "icons/altema/pilot-アナベル・ガトー-c0457-9053faf3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/367.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/367",
@@ -3885,7 +3885,7 @@
     {
       "id": "altema-pilot-0c240808d3",
       "kind": "pilot",
-      "name": "ペッシェ・モンターニュ(C0455)",
+      "name": "Peche Montagne (C0455)",
       "icon": "icons/altema/pilot-ペッシェ・モンターニュ-c0455-602ec13e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/365.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/365",
@@ -3897,7 +3897,7 @@
     {
       "id": "altema-pilot-d6e32f2afc",
       "kind": "pilot",
-      "name": "レーン・エイム",
+      "name": "Lane Aim",
       "icon": "icons/altema/pilot-レーン・エイム-1a9c5c50.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/361.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/361",
@@ -3909,7 +3909,7 @@
     {
       "id": "altema-pilot-e8b9cdc046",
       "kind": "pilot",
-      "name": "フル・フロンタル(C0451)",
+      "name": "Full Frontal (C0451)",
       "icon": "icons/altema/pilot-フル・フロンタル-c0451-7724fb9c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/360.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/360",
@@ -3921,7 +3921,7 @@
     {
       "id": "altema-pilot-9f90bfedda",
       "kind": "pilot",
-      "name": "ペッシェ・モンターニュ(C0445)",
+      "name": "Peche Montagne (C0445)",
       "icon": "icons/altema/pilot-ペッシェ・モンターニュ-c0445-527ef6c0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/355.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/355",
@@ -3933,7 +3933,7 @@
     {
       "id": "altema-pilot-67bb2fb272",
       "kind": "pilot",
-      "name": "コレン・ナンダー",
+      "name": "Corin Nander",
       "icon": "icons/altema/pilot-コレン・ナンダー-25dec175.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/348.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/348",
@@ -3945,7 +3945,7 @@
     {
       "id": "altema-pilot-f412af4e11",
       "kind": "pilot",
-      "name": "クワトロ・バジーナ(C0436)",
+      "name": "Quattro Bajeena (C0436)",
       "icon": "icons/altema/pilot-クワトロ・バジーナ-c0436-80ca4f08.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/347.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/347",
@@ -3957,7 +3957,7 @@
     {
       "id": "altema-pilot-a070d6ca6f",
       "kind": "pilot",
-      "name": "カクリコン・カクーラー(C0431)",
+      "name": "Kacricon Cacooler (C0431)",
       "icon": "icons/altema/pilot-カクリコン・カクーラー-c0431-0bc805f4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/344.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/344",
@@ -3969,7 +3969,7 @@
     {
       "id": "altema-pilot-7f0e447291",
       "kind": "pilot",
-      "name": "ニャアン",
+      "name": "Nyaan",
       "icon": "icons/altema/pilot-ニャアン-0a25aa8d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/343.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/343",
@@ -3981,7 +3981,7 @@
     {
       "id": "altema-pilot-45ac45f3dc",
       "kind": "pilot",
-      "name": "シャア・アズナブル",
+      "name": "Char Aznable",
       "icon": "icons/altema/pilot-シャア・アズナブル-e4eff756.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/338.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/338",
@@ -3993,7 +3993,7 @@
     {
       "id": "altema-pilot-9cbd6e0cc9",
       "kind": "pilot",
-      "name": "キンケドゥ・ナウ(C0423)",
+      "name": "Kincade Nau (C0423)",
       "icon": "icons/altema/pilot-キンケドゥ・ナウ-c0423-0a14f48f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/336.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/336",
@@ -4005,7 +4005,7 @@
     {
       "id": "altema-pilot-73ffc2b42c",
       "kind": "pilot",
-      "name": "ジョニー・ライデン(C0418)",
+      "name": "Johnny Ridden (C0418)",
       "icon": "icons/altema/pilot-ジョニー・ライデン-c0418-b23c0dac.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/332.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/332",
@@ -4017,7 +4017,7 @@
     {
       "id": "altema-pilot-2bed55a6f2",
       "kind": "pilot",
-      "name": "ジェリド・メサ(C0414)",
+      "name": "Jerid Messa (C0414)",
       "icon": "icons/altema/pilot-ジェリド・メサ-c0414-0ce897f7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/328.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/328",
@@ -4029,7 +4029,7 @@
     {
       "id": "altema-pilot-ad23c9f216",
       "kind": "pilot",
-      "name": "ソシエ・ハイム",
+      "name": "Sochie Heim",
       "icon": "icons/altema/pilot-ソシエ・ハイム-28882a8a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/327.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/327",
@@ -4041,7 +4041,7 @@
     {
       "id": "altema-pilot-d940217bba",
       "kind": "pilot",
-      "name": "ラカン・ダカラン",
+      "name": "Rakan Dahkaran",
       "icon": "icons/altema/pilot-ラカン・ダカラン-d21b2628.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/324.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/324",
@@ -4053,7 +4053,7 @@
     {
       "id": "altema-pilot-dc7f9c1e89",
       "kind": "pilot",
-      "name": "クリム・ニック",
+      "name": "Klim Nick",
       "icon": "icons/altema/pilot-クリム・ニック-1a0f536a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/323.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/323",
@@ -4065,7 +4065,7 @@
     {
       "id": "altema-pilot-03d050e137",
       "kind": "pilot",
-      "name": "シャア・アズナブル(GQ)",
+      "name": "Char Aznable (GQ)",
       "icon": "icons/altema/pilot-シャア・アズナブル-gq-a4be66e9.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/320.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/320",
@@ -4077,7 +4077,7 @@
     {
       "id": "altema-pilot-812e8e22b5",
       "kind": "pilot",
-      "name": "ルー・ルカ",
+      "name": "Roux Louka",
       "icon": "icons/altema/pilot-ルー・ルカ-a38ccbd7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/318.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/318",
@@ -4089,7 +4089,7 @@
     {
       "id": "altema-pilot-fcc73b3333",
       "kind": "pilot",
-      "name": "シュウジ・イトウ(C0395)",
+      "name": "Shuji Ito (C0395)",
       "icon": "icons/altema/pilot-シュウジ・イトウ-c0395-c6270c76.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/315.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/315",
@@ -4101,7 +4101,7 @@
     {
       "id": "altema-pilot-9dfde3100e",
       "kind": "pilot",
-      "name": "ハリー・オード",
+      "name": "Harry Ord",
       "icon": "icons/altema/pilot-ハリー・オード-4b58eb7d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/310.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/310",
@@ -4113,7 +4113,7 @@
     {
       "id": "altema-pilot-ce83d07b1b",
       "kind": "pilot",
-      "name": "シーマ・ガラハウ(C0385)",
+      "name": "Cima Garahau (C0385)",
       "icon": "icons/altema/pilot-シーマ・ガラハウ-c0385-90c9146b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/304.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/304",
@@ -4125,7 +4125,7 @@
     {
       "id": "altema-pilot-09f71e8f5e",
       "kind": "pilot",
-      "name": "ユッタ・カーシム(C0382)",
+      "name": "Jutta Qasim (C0382)",
       "icon": "icons/altema/pilot-ユッタ・カーシム-c0382-f529f33c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/301.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/301",
@@ -4137,7 +4137,7 @@
     {
       "id": "altema-pilot-ee5167477b",
       "kind": "pilot",
-      "name": "シャア・アズナブル(C0380)",
+      "name": "Char Aznable (C0380)",
       "icon": "icons/altema/pilot-シャア・アズナブル-c0380-a4941d25.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/299.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/299",
@@ -4149,7 +4149,7 @@
     {
       "id": "altema-pilot-de832415d8",
       "kind": "pilot",
-      "name": "アマテ・ユズリハ(C0377)",
+      "name": "Amate Yuzuriha (C0377)",
       "icon": "icons/altema/pilot-アマテ・ユズリハ-c0377-b4f9b7a9.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/295.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/295",
@@ -4161,7 +4161,7 @@
     {
       "id": "altema-pilot-cff326badc",
       "kind": "pilot",
-      "name": "イリア・パゾム(C0371)",
+      "name": "Illia Pazom (C0371)",
       "icon": "icons/altema/pilot-イリア・パゾム-c0371-47aae00c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/289.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/289",
@@ -4173,7 +4173,7 @@
     {
       "id": "altema-pilot-bdfaa64fe5",
       "kind": "pilot",
-      "name": "カミーユ・ビダン(C0366)",
+      "name": "Kamille Bidan (C0366)",
       "icon": "icons/altema/pilot-カミーユ・ビダン-c0366-1930cec5.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/286.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/286",
@@ -4185,7 +4185,7 @@
     {
       "id": "altema-pilot-191cd18643",
       "kind": "pilot",
-      "name": "イリヤ・ソラリ",
+      "name": "Iria Solari",
       "icon": "icons/altema/pilot-イリヤ・ソラリ-781821f3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/281.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/281",
@@ -4197,7 +4197,7 @@
     {
       "id": "altema-pilot-5736a72de4",
       "kind": "pilot",
-      "name": "アナベル・ガトー(C0358)",
+      "name": "Anavel Gato (C0358)",
       "icon": "icons/altema/pilot-アナベル・ガトー-c0358-ee5eaa52.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/280.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/280",
@@ -4209,7 +4209,7 @@
     {
       "id": "altema-pilot-6eb6bf1239",
       "kind": "pilot",
-      "name": "アムロ・レイ",
+      "name": "Amuro Ray",
       "icon": "icons/altema/pilot-アムロ・レイ-9456166e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/278.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/278",
@@ -4221,7 +4221,7 @@
     {
       "id": "altema-pilot-51bc51eb5e",
       "kind": "pilot",
-      "name": "コウ・ウラキ(C0354)",
+      "name": "Kou Uraki (C0354)",
       "icon": "icons/altema/pilot-コウ・ウラキ-c0354-9393b9bf.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/275.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/275",
@@ -4233,7 +4233,7 @@
     {
       "id": "altema-pilot-bdd655d1bc",
       "kind": "pilot",
-      "name": "ゾルタン・アッカネン",
+      "name": "Zoltan Akkanen",
       "icon": "icons/altema/pilot-ゾルタン・アッカネン-781de8e3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/273.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/273",
@@ -4245,7 +4245,7 @@
     {
       "id": "altema-pilot-e2039eb80f",
       "kind": "pilot",
-      "name": "ノリス・パッカード(C0348)",
+      "name": "Norris Packard (C0348)",
       "icon": "icons/altema/pilot-ノリス・パッカード-c0348-26b98c14.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/271.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/271",
@@ -4257,7 +4257,7 @@
     {
       "id": "altema-pilot-3dd1678a49",
       "kind": "pilot",
-      "name": "セシリー・フェアチャイルド(C0346)",
+      "name": "Cecily Fairchild (C0346)",
       "icon": "icons/altema/pilot-セシリー・フェアチャイルド-c0346-36f3c645.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/268.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/268",
@@ -4269,7 +4269,7 @@
     {
       "id": "altema-pilot-4425b37569",
       "kind": "pilot",
-      "name": "シーブック・アノー(C0345)",
+      "name": "Seabook Arno (C0345)",
       "icon": "icons/altema/pilot-シーブック・アノー-c0345-9bbc4f27.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/267.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/267",
@@ -4281,7 +4281,7 @@
     {
       "id": "altema-pilot-f0bfe79ae6",
       "kind": "pilot",
-      "name": "ダリル・ローレンツ(C0343)",
+      "name": "Daryl Lorenz (C0343)",
       "icon": "icons/altema/pilot-ダリル・ローレンツ-c0343-8d199a50.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/265.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/265",
@@ -4293,7 +4293,7 @@
     {
       "id": "altema-pilot-2630a80139",
       "kind": "pilot",
-      "name": "アンジェロ・ザウパー(C0341)",
+      "name": "Angelo Sauper (C0341)",
       "icon": "icons/altema/pilot-アンジェロ・ザウパー-c0341-0e6279a6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/262.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/262",
@@ -4305,7 +4305,7 @@
     {
       "id": "altema-pilot-c7b11d16d5",
       "kind": "pilot",
-      "name": "ユウ・カジマ(C0337)",
+      "name": "Yuu Kajima (C0337)",
       "icon": "icons/altema/pilot-ユウ・カジマ-c0337-f3943398.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/259.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/259",
@@ -4317,7 +4317,7 @@
     {
       "id": "altema-pilot-43457bdd11",
       "kind": "pilot",
-      "name": "サフィラ・ガードナー(C0334)",
+      "name": "Saphira Gardner (C0334)",
       "icon": "icons/altema/pilot-サフィラ・ガードナー-c0334-9dd39cdd.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/256.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/256",
@@ -4329,7 +4329,7 @@
     {
       "id": "altema-pilot-ff538589ec",
       "kind": "pilot",
-      "name": "バナージ・リンクス(C0331)",
+      "name": "Banagher Links (C0331)",
       "icon": "icons/altema/pilot-バナージ・リンクス-c0331-4e67fb14.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/255.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/255",
@@ -4341,7 +4341,7 @@
     {
       "id": "altema-pilot-fd5301efe9",
       "kind": "pilot",
-      "name": "ハイデマリー・ハウグ(C0327)",
+      "name": "Heidemarie Haug (C0327)",
       "icon": "icons/altema/pilot-ハイデマリー・ハウグ-c0327-c5e2c73f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/251.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/251",
@@ -4353,7 +4353,7 @@
     {
       "id": "altema-pilot-83edb272fb",
       "kind": "pilot",
-      "name": "ルース・カッセル(C0328)",
+      "name": "Luth Kassel (C0328)",
       "icon": "icons/altema/pilot-ルース・カッセル-c0328-be418773.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/250.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/250",
@@ -4365,7 +4365,7 @@
     {
       "id": "altema-pilot-eba4f0683b",
       "kind": "pilot",
-      "name": "ヨナ・バシュタ(C0325)",
+      "name": "Jona Basta (C0325)",
       "icon": "icons/altema/pilot-ヨナ・バシュタ-c0325-e18b90b2.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/247.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/247",
@@ -4377,7 +4377,7 @@
     {
       "id": "altema-pilot-a715854de8",
       "kind": "pilot",
-      "name": "トビア・アロナクス",
+      "name": "Tobia Arronax",
       "icon": "icons/altema/pilot-トビア・アロナクス-30418ef1.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/246.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/246",
@@ -4389,7 +4389,7 @@
     {
       "id": "altema-pilot-971e39f094",
       "kind": "pilot",
-      "name": "クェス・パラヤ(C0321)",
+      "name": "Quess Paraya (C0321)",
       "icon": "icons/altema/pilot-クェス・パラヤ-c0321-bf3ae0fa.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/243.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/243",
@@ -4401,7 +4401,7 @@
     {
       "id": "altema-pilot-3ee5e6c95f",
       "kind": "pilot",
-      "name": "レーン・エイム",
+      "name": "Lane Aim",
       "icon": "icons/altema/pilot-レーン・エイム-d3d4662f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/240.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/240",
@@ -4413,7 +4413,7 @@
     {
       "id": "altema-pilot-9b2886ff6c",
       "kind": "pilot",
-      "name": "レコア・ロンド",
+      "name": "Reccoa Londe",
       "icon": "icons/altema/pilot-レコア・ロンド-8ab22ceb.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/236.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/236",
@@ -4425,7 +4425,7 @@
     {
       "id": "altema-pilot-7d20140422",
       "kind": "pilot",
-      "name": "ダグザ・マックール",
+      "name": "Daguza Mackie",
       "icon": "icons/altema/pilot-ダグザ・マックール-2778e60b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/235.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/235",
@@ -4437,7 +4437,7 @@
     {
       "id": "altema-pilot-c6c1ef8f76",
       "kind": "pilot",
-      "name": "ウッソ・エヴィン(C0271)",
+      "name": "Uso Ewin (C0271)",
       "icon": "icons/altema/pilot-ウッソ・エヴィン-c0271-642f1f27.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/233.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/233",
@@ -4449,7 +4449,7 @@
     {
       "id": "altema-pilot-e03ae5dc19",
       "kind": "pilot",
-      "name": "フル・フロンタル",
+      "name": "Full Frontal",
       "icon": "icons/altema/pilot-フル・フロンタル-861dd830.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/232.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/232",
@@ -4461,7 +4461,7 @@
     {
       "id": "altema-pilot-57fe649cf4",
       "kind": "pilot",
-      "name": "ファラ・グリフォン(C0308)",
+      "name": "Fuala Griffon (C0308)",
       "icon": "icons/altema/pilot-ファラ・グリフォン-c0308-63e786a8.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/229.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/229",
@@ -4473,7 +4473,7 @@
     {
       "id": "altema-pilot-6512fe3530",
       "kind": "pilot",
-      "name": "フォルド・ロムフェロー",
+      "name": "Fold Romfellow",
       "icon": "icons/altema/pilot-フォルド・ロムフェロー-52657e39.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/228.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/228",
@@ -4485,7 +4485,7 @@
     {
       "id": "altema-pilot-b0f1b2ca4d",
       "kind": "pilot",
-      "name": "キャラ・スーン(C0267)",
+      "name": "Chara Soon (C0267)",
       "icon": "icons/altema/pilot-キャラ・スーン-c0267-dc2ef4e4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/227.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/227",
@@ -4497,7 +4497,7 @@
     {
       "id": "altema-pilot-201010b653",
       "kind": "pilot",
-      "name": "マリオン・ウェルチ",
+      "name": "Marion Whelch",
       "icon": "icons/altema/pilot-マリオン・ウェルチ-27bfa71c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/223.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/223",
@@ -4509,7 +4509,7 @@
     {
       "id": "altema-pilot-a91d28f299",
       "kind": "pilot",
-      "name": "マリーダ・クルス(C0299)",
+      "name": "Marida Cruz (C0299)",
       "icon": "icons/altema/pilot-マリーダ・クルス-c0299-65606e41.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/221.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/221",
@@ -4521,7 +4521,7 @@
     {
       "id": "altema-pilot-d81856a50e",
       "kind": "pilot",
-      "name": "トビア・アロナクス",
+      "name": "Tobia Arronax",
       "icon": "icons/altema/pilot-トビア・アロナクス-9eb9f79a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/219.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/219",
@@ -4533,7 +4533,7 @@
     {
       "id": "altema-pilot-e3291fc9ae",
       "kind": "pilot",
-      "name": "カミーユ・ビダン(C0294)",
+      "name": "Kamille Bidan (C0294)",
       "icon": "icons/altema/pilot-カミーユ・ビダン-c0294-2f17014e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/218.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/218",
@@ -4545,7 +4545,7 @@
     {
       "id": "altema-pilot-539fdb735a",
       "kind": "pilot",
-      "name": "カテジナ・ルース(C0261)",
+      "name": "Katejina Loos (C0261)",
       "icon": "icons/altema/pilot-カテジナ・ルース-c0261-05f267e6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/216.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/216",
@@ -4557,7 +4557,7 @@
     {
       "id": "altema-pilot-6b81f50287",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0292)",
+      "name": "Amuro Ray (C0292)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0292-2dbb990a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/214.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/214",
@@ -4569,7 +4569,7 @@
     {
       "id": "altema-pilot-2fd7300b70",
       "kind": "pilot",
-      "name": "ウッソ・エヴィン",
+      "name": "Uso Ewin",
       "icon": "icons/altema/pilot-ウッソ・エヴィン-6b1dc635.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/213.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/213",
@@ -4581,7 +4581,7 @@
     {
       "id": "altema-pilot-1ad17499db",
       "kind": "pilot",
-      "name": "セリーヌ・ロム(C0217)",
+      "name": "Celine Rom (C0217)",
       "icon": "icons/altema/pilot-セリーヌ・ロム-c0217-a12f9859.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/210.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/210",
@@ -4593,7 +4593,7 @@
     {
       "id": "altema-pilot-ba41174e61",
       "kind": "pilot",
-      "name": "ルース・カッセル",
+      "name": "Luth Kassel",
       "icon": "icons/altema/pilot-ルース・カッセル-dd1eaf39.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/209.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/209",
@@ -4605,7 +4605,7 @@
     {
       "id": "altema-pilot-bc0d144a5c",
       "kind": "pilot",
-      "name": "ソフィ・フラン",
+      "name": "Sophie Franc",
       "icon": "icons/altema/pilot-ソフィ・フラン-7a6ff8c4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/208.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/208",
@@ -4617,7 +4617,7 @@
     {
       "id": "altema-pilot-d101704ddb",
       "kind": "pilot",
-      "name": "カミーユ・ビダン",
+      "name": "Kamille Bidan",
       "icon": "icons/altema/pilot-カミーユ・ビダン-78efa20b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/206.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/206",
@@ -4629,7 +4629,7 @@
     {
       "id": "altema-pilot-6d4e58be2d",
       "kind": "pilot",
-      "name": "ガブリエル・ラミレス・ガルシア",
+      "name": "Gabriel Ramirez Garcia",
       "icon": "icons/altema/pilot-ガブリエル・ラミレス・ガルシア-1a4a12b5.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/202.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/202",
@@ -4641,7 +4641,7 @@
     {
       "id": "altema-pilot-727319c30c",
       "kind": "pilot",
-      "name": "クロノクル・アシャー",
+      "name": "Cronicle Asher",
       "icon": "icons/altema/pilot-クロノクル・アシャー-960ada4d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/201.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/201",
@@ -4653,7 +4653,7 @@
     {
       "id": "altema-pilot-5218c73158",
       "kind": "pilot",
-      "name": "イオ・フレミング(C0279)",
+      "name": "Io Fleming (C0279)",
       "icon": "icons/altema/pilot-イオ・フレミング-c0279-c5a1c462.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/199.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/199",
@@ -4665,7 +4665,7 @@
     {
       "id": "altema-pilot-120619b797",
       "kind": "pilot",
-      "name": "アムロ・レイ",
+      "name": "Amuro Ray",
       "icon": "icons/altema/pilot-アムロ・レイ-df2fd7f7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/198.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/198",
@@ -4677,7 +4677,7 @@
     {
       "id": "altema-pilot-b7ae5191a2",
       "kind": "pilot",
-      "name": "ベルナンド・モンシア",
+      "name": "Bernard Monsha",
       "icon": "icons/altema/pilot-ベルナンド・モンシア-5113dbb7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/197.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/197",
@@ -4689,7 +4689,7 @@
     {
       "id": "altema-pilot-e7af034eab",
       "kind": "pilot",
-      "name": "クリスチーナ・マッケンジー(C0276)",
+      "name": "Christina Mackenzie (C0276)",
       "icon": "icons/altema/pilot-クリスチーナ・マッケンジー-c0276-481009c9.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/194.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/194",
@@ -4701,7 +4701,7 @@
     {
       "id": "altema-pilot-abd7506db9",
       "kind": "pilot",
-      "name": "ヨナ・バシュタ(C0265)",
+      "name": "Jona Basta (C0265)",
       "icon": "icons/altema/pilot-ヨナ・バシュタ-c0265-60055ebc.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/193.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/193",
@@ -4713,7 +4713,7 @@
     {
       "id": "altema-pilot-aeb6fdbb49",
       "kind": "pilot",
-      "name": "ジェリド・メサ(C0264)",
+      "name": "Jerid Messa (C0264)",
       "icon": "icons/altema/pilot-ジェリド・メサ-c0264-38c89d53.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/191.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/191",
@@ -4725,7 +4725,7 @@
     {
       "id": "altema-pilot-7e4fb81d18",
       "kind": "pilot",
-      "name": "クロエ・クローチェ(C0218)",
+      "name": "Chloe Croce (C0218)",
       "icon": "icons/altema/pilot-クロエ・クローチェ-c0218-70f56fbb.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/190.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/190",
@@ -4737,7 +4737,7 @@
     {
       "id": "altema-pilot-093dd0ac1e",
       "kind": "pilot",
-      "name": "シーマ・ガラハウ",
+      "name": "Cima Garahau",
       "icon": "icons/altema/pilot-シーマ・ガラハウ-3c08bb63.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/189.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/189",
@@ -4749,7 +4749,7 @@
     {
       "id": "altema-pilot-2d509d97fa",
       "kind": "pilot",
-      "name": "グレイ・ウルフ",
+      "name": "Gray Wolf",
       "icon": "icons/altema/pilot-グレイ・ウルフ-edc1fe06.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/188.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/188",
@@ -4761,7 +4761,7 @@
     {
       "id": "altema-pilot-c9a4d4a74b",
       "kind": "pilot",
-      "name": "ミア・ブリンクマン",
+      "name": "Mia Brinkman",
       "icon": "icons/altema/pilot-ミア・ブリンクマン-344a0263.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/187.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/187",
@@ -4773,7 +4773,7 @@
     {
       "id": "altema-pilot-d01a119121",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0229)",
+      "name": "Amuro Ray (C0229)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0229-1484280c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/185.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/185",
@@ -4785,7 +4785,7 @@
     {
       "id": "altema-pilot-86233a30b9",
       "kind": "pilot",
-      "name": "ジュドー・アーシタ(C0257)",
+      "name": "Judau Ashta (C0257)",
       "icon": "icons/altema/pilot-ジュドー・アーシタ-c0257-77816b6c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/184.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/184",
@@ -4797,7 +4797,7 @@
     {
       "id": "altema-pilot-4968d3a902",
       "kind": "pilot",
-      "name": "シャア・アズナブル(C0225)",
+      "name": "Char Aznable (C0225)",
       "icon": "icons/altema/pilot-シャア・アズナブル-c0225-e33bc326.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/183.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/183",
@@ -4809,7 +4809,7 @@
     {
       "id": "altema-pilot-a469a089e9",
       "kind": "pilot",
-      "name": "イリア・パゾム",
+      "name": "Illia Pazom",
       "icon": "icons/altema/pilot-イリア・パゾム-a03a356b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/182.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/182",
@@ -4821,7 +4821,7 @@
     {
       "id": "altema-pilot-39ffde2632",
       "kind": "pilot",
-      "name": "ニムバス・シュターゼン",
+      "name": "Nimbus Schterzen",
       "icon": "icons/altema/pilot-ニムバス・シュターゼン-bee4e4ff.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/180.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/180",
@@ -4833,7 +4833,7 @@
     {
       "id": "altema-pilot-6a180ec866",
       "kind": "pilot",
-      "name": "バナージ・リンクス",
+      "name": "Banagher Links",
       "icon": "icons/altema/pilot-バナージ・リンクス-0cb52fd3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/179.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/179",
@@ -4845,7 +4845,7 @@
     {
       "id": "altema-pilot-fadd54a9ad",
       "kind": "pilot",
-      "name": "スレッタ・マーキュリー(C0252)",
+      "name": "Suletta Mercury (C0252)",
       "icon": "icons/altema/pilot-スレッタ・マーキュリー-c0252-3c12e014.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/178.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/178",
@@ -4857,7 +4857,7 @@
     {
       "id": "altema-pilot-a05bdb9ccf",
       "kind": "pilot",
-      "name": "レッド・スネーク",
+      "name": "Red Snake",
       "icon": "icons/altema/pilot-レッド・スネーク-a88ddf89.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/176.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/176",
@@ -4869,7 +4869,7 @@
     {
       "id": "altema-pilot-e363e1208d",
       "kind": "pilot",
-      "name": "サラ・ザビアロフ(C0247)",
+      "name": "Sarah Zabiarov (C0247)",
       "icon": "icons/altema/pilot-サラ・ザビアロフ-c0247-3b871e28.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/175.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/175",
@@ -4881,7 +4881,7 @@
     {
       "id": "altema-pilot-81a0c3dc48",
       "kind": "pilot",
-      "name": "コウ・ウラキ(C0227)",
+      "name": "Kou Uraki (C0227)",
       "icon": "icons/altema/pilot-コウ・ウラキ-c0227-2045e646.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/174.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/174",
@@ -4893,7 +4893,7 @@
     {
       "id": "altema-pilot-647980e014",
       "kind": "pilot",
-      "name": "カテジナ・ルース(C0231)",
+      "name": "Katejina Loos (C0231)",
       "icon": "icons/altema/pilot-カテジナ・ルース-c0231-5721a49e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/173.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/173",
@@ -4905,7 +4905,7 @@
     {
       "id": "altema-pilot-b05a7cc7ab",
       "kind": "pilot",
-      "name": "ジュドー・アーシタ(C0223)",
+      "name": "Judau Ashta (C0223)",
       "icon": "icons/altema/pilot-ジュドー・アーシタ-c0223-602b627f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/172.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/172",
@@ -4917,7 +4917,7 @@
     {
       "id": "altema-pilot-cc03030966",
       "kind": "pilot",
-      "name": "リュース・クランゲル",
+      "name": "Lieuze Krangel",
       "icon": "icons/altema/pilot-リュース・クランゲル-8b7301c5.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/170.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/170",
@@ -4929,7 +4929,7 @@
     {
       "id": "altema-pilot-843b95ecc9",
       "kind": "pilot",
-      "name": "シャア・アズナブル(C0236)",
+      "name": "Char Aznable (C0236)",
       "icon": "icons/altema/pilot-シャア・アズナブル-c0236-c17c4485.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/169.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/169",
@@ -4941,7 +4941,7 @@
     {
       "id": "altema-pilot-436e3c704c",
       "kind": "pilot",
-      "name": "リリス・エイデン",
+      "name": "Lilith Aiden",
       "icon": "icons/altema/pilot-リリス・エイデン-8c708bac.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/166.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/166",
@@ -4953,7 +4953,7 @@
     {
       "id": "altema-pilot-8b69714208",
       "kind": "pilot",
-      "name": "ファ・ユイリィ(C0245)",
+      "name": "Fa Yuiry (C0245)",
       "icon": "icons/altema/pilot-ファ・ユイリィ-c0245-9a35da9f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/165.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/165",
@@ -4965,7 +4965,7 @@
     {
       "id": "altema-pilot-2e236e1fe0",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0235)",
+      "name": "Amuro Ray (C0235)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0235-d36290b2.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/163.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/163",
@@ -4977,7 +4977,7 @@
     {
       "id": "altema-pilot-96c29ca57b",
       "kind": "pilot",
-      "name": "ミシェル・ルオ",
+      "name": "Michele Luio",
       "icon": "icons/altema/pilot-ミシェル・ルオ-8c664ddf.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/162.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/162",
@@ -4989,7 +4989,7 @@
     {
       "id": "altema-pilot-22cb802644",
       "kind": "pilot",
-      "name": "ロザミア・バダム(C0221)",
+      "name": "Rosamia Badam (C0221)",
       "icon": "icons/altema/pilot-ロザミア・バダム-c0221-bc67a652.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/161.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/161",
@@ -5001,7 +5001,7 @@
     {
       "id": "altema-pilot-5a626ff466",
       "kind": "pilot",
-      "name": "ラカン・ダカラン",
+      "name": "Rakan Dahkaran",
       "icon": "icons/altema/pilot-ラカン・ダカラン-2e10b435.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/160.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/160",
@@ -5013,7 +5013,7 @@
     {
       "id": "altema-pilot-8f56fc4e12",
       "kind": "pilot",
-      "name": "レコア・ロンド(C0191)",
+      "name": "Reccoa Londe (C0191)",
       "icon": "icons/altema/pilot-レコア・ロンド-c0191-46189e10.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/159.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/159",
@@ -5025,7 +5025,7 @@
     {
       "id": "altema-pilot-6668ce2488",
       "kind": "pilot",
-      "name": "ケリィ・レズナー",
+      "name": "Kelley Layzner",
       "icon": "icons/altema/pilot-ケリィ・レズナー-f95297e1.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/157.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/157",
@@ -5037,7 +5037,7 @@
     {
       "id": "altema-pilot-a323bb5c87",
       "kind": "pilot",
-      "name": "イオ・フレミング(0215)",
+      "name": "Io Fleming (0215)",
       "icon": "icons/altema/pilot-イオ・フレミング-0215-a426f8db.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/156.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/156",
@@ -5049,7 +5049,7 @@
     {
       "id": "altema-pilot-d44cc81a3b",
       "kind": "pilot",
-      "name": "ペッシェ・モンターニュ(C0216)",
+      "name": "Peche Montagne (C0216)",
       "icon": "icons/altema/pilot-ペッシェ・モンターニュ-c0216-3009574d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/155.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/155",
@@ -5061,7 +5061,7 @@
     {
       "id": "altema-pilot-dae96be844",
       "kind": "pilot",
-      "name": "リン",
+      "name": "Rin",
       "icon": "icons/altema/pilot-リン-1aae248d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/154.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/154",
@@ -5073,7 +5073,7 @@
     {
       "id": "altema-pilot-13f82a2430",
       "kind": "pilot",
-      "name": "セリーヌ・ロム",
+      "name": "Celine Rom",
       "icon": "icons/altema/pilot-セリーヌ・ロム-de2ab30f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/153.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/153",
@@ -5085,7 +5085,7 @@
     {
       "id": "altema-pilot-36ed0e68b5",
       "kind": "pilot",
-      "name": "シャア・アズナブル(C0204)",
+      "name": "Char Aznable (C0204)",
       "icon": "icons/altema/pilot-シャア・アズナブル-c0204-acd9c10c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/152.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/152",
@@ -5097,7 +5097,7 @@
     {
       "id": "altema-pilot-627325bb23",
       "kind": "pilot",
-      "name": "ガウマン・ノビル",
+      "name": "Gawman Nobile",
       "icon": "icons/altema/pilot-ガウマン・ノビル-7e37043b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/151.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/151",
@@ -5109,7 +5109,7 @@
     {
       "id": "altema-pilot-e159145cf6",
       "kind": "pilot",
-      "name": "ゾルタン・アッカネン",
+      "name": "Zoltan Akkanen",
       "icon": "icons/altema/pilot-ゾルタン・アッカネン-f78c745e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/150.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/150",
@@ -5121,7 +5121,7 @@
     {
       "id": "altema-pilot-bf355621a5",
       "kind": "pilot",
-      "name": "バナージ・リンクス(C0200)",
+      "name": "Banagher Links (C0200)",
       "icon": "icons/altema/pilot-バナージ・リンクス-c0200-7e368333.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/149.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/149",
@@ -5133,7 +5133,7 @@
     {
       "id": "altema-pilot-88e1557833",
       "kind": "pilot",
-      "name": "リディ・マーセナス(C0199)",
+      "name": "Riddhe Marcenas (C0199)",
       "icon": "icons/altema/pilot-リディ・マーセナス-c0199-5044fbfb.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/148.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/148",
@@ -5145,7 +5145,7 @@
     {
       "id": "altema-pilot-7d2146c52e",
       "kind": "pilot",
-      "name": "レイ",
+      "name": "Rey",
       "icon": "icons/altema/pilot-レイ-f261aeb1.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/147.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/147",
@@ -5157,7 +5157,7 @@
     {
       "id": "altema-pilot-965023074a",
       "kind": "pilot",
-      "name": "クリスチーナ・マッケンジー",
+      "name": "Christina Mackenzie",
       "icon": "icons/altema/pilot-クリスチーナ・マッケンジー-0119c0d8.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/145.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/145",
@@ -5169,7 +5169,7 @@
     {
       "id": "altema-pilot-9f451d782a",
       "kind": "pilot",
-      "name": "ダントン・ハイレッグ",
+      "name": "Danton Hyleg",
       "icon": "icons/altema/pilot-ダントン・ハイレッグ-74b54043.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/144.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/144",
@@ -5181,7 +5181,7 @@
     {
       "id": "altema-pilot-6b3137f0a9",
       "kind": "pilot",
-      "name": "ノン",
+      "name": "Non",
       "icon": "icons/altema/pilot-ノン-1125555b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/143.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/143",
@@ -5193,7 +5193,7 @@
     {
       "id": "altema-pilot-d2ea66d264",
       "kind": "pilot",
-      "name": "プルツー",
+      "name": "Ple Two",
       "icon": "icons/altema/pilot-プルツー-42830228.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/142.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/142",
@@ -5205,7 +5205,7 @@
     {
       "id": "altema-pilot-31c655ea2c",
       "kind": "pilot",
-      "name": "キンケドゥ・ナウ",
+      "name": "Kincade Nau",
       "icon": "icons/altema/pilot-キンケドゥ・ナウ-4bc25693.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/141.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/141",
@@ -5217,7 +5217,7 @@
     {
       "id": "altema-pilot-bde52a689a",
       "kind": "pilot",
-      "name": "ユウ・カジマ",
+      "name": "Yuu Kajima",
       "icon": "icons/altema/pilot-ユウ・カジマ-bad83805.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/140.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/140",
@@ -5229,7 +5229,7 @@
     {
       "id": "altema-pilot-58b9973bd7",
       "kind": "pilot",
-      "name": "シャア・アズナブル(C0193)",
+      "name": "Char Aznable (C0193)",
       "icon": "icons/altema/pilot-シャア・アズナブル-c0193-e79ce991.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/139.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/139",
@@ -5241,7 +5241,7 @@
     {
       "id": "altema-pilot-5fb5d245c9",
       "kind": "pilot",
-      "name": "ペッシェ・モンターニュ(C0192)",
+      "name": "Peche Montagne (C0192)",
       "icon": "icons/altema/pilot-ペッシェ・モンターニュ-c0192-7a5e209f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/138.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/138",
@@ -5253,7 +5253,7 @@
     {
       "id": "altema-pilot-9b79b2f3d1",
       "kind": "pilot",
-      "name": "カミーユ・ビダン(C0190)",
+      "name": "Kamille Bidan (C0190)",
       "icon": "icons/altema/pilot-カミーユ・ビダン-c0190-c6e3358c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/137.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/137",
@@ -5265,7 +5265,7 @@
     {
       "id": "altema-pilot-6ab531507d",
       "kind": "pilot",
-      "name": "リディ・マーセナス(C0189)",
+      "name": "Riddhe Marcenas (C0189)",
       "icon": "icons/altema/pilot-リディ・マーセナス-c0189-74ae64ab.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/135.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/135",
@@ -5277,7 +5277,7 @@
     {
       "id": "altema-pilot-74376a5902",
       "kind": "pilot",
-      "name": "シャア・アズナブル(C0147)",
+      "name": "Char Aznable (C0147)",
       "icon": "icons/altema/pilot-シャア・アズナブル-c0147-48ed6be6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/134.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/134",
@@ -5289,7 +5289,7 @@
     {
       "id": "altema-pilot-ea7ccc60d6",
       "kind": "pilot",
-      "name": "ロザミィ",
+      "name": "Rosammy",
       "icon": "icons/altema/pilot-ロザミィ-a334f19b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/133.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/133",
@@ -5301,7 +5301,7 @@
     {
       "id": "altema-pilot-c25dabdc02",
       "kind": "pilot",
-      "name": "ペッシェ・モンターニュ(C0186)",
+      "name": "Peche Montagne (C0186)",
       "icon": "icons/altema/pilot-ペッシェ・モンターニュ-c0186-8c45fa27.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/132.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/132",
@@ -5313,7 +5313,7 @@
     {
       "id": "altema-pilot-858022fc47",
       "kind": "pilot",
-      "name": "マシロ・オークス",
+      "name": "Mashiro Okusu",
       "icon": "icons/altema/pilot-マシロ・オークス-0f2bcbc0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/131.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/131",
@@ -5325,7 +5325,7 @@
     {
       "id": "altema-pilot-982e46f76b",
       "kind": "pilot",
-      "name": "シャア・アズナブル(C0181)",
+      "name": "Char Aznable (C0181)",
       "icon": "icons/altema/pilot-シャア・アズナブル-c0181-a18dc2f5.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/129.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/129",
@@ -5337,7 +5337,7 @@
     {
       "id": "altema-pilot-f464a513ec",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0167)",
+      "name": "Amuro Ray (C0167)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0167-e7f3c1ef.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/126.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/126",
@@ -5349,7 +5349,7 @@
     {
       "id": "altema-pilot-7e69b0cdac",
       "kind": "pilot",
-      "name": "シロー・アマダ(C0038)",
+      "name": "Shiro Amada (C0038)",
       "icon": "icons/altema/pilot-シロー・アマダ-c0038-55cf1cc4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/123.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/123",
@@ -5361,7 +5361,7 @@
     {
       "id": "altema-pilot-8e28c4a6ea",
       "kind": "pilot",
-      "name": "ウッソ・エヴィン(C0179)",
+      "name": "Uso Ewin (C0179)",
       "icon": "icons/altema/pilot-ウッソ・エヴィン-c0179-d410b2ce.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/122.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/122",
@@ -5373,7 +5373,7 @@
     {
       "id": "altema-pilot-ef5ca73911",
       "kind": "pilot",
-      "name": "アルマ・シュティルナー",
+      "name": "Alma Stirner",
       "icon": "icons/altema/pilot-アルマ・シュティルナー-84d1d3e6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/121.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/121",
@@ -5385,7 +5385,7 @@
     {
       "id": "altema-pilot-b9c6806a17",
       "kind": "pilot",
-      "name": "クロエ・クローチェ",
+      "name": "Chloe Croce",
       "icon": "icons/altema/pilot-クロエ・クローチェ-414544ad.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/120.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/120",
@@ -5397,7 +5397,7 @@
     {
       "id": "altema-pilot-9c4911aecb",
       "kind": "pilot",
-      "name": "ハサウェイ・ノア",
+      "name": "Hathaway Noa",
       "icon": "icons/altema/pilot-ハサウェイ・ノア-ccf62c99.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/118.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/118",
@@ -5409,7 +5409,7 @@
     {
       "id": "altema-pilot-d74b3ed40e",
       "kind": "pilot",
-      "name": "カイ・シデン(C0178)",
+      "name": "Kai Shiden (C0178)",
       "icon": "icons/altema/pilot-カイ・シデン-c0178-879f93a3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/117.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/117",
@@ -5421,7 +5421,7 @@
     {
       "id": "altema-pilot-9f25766eaa",
       "kind": "pilot",
-      "name": "ジョニー・ライデン",
+      "name": "Johnny Ridden",
       "icon": "icons/altema/pilot-ジョニー・ライデン-1fc64767.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/116.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/116",
@@ -5433,7 +5433,7 @@
     {
       "id": "altema-pilot-8df8157f72",
       "kind": "pilot",
-      "name": "リディ・マーセナス(C0174)",
+      "name": "Riddhe Marcenas (C0174)",
       "icon": "icons/altema/pilot-リディ・マーセナス-c0174-251d1692.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/114.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/114",
@@ -5445,7 +5445,7 @@
     {
       "id": "altema-pilot-da9dd0894a",
       "kind": "pilot",
-      "name": "ウバルド・モリーナ",
+      "name": "Ubaldo Morina",
       "icon": "icons/altema/pilot-ウバルド・モリーナ-b7f6064f.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/109.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/109",
@@ -5457,7 +5457,7 @@
     {
       "id": "altema-pilot-e7ca11c9c2",
       "kind": "pilot",
-      "name": "ユッタ・カーシム(C0166)",
+      "name": "Jutta Qasim (C0166)",
       "icon": "icons/altema/pilot-ユッタ・カーシム-c0166-7b9fc354.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/108.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/108",
@@ -5469,7 +5469,7 @@
     {
       "id": "altema-pilot-75ca2cc7aa",
       "kind": "pilot",
-      "name": "ハマーン・カーン",
+      "name": "Haman Karn",
       "icon": "icons/altema/pilot-ハマーン・カーン-f6927ab7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/107.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/107",
@@ -5481,7 +5481,7 @@
     {
       "id": "altema-pilot-68fb418cf1",
       "kind": "pilot",
-      "name": "プルトゥエルブ",
+      "name": "Ple-Twelve",
       "icon": "icons/altema/pilot-プルトゥエルブ-f709d300.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/106.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/106",
@@ -5493,7 +5493,7 @@
     {
       "id": "altema-pilot-4d2a6f72d2",
       "kind": "pilot",
-      "name": "ミチェル・カノ",
+      "name": "Michel Kano",
       "icon": "icons/altema/pilot-ミチェル・カノ-f7b0b387.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/105.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/105",
@@ -5505,7 +5505,7 @@
     {
       "id": "altema-pilot-e49a792437",
       "kind": "pilot",
-      "name": "シーマ・ガラハウ(C0049)",
+      "name": "Cima Garahau (C0049)",
       "icon": "icons/altema/pilot-シーマ・ガラハウ-c0049-e8ff6729.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/104.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/104",
@@ -5517,7 +5517,7 @@
     {
       "id": "altema-pilot-e3c3e30a12",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0146)",
+      "name": "Amuro Ray (C0146)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0146-e62bccf6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/103.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/103",
@@ -5529,7 +5529,7 @@
     {
       "id": "altema-pilot-c6d0d17d40",
       "kind": "pilot",
-      "name": "バナージ・リンクス(C0154)",
+      "name": "Banagher Links (C0154)",
       "icon": "icons/altema/pilot-バナージ・リンクス-c0154-9e85fa35.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/102.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/102",
@@ -5541,7 +5541,7 @@
     {
       "id": "altema-pilot-2a1a0ae1b8",
       "kind": "pilot",
-      "name": "アイナ・サハリン",
+      "name": "Aina Sakhalin",
       "icon": "icons/altema/pilot-アイナ・サハリン-f2045656.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/101.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/101",
@@ -5553,7 +5553,7 @@
     {
       "id": "altema-pilot-149f8b1044",
       "kind": "pilot",
-      "name": "シーブック・アノー(C0084)",
+      "name": "Seabook Arno (C0084)",
       "icon": "icons/altema/pilot-シーブック・アノー-c0084-50c70dc6.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/100.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/100",
@@ -5565,7 +5565,7 @@
     {
       "id": "altema-pilot-9fcf6a0169",
       "kind": "pilot",
-      "name": "セイラ・マス",
+      "name": "Sayla Mass",
       "icon": "icons/altema/pilot-セイラ・マス-cc166439.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/99.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/99",
@@ -5577,7 +5577,7 @@
     {
       "id": "altema-pilot-738e296a75",
       "kind": "pilot",
-      "name": "パプテマス・シロッコ",
+      "name": "Paptimus Scirocco",
       "icon": "icons/altema/pilot-パプテマス・シロッコ-991200af.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/98.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/98",
@@ -5589,7 +5589,7 @@
     {
       "id": "altema-pilot-9a8a5bdd77",
       "kind": "pilot",
-      "name": "ペッシェ・モンターニュ(C0098)",
+      "name": "Peche Montagne (C0098)",
       "icon": "icons/altema/pilot-ペッシェ・モンターニュ-c0098-24fc6035.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/96.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/96",
@@ -5601,7 +5601,7 @@
     {
       "id": "altema-pilot-e59b634778",
       "kind": "pilot",
-      "name": "コウ・ウラキ(C0009)",
+      "name": "Kou Uraki (C0009)",
       "icon": "icons/altema/pilot-コウ・ウラキ-c0009-f05af4bb.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/94.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/94",
@@ -5613,7 +5613,7 @@
     {
       "id": "altema-pilot-8bd53b8102",
       "kind": "pilot",
-      "name": "ドレル・ロナ",
+      "name": "Dorel Ronah",
       "icon": "icons/altema/pilot-ドレル・ロナ-9ea6cffa.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/92.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/92",
@@ -5625,7 +5625,7 @@
     {
       "id": "altema-pilot-b870eb2f95",
       "kind": "pilot",
-      "name": "サフィラ・ガードナー",
+      "name": "Saphira Gardner",
       "icon": "icons/altema/pilot-サフィラ・ガードナー-5e841bd8.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/91.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/91",
@@ -5637,7 +5637,7 @@
     {
       "id": "altema-pilot-9df44aaef6",
       "kind": "pilot",
-      "name": "マリーダ・クルス",
+      "name": "Marida Cruz",
       "icon": "icons/altema/pilot-マリーダ・クルス-383936aa.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/89.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/89",
@@ -5649,7 +5649,7 @@
     {
       "id": "altema-pilot-02e292275b",
       "kind": "pilot",
-      "name": "マシュマー・セロ(C0139)",
+      "name": "Mashymre Cello (C0139)",
       "icon": "icons/altema/pilot-マシュマー・セロ-c0139-96c0d9d7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/88.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/88",
@@ -5661,7 +5661,7 @@
     {
       "id": "altema-pilot-5426445e1c",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0001)",
+      "name": "Amuro Ray (C0001)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0001-c66faa6b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/84.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/84",
@@ -5673,7 +5673,7 @@
     {
       "id": "altema-pilot-6989ad14a1",
       "kind": "pilot",
-      "name": "カミーユ・ビダン(C0051)",
+      "name": "Kamille Bidan (C0051)",
       "icon": "icons/altema/pilot-カミーユ・ビダン-c0051-d0ec2002.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/82.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/82",
@@ -5685,7 +5685,7 @@
     {
       "id": "altema-pilot-47780cfabf",
       "kind": "pilot",
-      "name": "クワトロ・バジーナ(C0016)",
+      "name": "Quattro Bajeena (C0016)",
       "icon": "icons/altema/pilot-クワトロ・バジーナ-c0016-53a58bf2.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/81.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/81",
@@ -5697,7 +5697,7 @@
     {
       "id": "altema-pilot-2f5a548d8a",
       "kind": "pilot",
-      "name": "ダリル・ローレンツ(C0041)",
+      "name": "Daryl Lorenz (C0041)",
       "icon": "icons/altema/pilot-ダリル・ローレンツ-c0041-3e683795.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/80.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/80",
@@ -5709,7 +5709,7 @@
     {
       "id": "altema-pilot-6f134dcdfb",
       "kind": "pilot",
-      "name": "ペッシェ・モンターニュ(C0020)",
+      "name": "Peche Montagne (C0020)",
       "icon": "icons/altema/pilot-ペッシェ・モンターニュ-c0020-2fbc1e80.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/78.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/78",
@@ -5721,7 +5721,7 @@
     {
       "id": "altema-pilot-a93b609d48",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0014)",
+      "name": "Amuro Ray (C0014)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0014-b9040eef.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/75.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/75",
@@ -5733,7 +5733,7 @@
     {
       "id": "altema-pilot-4f8fe7346f",
       "kind": "pilot",
-      "name": "シャア・アズナブル(C0085)",
+      "name": "Char Aznable (C0085)",
       "icon": "icons/altema/pilot-シャア・アズナブル-c0085-303d90cf.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/74.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/74",
@@ -5745,7 +5745,7 @@
     {
       "id": "altema-pilot-881c8e8f27",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0060)",
+      "name": "Amuro Ray (C0060)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0060-586576eb.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/73.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/73",
@@ -5757,7 +5757,7 @@
     {
       "id": "altema-pilot-d981f22176",
       "kind": "pilot",
-      "name": "バナージ・リンクス(C0036)",
+      "name": "Banagher Links (C0036)",
       "icon": "icons/altema/pilot-バナージ・リンクス-c0036-f3b0202e.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/72.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/72",
@@ -5769,7 +5769,7 @@
     {
       "id": "altema-pilot-fc96c451d0",
       "kind": "pilot",
-      "name": "アナベル・ガトー(C0043)",
+      "name": "Anavel Gato (C0043)",
       "icon": "icons/altema/pilot-アナベル・ガトー-c0043-bc866fa0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/71.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/71",
@@ -5781,7 +5781,7 @@
     {
       "id": "altema-pilot-ab27a3f4cc",
       "kind": "pilot",
-      "name": "ヨナ・バシュタ(C0107)",
+      "name": "Jona Basta (C0107)",
       "icon": "icons/altema/pilot-ヨナ・バシュタ-c0107-36c773aa.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/56.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/56",
@@ -5793,7 +5793,7 @@
     {
       "id": "altema-pilot-dcfbabace3",
       "kind": "pilot",
-      "name": "ジェリド・メサ",
+      "name": "Jerid Messa",
       "icon": "icons/altema/pilot-ジェリド・メサ-f4567bc3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/44.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/44",
@@ -5805,7 +5805,7 @@
     {
       "id": "altema-pilot-c8ae8baa5d",
       "kind": "pilot",
-      "name": "コウ・ウラキ(C0080)",
+      "name": "Kou Uraki (C0080)",
       "icon": "icons/altema/pilot-コウ・ウラキ-c0080-c4796c2a.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/42.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/42",
@@ -5817,7 +5817,7 @@
     {
       "id": "altema-pilot-5948226675",
       "kind": "pilot",
-      "name": "シャア・アズナブル(C0048)",
+      "name": "Char Aznable (C0048)",
       "icon": "icons/altema/pilot-シャア・アズナブル-c0048-89cfdec3.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/25.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/25",
@@ -5829,7 +5829,7 @@
     {
       "id": "altema-pilot-05f2b75e8d",
       "kind": "pilot",
-      "name": "リディ・マーセナス(C0047)",
+      "name": "Riddhe Marcenas (C0047)",
       "icon": "icons/altema/pilot-リディ・マーセナス-c0047-dc1ce27d.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/24.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/24",
@@ -5841,7 +5841,7 @@
     {
       "id": "altema-pilot-69224c5e8c",
       "kind": "pilot",
-      "name": "シン・マツナガ",
+      "name": "Shin Matsunaga",
       "icon": "icons/altema/pilot-シン・マツナガ-787b4c4c.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/23.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/23",
@@ -5853,7 +5853,7 @@
     {
       "id": "altema-pilot-9497c6d9e5",
       "kind": "pilot",
-      "name": "アムロ・レイ(C0033)",
+      "name": "Amuro Ray (C0033)",
       "icon": "icons/altema/pilot-アムロ・レイ-c0033-caaaf899.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/18.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/18",
@@ -5865,7 +5865,7 @@
     {
       "id": "altema-pilot-33a61fa32e",
       "kind": "pilot",
-      "name": "ウッソ・エヴィン(C0032)",
+      "name": "Uso Ewin (C0032)",
       "icon": "icons/altema/pilot-ウッソ・エヴィン-c0032-87a7e6b7.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/17.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/17",
@@ -5877,7 +5877,7 @@
     {
       "id": "altema-pilot-fcea78aa6b",
       "kind": "pilot",
-      "name": "シャア・アズナブル(C0027)",
+      "name": "Char Aznable (C0027)",
       "icon": "icons/altema/pilot-シャア・アズナブル-c0027-21ea5b10.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/14.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/14",
@@ -5889,7 +5889,7 @@
     {
       "id": "altema-pilot-7f4111940f",
       "kind": "pilot",
-      "name": "カミーユ・ビダン(C0015)",
+      "name": "Kamille Bidan (C0015)",
       "icon": "icons/altema/pilot-カミーユ・ビダン-c0015-d4f7c2dd.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/11.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/11",
@@ -5901,7 +5901,7 @@
     {
       "id": "altema-pilot-34c5aa20a5",
       "kind": "pilot",
-      "name": "フル・フロンタル",
+      "name": "Full Frontal",
       "icon": "icons/altema/pilot-フル・フロンタル-1f5cfbc4.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/6.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/6",
@@ -5913,7 +5913,7 @@
     {
       "id": "altema-pilot-50000640fa",
       "kind": "pilot",
-      "name": "バナージ・リンクス(C0006)",
+      "name": "Banagher Links (C0006)",
       "icon": "icons/altema/pilot-バナージ・リンクス-c0006-20dcab0b.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/5.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/5",
@@ -5925,7 +5925,7 @@
     {
       "id": "altema-pilot-0ef7c8d7b0",
       "kind": "pilot",
-      "name": "シャア・アズナブル(C0004)",
+      "name": "Char Aznable (C0004)",
       "icon": "icons/altema/pilot-シャア・アズナブル-c0004-f31d2588.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/3.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/3",
@@ -5937,7 +5937,7 @@
     {
       "id": "altema-pilot-deccf2ebed",
       "kind": "pilot",
-      "name": "ノリス・パッカード(C0061)",
+      "name": "Norris Packard (C0061)",
       "icon": "icons/altema/pilot-ノリス・パッカード-c0061-70972136.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/29.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/29",
@@ -5949,7 +5949,7 @@
     {
       "id": "altema-pilot-4e338b2192",
       "kind": "pilot",
-      "name": "シロー・アマダ(C0013)",
+      "name": "Shiro Amada (C0013)",
       "icon": "icons/altema/pilot-シロー・アマダ-c0013-4084c207.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/10.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/10",
@@ -5961,7 +5961,7 @@
     {
       "id": "altema-pilot-2ff4d6fcc7",
       "kind": "pilot",
-      "name": "リン(C0443)",
+      "name": "Rin (C0443)",
       "icon": "icons/altema/pilot-リン-c0443-c50ee284.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/chara/icon/354.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/chara/354",
@@ -5973,8 +5973,8 @@
   ],
   "nameMapping": {
     "mapVersion": 1,
-    "mappedItems": 0,
-    "unresolvedItems": 497,
-    "unresolvedNames": 359
+    "mappedItems": 497,
+    "unresolvedItems": 0,
+    "unresolvedNames": 0
   }
 }
