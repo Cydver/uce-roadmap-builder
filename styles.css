@@ -696,8 +696,19 @@ body.unit-profile-open { overflow: hidden; }
  * Current L-shaped structure: top-left MS overview, top-right Pilot,
  * and a full-width MS notes band split evenly into PVP/PVE.
  */
+/*
+ * Give overview/meta the majority of the profile height. Notes are deliberately
+ * the lowest-priority region: they keep a usable floor, then scroll internally.
+ * Meta-dense units can claim a little more room without growing the modal.
+ */
 .unit-profile-grid-lshape {
-  grid-template-rows: repeat(2, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 2fr) minmax(120px, 1fr);
+}
+.unit-profile-grid-lshape.meta-dense {
+  grid-template-rows: minmax(0, 5fr) minmax(110px, 2fr);
+}
+.unit-profile-grid-lshape.meta-very-dense {
+  grid-template-rows: minmax(0, 3fr) minmax(100px, 1fr);
 }
 .unit-profile-grid-lshape > .unit-profile-ms-panel {
   grid-column: 1;
@@ -741,6 +752,36 @@ body.unit-profile-open { overflow: hidden; }
   margin-top: 0;
   padding-top: 20px;
   border-top: 0;
+}
+/* Use the upper-left quadrant efficiently so PVP Meta remains visible on shorter desktop viewports. */
+.unit-profile-grid-lshape > .unit-profile-ms-panel {
+  padding: 22px 26px 16px;
+}
+.unit-profile-grid-lshape > .unit-profile-ms-panel .unit-profile-hero {
+  grid-template-columns: 148px minmax(0, 1fr);
+  gap: 19px;
+}
+.unit-profile-grid-lshape > .unit-profile-ms-panel .unit-profile-art {
+  width: 148px;
+  border-radius: 18px;
+}
+.unit-profile-grid-lshape > .unit-profile-ms-panel .unit-profile-section {
+  margin-top: 14px;
+  padding-top: 13px;
+}
+.unit-profile-grid-lshape > .unit-profile-ms-panel .unit-profile-investment {
+  margin-top: 7px;
+}
+.unit-profile-grid-lshape > .unit-profile-ms-panel .unit-profile-investment-stat {
+  padding-top: 8px;
+  padding-bottom: 9px;
+}
+.unit-profile-grid-lshape > .unit-profile-ms-panel .unit-profile-meta-list {
+  gap: 5px;
+  margin-top: 8px;
+}
+.unit-profile-grid-lshape > .unit-profile-ms-panel .unit-profile-meta-row {
+  padding: 7px 9px;
 }
 .unit-profile-hero {
   display: grid;
