@@ -55,6 +55,8 @@ const TAGS_PER_COLUMN = 5;
 const MIN_ZOOM = 0.2;
 const MAX_ZOOM = 1.6;
 const ZOOM_BUTTON_STEP = 0.1;
+const TIER_LABEL_ABBREVIATION_ZOOM = 0.4;
+const TIER_LABEL_ABBREVIATIONS = { human: "HR", must: "MP", ideal: "IP", luxury: "LP", skip: "S" };
 const MUST_P5_TAG = "Must P5";
 const BUFF_TAG = "Buff";
 const TAG_ORDER = new Map(TAG_OPTIONS.map((tag, i) => [tag.toLowerCase(), i]));
@@ -697,7 +699,11 @@ function buildStaticGrid() {
     label.style.top = `${tierY(tier.id)}px`;
     label.style.height = `${tierHeight(tier.id)}px`;
     label.style.color = tier.color;
-    label.textContent = tier.label;
+    label.dataset.fullLabel = tier.label;
+    label.title = tier.label;
+    label.textContent = zoomScale <= TIER_LABEL_ABBREVIATION_ZOOM
+      ? (TIER_LABEL_ABBREVIATIONS[tier.id] || tier.label)
+      : tier.label;
     label.setAttribute("aria-label", `${tier.label}. Click to rename or recolor this row.`);
     label.addEventListener("click", (event) => {
       event.stopPropagation();
@@ -2109,6 +2115,18 @@ function downloadBlob(blob, filename) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
+function updateTierLabelZoomText() {
+  if (!els.roadmap) return;
+  const compact = zoomScale <= TIER_LABEL_ABBREVIATION_ZOOM;
+  els.roadmap.querySelectorAll(".tier-label").forEach((label) => {
+    const fullLabel = label.dataset.fullLabel || label.textContent || "";
+    const tierId = [...label.classList].find((className) => Object.prototype.hasOwnProperty.call(TIER_LABEL_ABBREVIATIONS, className));
+    label.textContent = compact && tierId ? TIER_LABEL_ABBREVIATIONS[tierId] : fullLabel;
+    label.title = fullLabel;
+    label.setAttribute("aria-label", `${fullLabel}. Click to rename or recolor this row.`);
+  });
+}
+
 function applyZoom() {
   if (!els.roadmap || !els.roadmapStage) return;
   els.roadmap.style.transform = `scale(${zoomScale})`;
@@ -2121,6 +2139,7 @@ function applyZoom() {
   els.roadmapStage.style.height = `${baseChartHeight() * zoomScale}px`;
   if (els.zoomRange) els.zoomRange.value = String(Math.round(zoomScale * 100));
   if (els.zoomLabel) els.zoomLabel.textContent = `${Math.round(zoomScale * 100)}%`;
+  updateTierLabelZoomText();
 }
 function setZoom(value, persist = true) {
   zoomScale = clamp(Math.round(Number(value || 1) * 100) / 100, MIN_ZOOM, MAX_ZOOM);
