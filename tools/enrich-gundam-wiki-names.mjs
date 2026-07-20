@@ -22,7 +22,10 @@ const GOOGLE_TRANSLATE_URL = process.env.GUNDAM_GOOGLE_TRANSLATE_URL || 'https:/
 const MYMEMORY_TRANSLATE_URL = process.env.GUNDAM_MYMEMORY_TRANSLATE_URL || 'https://api.mymemory.translated.net/get';
 
 const wikiSearchCache = new Map();
+const wikiIdentityIndexCache = new Map();
 const translationCache = new Map();
+const WIKI_CATEGORY_BATCH_SIZE = Math.max(10, Math.min(50, Number(process.env.GUNDAM_WIKI_CATEGORY_BATCH_SIZE || 50)));
+const WIKI_IDENTITY_CATEGORIES = Object.freeze({ ms: 'Mobile Weapons', pilot: 'Characters' });
 let verifiedNameCache = { version: 1, entries: {} };
 let nextWikiRequestAt = 0;
 let globalWikiPauseUntil = 0;
@@ -41,7 +44,7 @@ async function main() {
 
   const groups = groupItemsByLookup(catalog.items);
   console.log(`Resolving ${groups.length} unique names for ${catalog.items.length} catalog items...`);
-  console.log('Resolution order: persistent verified Gundam Wiki cache -> rate-limited Japanese Gundam Wiki match -> verified canonical base + translated descriptor. Proper MS/pilot names are never machine-translated.');
+  console.log('Resolution order: persistent verified Gundam Wiki cache -> batched Gundam Wiki category identity index -> verified canonical base + translated descriptor. Proper MS/pilot names are never machine-translated.');
   console.log(`Loaded ${cacheEntriesBefore} persistent verified Gundam Wiki name cache entries.`);
 
   const resolutions = new Map();
@@ -202,6 +205,7 @@ function buildSearchQueries(rawName, kind) {
 async function resolveJapaneseName(rawName, kind) {
   const fullName = primaryLookupName(rawName, kind);
   let baseResolution = null;
+  let identityIndex = null;
 
   for (const query of buildSearchQueries(fullName, kind)) {
     const cached = getVerifiedCachedName(kind, query);
@@ -214,8 +218,8 @@ async function resolveJapaneseName(rawName, kind) {
       continue;
     }
 
-    const pages = await safeSearchWikiPages(query, true);
-    const match = chooseVerifiedJapaneseCandidate(pages, query, kind);
+    identityIndex ||= await loadWikiIdentityIndex(kind);
+    const match = identityIndex.get(normalizeForMatch(query));
     if (!match) continue;
 
     const displayName = sanitizeTranslatedDisplayName(
@@ -224,7 +228,7 @@ async function resolveJapaneseName(rawName, kind) {
     );
     if (!displayName) continue;
 
-    const verified = wikiResolution(match, displayName, 'exact-ja');
+    const verified = wikiResolution(match, displayName, 'wiki-category-identity');
     setVerifiedCachedName(kind, query, verified);
 
     const isExact = normalizeForMatch(query) === normalizeForMatch(fullName);
@@ -246,7 +250,7 @@ async function resolveJapaneseName(rawName, kind) {
       title: baseResolution.match.title,
       url: baseResolution.match.url || wikiUrl(baseResolution.match.title),
       displayName: baseResolution.displayName,
-      matchType: baseResolution.cached ? 'verified-cache-base' : 'wiki-base-ja'
+      matchType: baseResolution.cached ? 'verified-cache-base' : 'wiki-category-base-ja'
     };
   }
 
@@ -263,20 +267,6 @@ async function resolveJapaneseName(rawName, kind) {
   );
   if (!combined) return null;
 
-  // We may opportunistically verify the composed variant against Wiki, but verification
-  // failure never causes the verified base to be replaced by a machine-translated name.
-  const verifiedVariant = await verifyTranslatedNameAgainstWiki(combined, kind);
-  if (verifiedVariant) {
-    return {
-      source: 'gundam-wiki',
-      title: verifiedVariant.title,
-      url: wikiUrl(verifiedVariant.title),
-      displayName: verifiedVariant.displayName,
-      matchType: 'wiki-base-translated-descriptor-verified',
-      translationProvider: translatedRemainder.provider
-    };
-  }
-
   return {
     source: 'gundam-wiki',
     title: baseResolution.match.title,
@@ -285,6 +275,158 @@ async function resolveJapaneseName(rawName, kind) {
     matchType: 'wiki-base-translated-descriptor',
     translationProvider: translatedRemainder.provider
   };
+}
+
+async function loadWikiIdentityIndex(kind) {
+  if (wikiIdentityIndexCache.has(kind)) return await wikiIdentityIndexCache.get(kind);
+
+  const promise = buildWikiIdentityIndex(kind);
+  wikiIdentityIndexCache.set(kind, promise);
+  return await promise;
+}
+
+async function buildWikiIdentityIndex(kind) {
+  const category = WIKI_IDENTITY_CATEGORIES[kind];
+  if (!category) throw new Error(`No Gundam Wiki identity category configured for ${kind}.`);
+
+  console.log(`Building Gundam Wiki ${kind} identity index from Category:${category}...`);
+  const index = new Map();
+  let continuation = null;
+  let pageCount = 0;
+  let batchCount = 0;
+
+  do {
+    const params = new URLSearchParams({
+      action: 'query',
+      format: 'json',
+      formatversion: '2',
+      utf8: '1',
+      redirects: '1',
+      generator: 'categorymembers',
+      gcmtitle: `Category:${category}`,
+      gcmnamespace: '0',
+      gcmtype: 'page',
+      gcmlimit: String(WIKI_CATEGORY_BATCH_SIZE),
+      prop: 'extracts|revisions',
+      exintro: '1',
+      explaintext: '1',
+      exsectionformat: 'plain',
+      rvprop: 'content',
+      rvslots: 'main',
+      rvsection: '0'
+    });
+
+    if (continuation) {
+      for (const [key, value] of Object.entries(continuation)) params.set(key, String(value));
+    }
+
+    const json = await fetchWikiJsonWithRetry(`${WIKI_API}?${params.toString()}`);
+    const pages = Array.isArray(json?.query?.pages) ? json.query.pages : [];
+
+    for (const page of pages) {
+      const title = clean(page?.title);
+      if (!title) continue;
+      const extract = String(page?.extract || '');
+      const source = String(page?.revisions?.[0]?.slots?.main?.content || page?.revisions?.[0]?.content || '');
+      const japaneseNames = extractJapaneseIdentityNames(source, extract);
+      if (!japaneseNames.length) continue;
+
+      const candidate = {
+        title,
+        extract,
+        source,
+        kind,
+        url: wikiUrl(title),
+        extractedEnglishName: canonicalDisplayName(title, kind)
+      };
+
+      for (const nameJa of japaneseNames) {
+        const key = normalizeForMatch(nameJa);
+        if (!key) continue;
+        const existing = index.get(key);
+        if (!existing || preferWikiIdentityCandidate(candidate, existing)) index.set(key, candidate);
+      }
+    }
+
+    pageCount += pages.length;
+    batchCount += 1;
+    continuation = json?.continue || null;
+    if (batchCount % 10 === 0 || !continuation) {
+      console.log(`Indexed ${pageCount} Category:${category} pages; ${index.size} Japanese identity name(s) found so far.`);
+    }
+  } while (continuation);
+
+  console.log(`Finished Gundam Wiki ${kind} identity index: ${pageCount} pages, ${index.size} Japanese identity name(s).`);
+  return index;
+}
+
+function extractJapaneseIdentityNames(source, extract) {
+  const names = new Set();
+  const add = value => {
+    const cleaned = cleanJapaneseIdentityValue(value);
+    if (!cleaned || !containsJapanese(cleaned) || cleaned.length > 180) return;
+    names.add(cleaned);
+  };
+
+  const sourceLead = String(source || '').slice(0, 14000);
+  const extractLead = String(extract || '').slice(0, 2400);
+
+  // Explicit infobox identity fields are the strongest source of truth.
+  for (const match of sourceLead.matchAll(/^\s*\|\s*([^=\n]{1,90})\s*=\s*(.+)$/gmu)) {
+    const field = clean(match[1]);
+    if (!/japanese|jp\s*name|jpname|ja\s*name|janame|native\s*name|official\s*name|name\s*jp|name\s*ja/i.test(field)) continue;
+    add(match[2]);
+  }
+
+  // Gundam Wiki commonly uses {{Nihongo|English|日本語|romanization}} in the lead.
+  for (const match of sourceLead.matchAll(/\{\{\s*(?:nihongo|nihongo2|japanese)\s*\|([^{}\n]{1,500})\}\}/giu)) {
+    const args = splitSimpleTemplateArgs(match[1]);
+    if (args.length >= 2) add(args[1]);
+  }
+
+  // Rendered lead extracts normally expose the Japanese identity in the first parentheses.
+  for (const match of extractLead.matchAll(/[（(]([^()（）\n]{1,220})[）)]/gu)) {
+    const inside = clean(match[1]);
+    if (!containsJapanese(inside)) continue;
+    const first = inside.split(/[,，;；]/)[0].replace(/^(?:Japanese|日本語)\s*[:：]\s*/i, '');
+    add(first);
+  }
+
+  return [...names];
+}
+
+function splitSimpleTemplateArgs(value) {
+  return String(value || '').split('|').map(part => clean(part));
+}
+
+function cleanJapaneseIdentityValue(value) {
+  let text = String(value || '')
+    .replace(/<!--.*?-->/gs, '')
+    .replace(/<ref\b[^>]*>[\s\S]*?<\/ref>/gi, '')
+    .replace(/<ref\b[^/>]*\/>/gi, '')
+    .replace(/<br\s*\/?\s*>/gi, ' ')
+    .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '$2')
+    .replace(/\[\[([^\]]+)\]\]/g, '$1')
+    .replace(/'''?|__/g, '')
+    .trim();
+
+  // Common language wrappers used in infobox fields.
+  text = text.replace(/\{\{\s*(?:lang|language)\s*\|\s*ja(?:panese)?\s*\|([^{}]+)\}\}/gi, '$1');
+  text = text.replace(/\{\{[^{}]*\}\}/g, '');
+  text = clean(text).replace(/^(?:Japanese|日本語)\s*[:：]\s*/i, '');
+  return text;
+}
+
+function preferWikiIdentityCandidate(candidate, existing) {
+  const score = page => {
+    const display = canonicalDisplayName(page.title, page.kind || 'ms');
+    let value = 0;
+    if (/^[A-Z0-9][A-Z0-9+\-./\[\]]{1,24}\s+/i.test(page.title)) value += 20;
+    if (/\((?:U\.C\.|Mobile Suit|Character|disambiguation)\)/i.test(page.title)) value -= 25;
+    value -= Math.min(20, display.length / 8);
+    return value;
+  };
+  return score(candidate) > score(existing);
 }
 
 function wikiResolution(match, displayName, matchType) {
@@ -946,6 +1088,19 @@ function runSelfTests() {
   assert(parseRetryAfterMs('60') === 60000, 'Retry-After seconds should be honored.');
   assert(combineCanonicalBaseWithRemainder('サザビー(紫)', 'サザビー', 'Sazabi', 'purple') === 'Sazabi (purple)', 'Only descriptors should be machine-translated after a verified canonical base.');
 
+
+  const indexedLeadNames = extractJapaneseIdentityNames(
+    "{{Infobox Mobile Suit\n| Japanese Name = バルギル\n}}\n'''AMS-123X Varguil''' is a mobile suit.",
+    'The AMS-123X Varguil (バルギル, Barugiru) is a prototype mobile suit.'
+  );
+  assert(indexedLeadNames.includes('バルギル'), 'Category indexing should extract Varguil Japanese identity from infobox/lead content.');
+
+  const indexedPilotNames = extractJapaneseIdentityNames(
+    '{{Nihongo|Uso Ewin|ウッソ・エヴィン|Usso Ebin}} is a pilot.',
+    'Uso Ewin (ウッソ・エヴィン, Usso Ebin) is a mobile suit pilot.'
+  );
+  assert(indexedPilotNames.includes('ウッソ・エヴィン'), 'Category indexing should extract Uso Ewin Japanese identity from Nihongo/lead content.');
+
   const deepJapaneseWithoutAdjacentEnglish = chooseVerifiedJapaneseCandidate([
     {
       title: 'Broad Base Article',
@@ -966,7 +1121,7 @@ function runSelfTests() {
   ], 'バルギル', 'ms');
   assert(wrongKind === null, 'Character pages must not resolve MS entries.');
 
-  console.log('Hybrid Gundam Wiki + translation name resolver self-tests passed.');
+  console.log('Category-index Gundam Wiki + descriptor-translation name resolver self-tests passed.');
 }
 
 const invokedPath = process.argv[1] ? pathToFileURL(path.resolve(process.argv[1])).href : '';
