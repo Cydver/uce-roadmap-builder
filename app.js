@@ -781,15 +781,6 @@ function bindUI() {
   document.getElementById("btnRemoveMonth").addEventListener("click", removeMonth);
   document.getElementById("btnAddSegment").addEventListener("click", () => addSegmentToSelected());
   document.getElementById("btnDeleteSegment").addEventListener("click", deleteSelectedSegment);
-  document.getElementById("btnZoomOut").addEventListener("click", () => setZoom(zoomScale - ZOOM_BUTTON_STEP));
-  document.getElementById("btnZoomIn").addEventListener("click", () => setZoom(zoomScale + ZOOM_BUTTON_STEP));
-  document.getElementById("btnZoomReset").addEventListener("click", () => setZoom(1));
-  if (els.zoomRange) {
-    els.zoomRange.min = String(Math.round(MIN_ZOOM * 100));
-    els.zoomRange.max = String(Math.round(MAX_ZOOM * 100));
-    els.zoomRange.step = "5";
-    els.zoomRange.addEventListener("input", () => setZoom(Number(els.zoomRange.value) / 100));
-  }
   document.getElementById("btnAddTag").addEventListener("click", addTagFromDropdown);
   document.getElementById("btnClearTags").addEventListener("click", clearTagsForSelected);
   document.getElementById("btnCancelStatusEdit").addEventListener("click", () => els.statusDialog.close());
@@ -823,6 +814,7 @@ function bindUI() {
   });
 
   els.chartScroll?.addEventListener("pointerdown", beginTimelinePan);
+  els.chartScroll?.addEventListener("wheel", handleTimelineWheelZoom, { passive: false });
   els.roadmap.addEventListener("contextmenu", openChartContextMenu);
   els.roadmap.addEventListener("click", (event) => {
     if (suppressRoadmapClick) {
@@ -2172,6 +2164,31 @@ function setZoom(value, persist = true) {
   zoomScale = clamp(Math.round(Number(value || 1) * 100) / 100, MIN_ZOOM, MAX_ZOOM);
   applyZoom();
   if (persist) localStorage.setItem(ZOOM_STORAGE_KEY, String(zoomScale));
+}
+function setZoomAtClientPoint(value, clientX, clientY, persist = true) {
+  if (!els.chartScroll) {
+    setZoom(value, persist);
+    return;
+  }
+  const oldZoom = zoomScale;
+  const nextZoom = clamp(Math.round(Number(value || 1) * 100) / 100, MIN_ZOOM, MAX_ZOOM);
+  if (Math.abs(nextZoom - oldZoom) < 0.0001) return;
+  const rect = els.chartScroll.getBoundingClientRect();
+  const localX = clientX - rect.left;
+  const localY = clientY - rect.top;
+  const contentX = (els.chartScroll.scrollLeft + localX) / oldZoom;
+  const contentY = (els.chartScroll.scrollTop + localY) / oldZoom;
+  setZoom(nextZoom, persist);
+  els.chartScroll.scrollLeft = contentX * zoomScale - localX;
+  els.chartScroll.scrollTop = contentY * zoomScale - localY;
+}
+function handleTimelineWheelZoom(event) {
+  if (!event.deltaY) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const delta = clamp(event.deltaY, -200, 200);
+  const factor = Math.exp(-delta * 0.0005);
+  setZoomAtClientPoint(zoomScale * factor, event.clientX, event.clientY);
 }
 
 function tagListFromInput() { return cleanTags(els.editForm.elements.tags.value.split(",")); }
