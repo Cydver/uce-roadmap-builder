@@ -98,7 +98,7 @@ let tooltipPinned = false;
 let drag = null;
 let panDrag = null;
 let suppressRoadmapClick = false;
-let ignoreNextUnitClick = false;
+let lastUnitClick = { id: null, at: 0 };
 let autoApplyTimer = null;
 let zoomScale = Number(localStorage.getItem(ZOOM_STORAGE_KEY) || "1") || 1;
 
@@ -791,6 +791,7 @@ function bindUI() {
   bindAutoApplyForm();
   document.addEventListener("pointerdown", (event) => {
     if (event.button !== 0) return;
+    if (!event.target.closest(".unit-card")) lastUnitClick = { id: null, at: 0 };
     if (!event.target.closest(".context-menu")) hideContextMenu();
     if (tooltipPinned && !event.target.closest(".unit-card,.meta-bar,.month-head,.tier-label,.context-menu,button,input,select,textarea,a,label,.tag-preview,.tag-controls")) {
       hideTooltip(true);
@@ -1142,21 +1143,7 @@ function renderUnits() {
     card.appendChild(plate);
 
     card.addEventListener("pointerdown", (event) => beginDragUnit(event, unit.id));
-    card.addEventListener("click", (event) => {
-      event.stopPropagation();
-      if (ignoreNextUnitClick) {
-        ignoreNextUnitClick = false;
-        return;
-      }
-      select(unit.id, null);
-      if (isMs(unit) || isPilot(unit)) showTooltip(event, unit, null, { pin: true });
-    });
     card.addEventListener("contextmenu", (event) => openUnitContextMenu(event, unit.id, null));
-    card.addEventListener("dblclick", (event) => {
-      event.stopPropagation();
-      if (isMs(unit) || isPilot(unit)) openSelectedUnitDialog(unit.id);
-      else renameUnit(unit.id);
-    });
     card.addEventListener("mouseenter", (event) => { bringUnitToFront(unit.id); showTooltip(event, unit); });
     card.addEventListener("mouseleave", hideTooltip);
     card.addEventListener("pointermove", moveTooltip);
@@ -1689,14 +1676,40 @@ function onPointerUp(event) {
   }
   if (!drag) return;
   const endedDrag = drag;
-  if (endedDrag.type === "unit") finalizeUnitDrop(endedDrag);
-  if (endedDrag.type === "unit" && endedDrag.didMove) ignoreNextUnitClick = true;
-  suppressRoadmapClick = true;
   drag = null;
+
+  // Handle stationary unit presses here instead of relying on native click/dblclick.
+  // The unit cards participate in pointer-captured drag handling, and some browsers
+  // suppress or lose follow-up mouse events when pointerdown is cancelled for dragging.
+  if (!endedDrag.didMove) {
+    if (endedDrag.type === "unit") handleUnitClickGesture(event, endedDrag.id);
+    return;
+  }
+
+  if (endedDrag.type === "unit") finalizeUnitDrop(endedDrag);
+  suppressRoadmapClick = true;
   state.updated = new Date().toISOString();
   renderAll();
   autoSave();
   setTimeout(() => { if (suppressRoadmapClick) suppressRoadmapClick = false; }, 0);
+}
+function handleUnitClickGesture(event, unitId) {
+  const unit = state.units.find(u => u.id === unitId);
+  if (!unit) return;
+
+  select(unit.id, null);
+  const now = performance.now();
+  const isDoubleClick = lastUnitClick.id === unit.id && now - lastUnitClick.at <= 500;
+
+  if (isDoubleClick) {
+    lastUnitClick = { id: null, at: 0 };
+    if (isMs(unit) || isPilot(unit)) openSelectedUnitDialog(unit.id);
+    else renameUnit(unit.id);
+    return;
+  }
+
+  lastUnitClick = { id: unit.id, at: now };
+  if (isMs(unit) || isPilot(unit)) showTooltip(event, unit, null, { pin: true });
 }
 function finalizeUnitDrop(endedDrag) {
   const unit = state.units.find(u => u.id === endedDrag.id);
