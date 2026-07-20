@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-07-20T13:13:40.447Z",
+  "generatedAt": "2026-07-20T14:16:40.563Z",
   "sources": [
     "https://altema.jp/gundamuce/msrea/4",
     "https://altema.jp/gundamuce/chararea/4",
     "https://gundam.fandom.com/wiki/"
   ],
-  "note": "Generated from Altema list pages, then canonical English MS/pilot names are resolved against the English Gundam Wiki by verified Japanese-name matches. Unverified matches are never substituted.",
+  "note": "Generated from Altema list pages. Canonical MS and pilot proper names come only from verified English Gundam Wiki matches or the persistent auto-generated verified-name cache. Machine translation is used only for variant/state descriptors after a canonical base name has been verified. If no canonical base can be verified, the original Japanese Altema name is retained.",
   "items": [
     {
       "id": "altema-ms-1380bf1660",
@@ -6470,10 +6470,13 @@
     }
   ],
   "nameResolution": {
-    "source": "The Gundam Wiki (Fandom)",
+    "source": "The Gundam Wiki (Fandom), with machine translation restricted to descriptors",
     "sourceUrl": "https://gundam.fandom.com/wiki/",
-    "resolvedItems": 0,
+    "wikiVerifiedItems": 0,
+    "wikiBaseTranslatedDescriptorItems": 0,
     "unresolvedItems": 497,
-    "strict": false
+    "properNameMachineTranslationEnabled": false,
+    "descriptorTranslationEnabled": true,
+    "persistentCachePath": "data/gundam-wiki-name-cache.json"
   }
 }
