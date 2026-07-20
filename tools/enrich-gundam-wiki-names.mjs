@@ -351,36 +351,85 @@ function chooseVerifiedJapaneseCandidate(pages, japaneseName, kind) {
   for (const page of pages || []) {
     const title = clean(page?.title);
     const extract = String(page?.extract || '');
-    if (!title || !extract) continue;
+    const source = String(page?.source || page?.revisions?.[0]?.slots?.main?.content || page?.revisions?.[0]?.content || '');
+    if (!title || (!extract && !source)) continue;
 
     const normalizedExtract = normalizeForMatch(extract);
-    const matchIndex = normalizedExtract.indexOf(target);
-    if (matchIndex < 0) continue;
+    const normalizedSource = normalizeForMatch(source);
+    const extractMatchIndex = normalizedExtract.indexOf(target);
+    const sourceMatchIndex = normalizedSource.indexOf(target);
+    if (extractMatchIndex < 0 && sourceMatchIndex < 0) continue;
 
     const categories = normalizeCategories(page.categories);
-    const kindScore = scoreKindFit(kind, title, extract.slice(0, 1800), categories);
+    const kindScore = scoreKindFit(kind, title, `${extract.slice(0, 1800)}\n${source.slice(0, 5000)}`, categories);
     if (kindScore < 0) continue;
 
-    const extractedEnglishName = extractEnglishNameAdjacentToJapanese(extract, japaneseName, kind);
-    const rawIndex = findLooseTextIndex(extract, japaneseName);
-    const appearsNearLead = rawIndex >= 0 && rawIndex < 1400;
+    const extractedEnglishName =
+      extractEnglishNameAdjacentToJapanese(extract, japaneseName, kind) ||
+      extractEnglishNameAdjacentToJapanese(source, japaneseName, kind);
 
-    // If a Japanese form name appears only deep inside a broader article, do not use the
-    // broader article title as the unit name. We accept it only when an adjacent English
-    // equivalent can be extracted, or when the Japanese name is in the lead/base identity.
-    if (!extractedEnglishName && !appearsNearLead) continue;
+    const identityMatch = japaneseNameMatchesPageIdentity({ title, extract, source }, japaneseName);
+    const rawIndex = findLooseTextIndex(extract, japaneseName);
+    const appearsNearLead = rawIndex >= 0 && rawIndex < 1800;
+
+    // A direct Japanese identity-field/lead match means the page title is the canonical
+    // English proper name. A deep mention inside a broader page is accepted only when an
+    // adjacent English form name can be extracted, preventing variants from collapsing to
+    // a broader base article title.
+    if (!identityMatch && !extractedEnglishName && !appearsNearLead) continue;
 
     let score = 100 + kindScore;
+    if (identityMatch) score += 80;
     if (extractedEnglishName) score += 55;
     if (appearsNearLead) score += 25;
     if (Number.isFinite(page.index)) score += Math.max(0, 12 - Number(page.index));
     if (page.pageprops?.disambiguation !== undefined) score -= 45;
 
-    scored.push({ ...page, title, extract, score, extractedEnglishName, kind });
+    scored.push({ ...page, title, extract, source, score, extractedEnglishName, identityMatch, kind });
   }
 
   scored.sort((a, b) => b.score - a.score || a.title.localeCompare(b.title, 'en'));
   return scored[0] || null;
+}
+
+function japaneseNameMatchesPageIdentity(page, japaneseName) {
+  const target = normalizeForMatch(japaneseName);
+  if (!target) return false;
+
+  const extract = String(page?.extract || '');
+  const extractIndex = findLooseTextIndex(extract, japaneseName);
+  if (extractIndex >= 0 && extractIndex < 1400) return true;
+
+  const source = String(page?.source || '');
+  if (!source) return false;
+
+  // Most Gundam Wiki pages place the infobox and lead sentence near the beginning of
+  // the wikitext. Identity-field matches here are safe canonical-name anchors.
+  const sourceLead = source.slice(0, 9000);
+  const lines = sourceLead.split(/\r?\n/);
+  for (const line of lines) {
+    if (!normalizeForMatch(line).includes(target)) continue;
+
+    const field = line.match(/^\s*\|\s*([^=]{1,80})=/)?.[1] || '';
+    if (/japanese|jp\s*name|jpname|ja\s*name|janame|native\s*name|official\s*name|name\s*jp|name\s*ja/i.test(field)) {
+      return true;
+    }
+
+    // Fandom infobox templates are inconsistent across eras. Accept a Japanese match
+    // in the opening infobox/lead when the same line is explicitly name-like, or when a
+    // Nihongo template pairs it with the article identity.
+    if (/\{\{\s*(?:nihongo|nihongo2|japanese)/i.test(line)) return true;
+    if (/^\s*\|\s*(?:name|title)\s*=/i.test(line)) return true;
+  }
+
+  // Some pages express the canonical identity only in the first lead paragraph rather
+  // than a dedicated infobox field. Keep this window deliberately small.
+  const sourceIndex = findLooseTextIndex(source, japaneseName);
+  return sourceIndex >= 0 && sourceIndex < 2500;
+}
+
+function escapeCirrusSearchPhrase(value) {
+  return String(value || '').replace(/[\\"]/g, '\\$&');
 }
 
 function chooseTranslatedCandidate(pages, translatedName, kind) {
@@ -445,12 +494,17 @@ async function searchWikiPages(query, quoted = true) {
       utf8: '1',
       redirects: '1',
       generator: 'search',
-      gsrsearch: quoted ? `"${query}"` : query,
+      // CirrusSearch's insource: operator searches raw wikitext/infobox fields.
+      // Gundam Wiki stores many Japanese names in infobox/source fields that are omitted
+      // from normal extracts, so a plain quoted search can miss every canonical page.
+      gsrsearch: quoted ? `insource:"${escapeCirrusSearchPhrase(query)}"` : query,
       gsrnamespace: '0',
       gsrlimit: String(SEARCH_LIMIT),
-      prop: 'extracts|categories|pageprops',
+      prop: 'extracts|revisions|categories|pageprops',
       explaintext: '1',
       exsectionformat: 'plain',
+      rvprop: 'content',
+      rvslots: 'main',
       cllimit: 'max'
     });
 
@@ -458,6 +512,7 @@ async function searchWikiPages(query, quoted = true) {
     const pages = Array.isArray(json?.query?.pages) ? json.query.pages : [];
     return pages.map((page, index) => ({
       ...page,
+      source: page?.revisions?.[0]?.slots?.main?.content || page?.revisions?.[0]?.content || '',
       index: Number.isFinite(page.index) ? page.index : index + 1
     }));
   })();
@@ -857,13 +912,14 @@ function runSelfTests() {
   const varguil = chooseVerifiedJapaneseCandidate([
     {
       title: 'AMS-123X Varguil',
-      extract: 'The AMS-123X Varguil (バルギル, Barugiru) is a prototype mobile suit.',
+      extract: 'The AMS-123X Varguil is a prototype mobile suit.',
+      source: '{{Infobox Mobile Suit\n|Japanese Name = バルギル\n}}\nThe AMS-123X Varguil is a prototype mobile suit.',
       categories: [{ title: 'Category:Mobile Weapons' }],
       index: 1
     }
   ], 'バルギル', 'ms');
-  assert(varguil?.title === 'AMS-123X Varguil', 'Varguil should resolve from exact Japanese page text.');
-  assert(sanitizeTranslatedDisplayName(varguil.extractedEnglishName, 'ms') === 'Varguil', 'MS model code should be omitted from display name.');
+  assert(varguil?.title === 'AMS-123X Varguil', 'Varguil should resolve when the Japanese name exists only in source/infobox content.');
+  assert(sanitizeTranslatedDisplayName(varguil.extractedEnglishName || canonicalDisplayName(varguil.title, 'ms'), 'ms') === 'Varguil', 'MS model code should be omitted from display name.');
   assert(composeCatalogDisplayName('ウッソ・エヴィン(C0001)', 'pilot', 'Uso Ewin') === 'Uso Ewin(C0001)', 'Pilot card IDs should remain visible after name resolution.');
 
   const variantQueries = buildSearchQueries('ユニコーンガンダム ペルフェクティビリティ・ディバイン', 'ms');
