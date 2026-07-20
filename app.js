@@ -2989,7 +2989,7 @@ function openUnitProfile(unitId, activeSegmentId = null) {
   overlay.innerHTML = `
     <article class="unit-profile-card" role="dialog" aria-modal="true" aria-label="${escapeHtml(ms?.name || pilot?.name || "Unit profile")}">
       <button class="unit-profile-close" type="button" aria-label="Close profile">×</button>
-      <div class="unit-profile-grid">
+      <div class="unit-profile-grid unit-profile-grid-lshape">
         <section class="unit-profile-panel unit-profile-ms-panel">
           ${profilePanelHeaderHtml(ms, "MOBILE SUIT", "No paired MS")}
           ${ms ? profileInvestmentHtml(ms) : ""}

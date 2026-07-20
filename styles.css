@@ -632,7 +632,6 @@ body.unit-profile-open { overflow: hidden; }
 .unit-profile-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: minmax(0, 56%) minmax(0, 44%);
   height: 100%;
   min-height: 0;
 }
@@ -641,31 +640,78 @@ body.unit-profile-open { overflow: hidden; }
   min-height: 0;
   overflow: hidden;
 }
-/* The MS visually owns three quadrants: its overview at top-left and both note columns across the bottom. */
+/*
+ * Backward-compatible two-column structure.
+ * This also keeps the profile correct if an older cached JS bundle renders the
+ * previous markup while the newest CSS has already loaded.
+ */
 .unit-profile-ms-panel {
-  grid-column: 1;
-  grid-row: 1;
   display: flex;
   flex-direction: column;
   padding: 28px 30px 22px;
   background: linear-gradient(180deg, rgba(255,255,255,.012), rgba(255,255,255,.003));
 }
 .unit-profile-pilot-panel {
-  grid-column: 2;
-  grid-row: 1;
   min-height: 0;
-  display: block;
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
   padding: 0;
   border-left: 1px solid rgba(255,255,255,.09);
-  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+  background: transparent;
 }
 .unit-profile-pilot-primary {
-  height: 100%;
   min-height: 0;
   display: flex;
   flex-direction: column;
   padding: 28px 30px 22px;
   overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+}
+/* Legacy/cached-JS PVE slot: visually belongs to the MS lower half. */
+.unit-profile-pve-slot {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px 26px;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,.11);
+  background: linear-gradient(180deg, rgba(255,255,255,.012), rgba(255,255,255,.003));
+}
+.unit-profile-ms-panel > .unit-profile-pvp-notes {
+  flex: 0 0 50%;
+  min-height: 0;
+  box-sizing: border-box;
+  margin-top: 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,.11);
+}
+.unit-profile-pve-slot > .unit-profile-pve-notes {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-top: 0;
+  padding-top: 20px;
+  border-top: 0;
+}
+/*
+ * Current L-shaped structure: top-left MS overview, top-right Pilot,
+ * and a full-width MS notes band split evenly into PVP/PVE.
+ */
+.unit-profile-grid-lshape {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+.unit-profile-grid-lshape > .unit-profile-ms-panel {
+  grid-column: 1;
+  grid-row: 1;
+}
+.unit-profile-grid-lshape > .unit-profile-pilot-panel {
+  grid-column: 2;
+  grid-row: 1;
+  display: block;
+  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+}
+.unit-profile-grid-lshape > .unit-profile-pilot-panel > .unit-profile-pilot-primary {
+  height: 100%;
+  background: transparent;
 }
 .unit-profile-ms-notes-band {
   grid-column: 1 / -1;
@@ -676,7 +722,7 @@ body.unit-profile-open { overflow: hidden; }
   grid-template-columns: repeat(2, minmax(0, 1fr));
   overflow: hidden;
   border-top: 1px solid rgba(255,255,255,.11);
-  background: linear-gradient(180deg, rgba(3,7,12,.18), rgba(2,5,10,.28));
+  background: linear-gradient(180deg, rgba(255,255,255,.012), rgba(255,255,255,.003));
 }
 .unit-profile-ms-note-cell {
   min-width: 0;
@@ -869,8 +915,9 @@ body.unit-profile-open { overflow: hidden; }
   min-height: 80px;
 }
 .unit-profile-ms-note-cell > .unit-profile-pvp-notes,
-.unit-profile-ms-note-cell > .unit-profile-pve-notes {
-  flex: 1 1 auto;
+.unit-profile-ms-note-cell > .unit-profile-pve-notes,
+.unit-profile-ms-panel > .unit-profile-pvp-notes,
+.unit-profile-pve-slot > .unit-profile-pve-notes {
   min-height: 0;
 }
 .unit-profile-note-scroll {
@@ -933,6 +980,7 @@ body.unit-profile-open { overflow: hidden; }
   .unit-profile-ms-panel { display: block; padding: 24px 20px; }
   .unit-profile-pilot-panel { display: block; border-left: 0; border-top: 1px solid rgba(255,255,255,.09); }
   .unit-profile-pilot-primary { display: block; overflow: visible; padding: 24px 20px; }
+  .unit-profile-pve-slot { display: block; overflow: visible; padding: 0 20px 24px; border-top: 1px solid rgba(255,255,255,.09); }
   .unit-profile-ms-notes-band { display: block; overflow: visible; border-top: 1px solid rgba(255,255,255,.09); }
   .unit-profile-ms-note-cell { display: block; overflow: visible; padding: 0 20px 24px; }
   .unit-profile-ms-note-cell + .unit-profile-ms-note-cell { border-left: 0; border-top: 1px solid rgba(255,255,255,.07); }
@@ -948,7 +996,9 @@ body.unit-profile-open { overflow: hidden; }
   .unit-profile-scroll-notes { overflow: visible; }
   .unit-profile-pilot-primary > .unit-profile-pilot-notes,
   .unit-profile-ms-note-cell > .unit-profile-pvp-notes,
-  .unit-profile-ms-note-cell > .unit-profile-pve-notes { min-height: 0; }
+  .unit-profile-ms-note-cell > .unit-profile-pve-notes,
+  .unit-profile-ms-panel > .unit-profile-pvp-notes,
+  .unit-profile-pve-slot > .unit-profile-pve-notes { min-height: 0; }
   .unit-profile-meta-top { display: grid; gap: 3px; }
   .unit-profile-meta-top span { white-space: normal; }
 }
