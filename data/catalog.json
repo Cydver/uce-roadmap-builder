@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-07-20T19:39:56.687Z",
+  "generatedAt": "2026-07-20T19:55:06.533Z",
   "sources": [
     "https://altema.jp/gundamuce/msrea/4",
     "https://altema.jp/gundamuce/chararea/4"
   ],
-  "note": "Generated from Altema list pages. If icons are remote URLs instead of icons/altema files, the image download step was blocked but the app can still display them.",
+  "note": "Generated incrementally from Altema list pages. Existing local icons are reused; only new cards or missing icons are downloaded unless ALTEMA_REFRESH_ICONS=1.",
   "items": [
     {
       "id": "altema-ms-1380bf1660",
       "kind": "ms",
-      "name": "ZZ Gundam (Awaken)",
+      "name": "ZZ Gundam (Awakened)",
       "icon": "icons/altema/ms-zzガンダム-覚醒-a432bd92.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/415.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/415",
@@ -21,7 +21,7 @@
     {
       "id": "altema-ms-1abc48640f",
       "kind": "ms",
-      "name": "Qubeley (Awaken)",
+      "name": "Qubeley (Awakened)",
       "icon": "icons/altema/ms-キュベレイ-覚醒-999d8817.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/412.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/412",
@@ -33,7 +33,7 @@
     {
       "id": "altema-ms-b24601d773",
       "kind": "ms",
-      "name": "Gundam G-Arcane (Full Dress)",
+      "name": "G-Arcane Full Dress",
       "icon": "icons/altema/ms-g-アルケイン-フルドレス-8116d997.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/395.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/395",
@@ -45,7 +45,7 @@
     {
       "id": "altema-ms-d2f343a057",
       "kind": "ms",
-      "name": "Unicorn Gundam (NT-D/Awaken)",
+      "name": "Unicorn Gundam (NT-D/Awakened)",
       "icon": "icons/altema/ms-ユニコーンガンダム-nt-d-覚醒-a105d5b8.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/392.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/392",
@@ -153,7 +153,7 @@
     {
       "id": "altema-ms-20dbb65fe6",
       "kind": "ms",
-      "name": "Gundam G-Lucifer",
+      "name": "G-Lucifer",
       "icon": "icons/altema/ms-g-ルシファー-c6691845.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/405.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/405",
@@ -465,7 +465,7 @@
     {
       "id": "altema-ms-c99cd2771b",
       "kind": "ms",
-      "name": "Gundam G-Arcane",
+      "name": "G-Arcane",
       "icon": "icons/altema/ms-g-アルケイン-671ac944.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/381.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/381",
@@ -1545,7 +1545,7 @@
     {
       "id": "altema-ms-87f71d8bc2",
       "kind": "ms",
-      "name": "Magna Martell (Awaken)",
+      "name": "Magna Martell (Awakened)",
       "icon": "icons/altema/ms-マグナ・マーテル-覚醒-ac0d7f69.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/251.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/251",
@@ -2013,7 +2013,7 @@
     {
       "id": "altema-ms-3e2cd3bfa0",
       "kind": "ms",
-      "name": "Engage Zero Yonfavin (Awaken)",
+      "name": "Engage Zero Yonfavin (Awakened)",
       "icon": "icons/altema/ms-エンゲージゼロ・ヨンファヴィン-覚醒-1f9bb4d0.jpg",
       "remoteIcon": "https://img.altema.jp/gundamuce/mobile_suit/icon/194.jpg",
       "sourceUrl": "https://altema.jp/gundamuce/ms/194",
