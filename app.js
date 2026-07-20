@@ -35,11 +35,11 @@ const DEFAULT_TIERS = [
   { id: "skip", label: "Skip", color: "#8d96a6" }
 ];
 const DEFAULT_META_STATUSES = [
-  { id: "s1", label: "Human Rights", color: "#ff4b59" },
-  { id: "s2", label: "Era-Defining", color: "#47a9ff" },
-  { id: "s3", label: "Strong", color: "#67ef87" },
-  { id: "s4", label: "Rotational", color: "#ffcc4d" },
-  { id: "s5", label: "Situational", color: "#c18cff" }
+  { id: "s1", label: "Human Rights", description: "", color: "#ff4b59" },
+  { id: "s2", label: "Era-Defining", description: "", color: "#47a9ff" },
+  { id: "s3", label: "Strong", description: "", color: "#67ef87" },
+  { id: "s4", label: "Rotational", description: "", color: "#ffcc4d" },
+  { id: "s5", label: "Situational", description: "", color: "#c18cff" }
 ];
 const LEGACY_TIER_COLORS = { must: ["#ffa12a"], ideal: ["#47a9ff"], luxury: ["#a66bff"], skip: ["#9aa0ab", "#c18cff", "#a66bff", "#8b5cf6", "#9333ea", "#7c3aed", "#6d28d9"] };
 const LEGACY_TIER_LABELS = {
@@ -97,6 +97,7 @@ let filterKind = "all";
 let searchTerm = "";
 let tooltipEl = null;
 let tooltipPinned = false;
+let appTooltipEl = null;
 let drag = null;
 let panDrag = null;
 let suppressRoadmapClick = false;
@@ -574,7 +575,7 @@ function normalizeState() {
   if (!Array.isArray(state.metaStatuses) || !state.metaStatuses.length) state.metaStatuses = structuredClone(DEFAULT_META_STATUSES);
   state.metaStatuses = state.metaStatuses.slice(0, 8).map((s, i) => {
     const id = sanitizeText(s.id) || `s${i + 1}`;
-    const fallback = DEFAULT_META_STATUSES[i] || { label: `Status ${i + 1}`, color: "#8aa0ff" };
+    const fallback = DEFAULT_META_STATUSES[i] || { label: `Status ${i + 1}`, description: "", color: "#8aa0ff" };
     const oldColor = s.color || "";
     const color = oldColor && oldColor.toLowerCase() !== (LEGACY_STATUS_COLORS[id] || "").toLowerCase() && /^#[0-9a-f]{6}$/i.test(oldColor)
       ? oldColor
@@ -582,6 +583,7 @@ function normalizeState() {
     return {
       id,
       label: sanitizeText(s.label) || fallback.label,
+      description: String(s.description ?? fallback.description ?? "").trim(),
       color
     };
   });
@@ -706,12 +708,13 @@ function buildStaticGrid() {
     label.style.height = `${tierHeight(tier.id)}px`;
     label.style.color = tier.color;
     label.dataset.fullLabel = tier.label;
-    label.title = tier.label;
     label.textContent = zoomScale <= TIER_LABEL_ABBREVIATION_ZOOM
       ? (TIER_LABEL_ABBREVIATIONS[tier.id] || tier.label)
       : tier.label;
     label.setAttribute("aria-label", `${tier.label}. Click to rename or recolor this row.`);
+    bindAppTooltip(label, () => `<strong>${escapeHtml(tier.label)}</strong><div>Click to rename or recolor this row.</div>`);
     label.addEventListener("click", (event) => {
+      hideAppTooltip();
       event.stopPropagation();
       openTierEditor(tier.id);
     });
@@ -883,8 +886,10 @@ function renderLegend() {
     btn.type = "button";
     btn.className = "legend-item";
     btn.innerHTML = `<i class="dot" style="background:${status.color}"></i><span>${escapeHtml(status.label)}</span>`;
-    btn.setAttribute("aria-label", `Edit meta status: ${status.label}`);
-    btn.addEventListener("click", () => openStatusEditor(status.id));
+    const description = String(status.description || "").trim();
+    btn.setAttribute("aria-label", description ? `${status.label}: ${description}` : `Edit meta status: ${status.label}`);
+    bindAppTooltip(btn, () => `<strong>${escapeHtml(status.label)}</strong>${description ? `<div class="app-tooltip-description">${multilineHtml(description)}</div>` : `<div>Click to edit this meta status.</div>`}`);
+    btn.addEventListener("click", () => { hideAppTooltip(); openStatusEditor(status.id); });
     els.legend.appendChild(btn);
   });
 }
@@ -894,6 +899,7 @@ function openStatusEditor(statusId) {
   const f = els.statusForm.elements;
   f.statusId.value = status.id;
   f.label.value = status.label;
+  f.description.value = status.description || "";
   f.color.value = status.color;
   els.statusDialog.showModal();
 }
@@ -904,6 +910,7 @@ function saveStatusEdit(event) {
   const status = state.metaStatuses.find(s => s.id === f.statusId.value);
   if (!status) return;
   status.label = sanitizeText(f.label.value) || status.label;
+  status.description = String(f.description.value || "").trim();
   status.color = /^#[0-9a-f]{6}$/i.test(f.color.value) ? f.color.value : status.color;
   state.updated = new Date().toISOString();
   els.statusDialog.close();
@@ -2141,7 +2148,6 @@ function updateTierLabelZoomText() {
     const fullLabel = label.dataset.fullLabel || label.textContent || "";
     const tierId = [...label.classList].find((className) => Object.prototype.hasOwnProperty.call(TIER_LABEL_ABBREVIATIONS, className));
     label.textContent = compact && tierId ? TIER_LABEL_ABBREVIATIONS[tierId] : fullLabel;
-    label.title = fullLabel;
     label.setAttribute("aria-label", `${fullLabel}. Click to rename or recolor this row.`);
   });
 }
@@ -2680,11 +2686,7 @@ function renderCatalog() {
     ].filter(Boolean).join(" · ");
     const metaEl = node.querySelector("small");
     metaEl.textContent = meta;
-    const hoverText = meta ? `${fullName}\n${meta}` : fullName;
-    node.title = hoverText;
-    node.querySelector(".catalog-main").title = hoverText;
-    nameEl.title = hoverText;
-    metaEl.title = hoverText;
+    bindAppTooltip(node, () => `<strong>${escapeHtml(fullName)}</strong>${meta ? `<div>${escapeHtml(meta)}</div>` : ""}`);
     node.querySelector("button").addEventListener("click", () => {
       addUnit({
         name: item.name,
@@ -2702,6 +2704,57 @@ function placeholderDataUrl(name) {
   const label = initials(name || "?").slice(0, 2);
   const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='96' height='96' fill='%23131b25'/><text x='48' y='54' text-anchor='middle' font-family='Arial' font-size='26' fill='%23d9e4f5' font-weight='700'>${label}</text></svg>`;
   return `data:image/svg+xml,${svg}`;
+}
+
+function bindAppTooltip(element, htmlFactory) {
+  if (!element) return;
+  element.addEventListener("pointerenter", (event) => {
+    if (event.pointerType === "touch") return;
+    showAppTooltip(event, htmlFactory);
+  });
+  element.addEventListener("pointermove", (event) => {
+    if (event.pointerType === "touch") return;
+    if (!appTooltipEl) showAppTooltip(event, htmlFactory);
+    else positionFloatingTooltip(appTooltipEl, event, 320);
+  });
+  element.addEventListener("pointerleave", hideAppTooltip);
+  element.addEventListener("pointerdown", hideAppTooltip);
+}
+
+function showAppTooltip(event, htmlFactory) {
+  hideAppTooltip();
+  const html = typeof htmlFactory === "function" ? htmlFactory() : String(htmlFactory || "");
+  if (!html) return;
+  appTooltipEl = document.createElement("div");
+  appTooltipEl.className = "tooltip app-tooltip";
+  appTooltipEl.innerHTML = html;
+  document.body.appendChild(appTooltipEl);
+  positionFloatingTooltip(appTooltipEl, event, 320);
+}
+
+function hideAppTooltip() {
+  appTooltipEl?.remove();
+  appTooltipEl = null;
+}
+
+function positionFloatingTooltip(element, event, maxWidth = 320) {
+  if (!element || !event) return;
+  const margin = 12;
+  const offset = 16;
+  const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 0;
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+  element.style.maxWidth = `${Math.max(180, Math.min(maxWidth, viewportWidth - (margin * 2)))}px`;
+  const rect = element.getBoundingClientRect();
+  const maxLeft = Math.max(margin, viewportWidth - rect.width - margin);
+  const maxTop = Math.max(margin, viewportHeight - rect.height - margin);
+  let left = event.clientX + offset;
+  let top = event.clientY + offset;
+  if (left + rect.width + margin > viewportWidth) left = event.clientX - rect.width - offset;
+  if (top + rect.height + margin > viewportHeight) top = event.clientY - rect.height - offset;
+  left = Math.min(Math.max(left, margin), maxLeft);
+  top = Math.min(Math.max(top, margin), maxTop);
+  element.style.left = `${Math.round(left)}px`;
+  element.style.top = `${Math.round(top)}px`;
 }
 
 function showTooltip(event, unit, segment = null, options = {}) {
@@ -2750,22 +2803,7 @@ function segmentListHtml(unit, activeSegmentId = null) {
 }
 function moveTooltip(event, force = false) {
   if (!tooltipEl || (tooltipPinned && !force)) return;
-  const margin = 12;
-  const offset = 16;
-  const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 0;
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
-  tooltipEl.style.maxWidth = `${Math.max(180, Math.min(320, viewportWidth - (margin * 2)))}px`;
-  const rect = tooltipEl.getBoundingClientRect();
-  const maxLeft = Math.max(margin, viewportWidth - rect.width - margin);
-  const maxTop = Math.max(margin, viewportHeight - rect.height - margin);
-  let left = event.clientX + offset;
-  let top = event.clientY + offset;
-  if (left + rect.width + margin > viewportWidth) left = event.clientX - rect.width - offset;
-  if (top + rect.height + margin > viewportHeight) top = event.clientY - rect.height - offset;
-  left = Math.min(Math.max(left, margin), maxLeft);
-  top = Math.min(Math.max(top, margin), maxTop);
-  tooltipEl.style.left = `${Math.round(left)}px`;
-  tooltipEl.style.top = `${Math.round(top)}px`;
+  positionFloatingTooltip(tooltipEl, event, 320);
 }
 function hideTooltip(force = false) {
   const shouldForce = force === true;

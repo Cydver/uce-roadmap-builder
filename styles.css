@@ -233,6 +233,7 @@ textarea { resize: vertical; min-height: 80px; }
   background: rgba(3,7,12,.95); border: 1px solid rgba(255,255,255,.18); border-radius: 12px; padding: 10px; color: var(--text); box-shadow: var(--shadow); font-size: 13px;
 }
 .tooltip strong { display:block; margin-bottom: 4px; }
+.app-tooltip-description { color: #dce4f0; line-height: 1.4; overflow-wrap: anywhere; }
 .tooltip-must-p5 { display: inline-block; margin-top: 7px; color: #ff5868; font-weight: 950; text-transform: uppercase; letter-spacing: .06em; text-shadow: 0 0 12px rgba(255,43,66,.35); }
 .tooltip-buff { display: inline-block; margin-top: 7px; color: #43dc7d; font-weight: 950; text-transform: uppercase; letter-spacing: .06em; text-shadow: 0 0 12px rgba(67,220,125,.35); }
 .tooltip-row-position { margin-top: 5px; color: #f7d36a; font-size: 12px; font-weight: 900; }
