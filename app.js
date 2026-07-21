@@ -55,8 +55,8 @@ const TAGS_PER_COLUMN = 5;
 const MIN_ZOOM = 0.2;
 const MAX_ZOOM = 1.6;
 const ZOOM_BUTTON_STEP = 0.1;
-const TIER_LABEL_ABBREVIATION_ZOOM = 0.4;
 const TIER_LABEL_ABBREVIATIONS = { human: "HR", must: "MP", ideal: "IP", luxury: "LP", skip: "S" };
+const CARD_DETAILS_MIN_VISUAL_SIZE = 116;
 const MUST_P5_TAG = "Must P5";
 const BUFF_TAG = "Buff";
 const TAG_ORDER = new Map(TAG_OPTIONS.map((tag, i) => [tag.toLowerCase(), i]));
@@ -756,9 +756,11 @@ function buildStaticGrid() {
     label.style.height = `${tierHeight(tier.id)}px`;
     label.style.color = tier.color;
     label.dataset.fullLabel = tier.label;
-    label.textContent = zoomScale <= TIER_LABEL_ABBREVIATION_ZOOM
-      ? (TIER_LABEL_ABBREVIATIONS[tier.id] || tier.label)
-      : tier.label;
+    label.dataset.tierId = tier.id;
+    const labelText = document.createElement("span");
+    labelText.className = "tier-label-text";
+    labelText.textContent = tier.label;
+    label.appendChild(labelText);
     label.setAttribute("aria-label", `${tier.label}. Click to rename or recolor this row.`);
     bindAppTooltip(label, () => `<strong>${escapeHtml(tier.label)}</strong><div>Click to rename or recolor this row.</div>`);
     label.addEventListener("click", (event) => {
@@ -870,7 +872,10 @@ function bindUI() {
   document.addEventListener("contextmenu", (event) => {
     if (!event.target.closest("#roadmap")) hideContextMenu();
   });
-  window.addEventListener("resize", hideContextMenu);
+  window.addEventListener("resize", () => {
+    hideContextMenu();
+    updateAdaptiveRoadmapPresentation();
+  });
   window.addEventListener("scroll", hideContextMenu, true);
   els.editForm.elements.tags.addEventListener("input", renderTagPreview);
   els.editForm.elements.segment.addEventListener("change", () => {
@@ -2243,15 +2248,49 @@ function downloadBlob(blob, filename) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-function updateTierLabelZoomText() {
+function compactTierLabel(fullLabel, tierId = "") {
+  const preset = TIER_LABEL_ABBREVIATIONS[tierId];
+  if (preset) return preset;
+  const words = sanitizeText(fullLabel).split(/[\s/|&+\-]+/).filter(Boolean);
+  if (words.length > 1) return words.slice(0, 4).map(word => word[0]).join("").toUpperCase();
+  const single = words[0] || sanitizeText(fullLabel);
+  return single.length > 4 ? single.slice(0, 4).toUpperCase() : single;
+}
+function updateAdaptiveTierLabels() {
   if (!els.roadmap) return;
-  const compact = zoomScale <= TIER_LABEL_ABBREVIATION_ZOOM;
-  els.roadmap.querySelectorAll(".tier-label").forEach((label) => {
-    const fullLabel = label.dataset.fullLabel || label.textContent || "";
-    const tierId = [...label.classList].find((className) => Object.prototype.hasOwnProperty.call(TIER_LABEL_ABBREVIATIONS, className));
-    label.textContent = compact && tierId ? TIER_LABEL_ABBREVIATIONS[tierId] : fullLabel;
+  els.roadmap.querySelectorAll(".tier-label").forEach(label => {
+    const text = label.querySelector(".tier-label-text");
+    if (!text) return;
+    const fullLabel = label.dataset.fullLabel || text.textContent || "";
+    text.textContent = fullLabel;
+    label.dataset.abbreviated = "false";
+    const needsCompact = text.scrollWidth > text.clientWidth + 0.5;
+    if (needsCompact) {
+      text.textContent = compactTierLabel(fullLabel, label.dataset.tierId || "");
+      label.dataset.abbreviated = "true";
+    }
     label.setAttribute("aria-label", `${fullLabel}. Click to rename or recolor this row.`);
   });
+}
+function updateUnitCardDetailVisibility() {
+  if (!els.roadmap) return;
+  els.roadmap.querySelectorAll(".unit-card").forEach(card => {
+    const cardRect = card.getBoundingClientRect();
+    const tags = card.querySelector(".tags");
+    const nameplate = card.querySelector(".nameplate");
+    const visualSize = Math.min(cardRect.width, cardRect.height);
+    let detailsCollide = false;
+    if (tags?.children.length && nameplate) {
+      const tagsRect = tags.getBoundingClientRect();
+      const nameRect = nameplate.getBoundingClientRect();
+      detailsCollide = tagsRect.bottom >= nameRect.top - 2;
+    }
+    card.classList.toggle("icon-only", visualSize < CARD_DETAILS_MIN_VISUAL_SIZE || detailsCollide);
+  });
+}
+function updateAdaptiveRoadmapPresentation() {
+  updateAdaptiveTierLabels();
+  updateUnitCardDetailVisibility();
 }
 
 function applyZoom() {
@@ -2266,7 +2305,7 @@ function applyZoom() {
   els.roadmapStage.style.height = `${baseChartHeight() * zoomScale}px`;
   if (els.zoomRange) els.zoomRange.value = String(Math.round(zoomScale * 100));
   if (els.zoomLabel) els.zoomLabel.textContent = `${Math.round(zoomScale * 100)}%`;
-  updateTierLabelZoomText();
+  updateAdaptiveRoadmapPresentation();
 }
 function setZoom(value, persist = true) {
   zoomScale = clamp(Math.round(Number(value || 1) * 100) / 100, MIN_ZOOM, MAX_ZOOM);
@@ -3025,23 +3064,39 @@ function profileAltemaLinkHtml(unit) {
 
 function bindProfileAltemaTooltips(root) {
   root?.querySelectorAll("[data-profile-altema-link]").forEach(link => {
+    let suppressUntilPointerLeaves = false;
     const showSourceTooltip = event => {
+      if (suppressUntilPointerLeaves) return;
       showAppTooltip(event, () => `<strong>See on Altema</strong>`);
       appTooltipEl?.classList.add("unit-profile-source-tooltip");
     };
     link.addEventListener("pointerenter", event => { if (event.pointerType !== "touch") showSourceTooltip(event); });
     link.addEventListener("pointermove", event => {
-      if (event.pointerType === "touch") return;
+      if (event.pointerType === "touch" || suppressUntilPointerLeaves) return;
       if (!appTooltipEl) showSourceTooltip(event);
       else positionFloatingTooltip(appTooltipEl, event, 220);
     });
-    link.addEventListener("pointerleave", hideAppTooltip);
-    link.addEventListener("pointerdown", hideAppTooltip);
+    link.addEventListener("pointerleave", () => {
+      suppressUntilPointerLeaves = false;
+      hideAppTooltip();
+    });
+    link.addEventListener("pointerdown", () => {
+      suppressUntilPointerLeaves = true;
+      hideAppTooltip();
+    });
     link.addEventListener("focus", () => {
+      if (suppressUntilPointerLeaves) return;
       const rect = link.getBoundingClientRect();
       showSourceTooltip({ clientX: rect.right, clientY: rect.top + rect.height / 2 });
     });
-    link.addEventListener("blur", hideAppTooltip);
+    link.addEventListener("blur", () => {
+      suppressUntilPointerLeaves = false;
+      hideAppTooltip();
+    });
+    link.addEventListener("click", () => {
+      suppressUntilPointerLeaves = true;
+      hideAppTooltip();
+    });
   });
 }
 
