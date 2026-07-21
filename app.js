@@ -1433,6 +1433,7 @@ function metaOwnerTetherGeometry(unit) {
   const anchorX = metaOwnerRouteX(unit, cardRect, cardEdgeY, laneCenter);
   const firstRect = segmentBarRect(unit, firstSegment);
   const targetX = clamp(anchorX, firstRect.x, firstRect.x + firstRect.w);
+  const cardPortX = anchorX < cardRect.left ? cardRect.left : anchorX > cardRect.right ? cardRect.right : anchorX;
   return {
     anchorX,
     laneCenter,
@@ -1442,7 +1443,11 @@ function metaOwnerTetherGeometry(unit) {
     cardArmLeft: anchorX < cardRect.left ? anchorX : cardRect.right,
     cardArmWidth: anchorX < cardRect.left ? cardRect.left - anchorX : anchorX > cardRect.right ? anchorX - cardRect.right : 0,
     armLeft: Math.min(anchorX, targetX),
-    armWidth: Math.abs(targetX - anchorX)
+    armWidth: Math.abs(targetX - anchorX),
+    cardPortX,
+    cardPortY: cardEdgeY,
+    laneNodeX: anchorX,
+    laneNodeY: laneCenter
   };
 }
 function renderMetaOwnerTether(unit) {
@@ -1478,6 +1483,21 @@ function renderMetaOwnerTether(unit) {
     arm.style.width = `${geometry.armWidth}px`;
     els.roadmap.appendChild(arm);
   }
+  const cardPort = document.createElement("div");
+  cardPort.className = "meta-owner-node card-port";
+  cardPort.dataset.unitId = unit.id;
+  cardPort.setAttribute("aria-hidden", "true");
+  cardPort.style.left = `${geometry.cardPortX}px`;
+  cardPort.style.top = `${geometry.cardPortY}px`;
+  els.roadmap.appendChild(cardPort);
+
+  const laneNode = document.createElement("div");
+  laneNode.className = "meta-owner-node lane-node";
+  laneNode.dataset.unitId = unit.id;
+  laneNode.setAttribute("aria-hidden", "true");
+  laneNode.style.left = `${geometry.laneNodeX}px`;
+  laneNode.style.top = `${geometry.laneNodeY}px`;
+  els.roadmap.appendChild(laneNode);
 }
 function setMetaOwnerHover(unitId) {
   metaOwnerHoverId = unitId || null;
@@ -1486,6 +1506,7 @@ function setMetaOwnerHover(unitId) {
 function updateMetaOwnerHighlight() {
   if (!els.roadmap) return;
   const activeId = metaOwnerHoverId;
+  els.roadmap.classList.toggle("meta-owner-context-active", !!activeId);
   els.roadmap.querySelectorAll(".unit-card").forEach(card => {
     card.classList.toggle("meta-owner-highlight", !!activeId && card.dataset.id === activeId);
   });
@@ -1495,7 +1516,7 @@ function updateMetaOwnerHighlight() {
   els.roadmap.querySelectorAll(".meta-link").forEach(link => {
     link.classList.toggle("meta-owner-highlight", !!activeId && link.dataset.id === activeId);
   });
-  els.roadmap.querySelectorAll(".meta-owner-tether, .lane-track[data-unit-id]").forEach(element => {
+  els.roadmap.querySelectorAll(".meta-owner-tether, .meta-owner-node, .lane-track[data-unit-id]").forEach(element => {
     element.classList.toggle("meta-owner-highlight", !!activeId && element.dataset.unitId === activeId);
   });
 }

@@ -1854,12 +1854,14 @@ button.danger:hover,
 }
 .meta-bar .bar-label[hidden] { display: none !important; }
 
-/* --- Meta ownership guidance: quiet lanes + explicit card-to-timeline grouping. --- */
+/* --- Meta ownership guidance: segmented tethers + focus isolation. --- */
 .lane-track {
+  z-index: 5;
   background: transparent;
   border: 0;
-  border-radius: 0;
+  border-radius: 5px;
   overflow: visible;
+  transition: background .14s ease, box-shadow .14s ease;
 }
 .lane-track::before {
   content: "";
@@ -1869,50 +1871,128 @@ button.danger:hover,
   top: 50%;
   height: calc(1px * var(--textBoost, 1));
   transform: translateY(-50%);
-  background: rgba(190,218,231,.055);
-  opacity: .72;
-  transition: background .14s ease, opacity .14s ease, box-shadow .14s ease;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(176,216,230,.15) 0 calc(3px * var(--textBoost, 1)),
+    transparent calc(3px * var(--textBoost, 1)) calc(10px * var(--textBoost, 1))
+  );
+  opacity: .5;
+  transition: opacity .14s ease, filter .14s ease;
+}
+.lane-track.meta-owner-highlight {
+  background: linear-gradient(90deg, rgba(73,194,235,.025), rgba(73,194,235,.14) 9%, rgba(73,194,235,.11) 91%, rgba(73,194,235,.025));
+  box-shadow:
+    inset 0 calc(1px * var(--textBoost, 1)) rgba(178,237,255,.28),
+    inset 0 calc(-1px * var(--textBoost, 1)) rgba(178,237,255,.22),
+    0 0 calc(10px * var(--textBoost, 1)) rgba(73,194,235,.14);
 }
 .lane-track.meta-owner-highlight::before {
-  background: rgba(125,220,255,.28);
-  opacity: 1;
-  box-shadow: 0 0 calc(5px * var(--textBoost, 1)) rgba(99,211,255,.12);
+  background: rgba(190,242,255,.78);
+  opacity: .88;
 }
 .meta-owner-tether {
   position: absolute;
   z-index: 6;
   pointer-events: none;
-  background: rgba(133,211,238,.2);
-  opacity: .68;
-  transition: background .14s ease, opacity .14s ease, box-shadow .14s ease;
+  opacity: .9;
+  transition: opacity .12s ease, filter .12s ease, box-shadow .12s ease, background .12s ease;
 }
 .meta-owner-tether.stem {
-  width: calc(1px * var(--textBoost, 1));
+  width: calc(2px * var(--textBoost, 1));
   transform: translateX(-50%);
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(132,224,252,.72) 0 calc(5px * var(--textBoost, 1)),
+    rgba(132,224,252,.10) calc(5px * var(--textBoost, 1)) calc(8px * var(--textBoost, 1))
+  );
+  box-shadow: 0 0 calc(3px * var(--textBoost, 1)) rgba(88,205,243,.12);
 }
 .meta-owner-tether.arm {
-  height: calc(1px * var(--textBoost, 1));
+  height: calc(2px * var(--textBoost, 1));
   transform: translateY(-50%);
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(132,224,252,.72) 0 calc(5px * var(--textBoost, 1)),
+    rgba(132,224,252,.10) calc(5px * var(--textBoost, 1)) calc(8px * var(--textBoost, 1))
+  );
+  box-shadow: 0 0 calc(3px * var(--textBoost, 1)) rgba(88,205,243,.12);
 }
 .meta-owner-tether.meta-owner-highlight {
-  background: rgba(148,229,255,.82);
   opacity: 1;
-  box-shadow: 0 0 calc(5px * var(--textBoost, 1)) rgba(99,211,255,.34);
+  background: rgba(211,249,255,.96);
+  box-shadow:
+    0 0 calc(3px * var(--textBoost, 1)) rgba(226,252,255,.82),
+    0 0 calc(9px * var(--textBoost, 1)) rgba(77,211,255,.48);
 }
+.meta-owner-node {
+  position: absolute;
+  pointer-events: none;
+  width: calc(7px * var(--textBoost, 1));
+  height: calc(7px * var(--textBoost, 1));
+  transform: translate(-50%, -50%);
+  background: #10242c;
+  border: calc(1.5px * var(--textBoost, 1)) solid rgba(168,235,255,.86);
+  box-shadow: 0 0 calc(5px * var(--textBoost, 1)) rgba(73,202,243,.28);
+  opacity: .96;
+  transition: opacity .12s ease, border-color .12s ease, background .12s ease, box-shadow .12s ease, transform .12s ease;
+}
+.meta-owner-node.card-port {
+  z-index: 11;
+  border-radius: calc(1.5px * var(--textBoost, 1));
+}
+.meta-owner-node.lane-node {
+  z-index: 7;
+  width: calc(6px * var(--textBoost, 1));
+  height: calc(6px * var(--textBoost, 1));
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.meta-owner-node.meta-owner-highlight {
+  background: #e9fbff;
+  border-color: #f7feff;
+  box-shadow:
+    0 0 calc(4px * var(--textBoost, 1)) rgba(239,253,255,.95),
+    0 0 calc(11px * var(--textBoost, 1)) rgba(72,211,255,.68);
+}
+.meta-owner-node.card-port.meta-owner-highlight { transform: translate(-50%, -50%) scale(1.16); }
+.meta-owner-node.lane-node.meta-owner-highlight { transform: translate(-50%, -50%) rotate(45deg) scale(1.2); }
+
+/* Interaction becomes unmistakable by creating a temporary focus+context view. */
+.meta-owner-context-active .meta-bar:not(.meta-owner-highlight) {
+  opacity: .24;
+  filter: saturate(.52) brightness(.68);
+}
+.meta-owner-context-active .meta-link:not(.meta-owner-highlight) {
+  opacity: .1;
+  filter: saturate(.45) brightness(.64);
+}
+.meta-owner-context-active .meta-owner-tether:not(.meta-owner-highlight),
+.meta-owner-context-active .meta-owner-node:not(.meta-owner-highlight) {
+  opacity: .12;
+  filter: saturate(.35) brightness(.65);
+}
+.meta-owner-context-active .lane-track:not(.meta-owner-highlight)::before { opacity: .12; }
+
 .meta-bar.meta-owner-highlight {
-  filter: saturate(1.1) brightness(1.07);
-  box-shadow: 0 7px 18px rgba(0,0,0,.36), 0 0 0 calc(1px * var(--textBoost, 1)) rgba(208,244,255,.42), 0 0 calc(8px * var(--textBoost, 1)) rgba(99,211,255,.18), inset 0 1px 0 rgba(255,255,255,.18);
+  opacity: 1;
+  filter: saturate(1.16) brightness(1.11);
+  box-shadow:
+    0 7px 18px rgba(0,0,0,.4),
+    0 0 0 calc(2px * var(--textBoost, 1)) rgba(233,251,255,.86),
+    0 0 calc(12px * var(--textBoost, 1)) rgba(74,211,255,.4),
+    inset 0 1px 0 rgba(255,255,255,.22);
   z-index: 9;
 }
 .meta-link.meta-owner-highlight {
   opacity: 1;
-  filter: saturate(1.08) brightness(1.06);
-  box-shadow: 0 0 0 calc(1px * var(--textBoost, 1)) rgba(208,244,255,.28), 0 0 calc(7px * var(--textBoost, 1)) rgba(99,211,255,.14);
+  filter: saturate(1.14) brightness(1.1);
+  box-shadow:
+    0 0 0 calc(1.5px * var(--textBoost, 1)) rgba(225,249,255,.62),
+    0 0 calc(10px * var(--textBoost, 1)) rgba(74,211,255,.3);
 }
 .unit-card.meta-owner-highlight {
-  filter: brightness(1.07) saturate(1.03);
+  filter: brightness(1.11) saturate(1.04) drop-shadow(0 0 calc(7px * var(--textBoost, 1)) rgba(183,239,255,.36));
 }
 .unit-card.meta-owner-highlight:not(.selected) {
-  outline: calc(1.5px * var(--textBoost, 1)) solid rgba(210,245,255,.82);
-  outline-offset: calc(2px * var(--textBoost, 1));
+  outline: calc(2px * var(--textBoost, 1)) solid rgba(239,252,255,.96);
+  outline-offset: calc(3px * var(--textBoost, 1));
 }
