@@ -2315,6 +2315,7 @@ function updateAdaptiveTierLabels() {
 function updateUnitCardDetailVisibility() {
   if (!els.roadmap) return;
   els.roadmap.querySelectorAll(".unit-card").forEach(card => {
+    const unit = state.units.find(u => u.id === card.dataset.id);
     const cardRect = card.getBoundingClientRect();
     const tags = card.querySelector(".tags");
     const nameplate = card.querySelector(".nameplate");
@@ -2323,7 +2324,15 @@ function updateUnitCardDetailVisibility() {
     if (tags?.children.length && nameplate) {
       const tagsRect = tags.getBoundingClientRect();
       const nameRect = nameplate.getBoundingClientRect();
-      detailsCollide = tagsRect.bottom >= nameRect.top - 2;
+      let collisionLimit = nameRect.top - 2;
+      const tagCount = Math.min(unit?.tags?.length || 0, MAX_TAGS);
+      if (isMs(unit) && tagCount >= 4 && tagCount <= TAGS_PER_COLUMN) {
+        const renderedScale = card.offsetWidth ? cardRect.width / card.offsetWidth : zoomScale;
+        const namePaddingTop = parseFloat(getComputedStyle(nameplate).paddingTop) || 0;
+        const overlapAllowance = Math.min((tagCount - 3) * 3, namePaddingTop * renderedScale);
+        collisionLimit = nameRect.top + overlapAllowance;
+      }
+      detailsCollide = tagsRect.bottom >= collisionLimit;
     }
     card.classList.toggle("icon-only", visualSize < CARD_DETAILS_MIN_VISUAL_SIZE || detailsCollide);
   });
