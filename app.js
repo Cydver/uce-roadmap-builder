@@ -113,6 +113,7 @@ let panDrag = null;
 let suppressRoadmapClick = false;
 let lastUnitClick = { id: null, at: 0 };
 let metaOwnerHoverId = null;
+let metaOwnerHighlightedId = null;
 let profileOpenTimer = null;
 let unitProfileOverlay = null;
 let profileReturnFocus = null;
@@ -777,6 +778,8 @@ function normalizeState() {
 }
 
 function renderAll() {
+  metaOwnerHoverId = null;
+  metaOwnerHighlightedId = null;
   normalizeState();
   buildStaticGrid();
   renderLegend();
@@ -1309,13 +1312,12 @@ function renderUnits() {
     card.addEventListener("mouseenter", (event) => {
       bringUnitToFront(unit.id);
       setMetaOwnerHover(metaOwnerForUnit(unit)?.id || null);
-      showTooltip(event, unit);
+      showTooltip(event, unit, null, { anchor: card });
     });
     card.addEventListener("mouseleave", () => {
       setMetaOwnerHover(null);
       hideTooltip();
     });
-    card.addEventListener("pointermove", moveTooltip);
     els.roadmap.appendChild(card);
 
     if (!hasMetaBars(unit)) return;
@@ -1359,13 +1361,12 @@ function renderUnits() {
       bar.addEventListener("dblclick", (event) => { event.stopPropagation(); openUnitContextMenu(event, unit.id, segment.id); });
       bar.addEventListener("mouseenter", (event) => {
         setMetaOwnerHover(unit.id);
-        showTooltip(event, unit, segment);
+        showTooltip(event, unit, segment, { anchor: bar });
       });
       bar.addEventListener("mouseleave", () => {
         setMetaOwnerHover(null);
         hideTooltip();
       });
-      bar.addEventListener("pointermove", moveTooltip);
       els.roadmap.appendChild(bar);
     });
   });
@@ -1551,22 +1552,22 @@ function setMetaOwnerHover(unitId) {
   metaOwnerHoverId = unitId || null;
   updateMetaOwnerHighlight();
 }
+function setMetaOwnerHighlightState(unitId, highlighted) {
+  if (!els.roadmap || !unitId) return;
+  const id = CSS.escape(unitId);
+  els.roadmap.querySelectorAll(
+    `.unit-card[data-id="${id}"],.meta-bar[data-id="${id}"],.meta-link[data-id="${id}"],` +
+    `.meta-owner-tether[data-unit-id="${id}"],.meta-owner-node[data-unit-id="${id}"],.lane-track[data-unit-id="${id}"]`
+  ).forEach(element => element.classList.toggle("meta-owner-highlight", highlighted));
+}
 function updateMetaOwnerHighlight() {
   if (!els.roadmap) return;
-  const activeId = metaOwnerHoverId;
+  const activeId = metaOwnerHoverId || null;
+  if (activeId === metaOwnerHighlightedId) return;
+  if (metaOwnerHighlightedId) setMetaOwnerHighlightState(metaOwnerHighlightedId, false);
+  if (activeId) setMetaOwnerHighlightState(activeId, true);
   els.roadmap.classList.toggle("meta-owner-context-active", !!activeId);
-  els.roadmap.querySelectorAll(".unit-card").forEach(card => {
-    card.classList.toggle("meta-owner-highlight", !!activeId && card.dataset.id === activeId);
-  });
-  els.roadmap.querySelectorAll(".meta-bar").forEach(bar => {
-    bar.classList.toggle("meta-owner-highlight", !!activeId && bar.dataset.id === activeId);
-  });
-  els.roadmap.querySelectorAll(".meta-link").forEach(link => {
-    link.classList.toggle("meta-owner-highlight", !!activeId && link.dataset.id === activeId);
-  });
-  els.roadmap.querySelectorAll(".meta-owner-tether, .meta-owner-node, .lane-track[data-unit-id]").forEach(element => {
-    element.classList.toggle("meta-owner-highlight", !!activeId && element.dataset.unitId === activeId);
-  });
+  metaOwnerHighlightedId = activeId;
 }
 function placeholder(name) {
   const div = document.createElement("div");
@@ -3262,11 +3263,8 @@ function bindAppTooltip(element, htmlFactory) {
     if (event.pointerType === "touch") return;
     showAppTooltip(event, htmlFactory, element);
   });
-  element.addEventListener("pointermove", (event) => {
-    if (event.pointerType === "touch") return;
-    if (!appTooltipEl) showAppTooltip(event, htmlFactory, element);
-    else positionFloatingTooltip(appTooltipEl, event, 320, appTooltipAnchorEl || element);
-  });
+  // Deliberately do not reposition on pointermove. Pointermove can fire at a
+  // very high rate; the tooltip is anchored to the reference element instead.
   element.addEventListener("pointerleave", hideAppTooltip);
   element.addEventListener("pointerdown", hideAppTooltip);
 }
@@ -3317,15 +3315,18 @@ function tooltipPlacementOrder(anchorEl, anchorRect) {
   }
   return ["right", "left", "bottom", "top"];
 }
-function tooltipObstacleRects(anchorEl) {
+function tooltipOwnerObstacleRects(anchorEl) {
   if (!anchorEl || !els.roadmap?.contains(anchorEl)) return [];
   const ownerId = tooltipOwnerId(anchorEl);
-  const nodes = els.roadmap.querySelectorAll(".unit-card,.meta-bar,.meta-link,.meta-owner-tether,.meta-owner-node");
+  if (!ownerId) return [];
+  const id = CSS.escape(ownerId);
+  const nodes = els.roadmap.querySelectorAll(
+    `.unit-card[data-id="${id}"],.meta-bar[data-id="${id}"],.meta-link[data-id="${id}"],` +
+    `.meta-owner-tether[data-unit-id="${id}"],.meta-owner-node[data-unit-id="${id}"]`
+  );
   return Array.from(nodes).filter(node => node !== anchorEl).map(node => {
     const rect = node.getBoundingClientRect();
-    const sameOwner = ownerId && (node.dataset.id === ownerId || node.dataset.unitId === ownerId);
-    let weight = node.classList.contains("meta-bar") ? 8 : node.classList.contains("unit-card") ? 7 : node.classList.contains("meta-link") ? 4 : 3;
-    if (sameOwner) weight += 6;
+    const weight = node.classList.contains("meta-bar") ? 12 : node.classList.contains("unit-card") ? 11 : 5;
     return { rect, weight };
   }).filter(item => item.rect.width > 0 && item.rect.height > 0);
 }
@@ -3342,45 +3343,25 @@ function positionFloatingTooltip(element, event, maxWidth = 320, anchorEl = null
   const reference = anchorEl instanceof Element && anchorEl.isConnected ? anchorEl : null;
   const anchorRect = reference?.getBoundingClientRect() || { left: clientX, right: clientX, top: clientY, bottom: clientY, width: 0, height: 0 };
   const order = tooltipPlacementOrder(reference, anchorRect);
-  const obstacles = tooltipObstacleRects(reference);
+  const ownerObstacles = tooltipOwnerObstacleRects(reference);
   const maxLeft = Math.max(margin, viewportWidth - tooltipRect.width - margin);
   const maxTop = Math.max(margin, viewportHeight - tooltipRect.height - margin);
   const candidates = order.map((placement, preferenceIndex) => {
-    let left = anchorRect.left + (anchorRect.width - tooltipRect.width) / 2;
-    let top = anchorRect.top + (anchorRect.height - tooltipRect.height) / 2;
-    if (placement === "right") left = anchorRect.right + gap;
-    if (placement === "left") left = anchorRect.left - tooltipRect.width - gap;
-    if (placement === "bottom") top = anchorRect.bottom + gap;
-    if (placement === "top") top = anchorRect.top - tooltipRect.height - gap;
-    const rawLeft = left;
-    const rawTop = top;
-    // Keep the preview on the chosen side, but let it slide farther outward when
-    // doing so clears real roadmap content. This is the equivalent of a
-    // collision-aware "shift" step rather than merely flipping at viewport edges.
-    for (let pass = 0; pass < 4; pass++) {
-      const probe = { left, top, right: left + tooltipRect.width, bottom: top + tooltipRect.height };
-      let nextLeft = left;
-      let nextTop = top;
-      for (const obstacle of obstacles) {
-        if (!tooltipIntersectionArea(probe, obstacle.rect)) continue;
-        if (placement === "top") nextTop = Math.min(nextTop, obstacle.rect.top - gap - tooltipRect.height);
-        else if (placement === "bottom") nextTop = Math.max(nextTop, obstacle.rect.bottom + gap);
-        else if (placement === "left") nextLeft = Math.min(nextLeft, obstacle.rect.left - gap - tooltipRect.width);
-        else if (placement === "right") nextLeft = Math.max(nextLeft, obstacle.rect.right + gap);
-      }
-      if (nextLeft === left && nextTop === top) break;
-      left = nextLeft;
-      top = nextTop;
-    }
-    left = clamp(left, margin, maxLeft);
-    top = clamp(top, margin, maxTop);
+    let rawLeft = anchorRect.left + (anchorRect.width - tooltipRect.width) / 2;
+    let rawTop = anchorRect.top + (anchorRect.height - tooltipRect.height) / 2;
+    if (placement === "right") rawLeft = anchorRect.right + gap;
+    if (placement === "left") rawLeft = anchorRect.left - tooltipRect.width - gap;
+    if (placement === "bottom") rawTop = anchorRect.bottom + gap;
+    if (placement === "top") rawTop = anchorRect.top - tooltipRect.height - gap;
+    const left = clamp(rawLeft, margin, maxLeft);
+    const top = clamp(rawTop, margin, maxTop);
     const candidateRect = { left, top, right: left + tooltipRect.width, bottom: top + tooltipRect.height };
-    let score = preferenceIndex * 900 + (Math.abs(left - rawLeft) + Math.abs(top - rawTop)) * 12;
+    let score = preferenceIndex * 650 + (Math.abs(left - rawLeft) + Math.abs(top - rawTop)) * 18;
     const anchorOverlap = tooltipIntersectionArea(candidateRect, anchorRect);
     if (anchorOverlap) score += 2_000_000 + anchorOverlap * 20;
-    for (const obstacle of obstacles) {
+    for (const obstacle of ownerObstacles) {
       const area = tooltipIntersectionArea(candidateRect, obstacle.rect);
-      if (area) score += obstacle.weight * (1200 + area);
+      if (area) score += obstacle.weight * (1800 + area);
     }
     return { left, top, placement, score };
   });
@@ -3436,11 +3417,6 @@ function bindProfileAltemaTooltips(root) {
       appTooltipEl?.classList.add("unit-profile-source-tooltip");
     };
     link.addEventListener("pointerenter", event => { if (event.pointerType !== "touch") showSourceTooltip(event); });
-    link.addEventListener("pointermove", event => {
-      if (event.pointerType === "touch" || suppressUntilPointerLeaves) return;
-      if (!appTooltipEl) showSourceTooltip(event);
-      else positionFloatingTooltip(appTooltipEl, event, 220, link);
-    });
     link.addEventListener("pointerleave", () => {
       suppressUntilPointerLeaves = false;
       hideAppTooltip();
