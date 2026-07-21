@@ -36,7 +36,7 @@ The standard tag set is:
 
 `PVP`, `PVE`, `Must P5`, `Buff`, `Core`, `Tech`, `Def`, `Sub`, `CB`
 
-Custom tags are also supported. `Must P5` and `Buff` retain their special MS-card border/glow treatments.
+Custom tags are also supported. `Must P5` and `Buff` use distinctive MS-card border/glow treatments for quick visual identification.
 
 ### PVP Meta timeline
 
@@ -86,7 +86,7 @@ Tags have priority over the name at reduced zoom. The name appears only when the
 
 Hovering a roadmap unit shows a compact preview. Clicking opens the centered **Full Profile**.
 
-Builder interaction remains intentionally split:
+Builder interaction is split:
 
 - single click → Full Profile after the short click/double-click intent window
 - double-click → Selected Unit editor
@@ -107,7 +107,7 @@ Long MS notes use a constrained preview and can open into the dedicated Full Not
 
 ### Altema integration
 
-Catalog entries retain their Altema detail-page `sourceUrl` when available.
+Catalog entries include their Altema detail-page `sourceUrl` when available.
 
 For MS Full Profile, the Builder resolves the Altema reference using the following priority:
 
