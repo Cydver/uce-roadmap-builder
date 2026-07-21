@@ -792,6 +792,13 @@ function knownTagsForDescriptionEditor() {
 }
 function statusColor(id) { return metaStatus(id).color; }
 function segmentColor(segment) { return statusColor(segment.statusId); }
+function applyMetaOwnerColor(element, segment) {
+  if (!element || !segment) return;
+  const color = segmentColor(segment);
+  const rgb = parseHexColor(color) || [132, 224, 252];
+  element.style.setProperty("--meta-owner-color", color);
+  element.style.setProperty("--meta-owner-rgb", rgb.join(", "));
+}
 function defaultMetaStatusId() { return getStatuses()[2]?.id || DEFAULT_META_STATUSES[2].id; }
 function firstSegment(unit) { return unit?.segments?.[0] || null; }
 function selectedSegment(unit = getSelected()) {
@@ -1705,11 +1712,13 @@ function metaOwnerTetherGeometry(unit) {
 function renderMetaOwnerTether(unit) {
   const geometry = metaOwnerTetherGeometry(unit);
   if (!geometry) return;
+  const firstSegment = sortedVisibleSegments(unit)[0];
   if (geometry.stemHeight > 1) {
     const stem = document.createElement("div");
     stem.className = "meta-owner-tether stem";
     stem.dataset.unitId = unit.id;
     stem.setAttribute("aria-hidden", "true");
+    applyMetaOwnerColor(stem, firstSegment);
     stem.style.left = `${geometry.anchorX}px`;
     stem.style.top = `${geometry.stemTop}px`;
     stem.style.height = `${geometry.stemHeight}px`;
@@ -1720,6 +1729,7 @@ function renderMetaOwnerTether(unit) {
     cardArm.className = "meta-owner-tether arm card-arm";
     cardArm.dataset.unitId = unit.id;
     cardArm.setAttribute("aria-hidden", "true");
+    applyMetaOwnerColor(cardArm, firstSegment);
     cardArm.style.left = `${geometry.cardArmLeft}px`;
     cardArm.style.top = `${geometry.cardArmTop}px`;
     cardArm.style.width = `${geometry.cardArmWidth}px`;
@@ -1730,6 +1740,7 @@ function renderMetaOwnerTether(unit) {
     arm.className = "meta-owner-tether arm";
     arm.dataset.unitId = unit.id;
     arm.setAttribute("aria-hidden", "true");
+    applyMetaOwnerColor(arm, firstSegment);
     arm.style.left = `${geometry.armLeft}px`;
     arm.style.top = `${geometry.laneCenter}px`;
     arm.style.width = `${geometry.armWidth}px`;
@@ -1739,6 +1750,7 @@ function renderMetaOwnerTether(unit) {
   cardPort.className = "meta-owner-node card-port";
   cardPort.dataset.unitId = unit.id;
   cardPort.setAttribute("aria-hidden", "true");
+  applyMetaOwnerColor(cardPort, firstSegment);
   cardPort.style.left = `${geometry.cardPortX}px`;
   cardPort.style.top = `${geometry.cardPortY}px`;
   els.roadmap.appendChild(cardPort);
@@ -1747,6 +1759,7 @@ function renderMetaOwnerTether(unit) {
   laneNode.className = "meta-owner-node lane-node";
   laneNode.dataset.unitId = unit.id;
   laneNode.setAttribute("aria-hidden", "true");
+  applyMetaOwnerColor(laneNode, firstSegment);
   laneNode.style.left = `${geometry.laneNodeX}px`;
   laneNode.style.top = `${geometry.laneNodeY}px`;
   els.roadmap.appendChild(laneNode);
