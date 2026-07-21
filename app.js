@@ -153,6 +153,11 @@ function createLayoutGeometryCache() {
 }
 let layoutGeometryCache = createLayoutGeometryCache();
 let roadmapImageReuseCache = new Map();
+let unitByIdIndex = new Map();
+let pairedMsByPilotId = new Map();
+let pairedPilotByMsId = new Map();
+let profileTimelineCache = [];
+let profileImageWarmCache = new Map();
 function invalidateLayoutGeometryCache() {
   layoutGeometryCache = createLayoutGeometryCache();
 }
@@ -172,6 +177,56 @@ function reusableRoadmapImage(unit) {
   img.alt = unit.name;
   img.crossOrigin = "anonymous";
   return img;
+}
+
+function unitById(unitId) {
+  if (!unitId) return null;
+  return unitByIdIndex.get(unitId) || state.units.find(unit => unit.id === unitId) || null;
+}
+
+function ensureProfileImageWarmEntry(url) {
+  const src = String(url || "").trim();
+  if (!src) return null;
+  const existing = profileImageWarmCache.get(src);
+  if (existing) return existing;
+  const img = new Image();
+  img.decoding = "async";
+  img.loading = "eager";
+  img.crossOrigin = "anonymous";
+  try { img.fetchPriority = "high"; } catch {}
+  const entry = { img, ready: false, failed: false, decodePromise: null };
+  profileImageWarmCache.set(src, entry);
+  img.src = src;
+  return entry;
+}
+
+async function decodeProfileWarmEntry(entry) {
+  if (!entry || entry.ready || entry.failed) return;
+  if (entry.decodePromise) return entry.decodePromise;
+  entry.decodePromise = (async () => {
+    try {
+      if (typeof entry.img.decode === "function") await entry.img.decode();
+      else if (!entry.img.complete) await new Promise((resolve, reject) => {
+        entry.img.addEventListener("load", resolve, { once: true });
+        entry.img.addEventListener("error", reject, { once: true });
+      });
+      entry.ready = entry.img.naturalWidth > 0;
+      entry.failed = !entry.ready;
+    } catch {
+      entry.failed = true;
+    }
+  })();
+  return entry.decodePromise;
+}
+
+function warmProfilePairImages(unit) {
+  if (!unit) return;
+  const ms = isMs(unit) ? unit : pairedMsForPilot(unit);
+  const pilot = isPilot(unit) ? unit : pairedPilotForMs(unit);
+  for (const candidate of [ms, pilot]) {
+    const entry = ensureProfileImageWarmEntry(candidate?.icon);
+    if (entry) decodeProfileWarmEntry(entry);
+  }
 }
 
 const els = {
@@ -940,6 +995,7 @@ function normalizeState() {
     unit.segments.sort((a, b) => a.start - b.start || a.end - b.end);
   }
   for (const tier of getTiers()) reflowLanes(tier.id);
+  rebuildRuntimeIndices();
   syncPilotLanes();
 }
 
@@ -1475,6 +1531,9 @@ function renderUnits() {
       if (!img.getAttribute("src")) img.src = unit.icon;
       img.alt = unit.name;
       img.crossOrigin = "anonymous";
+      img.decoding = "async";
+      img.width = Math.max(1, Math.round(size));
+      img.height = Math.max(1, Math.round(size));
       img.onerror = () => { img.replaceWith(placeholder(unit.name)); };
       card.appendChild(img);
     } else {
@@ -1507,7 +1566,10 @@ function renderUnits() {
     plate.textContent = unit.name;
     card.appendChild(plate);
 
-    card.addEventListener("pointerdown", (event) => beginDragUnit(event, unit.id));
+    card.addEventListener("pointerdown", (event) => {
+      warmProfilePairImages(unit);
+      beginDragUnit(event, unit.id);
+    });
     card.addEventListener("contextmenu", (event) => openUnitContextMenu(event, unit.id, null));
     card.addEventListener("mouseenter", (event) => {
       bringUnitToFront(unit.id, card);
@@ -1829,7 +1891,7 @@ function refreshSelectionUi() {
     bar.classList.toggle("selected", bar.dataset.id === selectedId && bar.dataset.segmentId === selectedSegmentId);
   });
 }
-function getSelected() { return state.units.find(u => u.id === selectedId); }
+function getSelected() { return unitById(selectedId); }
 
 function renderForm() {
   const unit = getSelected();
@@ -2299,7 +2361,7 @@ function onPointerUp(event) {
   setTimeout(() => { if (suppressRoadmapClick) suppressRoadmapClick = false; }, 0);
 }
 function handleUnitClickGesture(event, unitId) {
-  const unit = state.units.find(u => u.id === unitId);
+  const unit = unitById(unitId);
   if (!unit) return;
 
   select(unit.id, null);
@@ -2328,7 +2390,7 @@ function handleUnitClickGesture(event, unitId) {
   }
 }
 function handleMetaBarClickGesture(event, unitId, segmentId) {
-  const unit = state.units.find(u => u.id === unitId);
+  const unit = unitById(unitId);
   const segment = unit?.segments.find(s => s.id === segmentId);
   if (!unit || !segment) return;
 
@@ -2389,11 +2451,12 @@ function syncPilotLanes() {
     if (ms) pilot.lane = ms.lane;
   }
 }
-function pairedMsForPilot(pilot) {
+function computePairedMsForPilot(pilot) {
   if (!isPilot(pilot)) return null;
   const sameWeek = state.units.filter(unit => isMs(unit) && normalizeWeek(unit.week) === normalizeWeek(pilot.week));
   if (!sameWeek.length) return null;
   return sameWeek
+    .slice()
     .sort((a, b) => {
       const aExact = sameVisualSlot(a, pilot) ? 1 : 0;
       const bExact = sameVisualSlot(b, pilot) ? 1 : 0;
@@ -2401,21 +2464,94 @@ function pairedMsForPilot(pilot) {
       const aTier = a.tier === pilot.tier ? 1 : 0;
       const bTier = b.tier === pilot.tier ? 1 : 0;
       if (aTier !== bTier) return bTier - aTier;
-      const aDistance = Math.abs(tierIndex(a.tier) + normalizeRowOffset(a.rowOffset) - (tierIndex(pilot.tier) + normalizeRowOffset(pilot.rowOffset)));
-      const bDistance = Math.abs(tierIndex(b.tier) + normalizeRowOffset(b.rowOffset) - (tierIndex(pilot.tier) + normalizeRowOffset(pilot.rowOffset)));
+      const pilotPosition = tierIndex(pilot.tier) + normalizeRowOffset(pilot.rowOffset);
+      const aDistance = Math.abs(tierIndex(a.tier) + normalizeRowOffset(a.rowOffset) - pilotPosition);
+      const bDistance = Math.abs(tierIndex(b.tier) + normalizeRowOffset(b.rowOffset) - pilotPosition);
       return aDistance - bDistance || visualStackRank(a) - visualStackRank(b) || a.name.localeCompare(b.name);
     })[0] || null;
 }
-function pairedPilotForMs(ms) {
+function computePairedPilotForMs(ms) {
   if (!isMs(ms)) return null;
   return state.units
     .filter(isPilot)
-    .filter(pilot => pairedMsForPilot(pilot)?.id === ms.id)
+    .filter(pilot => computePairedMsForPilot(pilot)?.id === ms.id)
     .sort((a, b) => {
       const aExact = sameVisualSlot(a, ms) ? 1 : 0;
       const bExact = sameVisualSlot(b, ms) ? 1 : 0;
       return bExact - aExact || (Number(a.stackOrder) || 0) - (Number(b.stackOrder) || 0) || a.name.localeCompare(b.name);
     })[0] || null;
+}
+function rebuildRuntimeIndices() {
+  const units = state.units || [];
+  const msUnits = [];
+  const pilots = [];
+  const msByWeek = new Map();
+
+  unitByIdIndex = new Map();
+  pairedMsByPilotId = new Map();
+  pairedPilotByMsId = new Map();
+
+  for (const unit of units) {
+    unitByIdIndex.set(unit.id, unit);
+    if (isMs(unit)) {
+      msUnits.push(unit);
+      const week = normalizeWeek(unit.week);
+      if (!msByWeek.has(week)) msByWeek.set(week, []);
+      msByWeek.get(week).push(unit);
+    } else if (isPilot(unit)) {
+      pilots.push(unit);
+    }
+  }
+
+  const pilotsByMsId = new Map();
+  for (const pilot of pilots) {
+    const sameWeek = msByWeek.get(normalizeWeek(pilot.week)) || [];
+    const ms = sameWeek.length ? sameWeek.slice().sort((a, b) => {
+      const aExact = sameVisualSlot(a, pilot) ? 1 : 0;
+      const bExact = sameVisualSlot(b, pilot) ? 1 : 0;
+      if (aExact !== bExact) return bExact - aExact;
+      const aTier = a.tier === pilot.tier ? 1 : 0;
+      const bTier = b.tier === pilot.tier ? 1 : 0;
+      if (aTier !== bTier) return bTier - aTier;
+      const pilotPosition = tierIndex(pilot.tier) + normalizeRowOffset(pilot.rowOffset);
+      const aDistance = Math.abs(tierIndex(a.tier) + normalizeRowOffset(a.rowOffset) - pilotPosition);
+      const bDistance = Math.abs(tierIndex(b.tier) + normalizeRowOffset(b.rowOffset) - pilotPosition);
+      return aDistance - bDistance || visualStackRank(a) - visualStackRank(b) || a.name.localeCompare(b.name);
+    })[0] : null;
+    pairedMsByPilotId.set(pilot.id, ms || null);
+    if (ms) {
+      if (!pilotsByMsId.has(ms.id)) pilotsByMsId.set(ms.id, []);
+      pilotsByMsId.get(ms.id).push(pilot);
+    }
+  }
+
+  for (const ms of msUnits) {
+    const candidates = pilotsByMsId.get(ms.id) || [];
+    candidates.sort((a, b) => {
+      const aExact = sameVisualSlot(a, ms) ? 1 : 0;
+      const bExact = sameVisualSlot(b, ms) ? 1 : 0;
+      return bExact - aExact || (Number(a.stackOrder) || 0) - (Number(b.stackOrder) || 0) || a.name.localeCompare(b.name);
+    });
+    pairedPilotByMsId.set(ms.id, candidates[0] || null);
+  }
+
+  profileTimelineCache = msUnits.slice().sort((a, b) =>
+    normalizeWeek(a.week) - normalizeWeek(b.week)
+    || (tierIndex(a.tier) + normalizeRowOffset(a.rowOffset)) - (tierIndex(b.tier) + normalizeRowOffset(b.rowOffset))
+    || (Number(a.stackOrder) || 0) - (Number(b.stackOrder) || 0)
+    || a.name.localeCompare(b.name)
+    || a.id.localeCompare(b.id)
+  );
+}
+function pairedMsForPilot(pilot) {
+  if (!isPilot(pilot)) return null;
+  if (pairedMsByPilotId.has(pilot.id)) return pairedMsByPilotId.get(pilot.id) || null;
+  return computePairedMsForPilot(pilot);
+}
+function pairedPilotForMs(ms) {
+  if (!isMs(ms)) return null;
+  if (pairedPilotByMsId.has(ms.id)) return pairedPilotByMsId.get(ms.id) || null;
+  return computePairedPilotForMs(ms);
 }
 function metaOwnerForUnit(unit) {
   if (!unit) return null;
@@ -3223,7 +3359,7 @@ async function maybeLoadPublishedRoadmap() {
   const params = new URLSearchParams(location.search);
   if (params.get("view") !== "published") return;
   try {
-    const response = await fetch("data/roadmap.json", { cache: "no-store" });
+    const response = await fetch("data/roadmap.json", { cache: "no-cache" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     state = Array.isArray(data) ? { ...structuredClone(DEFAULT_ROADMAP), units: data } : { ...structuredClone(DEFAULT_ROADMAP), ...data };
@@ -3562,7 +3698,7 @@ function tagBg(tag) {
 async function loadCatalog() {
   els.catalogStatus.textContent = "Loading data/catalog.json…";
   try {
-    const response = await fetch("data/catalog.json", { cache: "no-store" });
+    const response = await fetch("data/catalog.json");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     catalog = Array.isArray(data) ? data : (data.items || []);
@@ -3869,8 +4005,10 @@ function profileArtHtml(unit, typeLabel) {
   if (!unit) {
     return `<div class="unit-profile-art empty"><div class="unit-profile-placeholder">?</div><span>${escapeHtml(typeLabel)}</span></div>`;
   }
+  const warmed = unit.icon ? profileImageWarmCache.get(String(unit.icon).trim()) : null;
+  const decoding = warmed?.ready ? "sync" : "async";
   const image = unit.icon
-    ? `<img class="unit-profile-image" src="${escapeHtml(unit.icon)}" alt="${escapeHtml(unit.name)}" decoding="async"><div class="unit-profile-placeholder image-fallback">${escapeHtml(initials(unit.name))}</div>`
+    ? `<img class="unit-profile-image" src="${escapeHtml(unit.icon)}" alt="${escapeHtml(unit.name)}" width="200" height="200" decoding="${decoding}" loading="eager" fetchpriority="high" crossorigin="anonymous"><div class="unit-profile-placeholder image-fallback">${escapeHtml(initials(unit.name))}</div>`
     : `<div class="unit-profile-placeholder">${escapeHtml(initials(unit.name))}</div>`;
   return `<div class="unit-profile-art">${image}</div>`;
 }
@@ -4160,16 +4298,9 @@ function bindUnitProfileAdaptiveRows(root) {
 }
 
 function profileTimelineMsUnits() {
-  return state.units
-    .filter(isMs)
-    .slice()
-    .sort((a, b) =>
-      normalizeWeek(a.week) - normalizeWeek(b.week)
-      || (tierIndex(a.tier) + normalizeRowOffset(a.rowOffset)) - (tierIndex(b.tier) + normalizeRowOffset(b.rowOffset))
-      || (Number(a.stackOrder) || 0) - (Number(b.stackOrder) || 0)
-      || a.name.localeCompare(b.name)
-      || a.id.localeCompare(b.id)
-    );
+  if (profileTimelineCache.length || !(state.units || []).some(isMs)) return profileTimelineCache;
+  rebuildRuntimeIndices();
+  return profileTimelineCache;
 }
 
 function profileNavigationTargets(clicked, ms) {
@@ -4227,7 +4358,7 @@ function profilePanelHeaderHtml(unit, label, emptyMessage) {
 }
 
 function openUnitProfile(unitId, activeSegmentId = null) {
-  const clicked = state.units.find(unit => unit.id === unitId);
+  const clicked = unitById(unitId);
   if (!clicked || (!isMs(clicked) && !isPilot(clicked))) return;
   hideTooltip(true);
   hideAppTooltip();
