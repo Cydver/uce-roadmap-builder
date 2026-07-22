@@ -126,6 +126,13 @@ let unitProfileLayoutObserver = null;
 let autoApplyTimer = null;
 let editFormDirty = false;
 let editDialogSavePending = false;
+let unitProfileBindingGeneration = 0;
+let unitProfileBindingFrame = 0;
+let unitProfileNavigationFocusFrame = 0;
+const unitProfileBindingTimers = new Set();
+let dragRenderFrame = 0;
+let viewportResizeFrame = 0;
+let builderRenderDirtyAfterResume = false;
 let zoomScale = Number(localStorage.getItem(ZOOM_STORAGE_KEY) || "1") || 1;
 
 function createLayoutGeometryCache() {
@@ -797,8 +804,8 @@ function laneFromY(y, tier) {
   const firstCenter = laneCenterY(tier, 1);
   return normalizeLane(Math.round((y - firstCenter) / BAR_GAP) + 1);
 }
-function chartPoint(event) {
-  const rect = els.roadmap.getBoundingClientRect();
+function chartPoint(event, cachedRect = null) {
+  const rect = cachedRect || els.roadmap.getBoundingClientRect();
   return { x: (event.clientX - rect.left) / zoomScale, y: (event.clientY - rect.top) / zoomScale };
 }
 function baseChartWidth() { return weekBoundaryX(weekCount()); }
@@ -1197,7 +1204,25 @@ function bindUI() {
   });
   window.addEventListener("resize", () => {
     hideContextMenu();
-    updateAdaptiveRoadmapPresentation();
+    recoverInterruptedBuilderInteractions({ renderCancelledDrag: false });
+    if (viewportResizeFrame) cancelAnimationFrame(viewportResizeFrame);
+    viewportResizeFrame = requestAnimationFrame(() => {
+      viewportResizeFrame = 0;
+      if (builderRenderDirtyAfterResume) {
+        builderRenderDirtyAfterResume = false;
+        renderAll();
+      } else {
+        applyZoom();
+      }
+    });
+  });
+  window.addEventListener("blur", () => recoverInterruptedBuilderInteractions({ renderCancelledDrag: false }));
+  window.addEventListener("focus", restoreBuilderPresentationAfterInterruption);
+  window.addEventListener("pagehide", () => recoverInterruptedBuilderInteractions({ renderCancelledDrag: false }));
+  window.addEventListener("pageshow", restoreBuilderPresentationAfterInterruption);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) recoverInterruptedBuilderInteractions({ renderCancelledDrag: false });
+    else restoreBuilderPresentationAfterInterruption();
   });
   window.addEventListener("scroll", hideContextMenu, true);
   els.editForm.elements.tags.addEventListener("input", renderTagPreview);
@@ -1212,6 +1237,7 @@ function bindUI() {
   });
 
   els.chartScroll?.addEventListener("pointerdown", beginTimelinePan);
+  els.chartScroll?.addEventListener("lostpointercapture", handleLostTimelinePanCapture);
   els.chartScroll?.addEventListener("wheel", handleTimelineWheelZoom, { passive: false });
   els.roadmap.addEventListener("contextmenu", openChartContextMenu);
   els.roadmap.addEventListener("click", (event) => {
@@ -1265,7 +1291,7 @@ function bindUI() {
 
   document.addEventListener("pointermove", onPointerMove);
   document.addEventListener("pointerup", onPointerUp);
-  document.addEventListener("pointercancel", onPointerUp);
+  document.addEventListener("pointercancel", onPointerCancel);
   document.addEventListener("keydown", (event) => {
     if (event.key === "Delete" || event.key === "Backspace") {
       const active = document.activeElement?.tagName;
@@ -2008,13 +2034,20 @@ function bindAutoApplyForm() {
 }
 function scheduleAutoApply(delay = 250) {
   if (!getSelected() || els.editForm.classList.contains("hidden")) return;
+  // Commit the form into the in-memory roadmap immediately, but debounce the
+  // expensive DOM rebuild + persistence. This prevents a selection change during
+  // the debounce window from either losing the edit or applying stale form work
+  // to a different unit.
+  applyForm({ auto: true, render: false, save: false });
   clearTimeout(autoApplyTimer);
   autoApplyTimer = setTimeout(() => {
+    autoApplyTimer = null;
     const active = document.activeElement;
     const name = active?.form === els.editForm ? active.name : null;
     const start = typeof active?.selectionStart === "number" ? active.selectionStart : null;
     const end = typeof active?.selectionEnd === "number" ? active.selectionEnd : null;
-    applyForm({ auto: true });
+    renderAll();
+    autoSave();
     if (name) {
       const next = els.editForm.elements[name];
       if (next && typeof next.focus === "function") {
@@ -2191,7 +2224,10 @@ function isLikelyScrollbarGrab(event, scrollEl) {
   return event.clientX >= rect.right - gutter || event.clientY >= rect.bottom - gutter;
 }
 function beginTimelinePan(event) {
-  if (event.button !== 0 || drag || !els.chartScroll) return;
+  if (event.button !== 0 || drag || panDrag || !els.chartScroll) return;
+  // Touch already has excellent native scrolling/momentum. Keep custom pointer
+  // panning for mouse/pen and reserve touch-action:none for actual draggable items.
+  if (event.pointerType === "touch") return;
   if (isTimelinePanBlockedTarget(event.target)) return;
   if (isLikelyScrollbarGrab(event, els.chartScroll)) return;
   panDrag = {
@@ -2203,10 +2239,10 @@ function beginTimelinePan(event) {
     didMove: false
   };
   els.chartScroll.classList.add("panning");
-  els.chartScroll.setPointerCapture?.(event.pointerId);
+  try { els.chartScroll.setPointerCapture?.(event.pointerId); } catch {}
 }
 function updateTimelinePan(event) {
-  if (!panDrag || !els.chartScroll) return;
+  if (!panDrag || !els.chartScroll || event.pointerId !== panDrag.pointerId) return;
   const dx = event.clientX - panDrag.startClientX;
   const dy = event.clientY - panDrag.startClientY;
   if (Math.abs(dx) > 3 || Math.abs(dy) > 3) panDrag.didMove = true;
@@ -2216,31 +2252,147 @@ function updateTimelinePan(event) {
   hideContextMenu();
   event.preventDefault();
 }
-function finishTimelinePan(event) {
+function finishTimelinePan(event = null, force = false) {
+  if (!panDrag || (!force && event?.pointerId != null && event.pointerId !== panDrag.pointerId)) return false;
   const endedPan = panDrag;
   panDrag = null;
   els.chartScroll?.classList.remove("panning");
-  if (endedPan?.pointerId != null) els.chartScroll?.releasePointerCapture?.(endedPan.pointerId);
+  if (endedPan?.pointerId != null) {
+    try { els.chartScroll?.releasePointerCapture?.(endedPan.pointerId); } catch {}
+  }
   if (endedPan?.didMove) {
     suppressRoadmapClick = true;
     event?.preventDefault?.();
     setTimeout(() => { if (suppressRoadmapClick) suppressRoadmapClick = false; }, 0);
   }
+  return true;
+}
+function handleLostTimelinePanCapture(event) {
+  if (panDrag?.pointerId === event.pointerId) finishTimelinePan(event, true);
+}
+
+function captureAdaptiveRoadmapState() {
+  const cards = new Map();
+  const bars = new Map();
+  const tiers = new Map();
+  els.roadmap?.querySelectorAll(".unit-card[data-id]").forEach(card => {
+    cards.set(card.dataset.id, {
+      iconOnly: card.classList.contains("icon-only"),
+      tagsOnly: card.classList.contains("tags-only")
+    });
+  });
+  els.roadmap?.querySelectorAll(".meta-bar[data-segment-id]").forEach(bar => {
+    const label = bar.querySelector(".bar-label");
+    if (label) bars.set(bar.dataset.segmentId, { text: label.textContent, hidden: label.hidden });
+  });
+  els.roadmap?.querySelectorAll(".tier-label[data-tier-id]").forEach(label => {
+    const text = label.querySelector(".tier-label-text");
+    if (text) tiers.set(label.dataset.tierId, { text: text.textContent, abbreviated: label.dataset.abbreviated });
+  });
+  return { cards, bars, tiers };
+}
+function restoreAdaptiveRoadmapState(snapshot) {
+  if (!snapshot || !els.roadmap) return;
+  els.roadmap.querySelectorAll(".unit-card[data-id]").forEach(card => {
+    const saved = snapshot.cards.get(card.dataset.id);
+    if (!saved) return;
+    card.classList.toggle("icon-only", saved.iconOnly);
+    card.classList.toggle("tags-only", saved.tagsOnly);
+  });
+  els.roadmap.querySelectorAll(".meta-bar[data-segment-id]").forEach(bar => {
+    const saved = snapshot.bars.get(bar.dataset.segmentId);
+    const label = bar.querySelector(".bar-label");
+    if (!saved || !label) return;
+    label.textContent = saved.text;
+    label.hidden = saved.hidden;
+  });
+  els.roadmap.querySelectorAll(".tier-label[data-tier-id]").forEach(label => {
+    const saved = snapshot.tiers.get(label.dataset.tierId);
+    const text = label.querySelector(".tier-label-text");
+    if (!saved || !text) return;
+    text.textContent = saved.text;
+    label.dataset.abbreviated = saved.abbreviated ?? "false";
+  });
+}
+function applyZoomVisualState() {
+  if (!els.roadmap || !els.roadmapStage) return;
+  els.roadmap.style.transform = `scale(${zoomScale})`;
+  els.roadmap.style.setProperty("--textBoost", legibleTextScale().toFixed(3));
+  els.roadmap.style.setProperty("--barTextBoost", barLabelTextScale().toFixed(3));
+  const gridLinePx = clamp(1 / zoomScale, 1, 5);
+  els.roadmap.style.setProperty("--gridLine", `${gridLinePx.toFixed(2)}px`);
+  els.roadmap.style.setProperty("--monthGridLine", `${(gridLinePx * 2).toFixed(2)}px`);
+  els.roadmapStage.style.width = `${baseChartWidth() * zoomScale}px`;
+  els.roadmapStage.style.height = `${baseChartHeight() * zoomScale}px`;
+  if (els.zoomRange) els.zoomRange.value = String(Math.round(zoomScale * 100));
+  if (els.zoomLabel) els.zoomLabel.textContent = `${Math.round(zoomScale * 100)}%`;
+}
+function renderActiveDragFrame() {
+  dragRenderFrame = 0;
+  if (!drag) return;
+  const adaptive = drag.adaptivePresentation || captureAdaptiveRoadmapState();
+  captureRoadmapImagesForRender();
+  metaOwnerHoverId = null;
+  metaOwnerHighlightedId = null;
+  metaFocusDimmerEl = null;
+  normalizeState();
+  buildStaticGrid();
+  renderUnits();
+  restoreAdaptiveRoadmapState(adaptive);
+  applyZoomVisualState();
+  roadmapImageReuseCache.clear();
+}
+function scheduleActiveDragRender() {
+  if (dragRenderFrame || !drag) return;
+  dragRenderFrame = requestAnimationFrame(renderActiveDragFrame);
+}
+function cancelActiveDragRender() {
+  if (!dragRenderFrame) return;
+  cancelAnimationFrame(dragRenderFrame);
+  dragRenderFrame = 0;
+}
+function restoreCancelledDrag({ render = true } = {}) {
+  if (!drag?.originUnits) return;
+  state.units = structuredClone(drag.originUnits);
+  drag = null;
+  cancelActiveDragRender();
+  if (render) renderAll();
+  else builderRenderDirtyAfterResume = true;
+}
+function restoreBuilderPresentationAfterInterruption() {
+  if (!builderRenderDirtyAfterResume || document.hidden) return;
+  builderRenderDirtyAfterResume = false;
+  renderAll();
+}
+function recoverInterruptedBuilderInteractions({ renderCancelledDrag = true } = {}) {
+  if (profileOpenTimer) {
+    clearTimeout(profileOpenTimer);
+    profileOpenTimer = null;
+    lastUnitClick = { id: null, at: 0 };
+  }
+  if (panDrag) finishTimelinePan(null, true);
+  if (drag) restoreCancelledDrag({ render: renderCancelledDrag });
 }
 
 function beginDragUnit(event, id) {
-  if (event.button !== 0) return;
+  if (event.button !== 0 || drag || panDrag) return;
   if (profileOpenTimer) { clearTimeout(profileOpenTimer); profileOpenTimer = null; }
   const unit = state.units.find(u => u.id === id);
   if (!unit) return;
   event.stopPropagation();
   select(id, null);
-  const point = chartPoint(event);
+  const roadmapRect = els.roadmap.getBoundingClientRect();
+  const point = chartPoint(event, roadmapRect);
   const originLeft = iconX(unit);
   const originTop = iconY(unit);
   drag = {
     type: "unit",
     id,
+    pointerId: event.pointerId,
+    pointerType: event.pointerType || "mouse",
+    originUnits: structuredClone(state.units),
+    roadmapRect: { left: roadmapRect.left, top: roadmapRect.top },
+    adaptivePresentation: captureAdaptiveRoadmapState(),
     startX: point.x,
     startY: point.y,
     originLeft,
@@ -2255,23 +2407,30 @@ function beginDragUnit(event, id) {
     previewTop: originTop,
     didMove: false
   };
-  event.currentTarget.setPointerCapture?.(event.pointerId);
+  // Do not capture on a card that drag rendering intentionally replaces.
+  // Document-level move/up/cancel listeners own this gesture instead.
   event.preventDefault();
 }
 function beginDragBar(event, id, segmentId) {
-  if (event.button !== 0) return;
+  if (event.button !== 0 || drag || panDrag) return;
   const unit = state.units.find(u => u.id === id);
   const segment = unit?.segments.find(s => s.id === segmentId);
   if (!unit || !segment) return;
   event.stopPropagation();
   select(id, segmentId);
   const handle = event.target.dataset.handle || "move";
-  const point = chartPoint(event);
+  const roadmapRect = els.roadmap.getBoundingClientRect();
+  const point = chartPoint(event, roadmapRect);
   drag = {
     type: "bar",
     handle,
     id,
     segmentId,
+    pointerId: event.pointerId,
+    pointerType: event.pointerType || "mouse",
+    originUnits: structuredClone(state.units),
+    roadmapRect: { left: roadmapRect.left, top: roadmapRect.top },
+    adaptivePresentation: captureAdaptiveRoadmapState(),
     startX: point.x,
     startY: point.y,
     startPointerWeek: idOfWeekFromX(point.x),
@@ -2281,7 +2440,6 @@ function beginDragBar(event, id, segmentId) {
     originTier: unit.tier,
     didMove: false
   };
-  event.currentTarget.setPointerCapture?.(event.pointerId);
   event.preventDefault();
 }
 function onPointerMove(event) {
@@ -2289,10 +2447,10 @@ function onPointerMove(event) {
     updateTimelinePan(event);
     return;
   }
-  if (!drag) return;
+  if (!drag || event.pointerId !== drag.pointerId) return;
   const unit = state.units.find(u => u.id === drag.id);
   if (!unit) return;
-  const point = chartPoint(event);
+  const point = chartPoint(event, drag.roadmapRect);
   if (Math.abs(point.x - drag.startX) > 3 || Math.abs(point.y - drag.startY) > 3) drag.didMove = true;
 
   if (drag.type === "unit") {
@@ -2310,7 +2468,7 @@ function onPointerMove(event) {
     unit.tier = placement.tier;
     unit.rowOffset = placement.rowOffset;
     if (oldTier !== unit.tier || oldOffset !== unit.rowOffset) unit.lane = autoLaneFor(unit.tier, unit.segments, unit.id);
-    renderAll();
+    scheduleActiveDragRender();
   }
 
   if (drag.type === "bar") {
@@ -2332,7 +2490,7 @@ function onPointerMove(event) {
       unit.tier = tier;
       unit.lane = laneFromY(centerY, tier);
     }
-    renderAll();
+    scheduleActiveDragRender();
   }
 }
 function onPointerUp(event) {
@@ -2340,13 +2498,12 @@ function onPointerUp(event) {
     finishTimelinePan(event);
     return;
   }
-  if (!drag) return;
+  if (!drag || event.pointerId !== drag.pointerId) return;
+  cancelActiveDragRender();
   const endedDrag = drag;
   drag = null;
 
   // Handle stationary unit presses here instead of relying on native click/dblclick.
-  // The unit cards participate in pointer-captured drag handling, and some browsers
-  // suppress or lose follow-up mouse events when pointerdown is cancelled for dragging.
   if (!endedDrag.didMove) {
     if (endedDrag.type === "unit") handleUnitClickGesture(event, endedDrag.id);
     if (endedDrag.type === "bar") handleMetaBarClickGesture(event, endedDrag.id, endedDrag.segmentId);
@@ -2360,11 +2517,27 @@ function onPointerUp(event) {
   autoSave();
   setTimeout(() => { if (suppressRoadmapClick) suppressRoadmapClick = false; }, 0);
 }
+function onPointerCancel(event) {
+  if (panDrag?.pointerId === event.pointerId) {
+    finishTimelinePan(event, true);
+    return;
+  }
+  if (!drag || event.pointerId !== drag.pointerId) return;
+  restoreCancelledDrag();
+}
 function handleUnitClickGesture(event, unitId) {
   const unit = unitById(unitId);
   if (!unit) return;
 
   select(unit.id, null);
+  if (event.pointerType === "touch") {
+    if (profileOpenTimer) clearTimeout(profileOpenTimer);
+    profileOpenTimer = null;
+    lastUnitClick = { id: null, at: 0 };
+    if (isMs(unit) || isPilot(unit)) openUnitProfile(unit.id);
+    else renameUnit(unit.id);
+    return;
+  }
   const now = performance.now();
   const isDoubleClick = lastUnitClick.id === unit.id && now - lastUnitClick.at <= 500;
 
@@ -2781,6 +2954,7 @@ function editUnitNotes(unitId, fieldName = "notesPvp") {
   if (!unit) return;
   openSelectedUnitDialog(unitId);
   requestAnimationFrame(() => {
+    if (!els.unitEditDialog?.open || selectedId !== unitId) return;
     const field = els.editForm.elements[fieldName];
     if (!field) return;
     field.focus();
@@ -2982,17 +3156,7 @@ function updateAdaptiveRoadmapPresentation() {
 }
 
 function applyZoom() {
-  if (!els.roadmap || !els.roadmapStage) return;
-  els.roadmap.style.transform = `scale(${zoomScale})`;
-  els.roadmap.style.setProperty("--textBoost", legibleTextScale().toFixed(3));
-  els.roadmap.style.setProperty("--barTextBoost", barLabelTextScale().toFixed(3));
-  const gridLinePx = clamp(1 / zoomScale, 1, 5);
-  els.roadmap.style.setProperty("--gridLine", `${gridLinePx.toFixed(2)}px`);
-  els.roadmap.style.setProperty("--monthGridLine", `${(gridLinePx * 2).toFixed(2)}px`);
-  els.roadmapStage.style.width = `${baseChartWidth() * zoomScale}px`;
-  els.roadmapStage.style.height = `${baseChartHeight() * zoomScale}px`;
-  if (els.zoomRange) els.zoomRange.value = String(Math.round(zoomScale * 100));
-  if (els.zoomLabel) els.zoomLabel.textContent = `${Math.round(zoomScale * 100)}%`;
+  applyZoomVisualState();
   updateAdaptiveRoadmapPresentation();
 }
 function setZoom(value, persist = true) {
@@ -3997,7 +4161,13 @@ function bindProfileTagTooltips(root) {
     const tag = chip.dataset.profileTag || "";
     const description = tagDescription(tag);
     if (!description) return;
-    bindAppTooltip(chip, () => `<strong>${escapeHtml(tag)}</strong><div class="app-tooltip-description">${multilineHtml(description)}</div>`);
+    const htmlFactory = () => `<strong>${escapeHtml(tag)}</strong><div class="app-tooltip-description">${multilineHtml(description)}</div>`;
+    bindAppTooltip(chip, htmlFactory);
+    chip.addEventListener("click", event => {
+      if (!window.matchMedia?.("(pointer: coarse)")?.matches) return;
+      event.stopPropagation();
+      showAppTooltip(event, htmlFactory, chip);
+    });
   });
 }
 
@@ -4103,6 +4273,11 @@ function bindProfileMetaTooltips(root) {
     const description = label.dataset.metaDescription || "";
     const htmlFactory = () => `<strong>${escapeHtml(metaLabel)}</strong><div class="app-tooltip-description">${multilineHtml(description)}</div>`;
     bindAppTooltip(label, htmlFactory);
+    const touchTarget = window.matchMedia?.("(pointer: coarse)")?.matches ? label.closest(".unit-profile-meta-row") : null;
+    touchTarget?.addEventListener("click", event => {
+      event.stopPropagation();
+      showAppTooltip(event, htmlFactory, touchTarget);
+    });
     label.addEventListener("focus", () => {
       const rect = label.getBoundingClientRect();
       showAppTooltip({ clientX: rect.left + rect.width / 2, clientY: rect.bottom }, htmlFactory, label);
@@ -4130,8 +4305,11 @@ function openUnitNoteReader(title, text, sourceButton = null) {
 
   const overlay = document.createElement("div");
   overlay.className = "unit-note-reader-overlay";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-label", `${title} full notes`);
   overlay.innerHTML = `
-    <article class="unit-note-reader-card" role="dialog" aria-modal="true" aria-label="${escapeHtml(title)} full notes">
+    <article class="unit-note-reader-card">
       <header class="unit-note-reader-header">
         <div><span>FULL NOTES</span><h2>${escapeHtml(title)}</h2></div>
         <button class="unit-note-reader-close" type="button" aria-label="Close full notes">×</button>
@@ -4140,12 +4318,7 @@ function openUnitNoteReader(title, text, sourceButton = null) {
     </article>`;
   overlay.addEventListener("click", event => { if (event.target === overlay) closeUnitNoteReader(); });
   overlay.querySelector(".unit-note-reader-close")?.addEventListener("click", () => closeUnitNoteReader());
-  overlay.addEventListener("keydown", event => {
-    if (event.key === "Tab") {
-      event.preventDefault();
-      overlay.querySelector(".unit-note-reader-close")?.focus({ preventScroll: true });
-    }
-  });
+  overlay.addEventListener("keydown", event => trapModalTabKey(overlay, event));
   document.body.appendChild(overlay);
   unitNoteReaderOverlay = overlay;
   overlay.querySelector(".unit-note-reader-close")?.focus({ preventScroll: true });
@@ -4163,7 +4336,7 @@ function closeUnitNoteReader(immediate = false) {
     if (finished) return;
     finished = true;
     overlay.remove();
-    if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
+    if (!unitNoteReaderOverlay && !unitProfileOverlay && returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
   };
   if (immediate || window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) {
     finish();
@@ -4174,11 +4347,65 @@ function closeUnitNoteReader(immediate = false) {
   setTimeout(finish, 260);
 }
 
-function bindProfileNoteReaders(root) {
+function modalFocusableElements(root) {
+  return [...(root?.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])') || [])]
+    .filter(element => element instanceof HTMLElement && element.offsetParent !== null);
+}
+function trapModalTabKey(root, event) {
+  if (event.key !== "Tab") return;
+  const focusable = modalFocusableElements(root);
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  const active = document.activeElement;
+  if (event.shiftKey && (active === first || !root.contains(active))) {
+    event.preventDefault();
+    last.focus({ preventScroll: true });
+  } else if (!event.shiftKey && (active === last || !root.contains(active))) {
+    event.preventDefault();
+    first.focus({ preventScroll: true });
+  }
+}
+function resetUnitProfileContentBindings() {
+  unitProfileBindingGeneration += 1;
+  if (unitProfileBindingFrame) {
+    cancelAnimationFrame(unitProfileBindingFrame);
+    unitProfileBindingFrame = 0;
+  }
+  if (unitProfileNavigationFocusFrame) {
+    cancelAnimationFrame(unitProfileNavigationFocusFrame);
+    unitProfileNavigationFocusFrame = 0;
+  }
+  unitProfileBindingTimers.forEach(timer => clearTimeout(timer));
+  unitProfileBindingTimers.clear();
   unitProfileOverflowObserver?.disconnect();
   unitProfileOverflowObserver = null;
   unitProfileLayoutObserver?.disconnect();
   unitProfileLayoutObserver = null;
+}
+function scheduleUnitProfileBindingTimeout(callback, delay, generation, root) {
+  const timer = setTimeout(() => {
+    unitProfileBindingTimers.delete(timer);
+    if (generation !== unitProfileBindingGeneration || unitProfileOverlay !== root || !root?.isConnected) return;
+    callback();
+  }, delay);
+  unitProfileBindingTimers.add(timer);
+}
+function scheduleUnitProfileContentBindings(overlay) {
+  const generation = unitProfileBindingGeneration;
+  unitProfileBindingFrame = requestAnimationFrame(() => {
+    unitProfileBindingFrame = requestAnimationFrame(() => {
+      unitProfileBindingFrame = 0;
+      if (generation !== unitProfileBindingGeneration || unitProfileOverlay !== overlay || !overlay.isConnected) return;
+      bindUnitProfileAdaptiveRows(overlay, generation);
+      bindProfileNoteReaders(overlay, generation);
+    });
+  });
+}
+
+function bindProfileNoteReaders(root, generation = unitProfileBindingGeneration) {
+  unitProfileOverflowObserver?.disconnect();
+  unitProfileOverflowObserver = null;
   const sections = [...(root?.querySelectorAll('.unit-profile-scroll-notes[data-note-reader="true"]') || [])];
   if (!sections.length) return;
 
@@ -4203,6 +4430,7 @@ function bindProfileNoteReaders(root) {
 
   if (typeof ResizeObserver === "function") {
     unitProfileOverflowObserver = new ResizeObserver(entries => {
+      if (generation !== unitProfileBindingGeneration || unitProfileOverlay !== root || !root?.isConnected) return;
       entries.forEach(entry => {
         const section = entry.target.closest?.('.unit-profile-scroll-notes[data-note-reader="true"]') || entry.target;
         if (section?.matches?.('.unit-profile-scroll-notes[data-note-reader="true"]')) updateSection(section);
@@ -4215,11 +4443,13 @@ function bindProfileNoteReaders(root) {
     });
   }
 
-  const updateAll = () => sections.forEach(updateSection);
+  const updateAll = () => {
+    if (generation !== unitProfileBindingGeneration || unitProfileOverlay !== root || !root?.isConnected) return;
+    sections.forEach(updateSection);
+  };
   requestAnimationFrame(() => requestAnimationFrame(updateAll));
-  setTimeout(updateAll, 120);
+  scheduleUnitProfileBindingTimeout(updateAll, 120, generation, root);
 }
-
 
 function profileRequiredContentBottom(panel, target) {
   if (!panel || !target) return 0;
@@ -4274,17 +4504,22 @@ function updateUnitProfileAdaptiveRows(root) {
   grid.style.setProperty('--profile-top-row', `${topHeight}px`);
 }
 
-function bindUnitProfileAdaptiveRows(root) {
+function bindUnitProfileAdaptiveRows(root, generation = unitProfileBindingGeneration) {
   unitProfileLayoutObserver?.disconnect();
   unitProfileLayoutObserver = null;
 
   const card = root?.querySelector('.unit-profile-card');
   if (!card) return;
+  if (window.matchMedia?.('(max-width: 820px), (max-height: 600px) and (pointer: coarse)')?.matches) return;
 
   let frame = 0;
   const update = () => {
+    if (generation !== unitProfileBindingGeneration || unitProfileOverlay !== root || !root?.isConnected) return;
     cancelAnimationFrame(frame);
-    frame = requestAnimationFrame(() => updateUnitProfileAdaptiveRows(root));
+    frame = requestAnimationFrame(() => {
+      if (generation !== unitProfileBindingGeneration || unitProfileOverlay !== root || !root?.isConnected) return;
+      updateUnitProfileAdaptiveRows(root);
+    });
   };
 
   if (typeof ResizeObserver === 'function') {
@@ -4293,7 +4528,7 @@ function bindUnitProfileAdaptiveRows(root) {
   }
 
   requestAnimationFrame(() => requestAnimationFrame(update));
-  setTimeout(update, 120);
+  scheduleUnitProfileBindingTimeout(update, 120, generation, root);
   if (document.fonts?.ready) document.fonts.ready.then(update).catch(() => {});
 }
 
@@ -4344,7 +4579,9 @@ function navigateUnitProfile(direction) {
   profileReturnFocus = originalReturnFocus;
 
   const selector = direction < 0 ? ".unit-profile-nav-prev" : ".unit-profile-nav-next";
-  requestAnimationFrame(() => {
+  if (unitProfileNavigationFocusFrame) cancelAnimationFrame(unitProfileNavigationFocusFrame);
+  unitProfileNavigationFocusFrame = requestAnimationFrame(() => {
+    unitProfileNavigationFocusFrame = 0;
     const button = unitProfileOverlay?.querySelector(selector);
     if (button && !button.disabled) button.focus({ preventScroll: true });
   });
@@ -4373,11 +4610,14 @@ function openUnitProfile(unitId, activeSegmentId = null) {
 
   const overlay = document.createElement("div");
   overlay.className = "unit-profile-overlay";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-label", ms?.name || pilot?.name || "Unit profile");
   overlay.dataset.previousMsId = previous?.id || "";
   overlay.dataset.nextMsId = next?.id || "";
   overlay.innerHTML = `
     <button class="unit-profile-nav unit-profile-nav-prev" type="button" aria-label="${escapeHtml(previous ? `Previous MS: ${previous.name}` : "No previous MS")}" ${previous ? "" : "disabled"}><span aria-hidden="true">‹</span></button>
-    <article class="unit-profile-card" role="dialog" aria-modal="true" aria-label="${escapeHtml(ms?.name || pilot?.name || "Unit profile")}">
+    <article class="unit-profile-card">
       <button class="unit-profile-close" type="button" aria-label="Close profile">×</button>
       <div class="unit-profile-grid unit-profile-grid-lshape${ms && (ms.segments || []).length >= 5 ? " meta-very-dense" : ms && (ms.segments || []).length >= 3 ? " meta-dense" : ""}">
         <section class="unit-profile-panel unit-profile-ms-panel">
@@ -4404,6 +4644,7 @@ function openUnitProfile(unitId, activeSegmentId = null) {
     <button class="unit-profile-nav unit-profile-nav-next" type="button" aria-label="${escapeHtml(next ? `Next MS: ${next.name}` : "No next MS")}" ${next ? "" : "disabled"}><span aria-hidden="true">›</span></button>`;
 
   overlay.addEventListener("click", event => { if (event.target === overlay) closeUnitProfile(); });
+  overlay.addEventListener("keydown", event => trapModalTabKey(overlay, event));
   overlay.querySelector(".unit-profile-close")?.addEventListener("click", () => closeUnitProfile());
   overlay.querySelector(".unit-profile-nav-prev")?.addEventListener("click", event => {
     event.stopPropagation();
@@ -4426,21 +4667,13 @@ function openUnitProfile(unitId, activeSegmentId = null) {
   bindProfileTagTooltips(overlay);
   bindProfileMetaTooltips(overlay);
   bindProfileAltemaTooltips(overlay);
-  // Let the profile shell paint before installing geometry/overflow observers.
-  // Those observers are important for adaptive sizing, but they do not need to
-  // block the click-to-profile response on large Firefox roadmaps.
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    if (unitProfileOverlay !== overlay || !overlay.isConnected) return;
-    bindUnitProfileAdaptiveRows(overlay);
-    bindProfileNoteReaders(overlay);
-  }));
+  scheduleUnitProfileContentBindings(overlay);
   overlay.querySelector(".unit-profile-close")?.focus({ preventScroll: true });
 }
 
 function closeUnitProfile(immediate = false) {
   closeUnitNoteReader(true);
-  unitProfileOverflowObserver?.disconnect();
-  unitProfileOverflowObserver = null;
+  resetUnitProfileContentBindings();
   if (profileOpenTimer) {
     clearTimeout(profileOpenTimer);
     profileOpenTimer = null;
@@ -4459,7 +4692,7 @@ function closeUnitProfile(immediate = false) {
     finished = true;
     overlay.remove();
     if (!document.querySelector(".unit-profile-overlay")) document.body.classList.remove("unit-profile-open");
-    if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
+    if (!unitProfileOverlay && !unitNoteReaderOverlay && returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
   };
 
   if (immediate || window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) {

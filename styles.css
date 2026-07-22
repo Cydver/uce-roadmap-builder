@@ -2055,3 +2055,72 @@ button.danger:hover,
 .tag.cb { color: #170a00; text-shadow: none; }
 .tag.must-p5 { color: #160407; text-shadow: none; }
 .tag.custom { background: #657386; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.52); }
+
+/* Full-system mobile audit: keep touch interaction native where possible, while
+   draggable roadmap items explicitly opt into app-owned pointer movement. */
+@media (pointer: coarse) {
+  .chart-scroll {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  .unit-card,
+  .meta-bar {
+    touch-action: none;
+  }
+
+  /* Do not move a close target underneath a finger while the modal opens. */
+  .unit-profile-card,
+  .unit-profile-overlay.closing .unit-profile-card,
+  .unit-note-reader-card,
+  .unit-note-reader-overlay.closing .unit-note-reader-card {
+    animation: none;
+  }
+  .unit-profile-overlay,
+  .unit-note-reader-overlay {
+    animation-duration: .12s;
+  }
+  .unit-profile-overlay.closing,
+  .unit-note-reader-overlay.closing {
+    animation-duration: .08s;
+  }
+  .unit-profile-close {
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
+    top: 11px;
+    right: 11px;
+    touch-action: manipulation;
+  }
+  .unit-note-reader-close {
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
+    touch-action: manipulation;
+  }
+  .unit-profile-nav {
+    min-width: 44px;
+    min-height: 52px;
+    touch-action: manipulation;
+  }
+}
+
+/* Full-system audit: profile help/link targets remain compact visually while
+   coarse pointers get a dependable Apple-sized activation area. */
+@media (pointer: coarse) {
+  .unit-profile-tag.has-description {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .unit-profile-source-link {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+    transform: none;
+    touch-action: manipulation;
+  }
+  .unit-profile-source-link:hover {
+    transform: none;
+  }
+}
